@@ -33,6 +33,53 @@ The scaling of \(c\) is all wrong here and it doesn't seem possible to make this
 Therefore the family of ovals does not correspond to a 1-parameter subgroup of affine transformations! The problem is if these transformations are required to preserve length, then it seems they must be orthogonal transformations, but then you can't get a family of ellipses this way!
 
 Maybe, it's possible to transform \(f\) as well to make this work, say by initially normalising \(f\) to have \(\int f^2 = 1\) and then allow our affine transformations to vary length, but adjust for this in scaling \(f\) accordingly? Still doesn't seem likely to work...
+\section*{The family of ellipses}
+
+We work with curves \(\gamma\) with total length \(2\pi\) and smooth (square integrable? smooth should be enough) functions \(f: \gamma \to \mathbb{R}\). The Burchard-Thomas formulation is to consider the map
+\[
+(\gamma, f) \mapsto X = f \frac{\gamma'}{\|\gamma'\|}
+\]
+This maps onto the space of functions \(X: \mathbb{S}^1 \to \mathbb{R}^2\) (or is it \(\mathbb{R}^3\)?) such that
+\[
+\int_{\mathbb{S}^1} \frac{X}{\|X\|} d\theta = 0
+\]
+The inverse map is
+\[
+X \mapsto (\gamma, f) = \left(\int_0^{\theta} \frac{X}{\|X\|} d\theta, \|X\|\right)
+\]
+
+For the oval case, is it true that we can assume \(\mathbf{v_1}, \mathbf{v_2}\) are orthogonal? If not, then you still get an ellipse, but with axes \(\tfrac{1}{2} (\mathbf{v_1} +  \mathbf{v_2})\) and the orthogonal direction, but now rotated so that the vertices are not on the \(x,y\) axes anymore. Then we can just use rotation invariance and replace our two vectors with the axes of the ellipse.
+
+Assuming we have \(\mathbf{v_1}, \mathbf{v_2}\) are orthogonal, let's write 
+\(a = \|v_1\|, b = \|v_2\|\). Then we have the correspondence 
+\[
+\begin{split}
+X \mapsto (\gamma, f) &= \left(\int_0^{u} \frac{X}{\|X\|} du, \|X\|\right) \\
+&= \left(\int_0^{u} \frac{\cos u \mathbf{v_1} + \sin u \mathbf{v_2}}{\sqrt{a^2 \cos^2 u + b^2 \sin^2 u}} du, \sqrt{a^2 \cos^2 u + b^2 \sin^2 u} \right)
+\end{split}
+\]
+
+Here \(\gamma\) is parameterised by arc-length and has total length \(2\pi\). I guess this will be true for any \(X\) since we're integrating a unit length vector. 
+
+I wonder if we can transplant this function \(f\) onto any curve \(\gamma\)  of total length \(2\pi\) and parametrised by arc length \(u\), and obtain the desired instability? Namely, take a variation of \(f\):
+\[
+f_t = \sqrt{a(t)^2 \cos^2 u + b(t)^2 \sin^2 u}
+\]
+where \((a(t), b(t))\) are any smooth functions. The corresponding family of ellipses is
+\[
+\gamma_t(u) = \int_0^u \frac{(a(t) \cos u, b(t) \sin u)}{\sqrt{a(t)^2 \cos^2 u + b(t) \sin^2 u}} du.
+\]
+This family is parametrised by arc-length \(u\) for each \(t\) and has length \(2\pi\) for each \(t\).
+
+Is that right? Can \(u\) and \(t\) commute and \(u\) be the arc-length parameter at the same time?
+
+This variation is neutrally stable.
+
+Now, presumably \(f_t\) \emph{is not} the eigenfunction on any curve other than \(\gamma_t\). Can we find a variation, \(\gamma_t\) of an arbitrary curve \(\gamma\) corresponding to \((a(t), b(t))\) somehow, that preserves length and such that \((\gamma_t, f_t)\) is unstable? Then we'd be done!
+
+The catch here is that the variation of the ellipse cannot be \(\gamma_t = A(t) \gamma\) with \(A(t)\) a curve (one parameter subgroup?) in the affine group since it must preserve length (hence is in \(O(2)\), but also deform the ellipse hence is not in \(O(2)\). I'm not completely sure that the former assertion that \(A(t) \in O(2)\) has to be correct, since we only need to preserve length for this particular ellipse family, though it does seem likely.
+
+If we could somehow characterise \(A(t)\) independently of the ellipse, i.e as a transformation on the ambient space, we could test the hypothesis. My suspicion here is that what makes this problem so interesting (or "vexing" as burchard-thomas describe it) is that it's not possible to obtain this characterisation of \(A(t)\).
 
 \section*{Latest approach... Wirtinger inequality}
 
