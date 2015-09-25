@@ -34,6 +34,136 @@ Therefore the family of ovals does not correspond to a 1-parameter subgroup of a
 
 Maybe, it's possible to transform \(f\) as well to make this work, say by initially normalising \(f\) to have \(\int f^2 = 1\) and then allow our affine transformations to vary length, but adjust for this in scaling \(f\) accordingly? Still doesn't seem likely to work...
 
+\section*{Latest approach... Wirtinger inequality}
+
+Reference:  Chavel's book on isoperimetric inequality.   
+
+\bigskip
+\textbf{Theorem:} Let $f:[0,L]\rightarrow \mathbb{R}$ satisfy $\int_0^L f\,dx=0$.   Then 
+\[\int_0^L |f'|^2 \,dx\ge \frac{4\pi^2}{L^2}\int_0^L f^2\,dx.\tag{WI}\]
+Equality happens in the case that $f=a_{-1}exp(-2\pi i x/L)+ a_{1}exp(2\pi i x/L).$
+
+\bigskip
+
+Now let $X:[0,L]\rightarrow \mathbb{R}^2$ be an embedding of a closed curve.  (Not necessarily parameterized w.r.t. arc-length, and in fact in our use of this, it explicitly it is NOT-- $u$ is the arc-length parameter of the original curve, which is NOT $X$.)
+
+\textbf{Let us assume that $\int X \,du =0$. }  
+
+Then apply the WI to each of the coordinate functions $(X_1,X_2)$ of $X$.   
+
+We find
+\[ \int |(X_i)_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |X_i|^2\,du  \quad\quad \text{ for }i=1,2.\]
+
+Sum over $i=1,2$: 
+\[ \label{BT} \int |X_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |X|^2\,du .  \tag{BT}\]
+
+Claim: equality in the case that $X=\cos u \mathbf{v_1}+ \sin u \mathbf{v_2}$ (i.e. in family of ovals) (have not checked this).
+
+If it happens to be the case that $L=2\pi$, this is exactly what we're after:  since we can set $X=f(u)T(u)$ (where $f$ is the eigenfunction and $T$ is the tangent in the original formulation of the problem, and $u$ is arclength of the original $\gamma$).  (I call this the BT setting, as it was what Burchart-Thomas were using.)  Then $X_u= f' T+ fT_u= f'T+ fkN$, and so \eqref{BT} becomes
+\[ \int f'^2 + k^2 f^2 \,du \ge \int f^2\,du, \]
+as required.
+
+(Tangentially:   this approach gives a nice proof of the fact that $\int_\gamma k^2 \ge \frac{4\pi^2}L$.)
+
+So what is the problem here?  The assumption that $\int X \,du=0$.   
+
+If $X$ is given by $fT$, and $T$ is the tangent of the closed curve in the original formulation, then what is actually satisfied is 
+\[ \int \frac{X(u)}{|X(u)|}\,du = \int T \,du= 0.\]
+
+It is not generally true that $\int X=0$.   (Except in the circle case, when $f$ is constant).   (It is also true in the oval case, when $X_0=\cos u \mathbf{v_1}+ \sin u \mathbf{v_2}$).   
+
+Some ideas:   
+\begin{enumerate}
+\item Translate $X$ so we satisfy $\int X=0$.  Lefthand side is nice, messes around with the RHS. \label{translate}
+
+\item Or we could just reparameterise so that $ds=du/|X(u)|$.   Then we find that $\int X \,ds=0$, but we then have to integrate against $ds$ throughout... introducing a bunch of nasty $|X(u)|$ terms in our expression.     Which correspond to $f$.
+
+\item There is something about the equality case in WI that connects to the ellipses of the ovals problem.
+
+\item apply WI directly to $X/|X|$?
+
+\item The expression \eqref{BT} IS affine invariant, right?
+
+
+
+\end{enumerate}
+
+\textbf{Further look at the translating idea, (\ref{translate}).}
+
+Same set up, but this time we assume $\int \frac{X}{|X|}\,du=0$. 
+
+Let $\tilde{X}=X-Y$, where $Y$ is chosen so that $\int\tilde{X}\, du=0$.    This implies that $Y=\frac1L\int X \,du$.    Then we can apply \eqref{BT} to $\tilde{X}$, so that 
+\[  \int |\tilde{X}_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |\tilde{X}|^2\,du , \]
+so
+\begin{equation} \int |{X}_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du , \label{tildy}\end{equation}
+
+\emph{Do something with the equality case:  the equality case implies that $Y=0$.}
+
+If I had $\int|X-Y|^2\ge\int|X|^2$ then I would be done, but that looks flat-out wrong, since 
+\[\int |X-Y|^2 \, du = \int |X|^2- \frac1L\left(\int X\right)^2\]
+which is \emph{strictly} less than $\int |X|^2$-- except of course in the case that $\int X=0$ (in which case we'd be done already).   
+
+I still haven't used $\int \frac{X}{|X|}\,du=0$, but it's certainly the case that $X$ can satisfy that, but not $\int X=0$.  
+
+\eqref{tildy} gives 
+\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du }\ge 1, \label{stupid translate} \end{equation}
+
+I can't see any way forward here.   Unless it is to use this expression to show the impossibility of a counter example?
+
+Sketch:   \begin{itemize}
+\item we get equality in \eqref{stupid translate} when $X=\sin $ etc, this implies $Y=0$. 
+\item For all other $X$, we have
+\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du }> 1,  \end{equation}
+\item but we know that in the case that $\int X\not=0$, $\int |{X}-Y|^2\,du < \int |X|^2$, so 
+\begin{equation}
+\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du }> \frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}|^2\,du },  \end{equation}
+\item to show a counterexample, choose $Y$ so that $\int |X-Y|^2$ is large enough that 
+\[1\ge \frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du }\]
+\item this would then give a counterexample to 
+\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}|^2\,du }\ge 1, \label{stupid translate} \end{equation}
+\item but we can't choose such a $Y$, because of (6).
+\end{itemize}
+\bigskip
+
+\textbf{Look at the reparameterization idea, (2):}
+
+Here we start by assuming  $\int \frac{X}{|X|}\,du=0$.  Then make a change of variables, $s(u)=\int \,ds=\int \frac{du}{|X|}$.   That is, $du/ds=|X|$.  
+
+This then satisfies $\int X(s)\,ds=\int  \frac{X}{|X|}\,du=0$, so \eqref{BT} gives
+\[ \int_0^{s(L)} |X_s|^2 \,ds \ge \frac{4\pi^2}{\tilde{L}^2}\int |X|^2\,ds\]
+where $\tilde{L}=\int_0^L \,ds$.  Converting back to $u$ gives
+\[ \int_0^{L} |X_u|^2|\frac{du}{ds}|^2 \,\frac{du}{|X|} \ge \frac{4\pi^2}{\tilde{L}^2}\int |X|^2\,\frac{du}{|X|}\]
+thus
+\[ \int_0^{L} |X_u|^2|X| \,du\ge {4\pi^2}\left(\int_0^L |X|^{-1}\,du \right)^{-2}\int |X|\,{du}.\]
+
+This is ridiculous.
+
+\clearpage
+
+\section*{Next idea:  Affine $+$ Wirtinger}
+
+\textbf{The plan}
+ 
+ 1.  Wirtinger inequality for closed curves:  if $\int Z du =0$ then 
+ $$\int |Z_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |Z|^2 \,du  \quad \quad \text{(WI)}$$
+ 
+ 2.  Let $X$ be fixed closed curve with $$\int \frac{X}{|X|}\,du =0.$$
+ 
+ 3.  Let $A$ be affine (in fact linear).  \textbf{Claim: }Then $X\rightarrow AX$ keeps 
+ \begin{equation}\frac{\int |X_u|^2 du }{\int |X|^2 \,du}  \label{this equation} \end{equation}
+ the same but not $$\int X\,du.$$
+ 
+ 4.   \textbf{Claim:} We can choose $A$ so that $Y=AX$ satisfies $\int Y \,du =\int AX\,du=0.$
+ 
+ 5.  Then $$\int |Y_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int {|Y|^2}\,du,$$ by (WI).
+ 
+ 6.  And so $$\int |X_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int {|X|^2}\,du,$$
+
+
+Cautions:  what is the deal with length under $A$? That is, the quantity in \eqref{this equation} may be invariant under $A$, but what about
+\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}|^2\,du } ? \end{equation}
+
+Am I using the condition $\int X/|X|$?
 
 
 
