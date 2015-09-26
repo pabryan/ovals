@@ -1,6 +1,10 @@
 \documentclass{amsart}
-
+\usepackage[normalem]{ulem}
 \usepackage{setspace}
+
+
+
+
 \begin{document}
 
 \spacing{1.3}
@@ -115,7 +119,7 @@ as required.
 So what is the problem here?  The assumption that $\int X \,du=0$.   
 
 If $X$ is given by $fT$, and $T$ is the tangent of the closed curve in the original formulation, then what is actually satisfied is 
-\[ \int \frac{X(u)}{|X(u)|}\,du = \int T \,du= 0.\]
+\begin{equation} \label{tangent of loop} \int \frac{X(u)}{|X(u)|}\,du = \int T \,du= 0.\end{equation}
 
 It is not generally true that $\int X=0$.   (Except in the circle case, when $f$ is constant).   (It is also true in the oval case, when $X_0=\cos u \mathbf{v_1}+ \sin u \mathbf{v_2}$).   
 
@@ -127,7 +131,7 @@ Some ideas:
 
 \item There is something about the equality case in WI that connects to the ellipses of the ovals problem.
 
-\item apply WI directly to $X/|X|$?
+\item \sout{apply WI directly to $X/|X|$?} (This is the same as (2).)  
 
 \item The expression \eqref{BT} IS affine invariant, right?
 
@@ -167,7 +171,7 @@ Sketch:   \begin{itemize}
 \item to show a counterexample, choose $Y$ so that $\int |X-Y|^2$ is large enough that 
 \[1\ge \frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du }\]
 \item this would then give a counterexample to 
-\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}|^2\,du }\ge 1, \label{stupid translate} \end{equation}
+\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}|^2\,du }\ge 1,  \end{equation}
 \item but we can't choose such a $Y$, because of (6).
 \end{itemize}
 \bigskip
@@ -211,6 +215,40 @@ Cautions:  what is the deal with length under $A$? That is, the quantity in \eqr
 \begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}|^2\,du } ? \end{equation}
 
 Am I using the condition $\int X/|X|$?
+
+
+ \section*{Look for a suitable transformation of $X$}
+  
+  Find a transformation of $X$ (satisfying \eqref{tangent of loop}) such that 
+  \begin{equation} \label{p type quotient} \frac{\int_0^L |X_u|^2 \,du }{\int_0^L |X|^2 \,du } \end{equation}
+  is preserved, and 
+  $$\int X \,du$$ is \emph{improved} (moved closer to zero).
+   
+ 
+  
+  Comment:   to preserve \eqref{tangent of loop} and improve $\int X$, use $X_t=-X$ (multiply by sign$(\int X)$ to get the sign right).   
+  
+  One such flow is found by taking $X_t$ such that 
+  \[ \int -\langle X_t, X_{uu} + RX\rangle \,du =0 \]
+  where $R$ is equal to the quotient \eqref{p type quotient}.   
+ 
+ $\int X \rightarrow 0$ can be satisfied since we can choose a sign on $X_t$.     This looks do-able....
+ 
+ Strategy:
+
+\begin{enumerate}
+\item   Let $X_0$ satisfy \eqref{tangent of loop}.   Note that the parameterisation $u$ is fixed and is not necessarily arc-length (of $X$).       
+\item Show that there exists a short time solution to the evolution equation \label{step 2}
+$$X_t= J(X_{uu}+ RX), \quad X(0)=X_0$$
+where $J$ is rotation through $\pi/2$. 
+\item Show that we can extend this solution for .... as long as it takes to get $\int X(t)=0$.    This is where we might be able to use the condition \eqref{tangent of loop}.    We can also use a backwards flow, since the sign of $X_t$ is not important in preserving \eqref{p type quotient}.   
+
+
+\item Apply Wirtinger to get result.
+\end{enumerate}
+ 
+ Note that the flow equation in \ref{step 2} is sufficient but not necessary.    
+
 
 
 
