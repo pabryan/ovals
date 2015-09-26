@@ -3,7 +3,7 @@
 \usepackage{setspace}
 
 
-
+\usepackage{todonotes}
 
 \begin{document}
 
@@ -80,6 +80,8 @@ Is that right? Can \(u\) and \(t\) commute and \(u\) be the arc-length parameter
 This variation is neutrally stable.
 
 Now, presumably \(f_t\) \emph{is not} the eigenfunction on any curve other than \(\gamma_t\). Can we find a variation, \(\gamma_t\) of an arbitrary curve \(\gamma\) corresponding to \((a(t), b(t))\) somehow, that preserves length and such that \((\gamma_t, f_t)\) is unstable? Then we'd be done!
+
+
 
 The catch here is that the variation of the ellipse cannot be \(\gamma_t = A(t) \gamma\) with \(A(t)\) a curve (one parameter subgroup?) in the affine group since it must preserve length (hence is in \(O(2)\), but also deform the ellipse hence is not in \(O(2)\). I'm not completely sure that the former assertion that \(A(t) \in O(2)\) has to be correct, since we only need to preserve length for this particular ellipse family, though it does seem likely.
 
@@ -216,6 +218,7 @@ Cautions:  what is the deal with length under $A$? That is, the quantity in \eqr
 
 Am I using the condition $\int X/|X|$?
 
+\framebox{\parbox{\textwidth}{The problem with this approach is that (3) doesn't hold:   the quotient \eqref{this equation} is \textbf{NOT} affine invariant.}}
 
  \section*{Look for a suitable transformation of $X$}
   
@@ -239,9 +242,17 @@ Am I using the condition $\int X/|X|$?
 \begin{enumerate}
 \item   Let $X_0$ satisfy \eqref{tangent of loop}.   Note that the parameterisation $u$ is fixed and is not necessarily arc-length (of $X$).       
 \item Show that there exists a short time solution to the evolution equation \label{step 2}
-$$X_t= J(X_{uu}+ RX), \quad X(0)=X_0$$
-where $J$ is rotation through $\pi/2$. 
+$$X_t= f(u,t) J(X_{uu}+ RX), \quad X(0)=X_0$$
+where $J$ is rotation through $\pi/2$.   I think $f$ is free.  
+% * <clutterbuck.j@gmail.com> 2015-09-26T11:39:23.691Z:
+%
+% 
+%
 \item Show that we can extend this solution for .... as long as it takes to get $\int X(t)=0$.    This is where we might be able to use the condition \eqref{tangent of loop}.    We can also use a backwards flow, since the sign of $X_t$ is not important in preserving \eqref{p type quotient}.   
+% * <clutterbuck.j@gmail.com> 2015-09-26T11:39:25.281Z:
+%
+% 
+%
 
 
 \item Apply Wirtinger to get result.
