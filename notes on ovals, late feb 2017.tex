@@ -1,0 +1,586 @@
+  \documentclass[12pt, a4paper]{amsart}
+
+
+
+\address{ }
+\usepackage[left=3cm,top=3.5cm,right=3cm]{geometry}
+\usepackage{parskip, color}
+\usepackage[normalem]{ulem}
+%\date{letterdate} if you want to fix the date on the letter; otherwise the date will default to the current date when the letter is printed.
+
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\rhead{\Small{\today}}
+\cfoot{ }
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+
+
+\usepackage{geometry}
+
+%\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+
+\usepackage{versions}
+%%%%%%%%%
+\includeversion{lecturenotes}  \excludeversion{outline}
+%\excludeversion{lecturenotes}   \includeversion{outline} 
+%%%%%%%%%
+
+\usepackage{kpfonts}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{cmbright}
+ 
+ \usepackage{hyperref}
+ 
+\newcommand{\margincomment}[1]{\marginpar{\footnotesize{#1}}}
+\newcommand{\pd}[2]{\dfrac{\partial#1}{\partial#2}}
+\DeclareMathOperator{\divergenz}{div}
+\newcommand{\bigR}{{\mathbb R}}
+
+\newcommand{\x}{\lVert x \rVert}
+
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\emptynorm}{\lVert \cdot \rVert}
+
+\usepackage{setspace}
+
+\usepackage{enumitem}
+
+\usepackage{pdfpages}
+
+\theoremstyle{remark}
+\newtheorem*{definition}{Definition}
+\newtheorem*{exercise}{Exercise}
+
+\author{J Clutterbuck}
+
+
+\begin{document}
+
+  
+\spacing{1.1}
+
+
+
+\title{Brisbane late Feb 2017  }
+\maketitle
+
+{Work with Paul Bryan.}
+
+\section*{What is here}
+
+A look at the orbit setting, including understanding the constraint in a non-geometric manner (variations must belong to an $L^2$ space $H_X=\sin\theta^\perp +\cos\theta^\perp$, see equation \eqref{constraint identity}) and then deriving the angular momentum identity in this setting, see \eqref{ang moment identity}.
+
+
+
+\section*{The orbit setting}
+
+Here we work with the \emph{orbit} setting studied by Burchard and Thomas.   This is also in $\S 4$ of Mat's notes.
+
+Let $$\mathcal{B}:=\lbrace X:S^1\rightarrow \mathbb{R}^2\setminus \lbrace 0\rbrace:   X/|X|:S^1\rightarrow S^1 \text{ is a degree-one curve satisfying the constraint \eqref{constraint} } \rbrace ,$$
+where 
+\begin{equation}
+\tag{C}    \int_{S^1} \frac{X}{|X|}\,ds=0 \label{constraint}
+\end{equation}
+
+We are interested in characterising the minimisers of 
+$$R[X]:= \frac{ \int |X_s|^2 \,ds}{\int |X|^2\,ds}$$
+in the set $\mathcal{B}$.   
+
+Tangential comment:   I suspect minimising over \emph{degree-two} curves would find the \emph{second} eigenvalue.
+
+\section*{Conversion between orbital and geometric quantities}
+
+Every orbit in $\mathcal{B}$ corresponds to a loop in the plane of length $2\pi$:
+$$\gamma(s)=\mathbf{x_0}+\int_0^s \frac{X(\sigma)}{|X(\sigma)|} \,d\sigma \quad\quad \text{ (we will always take $\mathbf{x_0}=0$).}$$
+Notice that $\partial_s \gamma(s)=\frac{X(s)}{|X(s)|}\in S^1$, so that $s$ is an arc-length parameterisation.   Also, the constraint ensures that $\gamma(2\pi)-\gamma(0)=\int_0^{2\pi} \frac{X(\sigma)}{|X(\sigma)|}\,d\sigma =0$, that is, the curve is a closed loop.       With reference to the original setting, we will sometimes set $|X|=f$, the first eigenfunction of associated to the curve $\gamma$.
+
+The curvature of the curve $\gamma$ is given by ($J$ is rotation through $-\pi/2$, so $N=JT$)
+\begin{align*}
+\kappa(s)=\langle \partial_s T,N\rangle 
+&= \langle \partial_s \frac{X(s)}{|X(s)|}, N \rangle \\
+&=\langle  \frac{X_s(s)}{|X(s)|}-  \frac{X(s)\langle X_s ,X\rangle }{|X(s)|^3},  N \rangle  \\
+&=\left\langle  \frac{\text{proj}_{X^\perp} X_s}{|X|},N  \right\rangle\\
+&=\left\langle \frac{X_s}{|X|}, N\right\rangle
+\end{align*}
+where we use that $N\subseteq \text{span} X^\perp$, since $X$ is tangential.   
+
+Alternatively, we can use
+\begin{align*}
+X_s=(fT)_s&=f_sT+f \kappa N \text {and so } \langle X_s, N \rangle= f\kappa, 
+\end{align*}
+so
+$$f^2\kappa=|X|  \langle X_s, N \rangle. $$
+
+\section*{Variations}
+
+Let us consider a variation $X(t,s)$ such that $X(t,\cdot)$ is in $\mathcal{B}$ for small $t$.      We can linearise around $t=0$, setting 
+$$X(t,\cdot)=X(0,\cdot)+ t V+\frac12t^2 W.$$
+
+\textbf{Satisfying the constraint} requires that 
+\begin{align*}
+0=   \frac{d}{dt}  \int_{S^1} \frac{X}{|X|}\,ds &= 
+ \int_{S^1} \frac{X_t}{|X|}-  \frac{X \langle X,X_t\rangle}{|X|^3}     \,ds
+ \\&= 
+  \int_{S^1} \frac{\text{proj}_{X^\perp} X_t}{|X|}   \,ds.
+\end{align*}
+
+At $t=0$, this is 
+$$ 0= \int_{S^1} \frac{\text{proj}_{X^\perp} V}{|X|}   \,ds. $$
+
+
+Consider a  variation, $V(s)=\rho(s) N(s)+ \varphi(s) T(s)$.     In this case the constraint (at $t=0$) is 
+$$ 0= \int_{S^1} \frac{ \text{proj}_{N}(\rho N+\varphi T )}{f}   \,ds    =\int_{S^1} \frac{ \rho N }{f}   \,ds $$    %
+where we revert to writing $|X|=f$.   So all tangential variations satisfy the constraint.    Let's ignore them from now on (they correspond to variations that change the eigenfunction but leave the curve unchanged).     Let $\theta=\theta(s,t)$ such that $N(s,t)=(\sin \theta(s,t),\cos \theta(s,t))$-- that is $\theta$ is the angular coordinate.    $\theta$ depends on $t$, but $s$ is independent.      Here we remember $N_s= N_\theta \frac{\partial \theta}{\partial s}=-\kappa T$, that is, $\kappa= \frac{\partial \theta}{\partial s}$.    
+The first component of the constraint is 
+$$ 0= \int_{S^1} \frac{ \rho(s) \cos \theta(s) }{f(s)}   \,ds   = \int_{S^1} \frac{ \rho \cos \theta }{f}  \frac{\partial s}{\partial \theta}  \,d\theta =  \int_{S^1} \frac{ \rho \cos \theta }{f}  \frac1\kappa \,d\theta,$$ 
+hence in order for $\rho$ to  satisfy the constraint, all we need is that $\frac{ \rho   }{f\kappa} $ (where everything is evaluated at $s=s(\theta)$) is o/n to $\cos$ (and also, by looking at the second component, o/n to $\sin$).    This leads to the reassuring observation that variations that satisfy the constraint (in the orbit setting) are plentiful (ie live in a space with codimension 2).    
+
+Writing this with reference to orbital quantities:   \margincomment{What!?!  where does this come from?}
+$$  0=   \int_0^{2\pi} \frac{ \langle N, V\rangle  \cos \theta }{\left\langle {X_s}, N\right\rangle} \,d\theta.$$ 
+
+We could also write this as 
+\begin{equation}\frac{\rho(s(\theta))}{f(s(\theta))\kappa(s(\theta))}=C+ \sum_{n=2}\alpha_n \cos(n\theta)+\beta_n\sin(n\theta).
+\label{constraint identity}\end{equation}
+
+
+
+
+\subsection*{The first variation, orbit setting}
+
+
+
+
+
+
+Let's write 
+$$R[X(\cdot,t)]\int |X|^2 = \int |X_s|^2.$$
+
+Then first variation  
+$$ R'[X(\cdot,t)] \int |X|^2   + 2 R[X]\int\langle X,X_t\rangle =    2\int \left\langle X_s, X_{st}\right\rangle. $$ 
+
+
+Let's linearise around $t=0$, writing $X(\cdot,t)=X(\cdot,0)+tV+\frac12 W$, so that $X_t=V$ and $X_{tt}=W$.    
+
+Then if $t$ corresponds to a critical point of $R$, where $R'[X]=0$,  the first variation gives
+\begin{equation} \label{first var}  0   =    \int -  \left\langle X_{ss}+ R[X]X , V\right\rangle \end{equation}
+(where we've integrated by parts, and used $\langle X_s,V\rangle (0)=\langle X_s,V\rangle (2\pi)$).
+
+We note that if revert to the $\gamma$ setting, decomposing the first variation into tangential and normal components gives
+$$   \langle V,X_{ss}+ R X\rangle = \langle V,T\rangle (-f_{ss}+ f\kappa^2+ Rf)+ \langle V,N\rangle (2f_s \kappa + f \kappa_s).$$
+
+The first term is the eigenvalue equation.     The last term in brackets is $2\sqrt{\kappa}(f\sqrt{\kappa})_s$, \emph{which we recognise from the angular momentum identity}.    
+
+\margincomment{Surely I've looked at setting $V= X_{ss}+R[X]X$ before\dots?}
+
+Let's look only at a normal variation, $V=\rho N$.  Then 
+\begin{align*} R'[X]\int|X|^2   &=    \int -  \left\langle X_{ss}+ R[X]X , V\right\rangle \\&= 
+- \int  \langle V,N\rangle (2f_s \kappa + f \kappa_s)\,ds
+\\
+ &= -\int  \langle V,N\rangle  \sqrt{\kappa}(f\sqrt{\kappa})_s \,ds \\
+  &= -\int  \rho  \sqrt{\kappa}(f\sqrt{\kappa})_s \,ds  \\
+  &= -\int \left( \frac{\rho}{f\kappa} \, f\kappa\right)\,  \sqrt{\kappa}(f\sqrt{\kappa})_s \,ds  \\
+  \intertext{(change of coordinates $ds=\frac1\kappa d\theta$, $\dfrac{\partial}{\partial s}=\kappa\dfrac{\partial}{\partial\theta}$)}
+ &=  -\int  \left(\frac{\rho}{f\kappa} \, f\kappa\right) \,  \sqrt{\kappa}  \, \kappa(f\sqrt{\kappa})_\theta \, \frac1\kappa\,d\theta  \\
+ &=  -\int  \left(\frac{\rho}{f\kappa} \right) \, \, f\kappa^{3/2} (f\sqrt{\kappa})_\theta \, \,d\theta;  \\
+\end{align*}
+ together with \eqref{constraint identity}, this implies that if $V$ is a critical variation for $R[X]$, in the sense that $\dfrac{d}{dt} R[X+tV]_{t=0}=0$, \emph{for all $V$ satisfying the constraint,} then 
+ \begin{equation}  f\kappa^{3/2} (f\sqrt{\kappa})_\theta= a_1\sin\theta+a_2\cos\theta,   \label{ang momentum f k}\end{equation}
+ where all terms on the left are evaluated at $s=s(\theta)$.       
+ 
+ Alternatively:
+ \begin{equation}  f\kappa^{1/2} (f\sqrt{\kappa})_s= \frac12(f^2\kappa)_s=a_1\sin\theta+a_2\cos\theta, \label{ang momentum f k 2}\end{equation}
+ so we see that in the ovals case, $f\kappa^{1/2}=\text{constant}$, and so $a_1=a_2=0$.   
+
+
+In orbital terms:
+ $$
+  \frac12 \left(|X| \left\langle {X_s},N\right\rangle\right)_s=
+   a_1\sin\theta+a_2\cos\theta,$$
+ 
+ 
+$$ \frac12 \left(|X|\left\langle {X_s},N\right\rangle\right)_s= a_1\sin\theta+a_2\cos\theta=\langle Y,N\rangle= \langle JY,T\rangle=\langle JY,\dfrac\partial{\partial s}\gamma(s)\rangle
+=\dfrac\partial{\partial s} \langle JY,\gamma(s)\rangle $$
+ where $Y$ is some fixed vector $Y=a_1 e_1+ a_2 e_2$.
+ So we can integrate 
+ $$ \frac12 \left(|X|\left\langle {X_s},N\right\rangle\right)_s= \dfrac\partial{\partial s} \langle JY,\gamma(s)\rangle $$
+ w.r.t. $s$:
+  $$ |X|\left\langle {X_s},N\right\rangle=  \langle JY,\gamma(s)\rangle  +c $$
+The left hand side here is $f^2\kappa$, so:    
+
+if $X$ is a critical point of $R$, in the sense that $R'[X+tV]_{t=0}=0$ for all $V$ satisfying the constraint, then there exists a fixed vector $Z$ such that  
+\begin{equation} \label{ang moment identity}
+|X|\left\langle {X_s},N\right\rangle=f^2\kappa=  \langle Z,\gamma(s)\rangle  +c
+\end{equation}
+for all $s\in[0,2\pi]$.     (Again, if we can show that $Z\equiv 0$ then we are done.)
+ 
+ 
+ 
+ \section*{Too many thoughts about the angular momentum identity}
+ 
+ We observe that \eqref{ang moment identity} is another way of writing the angular momentum identity $A_{\theta\theta}+ A=C$, or alternatively $A_\theta=\alpha \cos\theta$, where $A=f_s^2+\kappa^2 f^2 + \lambda f^2$, since 
+ \begin{align*}
+ A_\theta &= \frac1\kappa A_s \\
+ &= \frac1\kappa\left[ 2f_s f_{ss} + 2\kappa \kappa_s f^2 + 2\kappa^2 f f_s + 2 \lambda ff_s \right] \\
+ &= \frac1\kappa\left[ 2f_s\left( \kappa^2 f-\lambda f\right) + 2\kappa^2 \kappa_\theta f^2 + 2\kappa^2 ff_s + 2\lambda f f_s\right] \\
+ &= \frac1\kappa \left[ 4\kappa^2 f f_s + 2\kappa^2 \kappa_\theta f^2\right] \\
+ &= 2\kappa f\left( 2\kappa f_\theta + \kappa_\theta f\right) \\
+ &= 4\kappa^{3/2} f \left(f\sqrt\kappa\right)_\theta
+ \end{align*}
+
+We have the AMI in a bunch of different forms, e.g. \eqref{ang momentum f k}, \eqref{ang momentum f k 2}.
+
+
+\emph{Another} way of writing this is as a  \textbf{Sturm-Liouville} equation for $\theta(s)$:
+$$(f^2 \theta_s )_s=\alpha\cos\theta.$$
+Here $\theta$ should be increasing with $\theta(0)=0$, $\theta(L)=2\pi$, while $\theta'$ is periodic and positive.   Since $f=|X|$ we can write this with respect to polar coordinates $(r,\theta)$
+$$(r^2 \theta_s )_s=\alpha\cos\theta.$$
+
+In the orbit notation, this gives me a pretty neat system of two second order ODEs:
+$$\left(\langle X_s, JX\rangle\right)_s= \frac1{|X|}\langle X,Y\rangle$$
+where $Y$ is just some fixed vector.
+
+\newcommand{\bx}{\mathbf{x}}
+\newcommand{\by}{\mathbf{y}}
+
+Writing $X=(\bx(s),\by(s))$ this becomes
+$$\dfrac{d}{ds}\left[ -\bx'\by+ \by' \bx\right]= \alpha \frac{\bx}{\sqrt{\bx^2 +\by^2}}$$
+(where I've assumed $Y=(1,0)$.)  Does this have a periodic solution for some non-zero $\alpha$?    
+
+Periodic solution for $\alpha=0$ is $(\bx,\by)=(\cos s, \sin s)$.     Non-periodic solution for $\alpha=0$ is  $(\bx,\by)=e^s V$.  Or more generally, $ (\bx,\by)=\varphi(s) V$, this could be periodic if $\varphi$ is.   For any $\alpha$, and $V$ orthogonal to $Y$, then  $(\bx,\by)= \varphi(s) V$ also works.   
+
+Alternatively, writing $\mathbf{w}=\by/\bx$ (which messes with our desire to find periodic solutions with $\bx=0$ somewhere) we have
+$$   \dfrac{d}{ds}\left[ \bx^2 \mathbf{w}_s\right]= \alpha \frac{\bx/|\bx|}{\sqrt{1 +\mathbf{w}^2}}.$$
+
+
+
+
+We spoke about this a little with Andy Hammerlindl, he thought there was not much chance of ruling our periodic solutions as only one component of the acceleration is specified   (the part in direction $JX$).     That is, the system is underdetermined.   
+
+Consider the problem:  \textit{let $r:S^1\rightarrow \mathbb{R}^+$ be some fixed function.   When can we find $\theta:[0,L] \rightarrow \mathbb{R}$ solving
+\begin{gather*}(r^2 \theta_s )_s=\alpha\cos\theta.\\
+\theta(0)=0, \theta(L)=2\pi
+\end{gather*}
+}
+\begin{itemize}
+\item solutions for  $r\equiv c$ as above, $\alpha=0$, $\theta(s)= c_1 s + c_2$.  
+\item solutions for general $r$:   seems like this is a Sturm-Liouville problem for periodic boundary conditions, check the book by Reid for existence.   And uniqueness!
+\item other $\alpha=0$ solutions:  let $r$ be general, take $\theta'=\frac1{r^2}$.     Then for this to close up we need $\int_0^L \frac1{r^2}\,ds=2\pi$. 
+\item does this go both ways?  That is, given a periodic $f>0$ (that is, $r>0$), set $\theta'=f^{-2}$, this defines a curve $\gamma$, and $(\gamma,f)$ satisfy the angular momentum identity with $\alpha=0$.  And on the other hand, given a curve with $\kappa=\theta'>0$, define $f=\kappa^{-1/2}$, this also satisfies the AMI with $\alpha=0$.
+\item Does that help?   For a given curve, $g=\kappa^{-1/2}$ satisfies the AMI, but the eigenfunction $f$ may not be equal to $g$.   For a given curve, is $g=\kappa^{-1/2}$ the \textbf{only} solution for the AMI?  
+\item Upshot: it looks like there  are many curves that satisfy AMI, with and without $\alpha=0$.   
+\end{itemize}
+
+
+
+\bigskip
+\textbf{Terminology:} I call configurations ($X$ or $(\gamma,f)$) that satisfy the angular momentum inequality with $a_1$ or $a_2$ nonzero \textbf{fake ovals}.
+ 
+ 
+ \textit{Continued in a later section\dots}
+ 
+   
+\section*{Second variation}
+\begin{align*}
+R'' [X(\cdot,t)] \int |X|^2 +  4 R'[X]\int\langle X,X_t\rangle  +  2 R[X]  \int  |X_t|^2  + 2 R[X]& \int\langle X,X_{tt}\rangle
+\\*=     2\int \left|  X_{st}\right|^2 +   2\int \left\langle X_s, X_{stt}\right\rangle.
+\end{align*}
+  
+ \begin{align*}
+ R''[X(\cdot,t)] \int|X|^2 + 4 R'[X]\int\langle X,X_t\rangle= -2\int \langle (X_t)_{ss}+ RX_t,X_t\rangle -2\int \langle X_{ss}-RX,X_{tt}\rangle
+ \end{align*}
+   
+For $R[X+tV+\frac12 t^2W]$,
+at $t=0$, where $R'=0$ \
+\begin{align}
+\frac12 R'' \int |X|^2&= \int |V_s|^2 -R[X]|V|^2 + \langle X_s,W_s\rangle- R\langle X, W\rangle \notag \\
+&=R[V] \int |V|^2 -R[X]\int |V|^2 + \int \langle X_s,W_s\rangle- R\langle X, W\rangle \notag \\
+&=\left(R[V]-R[X]\right)\int |V|^2 +\int \langle X_s,W_s\rangle- R\langle X, W\rangle  \label{think local think global}\\
+&= \int \langle V,-V_{ss}-R[X]V\rangle + \int \langle W, -X_{ss}-RX\rangle  \notag
+\end{align}   
+Claim:  the second term on the RHS (involving $W$) is zero.   In fact we can write
+$$ \int \langle W, -X_{ss}-RX\rangle= \frac12 \left(\dfrac{d}{dt} R[X+tW]\right)_{t=0}\int |X|^2,$$
+using \eqref{first var} so if $X$ is a minimiser w.r.t. variations in the $W$ direction, then this is zero.
+
+Line \eqref{think local think global} gives us the observation:  local minimisers (for which the LHS is non-negative) are automatically global minimisers (since then $R[V]-R[X]\ge 0$).   This is not quite right, since it only holds for all $V$ that are eligible w.r.t. $X$\dots
+
+So more accurate to say:   if $X$ is a local minimiser w.r.t. all eligible variations $V$, then we also have $R[X]\le R[V]$.   
+
+
+
+
+\subsection*{Variation $\#$3, $V=X_{ss}+R[X]X$}
+This should be a variation which gives $R'>0$!  (or at least, $R'\ge 0$\dots)
+
+Now
+$$X_{ss}+R[X]X= (f_s T + f\kappa N)_s + RX=f_{ss}T + 2f_s \kappa N + f\kappa_s N -f\kappa^2 T$$
+ 
+Thus the first variation becomes 
+\begin{align*}
+\frac12 \left. R'[X+tV]\right|_{t=0}\int|X|^2&= -\int \langle V,X_{ss}+ R[X]X\rangle \\
+&= \int (-f_{ss} + f\kappa^2 + Rf)^2 - (2f_s\kappa + f\kappa_s)^2 \,ds \\
+&= \int (-f_{ss} + f\kappa^2 + Rf)^2 - 4\kappa (f\sqrt{\kappa})_s^2 \,ds
+\intertext{the first part is zero when $f$ satisfies the eigenvalue equation}
+&=- \int  4 (f\sqrt{\kappa})_s^2 \,d\theta
+\end{align*}
+and so EITHER $f\sqrt\kappa$ is constant (in which case I think we're done) or ELSE we can find a variation that decreases $R$.   
+
+Next step:  check this $V$ satisfies the constraint.  \textbf{This is not clear (or not true):}   to satisfy the constraint we need
+$$ 0=\int \frac{\rho N}f\,ds $$
+where $\rho$ is the normal component of $V$.   Here, we need
+$$ 0=\int \frac{\sqrt\kappa (f\sqrt\kappa)_s}f N \,ds=\int  \kappa {(\log(f\sqrt\kappa))_s} N\,ds=  \int N \kappa d(\log(f\sqrt\kappa)),$$
+I can't see why this would hold.  
+
+
+\subsection*{Variation $\#$4, $V=h(X_{ss}+R[X]X)$}
+
+That is, the same as variation $\#3$, but with some $h\ge0$ chosen so that $V$ satisfies the constraint.     Here $\rho=2h\sqrt{\kappa}(f\sqrt\kappa)_s$ is the normal component.
+
+\begin{align*}
+\frac12 \left. R'[X+tV]\right|_{t=0}\int|X|^2&= -\int \langle V,X_{ss}+ R[X]X\rangle \\
+&= \int h(-f_{ss} + f\kappa^2 + Rf)^2 - h(2f_s\kappa + f\kappa_s)^2 \,ds \\
+\intertext{the first part is zero when $f$ satisfies the eigenvalue equation, and we're left with}
+&=- \int  4h |(f\sqrt{\kappa})_s|^2 \,d\theta
+\end{align*}
+
+Satisfying the constraint: require
+\begin{align*} 0=\int \frac{\rho N}f\,ds&= \int \frac{2h\sqrt{\kappa}(f\sqrt\kappa)_s N}f\,ds \\
+&=  \int \frac{2h\sqrt{\kappa}(f\sqrt\kappa)_s N}{f\kappa} \kappa \,ds \\
+&=  \int \frac{2h(f\sqrt\kappa)_s N}{f\sqrt{\kappa}}  \,d\theta \\
+&=  \int {2h(\log (f\sqrt\kappa))_s N}  \,d\theta
+ \end{align*}
+
+Set $\beta(\theta)=2 (\log (f\sqrt\kappa))_s$.    $\beta$ is periodic with $\int\beta\,ds=0$.  Then we should choose $h$ so that
+\begin{equation} \label{constraint on h} \int h\beta\cos\theta\,d\theta=0=\int h\beta \sin\theta\,d\theta.\end{equation}
+
+
+\bigskip
+
+\textbf{Claim:}   Let $X$ be in the space of orbits, with corresponding $f,\gamma,\kappa$ and so on.   Let $\beta= 2 (\log (f\sqrt\kappa))_s$.   If there exists a $h>0$ with 
+$$\int h \beta \cos\theta\,d\theta=0 \text{ and } \int h \beta \sin\theta\,d\theta=0 $$
+then $X$ is not a minimiser of $R$.
+
+\textbf{Proof idea:}  In this case, $V=h(X_{ss}+ R[X]X)$ is an eligible variation (satisfies the constraint), but $R'[X+tV]<0$.   
+
+
+
+
+
+\subsection*{Finding a $h>0$ that satisfies the constraint} Here we look the problem of finding a $h$ that satisfies \eqref{constraint on h}.   The motivating question is: \emph{ Are the only $X$/$(\gamma,f)$s for which we fail to find such a $h$, the ovals?}
+
+Comments:
+\begin{itemize}
+\item if $\beta=0$ then we satisfy the constraint for any $h$ (and $\kappa f^2\equiv $constant)   and --via Bernstein-Mettler-- I think we're done.  
+\item if $\beta=c$ then we satisfy the constraint for constant $h$, but actually this never happens since $\beta$ is the derivative of a periodic function.   
+\item if $\beta=\cos\theta$ or $\beta=\sin\theta$ then we can \emph{never} satisfy the constraint with such a variation. (Does our angular momentum identity imply that $\beta=\cos\theta$?)
+\end{itemize}
+
+Let us note that the result is not true for general functions.
+
+\textbf{Counterexample.} Let us approximate by step functions or other finite-dimensional approximations, and state the corresponding problem as follows:    given $f_1$ and $f_2$ in 
+$\mathbb{R}^n$, with each $f_i$ being sign-changing (in that it is not in the positive open cone $K$).    Can we find $h\in\mathbb{R}^n$ such that $f_i\cdot h=0$ and $h\in K$?
+
+This is clearly \emph{false} in the case $n=2$, since if the $f_i$ are linearly independent the only $h$ satisfying condition 1 is $h=0$.
+
+Paul's counterexample:       Take any co-dim 2 linear space $V$ not intersecting $K$ and choose $f_1, f_2$ linearly independent, orthogonal to $V$ and not in $K$. Then $\{f_1, f_2\}^{\perp} = V$ and hence $\{f_1, f_2\}^{\perp} \cap K = \emptyset$. Therefore there is no $g \in K$ such that $g$ is orthogonal to both $f_1$ and $f_2$.
+
+ For example, in $\mathbb{R}^3$, take $V$ to be the span of $-\sin\theta e_3 + \cos\theta e_1$, $\theta$ small and nonnegative.  Then I think most linearly independent $f_1, f_2$ orthogonal to $V$ and not in $K$ will work.
+ 
+Say, 
+$f_1= e_2$, and 
+$f_2=-\sin\theta e_1 -\cos\theta e_3$.
+
+These are both not in $K$.     
+
+Then the only possible $h$ is in $V$, but then $h$ is not in $K$, so does not satisfy the problem.
+
+\textbf{On a 'fake oval'} (ie a solution of the angular momentum identity that is not an oval, and has $\alpha\not= 0$).    In such a case, the angular momentum identity implies that $f\sqrt\kappa(f\sqrt\kappa)_s=\alpha \cos\theta$--- that is, $\beta=\alpha\cos\theta(4\kappa f^2)^{-1}$.   In this case our constraint is that 
+$$0=\int h \left(  \alpha\cos\theta(4\kappa f^2)^{-1}\right)\cos\theta \,d\theta= \int h  \alpha \cos^2\theta(4\kappa f^2)^{-1}\,d\theta $$
+and since the other parts of the integrand are strictly positive, it is clear that no $h>0$ will satisfy.      On a 'fake oval' no variation of the form $h(X_ss +RX)$, $h>0$ will satisfy the constraint, thus we cannot conclude that such a variation rules out these being minimisers.      Unsurprising, since we began our definition of fake ovals by assuming them to be critical points.
+
+
+
+ It is \textbf{not clear} whether, if $\beta\cos\theta$ changes sign (and $\beta$ is a derivative, and periodic, and \dots), then we can always find $h$.   
+ 
+ However I stop working on this here, since this approach cannot rule out fake ovals.
+ 
+ 
+ 
+ 
+ 
+  \textbf{LEFT OFF WRITING CAREFULLY HERE, REST IS BRAIN DUMPS}
+  
+ 
+  
+\subsection*{ Variation $\#$ 1, $V=fN$}
+Choose $V=\varphi T + f N$, where $f$ is the eigenfunction for $\gamma(t)$.   $\varphi$ is free (tangential variations always satisfy the constraint).   Since $f$ is the eigenfunction 
+$(-f_{\theta\theta}+ f\kappa^2+ Rf)=0$, and so the first part is 0.
+
+For the second part:  choose $V=fN$.  Then the constraint is satisfied
+$$\int \frac{         \text{proj}_{X^\perp} 
+ fN}{|X|}\,d\theta=\int \frac{ fN}{f}\,d\theta=\int N \,d\theta=0 .$$
+
+Thus 
+\begin{align*}
+ R' \int |X|^2\,d\theta &=-2\int \langle V,X_{\theta\theta}+ R X\rangle \,d\theta
+ \\&
+ =   -2\int \langle   fN, 2\sqrt{\kappa}(f\sqrt{\kappa})_\theta  N \rangle  \\&
+=  -2\int  f 2\sqrt{\kappa}(f\sqrt{\kappa})_\theta   \\&
+=c\int (\kappa f^2)_\theta =0
+\end{align*}
+(in the case that the integrand itself is zero, we have $f\sqrt{\kappa}=$constant which is true in the ovals case.)
+
+Therefore $R'=0$.     
+
+Claim:   we can extend this for a short interval $t\in [0,\epsilon)$ via the implicit function theorem.  
+
+
+Comment:  this has an advantage on the M\"obius transformation, in that it takes loops to loops.
+
+This is a neutral variation that leaves $R$ unchanged, (even away from critical points).
+
+
+Claim:  under this evolution,
+$$\partial_t \gamma =\int_0^s N .$$
+(what is this?)
+
+
+\textbf{Claim:   THIS IS NO MORE THAN A ROTATION OF $\gamma$!}
+
+
+\margincomment{here the whole ``$\theta$ is arclength'' is particularly confusing and stupid, change it!}
+
+\subsection*{Variation $\#$2, $V=\rho N$}
+
+Satisfying the constraint means satisfying  
+$$\int \frac{\rho}{f} N_i d\theta=0, \quad i=1,2.$$
+
+Let $ \rho= \tilde \rho f$.
+
+Let $s=s(\theta)$ be such that $N(\theta)=(\sin s(\theta),\cos s(\theta))$.     Then constraint is
+$$ 0=\int \tilde\rho\sin(s(\theta)) \,d\theta= \int \tilde\rho\cos(s(\theta)) \,d\theta.$$
+Change of coordinates
+$$ 0=\int \tilde\rho\sin(s) \dfrac{d\theta}{ds}\,ds= \int \tilde\rho\cos(s) \dfrac{d\theta}{ds} \,ds.$$
+ 
+ If we choose $\tilde\rho=\left(\dfrac{d\theta}{ds}\right)^{-1}$ then this is always satisfied.    
+ 
+ 
+ 
+Things are  backwards here, $\theta$ is the ARCLENGTH parameter while $s$ is the angular coordinate.    So $
+ \kappa=\dfrac{ds}{d\theta}$, and so $\tilde\rho=\kappa$, and $\rho=\tilde\rho f= f\kappa $.
+
+
+
+
+
+\section*{Friday morning}
+
+
+
+Notice
+\begin{itemize}
+\item the second part of the 2nd variation disappears for eligible $W$
+\end{itemize}
+
+Plan:
+\begin{enumerate}
+\item choose $\overline\rho$ such that  $V=\overline \rho f\kappa N $ 
+  satisfies  $R[V]=R[\text{oval}]$ (couple of possibilities, e.g variations $\#$ 1 and 2 above), and $\overline \rho$ is eligible for an oval.
+ \item   Given $X$ a non-oval miniminiser,  choose $V=\overline \rho f\kappa N $ where $\overline \rho $ comes from step one, but $f$, $\kappa$ are from $X$.
+ Claim:  this $V$ should be eligible for $X$
+ \item Show $R[V]-R[X]<0$.  Therefore $X$ is not a minimisers.
+ \end{enumerate}
+
+
+
+\section*{housekeeping}
+
+\begin{itemize}
+\item is it clear that the "ovals" $X=\cos \dots$ correspond to closed curves?  Answer:  see screenshot from wolfram alpha, in the case that $v_1$ and $v_2$ are orthogonal.      There should be a nicer way to see this?
+\end{itemize}
+
+\section*{Questions about the M\"obius transformation}
+
+\begin{itemize}
+\item what happens to the angular momentum condition $A_{\theta\theta} + A=c$  under this transformation?
+\item \emph{Can we correct/modify this transformation to preserve closed-ness?}
+\item Under this transformation, what DE does $f_\sigma$ satisfy?   Is it still an eigenfunction of the new curve?
+\item What is this transformation in the setting of the orbits?
+\end{itemize}
+
+\subsection*{Argument}    Let $\mathcal{C}$ be the class of degree-one curves (not necessarily closed).   Under the M\"obius transformation $\varphi$, $E(\gamma_\varphi, f_\varphi)=E(\gamma,f)$.   
+
+\textbf{Claim:}    If $f$ is an eigenfunction of $L$ for $\gamma$, then $f_\varphi$ is only an eigenfunction of $\gamma_\varphi$ if $\gamma$ is an oval.  
+
+Let $(\gamma_0,f_0)$ be a minimiser of $E$ in $\mathcal{C}$.   Then $f_0$ is an eigenfunction of $L$ on $\gamma$.   
+Then 
+$$ E(\gamma^0,f_0)=E(\gamma^0_\varphi,(f_0)_\varphi )\ge \inf_g E(\gamma^0_\varphi, g).$$
+
+In the case that $\gamma^0$ is not an oval, this inequality is strict.   Hence we can decrease $E$, and $\gamma^0, f_0$ are not minimisers.  
+
+\emph{Problems}   This is not dealing with closed curves, but rather degree one curves (where $T:S^1\rightarrow S^1$, that is, $T(0)=T(2\pi)$.)      \emph{Can we instead minimise over degree-one curves?   These are like minimising over periodic orbits $X$, but neglecting the $\int \frac{X}{|X|}=0$ constraint.   }
+
+\newpage
+
+
+\section*{More thoughts on the angular momentum inequality}
+
+
+Consider again the system of two des:
+\begin{gather}
+-f_{ss}+(\theta_s)^2 f=\lambda f \label{one}\\
+(f^2\theta_s)_s=\alpha\cos\theta. \label{two}
+\end{gather}
+when  $\theta_s\ge 0$, $f:S^1\rightarrow \mathbb{R}^+$, $\theta:[0,L]\rightarrow\mathbb{R}$, $\theta(L)-\theta(0)=2\pi$.   
+
+\textbf{Claim 1:}  Let $f$ be periodic as above.    Then there exists a $\theta$ satisfying \eqref{two} for some $\alpha$.    
+
+Strategies:   I thought this would boil down to some sort of nonlinear Sturmian theory, but I can't see this.   
+
+Next idea:   break \eqref{two} up into two first order equations:
+\begin{gather*}
+\theta'=\kappa \\
+\kappa'=\frac1{f^2}\left(\alpha \cos\theta-(f^2)_s\kappa\right),
+\end{gather*}
+and look for periodic solutions.  Hang on, we don't want periodic solutions as such, rather that $\theta(L n)=\theta(0)$.
+
+\textbf{Claim 2:}  Let $\theta$ be as above.  Then there exists a $f$ satisfying \eqref{two} for some (all) $\alpha$.  
+
+
+Here we can directly write 
+\begin{equation}f^2(s)=\frac1{\theta'}\left[C+ \alpha \int_0^s \cos\theta(\sigma)\,d\sigma\right].\label{three} \end{equation}
+This is periodic if $\theta'(0)=\theta'(L)$.
+
+
+When does this also solve \eqref{one}?
+
+
+
+Comment:  if $f=\kappa^{-1/2}$, then if $f$ satisfies \eqref{one} then $\kappa$ must satisfy
+$$0=\sqrt{\kappa}(\kappa^{-3/2}\kappa')'+ 2\kappa^2+ 2\lambda.$$
+$$0=\kappa''-\frac32\frac{(\kappa')^2}\kappa+2\kappa^3+2\lambda\kappa.$$
+
+\textbf{System of first order equations:} \eqref{one} and \eqref{two} can be written as 
+\begin{align*}
+f'&=g\\
+g'&=\kappa^2f-\lambda f \\
+\theta'&= \kappa \\
+\kappa'&=\frac1{f^2}\left[\alpha \cos\theta-2 fg\kappa\right]
+\end{align*}
+
+
+\textbf{Suggested strategy} Let $\gamma$ (and therefore $\theta, \kappa$) be given.   Solve for $f$ using \eqref{three}.      When does this satisfy the eigenvalue equation \eqref{one}?
+
+Or else:  look for non-zero $\alpha$ solutions of \eqref{two}.   For beginners, let $f$ be constant.   (We know from \eqref{one} that this implies $\kappa=$ constant, but let's ignore this.) Now try to solve \eqref{two} for $\theta$.      Wolfram alpha suggests this is given by Jacobi amplitude function (see screen shot labelled wolfram-alpha-march-28), which plausibly looks like it does NOT correspond to a periodic curve.      Can we prove this?   Then, can we do something similar for non-constant $f$?
+
+
+
+ \end{document}

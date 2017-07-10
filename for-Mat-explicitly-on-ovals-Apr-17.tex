@@ -1,0 +1,158 @@
+\documentclass[12pt, a4paper]{amsart}
+
+
+
+\address{ }
+\usepackage[left=3cm,top=2.5cm,right=3cm]{geometry}
+\usepackage{parskip, color}
+\usepackage[normalem]{ulem}
+%\date{letterdate} if you want to fix the date on the letter; otherwise the date will default to the current date when the letter is printed.
+
+\usepackage{geometry}
+
+%\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+
+\usepackage{versions}
+%%%%%%%%%
+\includeversion{lecturenotes}  \excludeversion{outline}
+%\excludeversion{lecturenotes}   \includeversion{outline}
+%%%%%%%%%
+
+%\usepackage{kpfonts}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{cmbright}
+ 
+ \usepackage{hyperref}
+ 
+\newcommand{\margincomment}[1]{\marginpar{\footnotesize{#1}}}
+\newcommand{\pd}[2]{\dfrac{\partial#1}{\partial#2}}
+\DeclareMathOperator{\divergenz}{div}
+\newcommand{\bigR}{{\mathbb R}}
+
+\newcommand{\x}{\lVert x \rVert}
+
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\emptynorm}{\lVert \cdot \rVert}
+
+\usepackage{setspace}
+
+\usepackage{enumitem}
+
+\usepackage{pdfpages}
+
+\theoremstyle{remark}
+\newtheorem*{definition}{Definition}
+\newtheorem*{exercise}{Exercise}
+
+
+
+\begin{document}
+
+  
+\spacing{1}
+
+
+
+
+\title{  }
+%\maketitle
+
+Dear Mat,
+
+I'm pretty sure this is not what you are asking, but at any rate:
+
+\textbf{The ovals, in terms of $f$, $\kappa$}.
+In this case we write for two $v_1,v_2\in\bigR^2$
+$$X(s)=\cos(s) v_1+\sin(s) v_2. $$
+(Actually we'd be better off writing $X=a\cos(s) e_1 + b\sin(s) e_2$...)
+
+Then
+$$X_s(s)=-\sin(s)v_1+\cos(s)v_2$$
+and
+$$X_{ss}(s)=-X.$$
+
+Relation to graph quantities:  Recover the curve itself by
+$$\gamma(s)=\int_0^s \frac{X(\sigma)}{|X(\sigma)|}\,d\sigma$$
+but also
+$$\text{tangent }   T(s)=\frac{X(s)}{|X(s)|}$$
+$$\text{ normal  }   N(s)=JT =\frac{JX(s)}{|X(s)|}$$
+$$ \text{eigenfunction } f=|X| = \left( \cos^2(s) |v_1|^2 + 2\sin(s)\cos(s)\langle v_1,v_2\rangle + \sin^2(s)|v_2|^2\right)^{1/2}  $$
+To find curvature, remember that $X_s=f'T+ \kappa f N$ so $\kappa f=\langle X_s,N\rangle$ and then
+\begin{align*}
+\text{curvature } \kappa&=\frac{\langle X_s,N\rangle}{|X|}\\
+&=\frac{\langle X_s,JT\rangle}{|X|}\\
+&=\frac{\langle X_s,JX\rangle}{|X|^2}\\
+\end{align*}
+So putting in our explicit form of $X$ here we find
+\begin{align*}
+{\langle X_s,JX\rangle}&=\langle -\sin(s)v_1+\cos(s)v_2, \cos(s) J(v_1) +\sin(s) J(v_2)\rangle \\
+&=-\sin^2(s)\langle  v_1,J v_2\rangle + \cos^2(s)\langle v_2,Jv_1\rangle \\
+\intertext{but antisymmetry $\langle Ja,b\rangle = -\langle a,Jb\rangle$ }
+&= \langle v_2,Jv_1\rangle =C
+\end{align*}
+Thus 
+$$\kappa=\frac{C}{|X|^2}= \frac{C}{f^2}.$$
+(Is it true that $\langle X_s, JX\rangle=C|X|^2$ characterises ovals?)
+
+
+Julie
+\bigskip
+
+Julie: Yes, that's what I'm after. I wanted to check that (and if so, in what sense)
+\[
+\Big(|X_s|^2-|X|^2=\Big)\quad f_s^2+\kappa^2 f^2-f^2=0
+\]
+on the ovals$^{\mathrm{tm}}$. This doesn't seem to be true leading to a contradiction which I can't seem to resolve.
+
+Recall that (\emph{Much ado about ovals}, Lemma 5.3)
+\[
+\psi\cdot (|X_s|^2-|X|^2)
+\]
+is constant (in $s$) for any $X$ and any $\psi$ tangent to M\"ob$(S^1)$ at the identity\footnote{I have checked this and checked it again. It seems to be watertight.}. If 
+\[
+E(X):=\int(|X_s|^2-|X|^2)ds=0
+\]
+then the integrand must be zero at at least one point and hence this constant is zero. Thus, it appears that the density has to be identically zero for any $X$ with $E(X)=0$. This is not \emph{quite} the case: Recall that $\psi_{sss}+4\psi_s=0$. I don't think that every $\psi$ satisfying this equation can be tangent to a family of M\"obius transformations. But at least the $\psi$'s should all have a discreet set of zeroes. Let $Z=\{s_1,\dots,s_k\}\subset [0,2\pi)$ be the set of mutual zeros of all the $\psi$'s (I suspect that $Z=\{0,\pi/2,\pi,3\pi/2\}$). Then
+\begin{equation}\label{eq:density}
+|X_s|^2-|X|^2\equiv 0\quad \text{in}\quad [0,2\pi)\setminus Z
+\end{equation}
+for any pair $X$ satisfying $E(X)=0$. The challenge is then to show that the only such $(\gamma,f)$ are the family of ovals$^{\mathrm{tm}}$. I was worried that something is wrong here, since a na\"ive argument gives
+\[
+|X_s|^2-|X|^2=f_s^2+\kappa^2 f^2-f^2\equiv 0\Rightarrow \kappa\leq 1\Rightarrow \kappa\equiv 1\Rightarrow f_s\equiv 0\,.
+\]
+Thus, the round circle with eigenfunction $f\equiv \mathrm{Const.}$ is the only solution with $\{f=0\}$ discreet and $f_s^2+\kappa^2 f^2-f^2\equiv 0$. So I wanted to check that \eqref{eq:density} holds on the ovals$^{\mathrm{tm}}$. Setting $\kappa=C/f^2$, we \emph{can} solve \eqref{eq:density} (assuming $\{0,\pi\}\subset Z$) with (for any $a\in\mathbb{R}$)
+\[
+f^2(s):=
+\begin{cases}
+C\cosh(a+2s)&\text{if}\quad s\in[0,\pi]\\
+C\cosh(a+4\pi-2s)&\text{if}\quad s\in(3\pi/2,2\pi)\,.
+\end{cases}
+\]
+Note that this $f$ is positive and continuous on $\mathbb{R}/2\pi\mathbb{Z}$. Thus, $\kappa$ is continuous. But it is not differentiable :(
+
+The curve $\gamma$ can be reconstructed as
+\[
+\gamma(\theta)=\frac{2\pi}{L}\left(\int_0^\theta\frac{\cos\sigma\,d\sigma}{\kappa(\sigma)},\int_{\pi/2}^\theta\frac{\sin\sigma\,d\sigma}{\kappa(\sigma)}\right)\,,
+\]
+where
+\begin{align*}
+L:=\int_0^{2\pi}\frac{d\sigma}{\kappa(\sigma)}={}& \int_0^{\pi}\cosh(a+2\sigma)d\sigma+\int_\pi^{2\pi}\cosh(a+4\pi-2\sigma)d\sigma\\
+={}&2\sinh \pi \cosh(a+\pi)
+\end{align*}
+%In that case, $\kappa(s)\to 1$ as $a\to\infty$ and $\kappa(s)\to 0$ as $a\to-\infty$ (except when $s\in\{0,\pi\}$ in which case $\kappa\to\infty$).
+
+\textbf{Questions}
+\begin{itemize}
+\item[--] Are the ovals$^{\mathrm{tm}}$ smoother than $C^2$? 
+\item[--] Is this the right $f=|X|^2$?
+\item[--] What the hell is going on here?
+\end{itemize}
+
+\bigskip
+
+Mat
+\end{document}

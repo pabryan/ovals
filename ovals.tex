@@ -1,0 +1,285 @@
+% Created 2017-06-30 Fri 01:26
+\documentclass[12pt]{article}
+                           \usepackage[all]{pabmacros}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{fixltx2e}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{wrapfig}
+\usepackage[normalem]{ulem}
+\usepackage{textcomp}
+\usepackage{marvosym}
+\usepackage[nointegrals]{wasysym}
+\usepackage{latexsym}
+\usepackage{amssymb}
+\usepackage{amstext}
+\usepackage{hyperref}
+\tolerance=1000
+\usepackage{amsmath}
+\date{}
+\title{Ovals Problem Proof}
+\hypersetup{
+  pdfkeywords={},
+  pdfsubject={},
+  pdfcreator={Emacs 24.5.1 (Org mode 8.2.10)}}
+
+\DeclareMathOperator{\HS}{\mathcal{H}}
+\DeclareMathOperator{\HSnc}{\HS_0}
+\DeclareMathOperator{\C}{\mathcal{C}}
+\DeclareMathOperator{\So}{\mathbb{S}^1}
+\newcommand{\inpr}[2]{\ensuremath{\langle{#1},{#2}\rangle}}
+\DeclareMathOperator{\G}{\mathcal{G}}
+\DeclareMathOperator{\D}{D}
+\DeclareMathOperator{\EL}{\mathcal{L}}
+
+\begin{document}
+
+\maketitle
+
+\section{Class of closed curves}
+\label{sec-1}
+
+Let us write
+\[
+\HS = W^{1,2}(\So \to \RR^2)
+\]
+and
+\[
+\HSnc = \HS \setdiff \lbrace \text{constants} \rbrace
+\]
+where \(\lbrace \text{constants} \rbrace\) denotes the constant maps \(\So \to \RR^2\).
+
+For \(X \in \HSnc\), and \(V \in \RR^2\), write
+\[
+X_V = X + V \in \HSnc
+\]
+and define
+\[
+\alpha_X : V \in \RR^2 \to \frac{1}{2\pi} \int \frac{X_v}{|X_V|} \in \RR^2.
+\]
+
+Define the class of curves,
+\[
+\C = \lbrace X \in \HSnc : \int_{\So} \frac{X}{|X|} ds = 0 \rbrace = \lbrace X \in \HSnc : \alpha_X((0, 0)) = 0 \rbrace.
+\]
+
+The factor \(1/2\pi\) in the definition of \(\alpha_X\) has no effect on the class \(\C\) but is a convenient normalisation in the following lemma.
+
+\begin{lemma}
+\label{lem:translate_C}
+Let \(X \in \HSnc \backslash \lbrace 0 \rbrace\). Then there exists a \(V_0 \in \RR^2\) such that \(X_{V_0} \in \C\).
+\end{lemma}
+
+\begin{proof}
+First observe that since \(X/|X|\) has unit length, \(\alpha_X\), maps to the closed unit disc, \(\bar{D} \subseteq \RR^2\).
+
+\textbf{verify continuity}
+
+Next, the map \(\alpha_X\) is continuous and for any \(r, \varphi\) we have
+\[
+\lim_{r \to \infty} \alpha_X (r e^{i\varphi}) = \frac{1}{2\pi} \int \frac{X + re^{i\varphi}}{|X + r^{i\varphi}|} ds = e^{i\varphi}.
+\]
+
+Moreover, for any curve \(\sigma(r)\) with \(\sigma\) asymptotic to \(r e^{i\theta}\) as \(r \to \infty\), we also have \(\lim_{r\to\infty} \sigma(r) = e^{i\theta}\). Thus the map \(\alpha_X\) extends continuously to the circle at infinity with \(\alpha_X(\infty e^{i\varphi}) = e^{i\varphi}\). Identifying \(\RR^2\) with the open unit disc, \(D\) we thus obtain a continuous map
+\[
+\alpha_X : \bar{D} \to \bar{D}
+\]
+which is the identity on the boundary.
+
+But then \(\alpha_X(V_0) = (0, 0)\) for some \(V_0 \in D\) since otherwise the map \(V \mapsto \alpha_X(V)/|\alpha_X(V)|\) would define a retraction of \(D\) onto \(\So\) which is impossible.
+\end{proof}
+
+We will also need the following lemma:
+
+\begin{lemma}
+\label{lem:projection_C}
+For all \(X \in \HSnc\), there exists a \(V \in \RR^2\) such that
+\[
+\int \langle X, V \rangle ds = 0.
+\]
+\end{lemma}
+
+\begin{proof}
+The map
+\[
+\beta_X : \varphi \in \RR \to \int \langle X, e^{i\varphi} \rangle ds
+\]
+is a continuous map such that
+\[
+\beta_X(\varphi + \pi) = -\beta_X(\varphi)
+\]
+and hence there is a \(\varphi \in \RR\) such that \(\beta_X(\varphi) = 0\). Then we take \(V = e^{i\varphi}\).
+\end{proof}
+
+\section{Min-max Construction}
+\label{sec-2}
+
+Let \(X \in \HSnc\) and \(V_0 \in \RR^2\) such that \(X_{V_0} \in \C\). The existence of \(V_0\) is guaranteed by Lemma \ref{lem:translate_C}. We define the following family of curves,
+\[
+\G_X = \lbrace v \in C^{\infty}(\RR \to \RR^2) : \exists t_0 \in \RR \quad v(t_0) = V_0, \quad \lim_{|t| \to \infty} |X_{v(t)}| = \infty \rbrace.
+\]
+
+For \(X \in \HSnc\) and \(v \in G_X\), let
+\[
+\lambda(X, v) = \sup \lbrace E(X_{v(t)}) : t \in \RR \rbrace = \sup \lbrace E(X + v(t)) : t \in \RR \rbrace.
+\]
+
+We have that \(\lambda(X, v)\) is finite since \(X_{v(t)}' = X'\) and hence
+\[
+\lim_{|t| \to \infty} E(X_{v(t)}) = \lim_{|t| \to \infty} \frac{\int |X'|^2 ds}{\int |X_v(t)|^2 ds} = 0
+\]
+as the definition of \(\G_X\) implies \(|X_v(t)| \to \infty\) as \(|t| \to \infty\).
+
+Also from the definition of \(G_X\) we have for each \(v \in G_X\), the existence of a \(t_0\) such that \(X_{v(t_0)} = X_{V_0} \in \C\). Therefore
+\[
+\lambda(X, v) \geq E(X_{v(t_0)}) = E(X_{V_0}) \geq \lambda = \inf\lbrace E(X) : X \in \C\rbrace
+\]
+since \(X_{V_0} \in \C\) by definition of \(V_0\). Note that ovals have energy \(E = 1\) and Benguria-Loss ensures \(\lambda \geq 1/2\). Thus we have \(\lambda \in [1/2, 1]\).
+
+Finally, define the min-max quantity,
+\[
+c = \inf \lbrace \lambda(X, v) : X \in \HSnc, v \in \G_X \rbrace.
+\]
+As noted, for any \(X \in \HSnc, v \in G_x\), we have \(\lambda(X, v) \geq \lambda\) and hence
+\[
+c \geq \lambda \geq \frac{1}{2}.
+\]
+
+It's also worth noting that \(E(X_{v(t)}) = 0\) for constant maps \(X\) and any \(v \in G_X\), which is why we work with \(\HSnc\) rather than with \(\HS\).
+
+\begin{lemma}
+\label{lem:E_bounded_by_c}
+For all \(X \in \C\),
+\[
+E(X) \geq c.
+\]
+\end{lemma}
+
+\begin{proof}
+Let \(X \in \C\), fix \(W \ne (0, 0) \in \RR^2\) and define
+\[
+v(t) = t W.
+\]
+Then \(v \in \G_X\) since letting \(V_0 = v(0) = (0, 0)\) we have \(X + v(0) = X \in \C\) and obviously \(|v(t)| = |t| |V| \to \infty\) as \(|t| \to \infty\).
+
+Thus we have a variation \(X_{v(t)}\) of \(X\) with \(X_{v(0)} = X\) and \(\partial_t X_{v(t)} = W\). The first variation of \(E\) is
+\[
+\partial_t E(X_{v(t)}) = \frac{2\|X_{v(t)}'\|_{L^2}^2}{\|X_{v(t)}\|_{L^2}^4} \int \inpr{X_{v(t)}}{W} ds.
+\]
+The second variation of \(E\) is
+\[
+\partial_t^2 E(X_{v(t)}) = \frac{8\|X_{v(t)}'\|_{L^2}^2}{\|X_{v(t)}\|_{L^2}^4} \left(\int \inpr{X_{v(t)}}{W} ds\right)^2 - \frac{2\|X_{v(t)}'\|_{L^2}^2}{\|X_{v(t)}\|_{L^2}^4} \int |W|^2 ds.
+\]
+At a critical point
+\[
+\frac{2\|X_{v(t)}'\|_{L^2}^2}{\|X_{v(t)}\|_{L^2}^4} \int \inpr{X_{v(t)}}{W} ds = 0
+\]
+and hence
+\[
+\partial_t^2 E(X_{v(t)}) = - \frac{2\|X_{v(t)}'\|_{L^2}^2}{\|X_{v(t)}\|_{L^2}^4} \int |W|^2 ds < 0.
+\]
+Thus any critical point is a local maximum and there can be at most one maximum. We also have that \(E(X_{v(t)}) \to 0\) as \(|t| \to \infty\) hence there exists a global maximum, which occurs at the unique critical point.
+
+Now, by Lemma \ref{lem:projection_C}, there exists a \(V_0\) such that
+\[
+\int \inpr{X}{V_0} ds = 0.
+\]
+Choosing \(W = V_0\) we see that
+\[
+\partial_t|_{t=0} E(X_{v(t)}) = \frac{2\|X'\|_{L^2}^2}{\|X\|_{L^2}^4} \int \inpr{X}{V_0} ds = 0
+\]
+and hence \(t = 0\) is critical point and the maximum occurs at \(t = 0\). Hence
+\[
+c \leq \lambda(X, v(t) = X + tV_0) = \sup_{t \in \RR} E(X_{v(t)}) = E(X).
+\]
+\end{proof}
+
+\section{The Palais-Smale Condition and a Mountain Pass Theorem}
+\label{sec-3}
+
+The energy \(E\) has some undesirable properties that prevent us from characterising minimsers by employing the direct calculus of variations, or indeed obtaining the Palais-Smale condition.
+
+First observe that \(E\) is not coercive, since \(E\) is scale invariant, thus while \(\lim_{r\to \infty} \|rX\|_{W^{1,2}} = \infty\), \(E(r X) = E(X)\) remains bounded. Thus we encounter difficulties in employing the direct method of the calculus of variations.
+
+The next problem faced is that the energy \(E\) is not Frechet differentiable since the map \(X \mapsto \|X'\|_{L^2}^2\) is not Frechet differentiable in \(W^{1,2} (\So, \RR^2)\).
+
+\textbf{details}
+
+Nevertheless, we are able to prove the main theorem.
+
+\begin{theorem}
+\[
+\lambda = 1 = E(\text{ovals}).
+\]
+\end{theorem}
+
+\begin{proof}
+Let \((X_n, v_n)\) be a minimising sequence for the min-max quantity, \(c\):
+\[
+\lim_{n \to \infty} \lambda(X_n, v_n) = c.
+\]
+Also let \((t_n)\) be a sequence of real numbers with
+\[
+\lim_{n\to \infty} E(X_n + v_n(t_n)) = c.
+\]
+
+Define
+\[
+Y_n = \frac{X_n + v_n(t_n)}{\|X_n + v_n(t_n)\|_{L^2}}.
+\]
+Then \(\|Y_n\|_{L^2} = 1\) and
+\[
+\|Y_n'\|_{L^2}^2 = E(Y_n) = E(X_n + v(t_n)) \in [c-\tfrac{1}{n}, c + \tfrac{1}{n}]
+\]
+by passing to a subsequence if necessary.
+
+Thus
+\[
+\|Y_n\|_{W^{1,2}} = \|Y_n\|_{L^2} + \|Y_n'\|_{L^2} \in [c+1-\tfrac{1}{n}, c + 1 + \tfrac{1}{n}]
+\]
+is uniformly bounded and hence there exists a weakly convergence subsequence
+\[
+Y_n \overset{W^{1,2}}{\rightharpoonup} Y
+\]
+as \(n \to \infty\). That is, for all \(V \in W^{1,2}\) we have
+\[
+\lim_{n\to \infty} \inpr{Y_n}{V}_{L^2} \to \inpr{Y}{V}_{L^2}, \quad \lim_{n\to \infty} \inpr{Y_n'}{V'}_{L^2} \to \inpr{Y'}{V'}_{L^2}.
+\]
+
+\textbf{Need to prove that \(\D_{Y_n} E \to 0\) in \(W^{-1,2}\) - Deformation Lemma!}
+
+Using the fact that \(\D_{Y_n} \to 0\) in \(W^{-1,2}\), \(\|Y_n\|_{L^2} = 1\), and that \(\lim_{n\to\infty} E(Y_n) = c\), we have for every \(V \in W^{1,2}\) that
+\[
+\begin{split}
+\inpr{Y'}{V'}_{L^2} - c \inpr{Y}{V}_{L^2} &= \lim_{n\to \infty} -\frac{2}{\|Y_n\|_{L^2}^2} \left[\inpr{Y_n'}{V'}_{L^2} - E(Y_n) \inpr{Y_n}{V}_{L^2}\right] \\
+&= \lim_{n\to \infty} \D_{Y_n} (V) = 0
+\end{split}
+\]
+as \(n \to \infty\). That is \(Y\) is a weak solution of
+\[
+\EL_c(Y) := Y'' + c Y = 0.
+\]
+
+But solutions of this equation are quantised, \(c = 0, 1, 2, \cdots\) with
+\[
+Y(s) = A_1 e^{i \sqrt{c} s} + A_2 e^{-i \sqrt{c} s}
+\]
+and we observed that \(c \geq 1/2\). Since the ovals have \(E = 1\), we may also assume that \(c \leq 1\), and hence quantisation implies \(c = 1\). Therefore
+\[
+Y(s) = A_1 e^{is} + A_2 e^{-is}
+\]
+has
+\[
+c = E(Y) = 1.
+\]
+
+Finally, by Lemma \ref{lem:E_bounded_by_c} we have
+\[
+\forall X \in \C, E(X) \geq c = 1
+\]
+and hence \(\lambda = 1\).
+\end{proof}
+% Emacs 24.5.1 (Org mode 8.2.10)
+\end{document}

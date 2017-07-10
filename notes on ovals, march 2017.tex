@@ -1,0 +1,185 @@
+  \documentclass[12pt, a4paper]{amsart}
+
+
+
+\address{ }
+\usepackage[left=3cm,top=3.5cm,right=3cm]{geometry}
+\usepackage{parskip, color}
+\usepackage[normalem]{ulem}
+%\date{letterdate} if you want to fix the date on the letter; otherwise the date will default to the current date when the letter is printed.
+
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\lhead{}
+\rhead{\Small{\today}}
+\cfoot{ }
+\renewcommand{\headrulewidth}{0.0pt}
+\renewcommand{\footrulewidth}{0.0pt}
+
+\usepackage{graphicx}
+
+
+\usepackage{geometry}
+
+%\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+
+
+
+\usepackage{kpfonts}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{cmbright}
+ 
+ \usepackage{hyperref}
+ 
+\newcommand{\margincomment}[1]{\marginpar{\footnotesize{#1}}}
+\newcommand{\pd}[2]{\dfrac{\partial#1}{\partial#2}}
+\DeclareMathOperator{\divergenz}{div}
+\newcommand{\bigR}{{\mathbb R}}
+
+\newcommand{\x}{\lVert x \rVert}
+
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\emptynorm}{\lVert \cdot \rVert}
+
+\usepackage{setspace}
+
+\usepackage{enumitem}
+
+\usepackage{pdfpages}
+
+\theoremstyle{remark}
+\newtheorem*{definition}{Definition}
+\newtheorem*{exercise}{Exercise}
+
+\author{J Clutterbuck}
+
+
+\begin{document}
+
+  
+\spacing{1.1}
+
+
+
+\title{late March 2017  }
+\maketitle
+
+
+
+
+
+\section*{Support function}
+Here the idea is to investigate the support function for $X$ (rather than for $\gamma$).   The idea here is that our conjectured minimisers have $X$ an ellipse;   on the other hand, note a number of classic inequalities that are sharp for ellipses (Blaschke-Santalo, affine isoperimetric inequalities).   The support function is the main quantity in these inequalities.  
+
+\includegraphics[width=\textwidth]{quote-from-evolving-convex-curves}
+
+
+\newcommand{\tk}{\tilde{\kappa}}
+\newcommand{\tT}{\tilde{T}}
+\newcommand{\tN}{\tilde{N}}
+\newcommand{\tH}{\tilde{h}}
+
+
+We use a tilde to denote quantities for $X$ (so $\kappa$ is curvature of $\gamma$, while $\tk$ is curvature of $X$).   
+
+ Consider an inward pointing normal $\tN=J\tT$ and curve traced anticlockwise.
+
+Let $$X(s)=f(s)T(s).$$
+
+Then 
+$$ \tT= \frac{X_s}{|X_s|}=   \frac{(f_s T+ f\kappa N)}{(f_s^2+f^2\kappa^2)^{1/2}}  .   $$
+
+If we wish to parameterise $X$ by arc length, then set $X(u):=X(s(u))$ where $s(u)$ satisfies $\frac{ds}{du}=\left({f_s^2+f^2\kappa^2}\right)^{-1/2}$.   Also, $\frac{d}{du}=\left({f_s^2+f^2\kappa^2}\right)^{-1/2}\frac d{ds}$.
+
+
+$$\tT=\frac{X_s}{|X_s|}=\frac{f_sT+f\kappa N}{(f_s^2+f^2\kappa^2)^{1/2}} $$
+
+$$\tN=J\tT= \frac{(f_s N- f\kappa T)}{(f_s^2+f^2\kappa^2)^{1/2}} $$
+
+Curvature
+\begin{align*}
+\tk& =- \langle \tN_u,\tT\rangle \\
+&=-\frac1{(f_s^2+\kappa^2 f^2)^{1/2}} \langle \tN_s,\tT\rangle \\
+&=  -\frac1{(f_s^2+\kappa^2 f^2)}\left\langle 
+(f_s N- f\kappa T)_s
+,\tT\right\rangle \\
+&=  -\frac1{(f_s^2+\kappa^2 f^2)}
+\left\langle  f_{ss} N -2f_s\kappa T-f\kappa_s T-f\kappa^2 N
+,\tT\right\rangle \\
+&= -\frac1{(f_s^2+\kappa^2 f^2)} \left\langle 
+f_{ss} N -2f_s\kappa T-f\kappa_s T-f\kappa^2 N
+,  \frac{(f_s T+ f\kappa N)}{(f_s^2+f^2\kappa^2)^{1/2}} \right\rangle \\
+&= - \frac1{(f_s^2+f^2\kappa^2)^{3/2}}\left[    (f_{ss}-f\kappa^2)f\kappa -\frac{f_s}{f}(f^2\kappa)_s\right]\\
+&=  \frac1{(f_s^2+f^2\kappa^2)^{3/2}}\left[    (-f_{ss}+f\kappa^2)f\kappa +\frac{f_s}f(f^2\kappa)_s\right]
+ \\
+\end{align*}
+Note that this is \emph{not obviously positive} (except in $f^2\kappa=c$ case, or the $\kappa=c $case).  And also looks like a bunch of things from earlier calculations.  
+
+Turning angle:
+$$\cos\varphi=\langle \tN, e_1 \rangle, \quad\quad   \varphi_u=\tk, \quad\quad{d\varphi}=\tk {du} $$
+
+Other changes of coordinates
+$$\frac{d\varphi}{ds}={\tk}{{(f_s^2+f^2\kappa^2)^{1/2}}}$$
+$$\frac{d\varphi}{d\theta}=\frac{\tk}{\kappa}{{(f_s^2+f^2\kappa^2)^{1/2}}}.$$
+
+Support function
+$$\tH= -\langle X,\tN \rangle=- \frac1{(f_s^2+f^2\kappa^2)^{1/2}} \left\langle fT,  (f_s N- f\kappa T)   \right\rangle  = \frac{f^2\kappa}{(f_s^2+f^2\kappa^2)^{1/2}} $$
+(Much of the literature, and the classical inequalities, require a convex shape.    However, note the paper by Yang et al:   the convexity requirement may be removed.) 
+
+Recall identity 
+$$ h+h_{\theta\theta}=\frac1\kappa$$
+or in this case
+$$ \tH+\tH_{\varphi\varphi}=\frac1\tk.$$
+
+
+\section*{Orbit setting}
+
+\section*{Inequalities}
+
+The affine isoperimetric inequality:
+ if a plane convex figure has support function $h\in C^2(\mathbb{S}^1)$, then
+$$ 4\pi^2\int_{S}h(h+h_{\theta\theta})d\theta\ge \left(\int_S(h+h_{\theta\theta})^{2/3}d\theta\right)^3$$ 
+with equality if and only if the figure is an ellipse.
+
+Blaschke-Santal\'o inequality:  position $\gamma$ so that its support function is positive, and 
+$$\int_\gamma \frac{\sin\theta}{h(\theta)^3}\,d\theta=0=\int_\gamma \frac{\cos\theta}{h(\theta)^3}\,d\theta,$$
+then
+$$4\pi^2\left(\int_\gamma h^{-2}\,d\theta\right)^{-1}\ge \int_\gamma h(h+h_{\theta\theta})\,d\theta,$$
+equality iff $\gamma$ is an ellipse.   
+
+Generalised affine inequality (see paper by Chen, Howeard, Lutwak, Yang, Zhang):
+Suppose
+\begin{enumerate}
+\item $F$ and $h$ are nonnegative $2\pi$ periodic functions that do not vanish identically
+\item $F$ is integrable on $S$ and satisfies
+$$ \int F(\theta)\cos \theta \,d\theta=0= \int F(\theta)\sin \theta \,d\theta $$
+\item $h\in H^1(S)$.
+\end{enumerate}
+Then 
+$$\left(\int_S F(\theta)h(\theta)\,d\theta\right)^2\ge \frac 1{4\pi^2}   \left(\int_S F^{2/3}\,d\theta\right)^3  \left(\int_S  [h^2-(h')^2]   \,d\theta\right)$$
+with equality iff
+\begin{equation}
+h(\theta)=k_1\sqrt{a^2 \cos^2 \theta + a^{-2}\sin^2\theta}\label{h for ellipse}\end{equation}
+and $F(\theta)=k_2 h(\theta)^{-3}$.   
+
+\section*{Observations}
+
+
+This is not as straightforward as I expected:   $h=h(\varphi)$ is the support function for $X$, but my (conjectured) minimisers are given by ellipses in $\theta$.   
+
+\begin{align*}\int f_s^2+\kappa^2 f^2 \,ds&= \int \frac{f^4\kappa^2}{\tH^2}\,ds= \int \frac{f^4\kappa}{\tH^2}\,d\theta
+=\int \frac{f^4\kappa}{\tH^2}\left(\frac\kappa{\tk}(f_s^2+\kappa^2f^2)^{-1/2}\right)\,d\varphi  \\
+&=\int \frac{f^4\kappa^2}{\tH^2}\left(\frac1{\tk}(f_s^2+\kappa^2f^2)^{-1/2}\right)\,d\varphi  
+\end{align*}
+
+r
+
+
+
+ \end{document}

@@ -1,0 +1,728 @@
+  \documentclass[12pt, a4paper]{amsart}
+
+
+
+\address{ }
+\usepackage[left=3cm,top=3.5cm,right=3cm]{geometry}
+\usepackage{parskip, color}
+\usepackage[normalem]{ulem}
+%\date{letterdate} if you want to fix the date on the letter; otherwise the date will default to the current date when the letter is printed.
+
+\usepackage{geometry}
+
+%\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+
+\usepackage{versions}
+%%%%%%%%%
+\includeversion{lecturenotes}  \excludeversion{outline}
+%\excludeversion{lecturenotes}   \includeversion{outline}
+%%%%%%%%%
+
+\usepackage{kpfonts}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{cmbright}
+ 
+ \usepackage{hyperref}
+ 
+\newcommand{\margincomment}[1]{\marginpar{\footnotesize{#1}}}
+\newcommand{\pd}[2]{\dfrac{\partial#1}{\partial#2}}
+\DeclareMathOperator{\divergenz}{div}
+\newcommand{\bigR}{{\mathbb R}}
+
+\newcommand{\x}{\lVert x \rVert}
+
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\emptynorm}{\lVert \cdot \rVert}
+
+\usepackage{setspace}
+
+\usepackage{enumitem}
+
+\usepackage{pdfpages}
+
+\theoremstyle{remark}
+\newtheorem*{definition}{Definition}
+\newtheorem*{exercise}{Exercise}
+\newtheorem{lemma}{Lemma}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\So}{\mathbb{S}^1}
+
+\DeclareMathOperator{\mob}{M\ddot{o}b}
+\newcommand{\mobius}{M\"obius}
+\DeclareMathOperator{\id}{Id}
+
+
+
+\usepackage{color}  
+\newenvironment{draftcomment}{\color{draftgrey}\small}
+
+
+\begin{document}
+
+  \definecolor{draftgrey}{gray}{0.6}
+\spacing{1.1}
+
+
+
+
+\title{Notes from June 2017, Monash}  
+
+\maketitle
+
+
+
+
+
+
+\section*{Review:  Bernstein--Mettler approach}
+ Bernstein Mettler approach:
+\begin{itemize}
+\item Define \emph{degree-one curves}:  curves $\gamma:S^1\rightarrow\R^2$ whose unit tangent map is a degree one map $T:S^1\rightarrow S^1$.   These could be open
+\item Let $\phi: S^1\rightarrow S^1$ be in $\text{M\"ob}(\So)$, M\"obius transformations.   
+\item Given a degree-one curve $X:\So\rightarrow \So$, let $X_\phi(s):= \phi^{-1/2} X\circ \phi(s)$.    
+\item Then $E[X]=E[X_\phi]$.
+\item Claim:  Let $X$ correspond to an oval.   Then $X_\phi$ is also an oval\footnote{This claim is NOT TRUE, see following}.
+\item Difficulty:   Let $X$ correspond to a closed curve $\gamma$.  Then $\gamma_\phi$ is not necessarily closed.
+\end{itemize}
+
+\subsection*{Observation:   under  M\"obius transformations, even circles are in general NOT mapped to closed curves}
+
+Define
+\[
+\alpha(X) := \int \frac{X}{|X|}\,ds.
+\]
+
+Then the corresponding curve \(\gamma_X\) is closed if and only if \(\alpha(X) = 0\). We examine how \(\alpha\) deforms infinitesimally under the action of the \mobius{} group. To this end, let \(\varphi_t\) be a one-parameter family of \mobius{} transformations and let
+\begin{align*}
+\psi &= \partial_t|_{t=0} \varphi_t \in \operatorname{span}_{\mathbb{R}} \lbrace 1, \cos, \sin \rbrace \\
+X_t &= X_{\varphi_t}.
+\end{align*}
+
+Now define
+\[
+\alpha(t) := \alpha(X_t).
+\]
+Then \(X_t\) is closed if and only if \(\alpha(t) = 0\). Let us compute \(\alpha'(0)\).
+
+From the proof of Lemma 5.1 in ``Much ado about Ovals'':
+\begin{align*}
+\partial_t|_{t=0} X &= \psi X' - \frac{\psi'}{2} X \\
+\partial_t|_{t=0} |X| &= \psi \left\langle X', \frac{X}{|X|} \right\rangle - \frac{\psi'}{2} |X|.
+\end{align*}
+
+Then we compute
+\[
+\begin{split}
+\alpha'(0) &= \partial_t|_{t=0} \int \frac{X}{|X|} ds \\
+&= \int \frac{1}{|X|} \left(\psi X' - \frac{\psi'}{2} X\right) - \frac{X}{|X|^2} \left(\psi \left\langle X', \frac{X}{|X|} \right\rangle - \frac{\psi'}{2} |X|\right) \\
+&= \int \psi \left(\frac{X'}{|X|} -  \left\langle X', \frac{X}{|X|} \right\rangle\frac{X}{|X|}\right) \\
+&= \int \psi \operatorname{proj}^{\perp} \frac{X'}{|X|}.
+\end{split}
+\]
+
+Then assuming that \(X\) is closed (so that \(\alpha(0) = 0\)), we see that if \(\alpha'(0) \ne 0\), then \(X_t\) is \emph{not} closed for \(t\) near \(0\).
+
+\textbf{Example}:  let $\gamma=$ circle, $T=(-\sin s, \cos s)=X$.   Then $\int\left( \text{proj}^\perp \frac{X'}{|X|} \right) \psi=\int kN\psi=\int (\cos s,\sin s)\psi$.   This is zero for $\psi=1$, but not for $\psi=\cos s$ or $\psi=\sin s$.   Thus under such a \mobius{} tranformation the circle is mapped to an open curve.
+
+\textbf{Remark}: It is not so surprising that \mobius{} transformations don't preserve the closed condition. The Lie algebra of the \mobius{} group is spanned by \(\lbrace 1, \cos, \sin\rbrace\) and in the Brisbane notes, we observed that the space of permissible variations (those always preserving the closed condition) is the \(L_2\) orthogonal complement of \(\operatorname{span}\lbrace \cos, \sin \rbrace\). The \mobius{} group contains this two dimensional space.
+
+As with the example of the circle above, \(\psi = 1\) is okay - this does preserve the closed condition in general which can be seen by direct computation, which is effectively in the Brisbane notes.
+
+Another way to look at this is to consider the map for each fixed, closed \(X\)
+\[
+\alpha_X : \varphi \in \mob \mapsto \int \frac{X_{\varphi}}{|X_{\varphi}|} \in \mathbb{R}^2.
+\]
+Then
+\[
+(d\alpha_x)_{\id} : T_{\id} \mob \to \mathbb{R}^2
+\]
+must have a kernel since M\"ob is three dimensional. This kernel contains all the directions that infinitesimally preserve the closed condition. Let \(k\) be the rank of \(d\alpha_X\). Then \(k \leq 2\) and hence there are \(k\)-dimensions worth of \mobius{} transformations (infinitesimally) not preserving the closed condition.
+
+At the identity \(\id\), The family of rotations \(\varphi(s) = s + t\phi\) for some \(\phi \in \mathbb{R}\) have tangent \(\psi = \phi = \phi \cdot 1\) and form a one-dimensional submanifold of \(\mob\) preserving the closed condition.
+
+Now, since \(X\) is closed, \(\alpha(\id) = 0\). If \(k = 2\), then the implicit function theorem gives the set \(\{\alpha_X(\varphi) = 0\}\) is a one-dimensional sub-manifold which is just the rotations. That is the set of \mobius{} transformations preserving the closed condition is precisely the set of rotations. This is the situation for the circle and ellipses.
+
+\textbf{Implication}: The ovals are not the orbit of the circle under the \mobius{} group!
+
+
+Using the class of closed curves doesn't make sense when working with the \mobius{} transformation. Let us write
+\[
+\mathcal{C} = \left\lbrace X : \So \to \R^2 | \int \frac{X}{|X|} = 0 \right\rbrace
+\]
+for the the class of closed curves, and
+\[
+\mob(\mathcal{C}) = \lbrace X_{\varphi} | X \in \mathcal{C}, \varphi \in \mob \rbrace
+\]
+for its orbit under the \mobius{} group. Then since \(\mob\) preserves \(E\), we have
+\[
+\lambda(\mathcal{C}) = \lambda(\mob[\mathcal{C}])
+\]
+where
+\[
+\lambda(\mathcal{F}) = \inf_{X \in \mathcal{F}} E(X)
+\]
+denotes the infimum of the energy among the class of maps \(\mathcal{F} \subseteq \{X : \So \to \R\}\). Thus we don't lose anything by minimising over the orbit of \(\mathcal{C}\) under \(\mob\).
+
+\textbf{Remark}: Under the class of all maps \(X: \So \to \R^2\) we have \(\lambda = 0\) since such maps include the the maps \(X : \So \to \lbrace \text{pt} \rbrace\).
+
+\textbf{Remark}: Bernstein-Mettler show that among the larger class of degree one maps, which we denote \(\mathcal{C}_1\), there are \(X\) with \(E(X) < 1\) so \(\lambda(\mathcal{C}_1) < 1\). This class thus appears to be too large. Since we know (Denzler) that \(\lambda(\mathcal{C})\) is realised by a \(X_0\) satisfying the closed condition and that for any \(X\) satisfying the closed condition, \(E(X) > 0\) we know that \(\lambda(\mob[\mathcal{C}]) = \lambda(\mathcal{C}) = E(X_0) > 0\) has a lower bound. If the conjecture \(E(X) \geq E(\So) = 1\) is true, then we would know that the class of degree one maps is strictly larger than the orbit of \(\mathcal{C}\) under the \mobius{} group. So one way to prove the conjecture false would be to prove that the orbit of the \mobius{} group is in fact all degree one curves!
+
+\section*{$SL(2)$ maps}
+We can do the same kind of thing with maps in $SL(2)$--- that is, let $L\in SL(2)$, then set $X_L=LX$.  
+
+More concretely:   this is 3-dimensional, let 
+\begin{equation*}
+L_1=\left[\begin{array}{cc}
+ 1+t &0   \\
+ 0& \frac{1}{1+t}
+\end{array}\right]
+\quad L_2=
+\left[\begin{array}{cc}
+ 1&0   \\
+ t & 1
+\end{array}\right]
+\quad  L_3=
+\left[\begin{array}{cc}
+1 & t   \\ 0 & 1
+\end{array}\right]
+\end{equation*}
+and if $L_t$ is a path in $SL(2)$ we have $\dfrac{d}{dt} L =A $ at $t=0$ given by  trace free matrices
+\begin{equation*}
+A_1=\left[\begin{array}{cc}
+ 1 & 0  \\ 0 & -1
+\end{array}\right]
+\quad A_2=
+\left[\begin{array}{cc}
+0 & 0  \\ 1 & 0
+\end{array}\right]
+\quad A_3=
+\left[\begin{array}{cc}
+0 & 1  \\ 0& 1
+\end{array}\right].
+\end{equation*}
+
+We notice that if $X$ is an oval, $LX$ is also an oval, hence $E[LX]=E[X]$.   In general, 
+then 
+\begin{equation} \label{SL2 first variation}
+\left. \dfrac{d}{dt} E[L_t X]\right|_{t=0} = \frac2{\int|X|^2} \left\lbrace \int \langle X',AX'\rangle - E[X] \int \langle X,AX\rangle \right\rbrace
+\end{equation}
+Observe that both these terms $\int \langle , \rangle$ are zero for ovals, by symmetry considerations.
+
+Claim:   the above is zero (for all $L$) iff $X$ is an oval.   
+
+More observations:
+\begin{itemize}
+\item For general $X$, this does not preserve closed-ness of $\gamma$, unless $L$ is a rotation
+\item but $LX$ is still degree one.  
+\item $E[X]$ is not invariant?
+\end{itemize}
+
+Given $X$, is it always possible to find $A$ so that \eqref{SL2 first variation} is zero?  Yes, letting $A$ correspond to rotation.  But is there another $A$?
+
+\newpage
+\section*{Min-max theory}
+
+Here we are motivated by Birkhoff's geodesics-on-spheres and Ketover--Zhou.   
+
+\subsection*{Why do this at all?}
+
+Let
+\[
+\lambda_0 = \inf \lbrace E(X) : X \in W^{1,2}(\So, \R^2) \rbrace.
+\]
+Then \(\lambda_0 = 0\) since \(E(X) \geq 0\) and constant maps \(X(s) = \text{point}\) satisfy \(E = 0\).
+
+Let
+\[
+\lambda = \inf \lbrace E(X) : X \in \mathcal{C} \rbrace.
+\]
+Then (due to Denzler) we know that there exists an \(X_0 \in \mathcal{C}\) such that
+\[
+\lambda = E(X_0) > 0.
+\]
+Thus there is a gap.
+
+Moreover, by allowing arbitrary variations (i.e. not necessarily preserving \(\mathcal{C}\)), a-priori, we can deform \(X_0\) to decrease \(E(X)\). It would be good to know if \(X_0\) (and indeed ovals) are local minima of \(E(X)\). In fact, if we could prove that \(X_0\) was a critical point of \(E\) among all \(W^{1,2}\) maps, that would prove the conjecture since \(X_0\) would solve the Euler-Lagrange equation \(X_0'' + E(X_0) X_0 = 0\) with \(E(X_0) > 0\) and hence be an oval.
+
+So we want to prove that \(X_0\) satisfies the Euler-Lagrange equation.
+
+Take a minimising sequence \((X_n)_{n\in \mathbb{N}} \subseteq \mathcal{C}\) so that \(\lim_{n\to \infty} E(X_n) = \lambda\). Since \(E\) is scale invariant we may assume that \(\|X_n\| = 1\) for all \(n\), in which case \(E(X_n) = \|X_n'\|_2^2\) is bounded (since it converges to \(\lambda\)).
+
+Thus \((X_n)\) is a bounded sequence of \(W^{1,2}\) functions hence has a weakly convergence subsequence
+\[
+X_n \underset{{W^{1,2}}}{\rightharpoonup} Y
+\]
+for some \(Y \in W^{1,2}\). We can't a-priori guarantee that \(Y \in \mathcal{C}\). Lower semi-continuity of \(X \mapsto \|X'\|\) with respect to weak convergence gives us
+\[
+E(Y) \leq \liminf_{n\to \infty} E(X_n) = \lambda.
+\]
+
+What we don't know however is
+\begin{enumerate}
+\item if \(E(Y) > 0\),
+\item if \(Y'' + E(Y) Y = 0\).
+\end{enumerate}
+
+If both points were true, then we would be done because \(Y\) would solve the Euler-Lagrange equation with positive energy and hence be an oval.
+
+The idea is that the min-max theorem guarantees that these two points are indeed true. Of course, this is not the only way to guarantee these points are true. A particular feature that suggests using min-max is that we expect \(X_0\) to be a saddle point: it is stable under all variations preserving \(\mathcal{C}\) and unstable (or perhaps neutrally stable) in other directions.
+
+\subsection*{Continuous families:}
+
+$$\bar{X}: \So\times \R^2 \rightarrow \R^2\in C^\infty(\So\times \R^2\rightarrow\R^2).$$
+Then satisfy these conditions:
+\begin{enumerate}
+\item $$\quad X_V=\bar{X}(\cdot),V:\So\to \R^2, \text{ embedding,} V\in {I^2}^\circ$$
+\item  smallness outside a compact set:    \label{condition two}
+$$\text{ for all } \epsilon>0 \text{ there exists }K\subset\subset \R^2 \text{ such that } E[X_V]<\epsilon \text{ for all } V\not\in K.$$
+\item there exists $V_0\in\R^2$ s.t. $X_{V_0}\in \mathcal{C}.$  \label{condition three}.  This is probably too strong:   modify this to be $\dots$
+\end{enumerate}
+
+
+\subsection*{Homotopy class}
+
+\begin{align*}[\bar{X}]&=\lbrace (s,V)\mapsto \varphi(X(V,s),V) \large{|} \varphi:\R^2\times I\to \R^2, \text{ each }\varphi_V\in \text{Diffeo}(\R^2), 
+\\&\quad \text{ plus some other conditions} \rbrace \end{align*}
+the other conditions here might be $\text{supp}\lbrace V: \varphi(\cdot, V)\not= \text{Id}\subset\subset \R^2$, this is like the first condition of Remark 2.2 of KZ.    This implies condition \ref{condition two} above.
+
+
+
+\subsection*{Energy and width}
+
+Consider $X:\So\rightarrow \R^2$ $C^\infty$, embedding (not necessarily degree one, or corresponding to a closed curve).   
+
+The \emph{loop class} is 
+$$\mathcal{C}:=\left\lbrace X:  \alpha(X)= \int \frac{X}{|X|}\,ds  =0 \right\rbrace.$$
+
+Set $$E[X]:=\frac{\int |X'|^2\,ds}{\int|X|^2\,ds }.$$
+
+$$\mathcal{F}[\bar{X}]:= \sup \lbrace E[X_V]: V\in I\rbrace.$$
+(Condition \ref{condition two} implies this is the max.)
+
+$$W([\bar{X}])= \inf_{\bar{Y}\in [\bar{X}]} \mathcal{F}(\bar{Y})=  \inf_{\bar{Y}\in [\bar{X}]}  \max\lbrace E[Y_V]:V\in I\rbrace.$$
+(Here $I=\R^2$ the parameter space.)
+
+
+
+
+\subsection*{Hopeful min-max theorem}
+
+Definition:  a \textbf{min-max} sequence is a sequence $(\bar{X}_n)_{n\in\mathbb{N}}$ of continuous families such that 
+$$\lim_{n\rightarrow\infty} \mathcal{F}(\bar{X}_n)=W([\bar{X}]).$$
+
+\subsection*{Theorem:} For all min-max sequences $(\bar{X}_n)$ there exists a subsequence $(\bar{X}_{n_j)}$ such that $\bar{X}_{n_j}\rightarrow \bar{Z}$ (\textbf{in some topology}, like $W^{1,2}$).    And, there exists $V_0\in I$ such that $E[Z_{V_0}]=W([\bar{X}])$.  And $\mathcal{L} Z_{V_0}=0$, that is, $Z_{V_0}$ is a critical point.
+
+\textbf{Additional hope:}   That $Z_{V_0}\in \mathcal{C}$.  
+
+Condition \ref{condition three} implies that $E[Z]=W([\bar{X}])>\frac12$.   
+
+And $\mathcal{L}Z=0$
+
+Needed:  classification of $Z$ such that $\mathcal{L}Z=0$.  
+
+This is straightforward for things that don't satisfy the loop condition--- we find  the line  $X\equiv C$, plus $X_1= Ae^{i\sqrt{E}\theta}+Be^{-i\sqrt{E}\theta}$ and then higher ones $X_n= Ae^{i \frac{n}{2\pi}\theta}+Be^{-i\frac{n}{2\pi}\theta}$ (fix constants here).   
+
+The problem is to show that there are no critical points for the constrained problem that have smaller energy than $E[X_1]$.
+
+To elaborate:   let $\mathcal{A}=\lbrace X:   X \text{ is a critical point of the unconstrained problem} \rbrace$, and then $\mathcal{B}:= \lbrace X:   X \text{ is a critical point of the constrained problem} \rbrace$.    Clearly $\mathcal{A}\subseteq\mathcal {B}$, but we want to show that there is no $Y\in \mathcal{B}$ such that $E[Y]<E[X_1]$.   
+
+It seems like some notion of degree could be relevant here:  $X_0$ is degree $0$, while $X_1$ is degree one, but all the $Y\in \mathcal{B}$ must be degree one (since they satisfy the loop condition).   So if $E[Y]<E[X_1]$, then $X_1$ must be a critical point in $\mathcal{B}$ which is (in some totally vague sense) degree \textbf{two}.     Which contradicts our explicit understanding of $X_1$.
+\bigskip
+
+
+\section*{Lagrange multipliers}
+
+Let 
+$$X_t:\So\to \R^2, \quad\quad \left.\frac{d}{dt}X_t\right|_{t=0}=V,$$
+and minimise
+$$E[X_t]=  \frac{\int |X'|^2\,ds}{\int|X|^2\,ds } \text{ subject to  the constraint } \alpha(t)=(\alpha_1(t),\alpha_2(t))=\int  \frac{X}{|X|} =(0,0).$$
+Set 
+$$F[X_t]=E[X_t]+\lambda_1\alpha_1+\lambda_2\alpha_2$$
+then if we set $\mathcal{L}X=X''+E[X]X$ we find
+\begin{align*}
+\left.\dfrac{d}{dt}F[X_t]\right|_{t=0}
+&= \int -\left \langle \frac{\mathcal{L}X}{\int|X|^2}, V\right\rangle + \lambda_i\int \left\langle \frac{V}{|X|}-\frac{X\langle V,X\rangle}{|X|^3} ,e_i\right\rangle \\
+&=\int \left\langle     \frac{-\mathcal{L}X}{\int|X|^2} + \frac{\lambda}{|X|}-\frac{\langle \lambda,X\rangle X}{|X|^3}, V\right\rangle \\
+&= \int \left\langle   \frac{-\mathcal{L}X}{\int|X|^2} +\frac{\text{proj}_\perp \lambda}{|X|}, V\right\rangle\\
+&= 0.
+\end{align*}
+Since $V$ is arbitrary this has to hold pointwise:  
+$$X''+E[X] X=\frac{\text{proj}_\perp \lambda}{|X|}\int |X|^2.$$
+This gives us a super complicated system of 2nd order ODEs!  
+
+In the case that $X$ is an oval, then LHS is zero and therefore $\lambda=0$.  
+
+
+\section*{Loop indicator function}
+Let $D$ be the space of smooth embeddings $X:\So\to\R^2$\footnote{what about the degenerate case, when $\gamma$ is the double cover of a line?  then $X=\lbrace Y,-Y\rbrace$ for some fixed $Y$}.
+Let $\alpha: D\to \R^2$
+$$ \alpha(X)=\frac1{2\pi}\int  \frac{X}{|X|}\,ds.$$
+Then $\alpha(X)=0$ iff $\frac{X(s)}{|X(s)|}$ is the tangent of a closed curve $\gamma$.
+
+Comment:   given $X$ enclosing the origin, I think I can reparameterise and satisfy this, but that's not the point.
+
+For \textbf{fixed} $X:\So\to \R^2$, let $\alpha_X:\mathbb{R}^2\rightarrow \R^2$
+be given by 
+$$ \alpha_X(V)= \frac1{2\pi} \int  \frac{X(s)+V}{|X(s)+V|}\,ds.$$
+I want to claim that given $X\in D$, there exists a $V$ such that $\alpha_X(V)=0$.  
+
+This is clearly \emph{not} the case when $X$ is a nonzero constant (corresponds to $\gamma$ a line) because in this case, $(X+V)/|X+V|\in \So$ when $X+V\not=0$, and indeed for all $V$, 
+$$\alpha_X(V)=\frac{X+V}{|X+V|}$$
+and so $\alpha_X:\R^2\setminus\lbrace -X\rbrace \to \So$.
+
+Other observations:   
+\begin{itemize}
+\item Since $\left| \frac{X(s)+V}{|X(s)+V|}\right|=1$ for all $s$,   $|\alpha_X|\le 1$ and so $\alpha_X:\mathbb{R}^2\rightarrow \overline{D^2}$.    
+\item Suppose $V=|V|e^\phi$.    For large enough $r$, $X+V$ lies in a sector centred around $\phi$.      More concretely, let $R=\max_s |X(s)|$.   Then $X+V$ lies in the sector centred around $\phi$ with opening angle $\theta$, where $\theta/2=\sin^{-1}(R/|V|)$.   Hence $\alpha_X(|V|e^{i\phi}$ lies in this sector also.    As $|V|\rightarrow\infty$, $\theta\to 0$ and so we find that $\lim_{|V|\rightarrow\infty } \alpha_X(|V|e^{i\phi})=e^{i\phi}$.   
+\end{itemize}
+
+
+
+what happens when $|X(s)+V|=0$
+
+winding number!
+
+... more to add here \dots
+
+\newpage
+
+\section*{Energy decreases under translations}
+
+Since circles/ovals are stationary points for the energy, we should look to the second variation.
+
+Let $X(\cdot,t): [0,T]\to H$ be smooth.   
+
+First variation:
+\begin{align*}
+\dfrac{d}{dt}E[X(\cdot,t)]&=\frac2{\int|X|^2}
+\left\lbrace    \int \langle X_s,X_{st}\rangle - \frac{\int |X_s|^2}{\int |X|^2}\int\langle X,X_t\rangle \right\rbrace \\
+&=  \frac2{\int|X|^2}
+\left\lbrace    \int \langle X_s,X_{st}\rangle - E[X(\cdot,t)] \int\langle X,X_t\rangle \right\rbrace \\
+\end{align*}
+(Previously, we integrated by parts at this point and found that $\mathcal{L}X=0$, where $\mathcal{L}X:=X_{ss}+E[X]X$.)    The second variation here is
+\begin{align*}
+\allowdisplaybreaks
+\dfrac{d^2}{dt^2}E[X(\cdot,t)]&=\frac{-4}{\left[\int|X|^2\right]^2}    \int \langle X,X_t\rangle
+\left\lbrace    \int \langle X_s,X_{st}\rangle - E[X(\cdot,t)] \int\langle X,X_t\rangle \right\rbrace \\
+&\quad\quad\quad 
++\frac2{\int|X|^2}
+\left\lbrace   \int  |X_{st}|^2 +\langle X_{s},X_{stt}\rangle - \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle  \right. \\
+&\quad\quad\quad \quad\quad\quad\quad\quad \quad\quad\left.  - E[X(\cdot,t)] \int |X_t|^2 +\langle X,X_{tt}\rangle 
+\right\rbrace \\
+&= \frac{-4}{\left[\int|X|^2\right]^2} \int \langle X,X_t\rangle
+    \int   -\langle \mathcal{L}X,X_t\rangle   - \frac2{\int|X|^2} \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle
+      \\
+&\quad\quad\quad 
++\frac2{\int|X|^2}
+\left\lbrace   \int  |X_{st}|^2 - E[X(\cdot,t)] \int |X_t|^2 +\int \langle X_{s},X_{stt}\rangle - E[X(\cdot,t)] \int \langle X,X_{tt}\rangle \right\rbrace
+ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+&= \frac{4}{\left[\int|X|^2\right]^2} \int \langle X,X_t\rangle
+    \int   \langle \mathcal{L}X,X_t\rangle    
+     - \frac2{\int|X|^2} \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle  
+      \\
+&\quad\quad\quad
++\frac2{\int|X|^2}
+\left\lbrace   \int  -\langle X_{tss},X_t\rangle  - E[X(\cdot,t)] \int |X_t|^2 +\int - \langle X,X_{ttss}\rangle \right. \\
+&\quad\quad\quad  \quad\quad\quad \quad\quad\quad  \left. - E[X(\cdot,t)] \int \langle X,X_{tt}\rangle \right\rbrace
+ \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      \intertext{    }
+&= \frac{4}{\left[\int|X|^2\right]^2} \int \langle X,X_t\rangle
+    \int   \langle \mathcal{L}X,X_t\rangle 
+     - \frac2{\int|X|^2} \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle 
+      \\
+&\quad\quad\quad 
++\frac2{\int|X|^2}
+\left\lbrace   \int  -\langle \mathcal{L}X_{t},X_t\rangle   +\int -  \langle \mathcal{L}X_{tt},X \rangle\right\rbrace
+ \\
+\end{align*}
+We consider the case where $X(\cdot,t)=X_0(\cdot)+ tV$, that is, a fixed translation.   In this case $X_t=V$ but other terms $X_{st}$, $X_{tt}$ and so on disappear.     
+
+Then the first variation is 
+%%%%
+\begin{align} \label{first variation}
+\dfrac{d}{dt}E[X_0+tV]&=
+ \frac{-2  E[X_0+tV] }{\int|X+tV|^2}
+\left\lbrace    \int\langle X+tV,V\rangle \right\rbrace, \\
+\end{align}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+while the second variation is  \margincomment{check that first term in $d^2/dt^2$, maybe should be 8?}
+\begin{align*}
+\dfrac{d^2}{dt^2}E[X_0+tV]
+&=     \frac4{\left[\int|X|^2\right]^2} 
+ {E[X_0+tV]}
+\left(   \int\langle X+tV,V\rangle   \right)^2  
+      %\\
+%&\quad\quad\quad 
+-\frac{2E[X_0+tV]}{\int|X|^2}
+\left\lbrace     \int |V|^2  \right\rbrace.
+\end{align*}
+
+
+ If in addition $X$ is a critical point--- that is, $\mathcal{L}X=0$, and $\frac{d}{dt}E=0$.   $\mathcal{L}X_t= EV$.   
+\begin{align*}
+\dfrac{d^2}{dt^2}E[X(\cdot,t)]=&  
+\frac{-2 E[X] }{\int|X|^2}
+  \int   |V|^2  =-4\pi E[X] \frac{|V|^2 } {\int|X|^2}  \le 0 
+\end{align*}
+with equality only in the case that $V=0$.   
+
+We conclude that at a critical point, translations strictly decrease the energy.  
+
+Here we show that every $X$ is a minimiser with respect to translations in \emph{some} direction.  
+
+\begin{lemma} Let $X\in H$, where $H=W^{1,2}(\So\to\R)\setminus\lbrace{\text{constants}}\rbrace$.   Then there exists a $W\in \So$ such that $\sup_{t\in \R} E[X+tW]= E[X]$.   
+\label{partial minimisers}
+\end{lemma}
+\begin{proof}
+  
+  \margincomment{this also works for constants}
+  
+We find  $W$ satisfying  $\int \langle X,W\rangle =0$ as follows:
+Define $\beta:\So\rightarrow \R$ by  $\beta(\theta):= \int \langle X, e^{i\theta}\rangle \,ds$.  Since  $\beta(\theta)=- \beta(\theta+\pi)$,  there exists a $\tilde\theta$ such that $\beta(\tilde \theta)=0$.   Set $W=e^{i\tilde\theta}$.   
+
+As $|t|\rightarrow\infty$, $E[X+tW]\rightarrow 0$.    Since $X$ is not constant, $E[X]>0$.    Hence there exists a (strictly positive) maximum of $E[X+tW]$.   From \eqref{first variation},
+\begin{align*} \label{first variation}
+\dfrac{d}{dt}E[X+tW]&=
+ \frac{-2  E[X+tW] }{\int|X+tW|^2}
+\left\lbrace    \int\langle X,W\rangle + \int t  \langle W,W\rangle \right\rbrace= -2t \frac{ E[X+tW] }{\int|X+tW|^2}
+\left\lbrace     \int   |W|^2 \right\rbrace.  \\
+\end{align*}
+So $t=0$ is the only critical point of $E[X+tW]$, and is therefore the maximum.   
+
+\textbf{I didn't need to use the second variation here... but it is negative at least at $t=0$.}
+
+\end{proof}
+Next, we observe that we can translate any curve in $H$ to a curve in $\mathcal{C}$.   
+
+\begin{lemma} \label{topological lemma}
+Let $X\in H$ be fixed.   Define the \emph{loop indicator function}
+$\alpha_X:\R^2 \to \R^2$ by 
+$$\alpha_X(V):= \int \frac{X(s)+V}{|X(s)+V|}\,ds. $$
+Then there exists a $V\in \R^2$ such that $\alpha_X(V)=0$.   
+\end{lemma}
+\begin{proof}
+\margincomment{Paul has written this up properly}
+Sketch:
+\begin{itemize}
+\item  $\alpha_X$ is continuous. 
+\item Since $\left| \frac{X(s)+V}{|X(s)+V|}\right|=1$ for all $s$,   $|\alpha_X|\le 1$ and so $\alpha_X:\mathbb{R}^2\rightarrow {D^2}$.    
+\item Suppose $V=|V|e^\phi$.    For large enough $r$, $X+V$ lies in a sector centred around $\phi$.      More concretely, let $R=\max_s |X(s)|$.   Then $X+V$ lies in the sector centred around $\phi$ with opening angle $\theta$, where $\theta/2=\sin^{-1}(R/|V|)$.   Hence $\alpha_X(|V|e^{i\phi})$ lies in this sector also.    As $|V|\rightarrow\infty$, $\theta\to 0$ and so we find that $\lim_{|V|\rightarrow\infty } \alpha_X(|V|e^{i\phi})=e^{i\phi}$.      
+\item $\overline{\alpha_X(\R^2)}=\overline{D^2}$. 
+\item Let $\varphi:D^2\to \R^2$ be continuous, surjective, for example $\varphi(re^{i\theta})=\tan(\pi r/2)$.      Then $\tilde\alpha:D^2\to D^2$ given by $\tilde\alpha=\alpha_X\circ \varphi$ is continuous.   
+\item  let $D_r$ be the disc of radius $r<1$.  Then for large enough $r$,  $\tilde{\alpha}(\partial D_r)$ is a closed loop that bounds  a region in $D^2$ containing the origin.  
+\item Hence $\tilde\alpha(D_r)$ contains the origin.   (``otherwise it would be silly")
+\end{itemize}
+
+
+
+\end{proof}
+
+\section*{Construction of min-max argument}
+
+We begin by constructing a \emph{continuous family of curves} for every orbit $X$ in $H$.
+
+Fix $X$.   By Lemma \ref{topological lemma}, we can find a $V_0$ such that $\alpha_X(V_0)=0$ --- that is, $X+V_0\in \mathcal{C}$.   
+
+Now define an \emph{admissible path for $X$} to  be any continuous path $V:\R\rightarrow \R^2$ satisfying $V(t_0)=V_0$ for some $t_0$, and $\lim |V(t)|\rightarrow \infty$ as $|t|\rightarrow \infty$.
+\margincomment{without loss of generality, could require $t_0=0$}
+
+Given a path $V$, let $F(V)$ (``entropy'' in the Colding-Minicozzi schema) be the maximal energy of the orbits in $V$:
+$$F(V):= \sup_{t\in\R} E[X+V(t)].$$
+
+
+
+
+
+Let $G_X$ be a \emph{continuous family} \margincomment{so may need more conditions here, like in Defn 2.2 of KZ.  Here I've used an HUGE family $\mathcal{V}$, but should probably be $n$-dimensional, and the behaviour can (perhaps) be captured in a 1-dimensional one, something like $V(t)=V_0 + tW$, $W\in \So$}
+ $$G_X= \lbrace X+V(t):   V(\cdot) \text{ is an admissible path for $X$}, \, t\in \R \rbrace $$  
+ or else 
+  $$  \mathcal{V}_X = \lbrace V:   V%\in C(\R\rightarrow\R^2)
+   \text{ is an admissible path for $X$}, \, t\in \R \rbrace .$$ 
+  
+Then for any continuous family $\mathcal{V}_X$, let $\mathcal{F}(\mathcal{V}_X)$  be the maximal entropy of the orbits in $G_X$:
+$$\mathcal{F}(G_X):= \sup_{X+V(t) \in G_X} E[X+V(t)].$$
+Or else:
+$$\mathcal{F}(\mathcal{V}_X):= \sup_{V\in \mathcal{V}_X}  F[V].$$
+
+We observe that for any admissible path $V(\cdot)$,
+\begin{equation}
+F[V]=\sup_{t\in\R} E[X+V(t)]\ge E[X+ V(t_0)]>\frac{1}{2}  \label{lower bound}\end{equation} \margincomment{can replace 1/2 by that 0.6 number of Linde's here}
+since $X+V(t_0)\in \mathcal{C}$, and in $\mathcal{C}$ we have the lower bound for $E[Y]$ given by Benguria-Loss, or Linde.   
+
+Thus $\mathcal{F}(G_X)\ge1/2$.
+
+We also observe that for any admissible path, for any $\epsilon>0$ there exists a large $T$ such that if $|t|>T$ then $E[X+V(t)]<\epsilon$. 
+
+
+
+Now the \emph{min-max} value (``width'') is the infimum of $\mathcal{F}$ over all continuous families $G_X$:
+$$\lambda= \inf_{\mathcal{V}_X : X\in H}\mathcal{F}[\mathcal{V}_X]=  \inf_{\mathcal{V}_X : X\in H}\sup_{V\in \mathcal{V}_X}  F[V].   $$
+
+
+
+Now we invoke a \textbf{Mountain Pass Theorem}:   there exists a $c>0$ such that 
+$$ c= \inf_{\mathcal{V}_X : X\in H}\sup_{V\in \mathcal{V}_X}  F[V], $$
+and furthermore this is \emph{realised} by some $Z\in H$ that is a critical point for $E$, in the sense that $\mathcal{L}Z=0$.    So $E[Z]=c$.   \margincomment{haven't got the MP theorem nailed yet} 
+
+However we can completely classify the solutions of $\mathcal{L}Z=0$, alternatively $Z''+cZ=0$:  these are given by $Z= Ae^{\sqrt{c} i\theta} + Be^{-\sqrt{c} i\theta}+ C$.   The case $C\not= 0$ or $c=0$ corresponds to the constants, which have $E[\text{constants}]=0$ so these are excluded.   
+
+Otherwise, $\sqrt{c}$ must be in $\mathbb{Z}$, and so we find that $c=1$.    I conjecture higher values of $c$ correspond to curves that wrap twice. 
+
+Since we know $Z$ so explicitly, we see that these $Z$ are exactly the ovals.     We also know that $Z\in\mathcal{C}$. 
+
+Now we consider any $Y\in\mathcal{C}$.   Let $W$ be such that $\int\langle W,Y\rangle=0$ (as in  Lemma \ref{partial minimisers}).     Then $V(t):=tW$ is an admissable path for $Y$, because $Y=Y+V(0)$ is in $\mathcal{C}$.    
+
+By Lemma \ref{partial minimisers}, $E[Y+tW]\le E[Y]$.    
+
+Then 
+$$ 1= \inf_{G_X} \sup_{t\in R} E[X+V(t)]\le  \sup_{t} E[Y+tW]=E[Y].$$
+
+Hence for all $Y\in\mathcal{C}$, $E[Y]\ge 1$ as conjectured.  
+
+
+\bigskip
+
+\subsection*{Comment after much calculation}  Here we tried to get a deformation-lemma analogue working-- that is, showing that a minmax point must satisfy $\mathcal{L}X=0$ (aka $(dE_X,Y)=0$ for all $Y$).    The problem was that, as constructed here, we have no way of ensuring that if $Y$ violates this, then it must correspond to a stable direction.   There was difficulty in showing that $V_0\rightarrow 0$ for the minimising sequence (though $V_0$ is continuous, and $\Vert V_0\Vert \le \Vert X\Vert$).     Even though it seems like the unstable family as constructed is pretty good, we need more though about the unstable directions.
+
+\newpage
+\section*{A new family}
+Is it that all happy families are alike, but unhappy families are unhappy in their own way?\footnote{I looked up this quote, and discovered there is actually a Thing called the Anna Karenina principle, according to wikipedia}   Let us hope that this is a different kind of family, different from all those previous unhappy ones, in that it works.
+
+\spacing{1.5}
+
+
+Let $X_0$ be fixed. %  If $X_0$ is not already in $\mathcal{C}$, replace it by $X_0+V_0$.  
+
+We consider a path $X(t)$  such that for each $t\in I$, $X(t)$ is an orbit in $H$, and $X(0)=X_0$.
+
+$t$ parameterises paths in the unstable direction, so that if $(t_0)$ is  our conjectured critical point, then $E[X(t_0)]\ge E[X(t)]$.  
+
+%The parameters $(t,z)$ have the following roles:    $t$ parameterises paths in the unstable direction, so that if $(z_0,t_0)$ is  our conjectured critical point, then $E[X(t_0,z_0)]\ge E[X(t_0+\epsilon,z_0)]$.       On the other hand, $z$ parameterises paths in the stable direction, so keeping $t_0$ fixed, then 
+%$E[X(t_0,z_0)]\le E[X(t_0,z_0+\epsilon)]$.      Given $X(t,z)$ it should be impossible to reach $X(t,z+\epsilon)$ along an \emph{admissable path in $t$}--- that is, there should be no  $\eta\in \R$ such that $X( t+\eta, z)=X(t,z+\epsilon)$.   
+
+We choose our family so that it is  adapted to the constraint given by the loop indicator function $\alpha$. 
+
+\subsection*{Directions that break $\alpha$}    Given $X_0\in H$ we define $X(\cdot):I\to H$ to satisfy the following:
+\begin{enumerate}[label=(\roman*)]
+\item $X(0)=X_0$ \label{condition i}
+\item $X(\cdot)$ is continuous (and possibly $C^1$)
+\item   $\alpha(X(t)):I\rightarrow\R^2$ is injective along this path%-- it would be sufficient to  impose the condition that $\dfrac{d}{dt} |\alpha (X(t,0))|^2=\text{sign}(t)$.
+\label{condition ii}
+\item there exists a $\tilde{t}$ such that $X(\tilde{t})\in\mathcal{C}$--- that is, $\alpha(X(\tilde{t}))=(0,0)$.
+\label{condition iii}
+\item $\lim_{|t|\rightarrow\infty} E[X(t)]=0$
+\item  $|\alpha(X(t)|\rightarrow 1$ as $|t|\rightarrow\infty$ %or else $ \inf_{s\in\So} |X(t,0)(s)|\rightarrow\infty$ as $|t|\rightarrow\infty$
+ \label{condition iv}
+\end{enumerate}
+
+This family is modelled on the family of translations $\mathcal{G}_X$ we used earlier.  
+
+\begin{lemma}
+For all $X_0\in H$ there exists at least one $X(\cdot)$ satisfying the above.   
+\end{lemma}
+\begin{proof}
+Consider the path $X(t)=X_0+tV_0$, where $V_0$ is the distinguished direction such that $X_0+V_0\in\mathcal{C}$, as per Lemma \ref{topological lemma}.   This satisfies conditions \ref{condition i}, \ref{condition iii}, and \ref{condition iv}.   We need only to show that condition \ref{condition ii} holds.    We can either modify Lemma  \ref{topological lemma} to show that $\alpha$ is injective, or else directly consider, for $t>\tilde{t}$,
+\begin{align*}
+\langle \alpha(t)-\alpha(\tilde{t}), V_0\rangle 
+&=\int_0^1 \dfrac{d}{d\sigma} \left\langle \alpha(X_0+(\sigma t+ (1-\sigma)\tilde{t})V_0), V_0\right\rangle \,d\sigma \\
+\intertext{ writing $V(\sigma)=(\sigma t+ (1-\sigma)\tilde{t})V_0)$}
+&= \int_0^1 \int_{\So} %\left\langle 
+ {(t-\tilde{t})}      \frac{ \text{proj}_{(X_0+ V(\sigma))^\perp} V_0}{|X_0+ V(\sigma)|} \,ds\,d\sigma  \\
+ &= \int_0^1 \int_{\So} %\left\langle 
+     \frac{ {(t-\tilde{t})} }{{|X_0+ V(\sigma)|}}
+ \left\langle V_0-  (X_0+ V(\sigma)) \frac{ \langle X_0+V(\sigma), V_0\rangle }{ |X_0+V(\sigma)|^2},V_0\right\rangle \,ds\,d\sigma \\
+ &\ge (t-\tilde{t}) \int_0^1 \int_{\So} %\left\langle 
+     \frac{ 1}{{|X_0+ V(\sigma)|}}
+\left[ |V_0|^2 - \frac{|V_0|^2 |X_0+V(\sigma)|^2}{|X_0+V(\sigma)|^2}\right] \,ds\,d\sigma \\
+&\ge 0.
+\end{align*}
+{using C-S}. Equality holds only in the case $t=\tilde{t}$, or $X_0$ parallel to $V_0$ for all $t$.  Since $X_0$ is a non-constant loop in $\R^2$, this never happens\footnote{I suppose the degenerate case is a possibility here, where $X_0(s)=\lbrace p,-p\rbrace$.}.  
+
+Hence $\alpha$ is injective along the path $X(t)$.
+
+
+
+
+\end{proof}
+
+\begin{draftcomment}
+
+This all needs to be changed--- I don't want the paths to have anything going in stable directions any more.
+
+
+More generally, we might take a flow with suitable speeds.  
+
+ if $X=(\sin\theta,\cos\theta)=\So$, then it seems like $d\alpha_X(W)=0$ for all fixed $W$\dots  BUT the second derivative ought to be <0, check this...
+
+
+\subsection*{Directions that preserve $\alpha$}   These are indexed by $z$. For each $X(t,0)$ we deform in such a way that $\alpha(X(t,0))=\alpha(X(t,z))$.    
+Let $X(t,z)=\varphi^z(X(t,0))$ such that $\varphi^0=\text{id}$. 
+
+If $\left.\frac{d}{dz}X(t,z)\right|_{z=0}= V$ then we should satisfy a condition of the form 
+$$\int \frac{\text{proj}_{X(t,0)^\perp} V}{|X(t,0)| }=0.$$
+
+Again, we could do this via a flow or the implicit function theorem.  
+
+It seems like this family would be large enough to contain all the nearby deformations.   
+
+More specifically:  Given $X(t,0)$ for $t\in\R$, for $z\in J=(-\epsilon,\epsilon)$, let $X(t,z)$ satisfy 
+\begin{enumerate}[label=(\roman*)]
+\item $X(t,z)$ is continuous in $t,z$ (and probably $C^1$ etc)   \label{condition a}
+\item  $$\int_{\So} \frac{\text{proj}_{X(t,z)^\perp} D_zX(t,z)}{|X(t,z)| }=0.$$
+Equivalently, 
+$$\alpha (X(t,z_1))=\alpha (X(t,z_2)) \text{ for all }z_1,z_2\in J$$ \label{condition b}
+\end{enumerate}
+
+\textbf{Claim:}  Given $X_0$ there exists at least one family $X(t,z)$ satisfying both the breaking conditions \ref{condition i}--\ref{condition iv}
+and preserving conditions  \ref{condition a}--\ref{condition b}.  Actually I probably need something some thing stronger:  something like \emph{for all $Y$ in the dual space to $dE_X$, there exists $X(t,z)$ such that $\dfrac{d}{dt} X=Y$ or  $\dfrac{d}{dz} X=Y$.}
+
+
+\end{draftcomment}
+
+\subsection*{The complete family}   Given $X_0$, let $\mathcal{G}_{X_0}$ be  the set of all $X(t)$ satisfying both the breaking conditions \ref{condition i}--\ref{condition iv}.
+%and preserving conditions  \ref{condition a}--\ref{condition b}.  
+
+\subsection*{Model MP lemma}   This should say something like:   \emph{Let $$c =\inf_{ X\in \mathcal{G}_{X_0}:{X_0\in H} } \sup_{t\in I} E[X(t,z)].$$ 
+Then there exists a $Y\in H$ satisfying $E[Y]=c$ and $\mathcal{L}Y=0$.}
+
+
+
+\subsection*{Using the MP lemma}
+
+Our 'breaking' direction includes the translates of $X$, so that $X(t)=X_0 + tW$, $W \in \So$.  
+
+Now let $c$ be as in the MP lemma.
+%$$c =\inf_{\lbrace X(t,z)\rbrace_{X_0\in H} z\in J }\sup_{t\in I} E[X(t,z)].$$
+
+
+Hopefully, our MP lemma tells us that there exists a $Y$ realising this, with $\mathcal{L}Y=0$.  Then quantisation gives us that $c=1=E[Y]$.  
+
+Now consider a $Z\in\mathcal{C}$.       
+
+Then take a path $X(t)$ with $X(0)=Z$.     In particular suppose that $X(t)=Z+tW$ where $W$ is that distinguished direction with $\int\langle Z,W\rangle =0$.  
+$$E[Z]= \sup_{t\in I} E[X(t)] \ge \inf_{\lbrace X(t) \rbrace :  X\in H}  \sup_{t\in I} E[X(t)] =c $$
+
+So we find that 
+$\inf_{Z\in\mathcal{C}}E[Z]\ge c=1$.  
+
+
+\subsection*{Proof of  the MP  lemma}  in particular we want to show that if $\mathcal{L}Y\not=0$ i.e $DE_Y \not=0$, then we can find some $z$ such that there is a family $X(t,z)$ with $X(t_0,0)=Y$  and    $E[X(t_0,z)]<E[X(t_0,0)]=c$ for some $z\not=0$.   Because of the way we've chosen this family, this has $\alpha(X(t_0,z))=\alpha(X(t_0,0))$.  
+
+
+
+\textbf{Step 1:  P-S property}  Let $Y_n$ be a sequence with $E[Y_n]\le c+\frac1n$ uniformly in $n$, and something that stands in for ``$\Vert DE(Y_n) \Vert \to 0$", since we don't have a Fr\'echet derivative.   Possibly:   let 
+$$ \sup_{Z\in H, \Vert Z \Vert \le 1} \left. \left| \left\langle Z, \dfrac{d}{d\epsilon} E[Y_n+\epsilon Z]\right|_{\epsilon=0} \right\rangle \right|\rightarrow 0.$$
+Then there is a (strongly) convergent subsequence $Y_{n_j}\rightarrow Y$.  
+
+\textbf{Step 2:  Deformation lemma}  Following Evans, the idea here is that if $c$ is \emph{not} a critical value--- that is, if the Gateaux derivatives do not $\rightarrow 0$--- then we can deform the set $A_{c+\epsilon}:= \lbrace X: E[X]\le c+\epsilon\rbrace$ into the set $A_{c-\epsilon}$.   These should be deformations in  \emph{preserving} directions.   
+
+\textbf{Step 3:  Conclusion }  We find that given $c$, there exists a minimising sequence which converges $Y_n\rightarrow Y$ strongly.  Then $E[Y]=c$ and by the deformation lemma, $Y$ is a critical point--- that is, $\mathcal{L}Y = 0$ in some possibly very weak manner. 
+
+ \end{document}

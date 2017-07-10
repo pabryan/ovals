@@ -1,0 +1,83 @@
+\documentclass[12pt, a4paper]{amsart}
+
+\title{Some remarks on Noether's Theorem}
+
+\newcommand{\mobius}{M\"{o}bius}
+\newcommand{\abs}[1]{\ensuremath{\left|#1\right|}}
+\DeclareMathOperator{\mobcircle}{M\ddot{o}b(\mathbb{S}^1)}
+\newcommand{\ip}[2]{\ensuremath{\langle{#1},{#2}\rangle}}
+\DeclareMathOperator{\l2circle}{L_2(\mathbb{S}^1)}
+
+% Theorem environments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{cor}[theorem]{Corollary}
+\newtheorem{conj}{Conjecture}
+\renewcommand{\theconj}{\Alph{conj}}
+
+
+\begin{document}
+\maketitle
+
+In ``Much ado about ovals'' Corollary 5.2 shows that the Energy (not the energy density!) is invariant under the \mobius{} action. Then there some to be some problems after that.
+
+\begin{enumerate}
+\item For Lemma 5.3, it's claimed that the energy density is invariant under Moebius transformation. This is not true - it's the energy itself that is invariant. So $E(X_{\phi_t})$ is constant (where $\phi_t$ is the a one-parameter family and not the time derivative). \texttt{The claim (Lemma 5.1) is that the density differs by an exact form. The main point though is to provide an expression for this form (in order to start the proof of Lemma 5.3) - Mat}.
+
+\item The claim that $\psi''' + 4 \psi' = 0$ seems problematic. For the second line, I get something very different - maybe you are grouping in some way I am not. Moreover, to go from the second line to the third line, surely you get \texttt{I regularly use the assumption that $\phi|_{t=0}$ is the identity, hence $\phi'|_{t=0}=1$ and $\phi''|_{t=0}=0$. It seems I forgot to mention this in Lemma 5.3 (updated). Sorry! - Mat.}
+\[
+\frac{\psi'''}{\phi'} + 4 \phi' \psi'
+\]
+and not
+\[
+\psi''' + 4 \psi'.
+\]
+\end{enumerate}
+
+\textbf{Problem 1}
+
+It seems to me that the computations for Lemma 5.3 show that 	
+\[
+\begin{split}
+0 &= \partial_t \left[E(X_{\phi})\right] = \int \partial_t \left(\mathcal{E}(X_{\phi}) + d\omega_{\phi} \right) ds \\
+&= \int \left[\psi \left(\abs{X'}^2 - \abs{X}^2\right)\right]' + \frac{1}{2} \left(\psi''' + 4 \psi'\right) \abs{X}^2 ds.
+\end{split}
+\]
+
+Now I suppose we may take it that the first term in big brackets integrates to zero (divergence of a vector field) and we end up with
+\[
+\frac{1}{2} \int \left(\psi''' + 4 \psi'\right) \abs{X}^2 ds = 0.
+\]
+
+Then if the claim $\psi''' + 4 \psi' = 0$ holds we obtain nothing whatsoever!
+
+On the other hand, if that claim is not true, then we obtain:
+\[
+\ip{\abs{X}^2}{\psi''' + 4 \psi'}_{\l2circle} = 0
+\]
+for every $\psi$ tangent to $\mobcircle$. What is interesting here is that the eigenfunction $f^2 = \abs{X}^2$ and we recover something that looks a lot like the fact that permissible variations are orthogonal to $\cos, \sin$. See next point below connecting $\psi''' + 4 \psi'$ to $\cos$ and $\sin$.
+
+\textbf{Problem 2}
+
+If $\phi_t$ is a one-parameter family of \mobius{} transformations and $\psi = \partial_t|_{t=0} \phi_t$, I get,
+\[
+\begin{split}
+0 &= \partial_t|_{t=0} \left(\frac{\phi_t'''}{\phi_t'} - \frac{3}{2} \frac{(\phi_t'')^2}{(\phi_t')^2} + 2(\phi_t')^2 - 2\right) \\
+&= \frac{\psi'''}{\phi'} - \frac{\phi'''}{(\phi')^2} \psi' - 3\frac{\phi''\psi''}{(\phi')^2} + 3 \frac{(\phi'')^2}{(\phi')^3} \psi' + 4 \phi' \psi' \\
+&= \frac{1}{\phi'} \left[\psi''' - 3 \frac{\phi''}{\phi'} \psi'' - \left(\frac{\phi'''}{\phi'} - 3 \frac{(\phi'')^2}{(\phi')^2} + 4 (\phi')^2 \right)\psi'\right] \\
+&= \frac{1}{\phi'} \left[\psi''' - 3 \frac{\phi''}{\phi'} \psi'' - \left(2 -\frac{3}{2} \frac{(\phi'')^2}{(\phi')^2} + 2 (\phi')^2 \right)\psi'\right] \\
+\end{split}
+\]
+
+The term in the big square brackets defines a linear ODE satisfied by elements of the tangent space to $\mobcircle$ at the point $\phi \in \mobcircle$. Presumably these solutions should be periodic.
+
+This ODE is vastly different to the claimed $\psi''' + 4\psi' = 0$ which seems rather unlikely because it does not depend on the point $\phi$ (\texttt{Right. But when $\psi$ is tangent to the identity, we get $\psi'''+4\psi'=0$. You must be rather annoyed that I forgot to mention that bit? Sorry again.. - Mat}.). Is it possible that the tangent space to the space $\mobcircle$ is parallel? That is, the claimed equation suggests that the tangent vector $\psi$ is completely independent of the base point $\phi$. Is that true?
+
+More explicitly, the claim $\psi''' + 4 \psi' = 0$ is equivalent to
+\[
+\psi = C_1 \cos(2s) + C_2 \sin(2s) + C_2.
+\]
+At the very least this says that at $t = 0$, the straight line $\phi + t(C_1 \cos(2s) + C_2 \sin(2s) + C_2)$ is tangent to $\mobcircle$ so that the tangent space is parallel which, as mentioned, seems unreasonable.
+
+\end{document}

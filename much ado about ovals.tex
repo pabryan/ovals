@@ -1,0 +1,663 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt,reqno]{amsart}
+%\usepackage[default]{gfsneohellenic}
+\usepackage{amsmath,amsfonts,amssymb,mathrsfs,amstext,amscd,latexsym,amsthm}
+%\usepackage{a4wide}
+\usepackage{esint}
+\usepackage{comment}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{enumitem}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Q}{\ensuremath{\mathbb{Q}}}
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\Z}{\ensuremath{\mathbb{Z}}}
+\newcommand{\mcf}{\eqref{eq:MCF}\ }
+\renewcommand\atop[2]{\genfrac{}{}{0pt}{}{#1}{#2}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Div}{\mathrm{div}} 
+\newcommand{\spt}{\mathrm{spt}}
+\newcommand{\supp}{\mathrm{supp}} %support
+\newcommand{\dist}{\mathrm{dist}} 
+\newcommand{\diag}{\mathrm{diag}} 
+\newcommand{\lip}{\mathrm{Lip}}
+\newcommand{\tr}{\mathrm{tr}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\proj}{\mathrm{proj}}
+\newcommand{\id}{\mathrm{I}}
+\newcommand{\im}{\mathrm{im}\,} %image
+\newcommand{\ed}{\mathrm{d}} %exterior derivative
+\newcommand{\ld}{\mathcal{L}} %Lie derivative
+\newcommand{\pd}{\partial}
+\newcommand{\cd}{\nabla}
+\newcommand{\grad}{\mathrm{grad}} %gradient
+\newcommand{\Hess}{\mathrm{Hess}} %Hessian
+\newcommand{\cut}{\mathrm{cut}} %cut locus
+\newcommand{\inj}{\mathrm{inj}} %injectivity radius
+\newcommand{\Sym}{\mathcal{S}} %symmetric matrices
+\newcommand{\Ric}{\mathrm{Ric}} %Ricci tensor
+\newcommand{\ric}{\mathrm{Ric}} %Ricci tensor
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\pde}{{\small\textrm{PDE}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\E}{{\rm e}} %base of the natural logarithm
+\newcommand*{\medcap}{\mathbin{\scalebox{1.3}{\ensuremath{\cap}}}}
+\newcommand*{\medcup}{\mathbin{\scalebox{1.3}{\ensuremath{\cup}}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\inner}[2]{\left\langle #1 \, , \, #2\right\rangle} %Euclidean inner product
+\newcommand{\norm}[1]{\left\Vert#1\right\Vert} %Euclidean norm
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\M}{M} %{{}\hspace{-0.5pt}{}\mathscr{M}{}\hspace{-0.5pt}{}} %flow parametrisation 
+\newcommand{\X}{X} %{{}\hspace{-1.5pt}{}\mathscr{X}{}\hspace{-1.5pt}{}} %flow parametrisation 
+\newcommand{\A}{A} %{\mathcal{I}\hspace{-4pt}\mathcal{I}} %second fundamental form 
+\newcommand{\W}{A} %{\mathcal{W}} %Weingarten map
+\renewcommand{\H}{\mathrm{H}} %mean curvature
+\newcommand{\eL}{\mathscr{L}} %Linearisation of $F$
+\newcommand{\Dom}{\mathrm{Dom}}
+\newcommand{\la}{\left\langle}
+\newcommand{\ra}{\right\rangle}
+\newcommand{\lb}{\left(}
+\newcommand{\rb}{\right)}
+\newcommand{\lsb}{\left[}
+\newcommand{\rsb}{\right]}
+\newcommand{\lcb}{\left\{}
+\newcommand{\rcb}{\right\}}
+\newcommand{\XD}{{}^{X}\hspace{-3pt}D}
+\newcommand{\kD}{{}^{k}\hspace{-2pt}D}
+\newcommand{\Gs}{G_{\sigma}}
+\newcommand{\Ges}{G_{\varepsilon,\sigma}}
+\newcommand{\Gesp}{G_{\varepsilon,\sigma,+}}
+\newcommand{\Gesk}{G_{\varepsilon,\sigma,K}}
+\newcommand{\Geskp}{G_{\varepsilon,\sigma,K,+}}
+\renewcommand{\AA}{\textit{\r{A}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\labelitemi{--}
+\def\ba #1\ea {\begin{align} #1\end{align}}
+\def\bann #1\eann {\begin{align*} #1\end{align*}}
+\def\ben #1\een {\begin{enumerate} #1\end{enumerate}}
+\def\bi #1\ei {\begin{itemize}\renewcommand\labelitemi{--} #1\end{itemize}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\theoremstyle{plain}
+\numberwithin{equation}{section}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{mthm}{Main Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{sublem}[thm]{Sublemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{claim}[thm]{Claim}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{conds}{Conditions}
+\newtheorem{auxconds}{Ancillary Conditions}
+\newtheorem{props}{Properties}
+\newtheorem*{conds*}{Conditions}
+\newtheorem*{auxconds*}{Ancillary Conditions}
+\newtheorem*{props*}{Properties}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}[section]
+\newtheorem{rems}{Remarks}[section]
+\newtheorem{question}{Question}[section]
+\newtheorem{questions}{Questions}[section]
+\newtheorem{ex}{Exercise}[section]
+\newtheorem{eg}{Example}[section]
+\newtheorem{egs}{Examples}[section]
+
+%\usepackage[style=numeric,sorting=nyt,backend=bibtex,doi=false,isbn=false,url=false]{biblatex}%styles: alphabetic, numeric, authoryear, reading
+%\addbibresource{bibliography.bib}
+ 
+\usepackage{cite}
+
+\title[The ovals problem]{Notes on the ovals problem}
+
+\author{Mat Langford}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+The following ideas have arisen from discussions with Julie and John as well as from Julie's notes.
+
+\section{Introduction}
+
+Given a convex, $C^2$ planar curve\footnote{We will regularly conflate the curve $\gamma$ with arc-length parametrizations $\gamma:[0,L]\to \R^2$.} $\gamma$ and a $C^2$ function $f:\gamma\to\R$, we can form the energy\footnote{This is the energy considered by Bernstein and Mettler. In a previous compilation, I considered the ratio instead of the difference. The same results come out for first and second variations but I don't know how the projective invariance, and hence the Noetherian identity, works for the ratio.}
+\bann
+E(\gamma,f):=\int_\gamma\lb f_s^2+\kappa^2f^2\rb\,ds-\lb\frac{2\pi}{L(\gamma)}\rb^2\int_\gamma f^2\,ds\,,
+\eann
+where $s$ is the arc-length and $L$ is the length functional.
+
+\section{The first variation}
+
+Let $f(\cdot,t)$ and $\gamma(\cdot,t)$, $t\in (-t_0,t_0)$ be variations of $f$ and $\gamma$ respectively. Denote by $\varphi$ the $f$ variation field and $F$ the normal component of the $\gamma$-variation field. We will regularly apply the following formulae:
+\bann
+\kappa_t={}&F_{ss}+\kappa^2F\,,
+\eann
+\bann
+(ds)_t={}&-\kappa F\,ds
+\eann
+and
+\bann
+\pd_t\pd_s={}&\pd_s\pd_t+\kappa F\,.
+\eann
+
+With these in hand, let's compute
+\bann
+\frac{d}{dt}E={}&\int \lb 2f_sf_{st}+2\kappa\kappa_tf^2+2\kappa^2ff_t-\kappa F\lsb f_s^2+\kappa^2f^2\rsb\rb\,ds\\
+{}&-\frac{8\pi^2}{L^3}\int f^2\,ds\int \kappa F\,ds-\lb\frac{2\pi}{L(\gamma)}\rb^2\int \lb 2ff_t-\kappa F f^2\rb\,ds\\
+={}&\int \lb 2f_s(f_{ts}+\kappa Ff_s)+2\kappa(F_{ss}+\kappa^2F)f^2+2\kappa^2ff_t-\kappa F\lsb f_s^2+\kappa^2f^2\rsb\rb\,ds\\
+{}&-\frac{8\pi^2}{L^3}\int f^2\,ds\int \kappa F\,ds-\lb\frac{2\pi}{L(\gamma)}\rb^2\int \lb 2ff_t-\kappa F f^2\rb\,ds\\
+={}&-2\int f_t\lb f_{ss}-\kappa^2f+\frac{4\pi^2}{L^2}f\rb\,ds\\
+{}&+\int\lb\kappa F\lsb f_s^2+\kappa^2f^2+\frac{4\pi^2}{L^2}f^2-\frac{8\pi^2}{L^3}\int f^2\,ds\rsb +2(\kappa f^2)_{ss}F\rb\,ds\,.
+\eann
+
+Define the Euler--Lagrange operator
+\bann
+-\mathcal{L}f:=f_{ss}-\kappa^2f+\frac{4\pi^2}{L^2}f\,,
+\eann
+the angular co\"ordinate
+\bann
+\theta(\sigma):=\int_0^\sigma k(s)\,ds\;\;\Leftrightarrow\;\; d\theta=\kappa\,ds
+\eann
+and the angular momentum
+\bann
+A:=f_s^2+\kappa^2f^2+\frac{4\pi^2}{L^2}f^2\,.
+\eann
+
+Observe that
+\bann
+\kappa A_{\theta}=A_s=2\kappa(\kappa f^2)_s-2f_s\mathcal{L}f
+\eann
+so that
+\bann
+\kappa A_{\theta\theta}=2(\kappa f^2)_{ss}-2\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_s\,.
+\eann
+
+Putting this together yields
+\ba\label{eq:firstvariation}
+\frac{d}{dt}E={}&2\int \lb \varphi \mathcal{L}f+F\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_s\rb\,ds\nonumber\\
+{}&+\int F\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb\,d\theta\,.
+\ea
+
+Thus, if $(\gamma,f)$ is a stationary pair, then
+\bann
+\mathcal{L}f=0\quad\text{and}\quad A_{\theta\theta}+A=\frac{8\pi^2}{L^3}\int f^2\,ds\,.
+\eann
+%In particular, if $(f,\gamma)$ is a \emph{minimizing} pair, then
+%\bann
+%\mathcal{L}f=0\quad\text{and}\quad A_{\theta\theta}+A=\frac{8\pi^2}{L^3}\lambda\,,
+%\eann
+%where $\lambda$ is the ground state. 
+
+\begin{comment}
+\begin{rem}
+The solution of the second equation is
+\bann
+A=\frac{8\pi^2}{L^3}\int f^2\,ds+\alpha\cos\theta+\beta\sin\theta\,.
+\eann
+We would like to deduce that $\alpha=\beta=0$ for a \emph{minimizing} pair $(\gamma,f)$ since  this would imply (normalizing $L=2\pi$ and $\int f^2=1$)
+\bann
+f_s^2+\kappa^2f^2+f^2=\frac{1}{\pi}\,,
+\eann
+which implies $E=0$, proving the (weak version of the) conjecture; presumably, however, there are higher modes, so we really need to use the fact that $(\gamma,f)$ is minimizing.
+
+Note that, applying the Euler--Lagrange equation and integrating merely yields
+\bann
+\alpha\int \frac{\cos\theta}{\kappa(\theta)}\,d\theta+\beta\int \frac{\sin\theta}{\kappa(\theta)}\,d\theta=0\,.
+\eann
+But, of course, \emph{every} simple closed convex $C^2$ curve satisfies
+\ba\label{eq:curvecurvature}
+\int \frac{\cos\theta}{\kappa(\theta)}\,d\theta=\int \frac{\sin\theta}{\kappa(\theta)}\,d\theta=0\,.
+\ea
+Indeed, a positive, continuous, $2\pi$-periodic function $\kappa$ is the curvature of such a curve precisely when \eqref{eq:curvecurvature} holds.
+\end{rem}
+\end{comment}
+
+In particular, any stationary pair $(\gamma,f)$ satisfies
+\bann
+0=-\int_\gamma f\mathcal{L}fds={}&-\int_\gamma f\lb f_{ss}-\kappa^2f+\frac{4\pi^2}{L^2}f\rb\,ds\\
+={}&\int_\gamma\lb f_s^2+\kappa^2f\rb\,ds-\frac{4\pi^2}{L^2}\int_\gamma f^2\,ds\\
+={}& E(\gamma,f)\,.
+\eann
+This would confirm the weak version of the conjecture ($E\geq 0$) if we knew that the minimum is attained. We next look at the second variation, in search of some convexity in $E$.
+
+\section{The second variation}
+
+Differentiating \eqref{eq:firstvariation} once more, we obtain
+\bann
+\frac{d^2}{dt^2}E={}&2\int \lb f_{tt} \mathcal{L}f+F_t\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_s\rb\,ds\\
+{}&+2\int \lb f_t \mathcal{L}f+F\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_s\rb\,(ds)_t\\
+{}&+\int F_t\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb\,d\theta\\
+{}&+\int F\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb\,(d\theta)_t\\
+{}&+2\int \lb f_t(\mathcal{L}f)_t+F\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_{st}\rb\,ds\\
+{}&+\int F\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb_t\,d\theta\,.
+\eann
+Don't panic yet\footnote{There will be plenty of time for that later.}: At a stationary pair\footnote{For example, at a `true' oval.}, we can eliminate (at $t=0$) the first four terms on the right using the first variation formulae. This yields
+\bann
+\frac{d^2}{dt^2}\Big|_{t=0}E={}&2\int \lb \varphi(\mathcal{L}f)_t+F\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_{st}\rb\,ds\\
+{}&+\int F\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb_t\,d\theta\,.
+\eann
+
+Note also that
+\bann
+\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_{st}={}&\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_{ts}+\kappa F\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_{s}\\
+={}&\lb\lb\frac{f_s}{\kappa}\rb_t\mathcal{L}f+\frac{f_s}{\kappa}(\mathcal{L}f)_t\rb_{s}+\kappa F\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_{s}\,.
+\eann
+So that, applying the first variation formulae,
+\bann
+\lb\frac{f_s}{\kappa}\mathcal{L}f\rb_{st}={}&\lb\frac{f_s}{\kappa}(\mathcal{L}f)_t\rb_{s}%\\
+%={}&\lb\frac{f_s}{\kappa}\rb_s(\mathcal{L}f)_t+\frac{f_s}{\kappa}(\mathcal{L}f)_{ts}\,.
+\eann
+at $t=0$. Thus,
+\bann
+\frac{d^2}{dt^2}\Big|_{t=0}E={}&2\int \lb\varphi-\frac{f_s}{\kappa}F_s\rb(\mathcal{L}f)_t\,ds\\
+{}&+\int F\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb_t\,d\theta\,.
+\eann
+
+We claim that
+\bann
+\int F\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb_t\,d\theta=0
+\eann
+at $t=0$ if $F$ is a harmonic oscillator ($F+F_{\theta\theta}=0$). Indeed, commuting
+\bann
+\pd_t\pd_\theta-\pd_\theta\pd_t%={}&-\frac{1}{k}F_{ss}\pd_\theta\\
+={}&(\kappa F_{\theta})_{\theta}\pd_\theta
+\eann
+we find
+\bann
+A_{\theta\theta t}={}&A_{t\theta\theta}+(\kappa F_\theta)_{\theta\theta}A_{\theta}+2(\kappa F_\theta)_\theta A_{\theta\theta}\\
+={}&A_{t\theta\theta}+(\kappa F_\theta A_{\theta})_{\theta\theta}-\kappa F_\theta A_{\theta\theta\theta}\,.
+\eann
+Thus, at $t=0$,
+\bann
+A_{\theta\theta t}={}&A_{t\theta\theta}+\kappa F_\theta A_{\theta}+(\kappa F_\theta A_{\theta})_{\theta\theta}\,.
+\eann
+Setting $\lambda:=\frac{8\pi^2}{L^3}\int f^2\,ds$, we thus obtain (at $t=0$)
+\bann
+\int F\lb A+A_{\theta\theta}-\lambda\rb_t\,d\theta={}&\int F\lb A_t+A_{\theta\theta t}-\lambda_t\rb\,d\theta\\
+={}&\int F\lb A_t+A_{t\theta\theta}+\kappa F_\theta A_{\theta}+(\kappa F_\theta A_{\theta})_{\theta\theta}-\lambda_t\rb\,d\theta\,.
+\eann
+Integrating by parts and noting that $\lambda_t$ does not depend on $\theta$, we obtain
+\bann
+\int F\lb A+A_{\theta\theta}-\lambda\rb_t\,d\theta={}&\int (F+F_{\theta\theta})\lb A_t+\kappa F_\theta A_{\theta}-\lambda_t\rb\,d\theta\,.
+\eann
+The claim follows.
+
+So consider
+\bann
+-(\mathcal{L}f)_t={}&\lb f_{ss}-\kappa^2f+\frac{4\pi^2}{L^2}f\rb_t\\
+={}&f_{sst}-2\kappa(F_{ss}+\kappa^2F)f-\kappa^2f_t+\frac{8\pi^2}{L^3}f\int\kappa F\,ds+\frac{4\pi^2}{L^2}f_t\\
+={}&f_{tss}+2\kappa F f_{ss}+(\kappa F)_sf_s-2\kappa(F_{ss}+\kappa^2F)f\\
+{}&-\kappa^2f_t+\frac{8\pi^2}{L^2}f\fint F\,d\theta+\frac{4\pi^2}{L^2}f_t\,.
+\eann
+At $t=0$,
+\bann
+-(\mathcal{L}f)_t={}&-\mathcal{L}\varphi-2\kappa F \mathcal{L}f+(\kappa F)_sf_s-2\kappa F_{ss}f+\frac{8\pi^2}{L^2}f\lb\fint F\,d\theta-\kappa F\rb\\
+={}&-\mathcal{L}\varphi+(\kappa F)_sf_s-2\kappa F_{ss}f+\frac{8\pi^2}{L^2}f\lb \fint F\,d\theta-\kappa F\rb\,.
+\eann
+
+%Set $\lambda:=\frac{8\pi^2}{L^3}$. If the variations preserve $L=2\pi$ and $\int f^2=1$, then $\lambda$ is constant
+
+
+\begin{comment}
+Next, we compute
+\bann
+\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb_t={}&A_t+A_{\theta\theta t}-\frac{24\pi^2}{L^4}\int f^2\,ds\int\kappa F\,ds\\
+{}&-\frac{8\pi^2}{L^3}\int (2ff_t-\kappa F f^2)\,ds\\
+={}&A_t+A_{\theta\theta t}-\frac{24\pi^2}{L^4}\int f^2\,ds\int F\,d\theta\\
+{}&-\frac{8\pi^2}{L^3}\int (2f\varphi-\kappa F f^2)\,ds
+\eann
+at $t=0$.
+
+Note that, if the variation preserves the length of $\gamma$ (so that $\int F\,d\theta=0$) then
+\bann
+\int F\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb_t\,d\theta={}&\int F\lb A_t+A_{\theta\theta t}\rb \,ds\,.
+\eann
+
+%\bann
+%A_{\theta\theta t}=A_{t\theta\theta}-\frac{2}{k}F_{ss}A_{\theta\theta}+\frac{1}{k^3}F_{ss}k_sA_\theta-\frac{1}{k^2}F_{ss}A_\theta\,.
+%\eann
+
+So consider
+\bann
+A_t={}&\lb f_s^2+\kappa^2f^2+\frac{4\pi^2}{L^2}f^2\rb_t\\
+={}&2f_sf_{st}+2\kappa(F_{ss}+\kappa^2F)f^2+2\kappa^2ff_t+\frac{8\pi^2}{L^3}f^2\int\kappa F\,ds+\frac{8\pi^2}{L^2}ff_t\\
+={}&2f_s(f_{ts}+\kappa Ff_s)+2\kappa(F_{ss}+\kappa^2F)f^2+2\kappa^2ff_t+\frac{8\pi^2}{L^3}f^2\int F\,d\theta+\frac{8\pi^2}{L^2}ff_t\\
+={}&2\kappa F\lb f_s^2+\kappa^2f^2+\frac{4\pi^2}{L^2}f^2\rb-\frac{8\pi^2}{L^2}f^2\kappa F+\frac{8\pi^2}{L^2}f^2\int F\,d\theta\\
+{}&+2f_s\varphi_{s}+2\kappa F_{ss}f^2+2\kappa^2f\varphi+\frac{8\pi^2}{L^2}f\varphi\\
+={}&2\kappa FA+\frac{8\pi^2}{L^2}f^2\lb\int F\,d\theta-\kappa F\rb
++2\kappa f^2F_{ss}+2\lb f_s\varphi_{s}+\kappa^2f\varphi+\frac{4\pi^2}{L^2}f\varphi\rb\,.
+\eann
+Introducing the bilinear form $B(f,g):=f_sg_s+\kappa^2fg+\frac{4\pi^2}{L^2}fg$, this becomes
+\bann
+A_t={}&2\kappa FA+\frac{8\pi^2}{L^2}f^2\lb\int F\,d\theta-\kappa F\rb
++2\kappa f^2F_{ss}+2B(f,\varphi)\,.
+\eann
+
+If we choose $F$ and $\varphi$ so that $\varphi\equiv 0$ and $\int F\,d\theta=0$ then%, writing $F_{ss}=\kappa(\kappa F_\theta)_\theta$, this becomes
+\bann
+A_t={}&2\kappa FA-\frac{8\pi^2}{L^2}\kappa f^2F+2\kappa^2f^2(\kappa F_\theta)_\theta\,.
+\eann
+
+Actually, that wasn't so bad (I'm starting to get the hang of this). To compute $A_{\theta\theta t}$, we first commute
+\bann
+\pd_t\pd_\theta-\pd_\theta\pd_t%={}&-\frac{1}{k}F_{ss}\pd_\theta\\
+={}&(\kappa F_{\theta})_{\theta}\pd_\theta
+\eann
+so that
+\bann
+A_{\theta\theta t}=A_{t\theta\theta}+(\kappa F_\theta)_{\theta\theta}A_{\theta}+2(\kappa F_\theta)_\theta A_{\theta\theta}\,.
+\eann
+This leaves
+\bann
+A_{t\theta\theta}={}&2\lb\kappa FA+\frac{4\pi^2}{L^2}f^2\lb\int F\,d\theta-\kappa F\rb
++\kappa f^2F_{ss}+B\lb f,\varphi\rb\rb_{\theta\theta}\\
+={}&2\lb(\kappa FA)_{\theta\theta}+\frac{4\pi^2}{L^2}\lb f^2\lb\int F\,d\theta-\kappa F\rb\rb_{\theta\theta}
++\lb\kappa f^2F_{ss}\rb_{\theta\theta}+B\lb f,\varphi\rb_{\theta\theta}\rb\\
+={}&2\Big(\kappa FA_{\theta\theta}+2(\kappa F)_\theta A_\theta+(\kappa F)_{\theta\theta}A+\frac{4\pi^2}{L^2} \lb f^2\lb\int F\,d\theta-\kappa F\rb\rb_{\theta\theta}\\
+{}&+\lb\kappa^2f^2(\kappa F_\theta)_\theta\rb_{\theta\theta}+B\lb f,\varphi\rb_{\theta\theta}\Big)
+\eann
+If we choose $\varphi\equiv\int F\,d\theta\equiv 0$, then
+\bann
+A_{t\theta\theta}={}&2\Big(\kappa FA_{\theta\theta}+2(\kappa F)_\theta A_\theta+(\kappa F)_{\theta\theta}A-\frac{4\pi^2}{L^2}\lb \kappa f^2 F\rb_{\theta\theta}+\lb\kappa^2f^2(\kappa F_\theta)_\theta\rb_{\theta\theta}\Big)\,.
+\eann
+
+Picking up the pieces, we find\footnotesize{
+\bann
+\int F&\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb_t\,d\theta\\
+={}&\int F\lb A_t+A_{\theta\theta t}\rb\,d\theta-\frac{24\pi^2}{L^4}\int f^2ds\lb\int F\,d\theta\rb^2-\frac{8\pi^2}{L^3}\int Fd\theta\int (2f\varphi-\kappa F f^2)\,ds\\
+={}&\int F\lb A_t+A_{t\theta\theta}+(\kappa F_\theta)_{\theta\theta}A_{\theta}+2(\kappa F_\theta)_\theta A_{\theta\theta}\rb\,d\theta\\
+{}&-\lb\frac{3}{L}\int f^2ds\int F\,d\theta+\int (2f\varphi-\kappa F f^2)\,ds\rb\int F\,d\theta\\
+={}&2\int F\lb \kappa FA+\frac{4\pi^2}{L^2}f^2\lb\int F\,d\theta-\kappa F\rb
++\kappa f^2F_{ss}+B\lb f,\varphi\rb\rb\,d\theta\\
+{}&+2\int F\lb\kappa FA_{\theta\theta}+2(\kappa F)_\theta A_\theta+(\kappa F)_{\theta\theta}A+\frac{4\pi^2}{L^2}\lb f^2\lb\int F\,d\theta-\kappa F\rb\rb_{\theta\theta}\right.\\
+{}&+\lb\kappa^2f^2(\kappa F_\theta)_\theta\rb_{\theta\theta}+B\lb f,\varphi\rb_{\theta\theta}+ (\kappa F_\theta)_{\theta\theta}A_{\theta}+2(\kappa F_\theta)_\theta A_{\theta\theta}\Big)\,d\theta\\
+{}&-\lb\frac{3}{L}\int f^2ds\int F\,d\theta+\int (2f\varphi-\kappa F f^2)\,ds\rb\int F\,d\theta\,.
+\eann 
+}
+
+{\normalsize In the special case $\int Fd\theta=0$,}{\footnotesize
+\bann
+\int F&\lb A+A_{\theta\theta}-\frac{8\pi^2}{L^3}\int f^2\,ds\rb_t\,d\theta\\
+={}&2\int F\lb \kappa FA-\frac{4\pi^2}{L^2}\kappa f^2 F+\kappa^2f^2(\kappa F_\theta)_\theta\rb\,d\theta\\
+{}&+2\int F\Big(\kappa FA_{\theta\theta}+2(\kappa F)_\theta A_\theta+(\kappa F)_{\theta\theta}A-\frac{4\pi^2}{L^2}\lb\kappa f^2 F\rb_{\theta\theta}+\lb\kappa^2f^2(\kappa F_\theta)_\theta\rb_{\theta\theta}\Big)\,d\theta\\
+{}&+\int F\lb (\kappa F_\theta)_{\theta\theta}A_{\theta}+2(\kappa F_\theta)_\theta A_{\theta\theta}\rb\,d\theta+2\int (F_{\theta\theta}+F)B\lb f,\varphi\rb\,d\theta\\
+={}&2\int \lb \kappa F^2(A+A_{\theta\theta})-\frac{4\pi^2}{L^2}\kappa f^2 F^2-\frac{4\pi^2}{L^2} F(\kappa f^2F)_{\theta\theta}+\kappa^2f^2F(\kappa F_\theta)_\theta+F(\kappa^2f^2(\kappa F_\theta)_\theta)_{\theta\theta}\rb\,d\theta\\
+{}&+\int \lb 4F(\kappa F)_\theta A_\theta+2FA(\kappa F)_{\theta\theta}+FA_\theta(\kappa F_\theta)_{\theta\theta}+2F(\kappa F_\theta)_\theta A_{\theta\theta}+2(F_{\theta\theta}+F)B\lb f,\varphi\rb\rb\,d\theta\\
+%={}&2\int \lb 2\lambda\kappa F^2-\lambda \kappa f^2 F^2-\lambda \kappa f^2FF_{\theta\theta}+\kappa^2f^2F(\kappa F_\theta)_\theta+\kappa^2f^2(\kappa F_\theta)_\theta F_{\theta\theta}\rb\,d\theta\\
+%{}&+\int \lb 4F(\kappa F)_\theta A_\theta+2FA(\kappa F)_{\theta\theta}+FA_\theta(\kappa F_\theta)_{\theta\theta}+2F(\kappa F_\theta)_\theta A_{\theta\theta}\rb\,d\theta\\
+={}&2\int \lb \kappa F^2\lb\frac{8\pi^2}{L^2}\int f^2\,ds\rb-\frac{4\pi^2}{L^2}\kappa f^2 F(F+F_{\theta\theta})+\kappa^2f^2(\kappa F_\theta)_\theta(F+F_{\theta\theta})\rb\,d\theta\\
+{}&+\int \lb 2F(\kappa F)_\theta A_\theta-2F_\theta A(\kappa F)_{\theta}+F(\kappa F_\theta)_\theta A_{\theta\theta}-F_\theta A_\theta(\kappa F_\theta)_{\theta}+2(F_{\theta\theta}+F)B\lb f,\varphi\rb\rb\,d\theta\,.
+\eann}
+
+\normalsize We claim that this vanishes if $F$ is a harmonic oscillator (e.g. if we take $F=-A_{\theta\theta}$). Indeed, in this case, the final two terms of the first line and the final term of the second line vanish. After integrating the $(\kappa F)_\theta$ and $(\kappa F_\theta)_\theta$ terms by parts and applying the identities $F_{\theta\theta}+F=0$, $A_{\theta\theta}+A=\frac{8\pi^2}{L^3}\int f^2\,ds$ and $A_{\theta\theta\theta}+A_\theta=0$, the second line is
+\bann
+\int \big(2\kappa F(F_\theta A)_{\theta}-&2\kappa F (FA_\theta)_\theta+\kappa F_\theta(F_\theta A_\theta)_\theta-\kappa F_\theta (FA_{\theta\theta})_\theta\big)\,d\theta\\
+={}&\int \lb 2\kappa F\lb F_{\theta\theta}A-FA_{\theta\theta}\rb+\kappa F_\theta\lb F_{\theta\theta}A_\theta-FA_{\theta\theta\theta}\rb\rb\,d\theta\\
+={}&-\frac{16\pi^2}{L^3}\int f^2\,ds\int \kappa F^2\,d\theta+\int \lb F_{\theta\theta}+F\rb\lb 2\kappa F A+\kappa F_\theta A_{\theta}\rb\,d\theta\\
+={}&-\frac{16\pi^2}{L^3}\int f^2\,ds\int \kappa F^2\,d\theta\,,
+\eann
+which cancels the remaining term on the first line. 
+
+\begin{rem}
+This miraculous turn of fortune seems to imply that the angular momentum identity,
+\bann
+A_{\theta\theta}+A=\frac{8\pi^2}{L^3}\int f^2\,ds\,,
+\eann
+coming from the first variation is preserved by the variations satisfying $F_{\theta\theta}+F=0$; or, at least
+\bann
+\frac{d}{dt}\Big|_{t=0}\int F\lb A_{\theta\theta}+A-\frac{8\pi^2}{L^3}\int f^2\,ds\rb d\theta=0\,.
+\eann
+%This is probably a special case of a more general conservation law (possibly coming from the  rotational invariance of $E$).
+\end{rem}
+\end{comment}
+
+Thus, if $F_{\theta\theta}+F=0$ and $L=2\pi$ at $t=0$,
+\bann
+\frac{d^2}{dt^2}\Big|_{t=0}E={}&2\int\lb\varphi-\frac{f_s}{\kappa}F_s\rb(\mathcal{L}f)_t\,ds\\
+={}&-2\int\lb\varphi-\frac{f_s}{\kappa}F_s\rb\lb-\mathcal{L}\varphi+(\kappa F)_sf_s-2\kappa F_{ss}f-2\kappa fF\rb\,ds\,.
+\eann
+
+OK, now we panic...
+
+
+\begin{comment}
+In particular, we can take $F\equiv 0$ so that, on a minimizing curve $\gamma$,
+\bann
+0\leq \int \varphi\mathcal{L}\varphi\,ds={}&\int \varphi\lb-\varphi_{ss}+\kappa^2\varphi-\frac{4\pi^2}{L^2}\varphi\rb\,ds\\
+={}&\int \lb\varphi_{s}^2+\kappa^2\varphi^2-\frac{4\pi^2}{L^2}\varphi^2\rb\,ds\\
+={}& E(\gamma,\varphi)\,.
+\eann
+\end{comment}
+
+\begin{comment}
+Putting everything together, we obtain
+\bann
+R''={}&2\int \lb\phi-\frac{f_s}{\kappa}F_s\rb(\mathcal{L}f)_t\,ds+\int F\lb A+A_{\theta\theta}-2\frac{R}{L^3}\int f^2\,ds\rb_t\,d\theta\\
+={}&2\int \phi (\mathcal{L}f)_t\,ds-2\int f_\theta F_\theta (\mathcal{L}f)_t\,d\theta\\
++{}&\int F\lb A+A_{\theta\theta}-2\frac{R}{L^3}\int f^2\,ds\rb_t\,d\theta\\
+={}&2\int \phi\lb \mathcal{L}\phi-f_s(F\kappa)_s+2\kappa F_{ss}-2\lambda f\lb \int F\,d\theta-\kappa F\rb\rb\,ds\\
+{}&-2\int f_\theta F_\theta \lb \mathcal{L}\phi-f_s(F\kappa)_s+2\kappa(\kappa F_\theta)_\theta-2\lambda f\lb \int F\,d\theta-\kappa F\rb\rb\,d\theta\\
++{}&\int F\lb A_t+A_{\theta\theta t}\rb\,d\theta-2\int F\lb 3\lambda\int F\,d\theta+\lambda\int (2f\phi-\kappa F f^2)\,ds\rb\,d\theta
+\eann
+\end{comment}
+
+\section{The `orbit' approach}
+
+Consider instead, for a $2\pi$-periodic curve (an `orbit') $X:[0,2\pi]\to\R^2$, the energy
+\bann
+R(X):=\frac{\int |X_\theta|^2\,d\theta}{\int |X|^2\,d\theta}\,.
+\eann
+We want to minimize $R$ under the constraint
+\bann
+\int\frac{X}{|X|}d\theta=0\,.
+\eann
+
+This is related to the ovals problem (see Burchard and Thomas) by taking $X:=fT$, where $T:=\gamma_s$, and setting $\theta=s$ (assuming $L=2\pi$). Then $R(X)$ becomes
+\[
+\frac{\int (f_s^2+\kappa^2f^2)\,ds}{\int f^2\,ds}\,.
+\]
+
+Let $X(\cdot,t):=X+tV$ be a variation of $X$. The constraint requires
+\bann
+0=\int\frac{\mathrm{proj}_{X^\perp	}V}{|X|}d\theta\,,
+\eann
+where
+\bann
+\mathrm{proj}_{X^{\perp}}(V):=V-\inner{V}{\frac{X}{|X|}}\frac{X}{|X|}\,.
+\eann
+
+The first variation is given by the formula
+\bann
+R'\int |X|^2\,d\theta+2R\int \inner{V}{X}\,d\theta={}&2\int \inner{V_{\theta}}{X_{\theta}}\,d\theta\\
+={}&-2\int \inner{V}{X_{\theta\theta}}\,d\theta\,.
+\eann
+That is,
+\bann
+R'\int |X|^2\,d\theta={}&-2\int \inner{V}{X_{\theta\theta}+RX}\,d\theta\,.
+\eann
+Particular solutions are given by the ellipses: $X_{\theta\theta}+X=0$.
+
+The second variation is given by
+\bann
+R''\int |X|^2\,d\theta+4R'\int \inner{V}{X}\,d\theta={}&-2\int \inner{V}{V_{\theta\theta}+RV}\,d\theta\\
+={}&2\int\lb \norm{V_{\theta}}^2-R\norm{V}^2\rb\,d\theta\\
+={}&2\int \norm{V}^2\,d\theta\lb\frac{\int \norm{V_{\theta}}^2\,d\theta}{\int \norm{V}^2\,d\theta}-R\rb\\
+={}&2\lb R(V)-R(X)\rb\int \norm{V}^2\,d\theta\,.
+\eann
+
+I'm not sure yet what we can make from this, but we do get the following fact: If $X$ is a minimizer of $R(X)$ with respect to the condition 
+\begin{equation}\label{eq:minimizing1}
+\int \frac{X}{|X|}d\theta=0
+\end{equation}
+Then it also `minimizes' $R$ with respect to $Y$ satisfying
+\begin{equation}\label{eq:minimizing2}
+\int \frac{\proj_{X^{\perp}}(Y)}{|X|}d\theta=0\,.
+\end{equation}
+
+More precisely, if $R(X)\leq R(Y)$ for all $Y$ satisfying \eqref{eq:minimizing1} then $R(X)\leq R(Y)$ for all $Y$ satisfying \eqref{eq:minimizing2}; however, it's not particularly clear how to interpret the second condition as a constraint for $R$ (since it involves both $X$ and $Y$).
+
+%So suppose that $Y$ is a local minimizer of $R$ with $R(Y)<R(X)$, where $X$ corresponds to an ellipse. Set
+%\[
+%V:=Y-\int\frac{\proj_{X^\perp}(Y)}{|X|}\,d\theta\,.
+%\]
+%Then $V$ satisfies the constraint, and, varying $X$ in the direction of $V$,
+%\bann
+%0\leq R''(X)\int |X|^2\,d\theta={}&2\lb R(V)-R(X)\rb\int \norm{V}^2\,d\theta\,.
+%\eann
+
+\section{M\"obius invariance}
+
+Denote the \emph{M\"obius group} of $S^1$ by $\mathrm{M\ddot ob}(S^1)$. This group is the subgroup of $\mathrm{Diff}(S^1)$ characterized by the identity
+\[
+S[\phi]+2(\phi')^2=2\,,
+\]
+where
+\[
+S[\phi]:=\frac{\phi'''}{\phi'}-\frac{3}{2}\lb\frac{\phi''}{\phi'}\rb^2
+\]
+is the \emph{Schwarzian derivative} (see Bernstein--Mettler).
+
+Consider the action $X\mapsto X_\phi$ of $\mathrm{M\ddot ob}(S^1)$ on $C^\infty(S^1,\R^2)$ (the space of smooth maps from the round circle into $\R^2$) defined by
+\[
+X_\phi:=\frac{1}{\sqrt{\phi'}}X\circ\phi\,.
+\]
+
+In this section, we consider the energy
+\[
+E(X):=\int_{S^1}\mathcal{E}(X)\,,
+\]
+where the energy density $\mathcal{E}(X)$ is given by
+\[
+\mathcal{E}(X):=(|X'|^2-|X|^2)\,ds\,.
+\]
+
+\begin{lem}\label{lem:Moebiusinvariance}
+Given $X\in C^\infty(S^1,\R^2)$ and $\phi\in \mathrm{M\ddot ob}(S^1)$,
+\[
+\mathcal{E}(X_\phi)=\phi^\ast\mathcal{E}(X)-d\omega_\phi\,,
+\]
+where
+\[
+\phi^\ast\mathcal{E}(X):=\lb|X'\circ\phi|^2-|X\circ\phi|^2\rb d\phi
+\]
+and
+\[
+\omega_\phi:=\frac{1}{2}\frac{\phi''}{\phi'}|X_\phi|^2=\frac{1}{2}\frac{\phi''}{(\phi')^2}|X\circ\phi|^2\,.
+\]
+\end{lem}
+
+It follows immediately that
+\begin{cor}
+the energy $E$ is invariant under the M\"obius action.
+\end{cor}
+
+\begin{proof}[Proof of Lemma \ref{lem:Moebiusinvariance}]
+The proof of the lemma is a fairly straightforward computation:{\footnotesize
+\bann
+\mathcal{E}(X_\phi)={}&\lb|X_\phi'|^2-|X_\phi|^2\rb\,ds\\
+={}&\lb\left\vert \lb \frac{1}{\sqrt{\phi'}}X\circ\phi\rb'\right\vert^2-\left\vert\frac{1}{\sqrt\phi'}X\circ\phi\right\vert^2\rb\,ds\\
+={}&\lb\left\vert \sqrt{\phi'}X'\circ\phi-\frac{1}{2}\frac{\phi''}{(\phi')^{\frac{3}{2}}}X\circ\phi\right\vert^2-\frac{1}{\phi'}\left\vert X\circ\phi\right\vert^2\rb\,ds\\
+={}&\lb\left\vert X'\circ\phi-\frac{1}{2}\frac{\phi''}{(\phi')^2}X\circ\phi\right\vert^2-\frac{1}{(\phi')^2}\left\vert X\circ\phi\right\vert^2\rb\,\phi'ds\\
+={}&\lb\left\vert X'\circ\phi\right\vert^2-\frac{\phi''}{(\phi')^2}\inner{X'\circ\phi}{X\circ\phi}+\frac{1}{4}\frac{(\phi'')^2}{(\phi')^4}\left\vert X\circ\phi\right\vert^2-\frac{1}{(\phi')^2}\left\vert X\circ\phi\right\vert^2\rb\,d\phi\\
+={}&\mathcal{E}(X\circ\phi)-\frac{\phi''}{2(\phi')^2}\lb\left\vert X\circ\phi\right\vert^2\rb'\,ds+\frac{1}{2(\phi')^2}\lsb\frac{1}{2}\frac{(\phi'')^2}{(\phi')^2}+2(\phi')^2-2\rsb\left\vert X\circ\phi\right\vert^2\,d\phi\\
+={}&\mathcal{E}(X\circ\phi)-\lb\frac{\phi''}{2(\phi')^2}\left\vert X\circ\phi\right\vert^2\rb'\,ds+\frac{1}{2(\phi')^2}\lsb\frac{1}{2}\frac{(\phi'')^2}{(\phi')^2}+\phi'\lb\frac{\phi''}{(\phi')^2}\rb'+2(\phi')^2-2\rsb\left\vert X\circ\phi\right\vert^2\,d\phi\\
+={}&\mathcal{E}(X\circ\phi)-d\omega_\phi+\frac{1}{2(\phi')^2}\lsb \frac{\phi'''}{\phi'}-\frac{3}{2}\frac{(\phi'')^2}{(\phi')^2}+2(\phi')^2-2\rsb\left\vert X\circ\phi\right\vert^2\,d\phi\\
+={}&\mathcal{E}(X\circ\phi)-d\omega_\phi\,.
+\eann}
+\hfill \qed
+\end{proof}
+
+Applying Noether's principle, we obtain the following conservation law:
+\begin{lem}\label{lem:conservationlaw}
+Let $\{\phi(\cdot,t)\}_{t\in(-t_0,t_0)}$ be a one-parameter family of M\"obius transformations of $S^1$ with $\phi(\cdot,0)=\mathrm{I}$ (the identity). Set 
+\[
+J:=\psi(|X'|^2-|X|^2)\,,
+\]
+where $\psi:=\frac{d}{dt}\big|_{t=0}\phi$. Then
+\[
+dJ=\mathrm{L}_\psi[\mathcal{E}(X)]\,,
+\]
+where
+\[
+\mathrm{L}_\psi[\mathcal{E}(X)]:=\frac{d}{dt}\Big|_{t=0}\phi^\ast\mathcal{E}(X)\,.
+\]
+\end{lem}
+\begin{proof}
+From Lemma \ref{lem:Moebiusinvariance}, we find
+\bann
+\mathrm{L}_\psi[\mathcal{E}(X)]={}&\frac{d}{dt}\Big|_{t=0}\phi^\ast\mathcal{E}(X)\\
+={}&\frac{d}{dt}\Big|_{t=0}\lb \mathcal{E}(X_\phi)+d\omega_\phi\rb\\
+={}&2\lb\inner{\frac{d}{dt}\Big|_{t=0}X'_\phi}{X'_\phi}-\inner{\frac{d}{dt}\Big|_{t=0}X_\phi}{X_\phi}\rb ds+d\lb\frac{d}{dt}\Big|_{t=0}\omega_\phi\rb\,.
+\eann
+
+First, consider
+\bann
+\frac{d}{dt}\Big|_{t=0}X_\phi={}&\frac{d}{dt}\Big|_{t=0}\lb\frac{1}{\sqrt{\phi'}}X\circ\phi\rb\\
+={}&\lb\frac{\phi_t}{\sqrt{\phi'}}X'\circ\phi-\frac{1}{2}\frac{\phi'_{t}}{(\phi')^{\frac{3}{2}}}X\circ\phi\rb\Big|_{t=0}\\
+={}&\psi X'-\frac{1}{2}\psi'X
+\eann
+so that
+\bann
+2\inner{\frac{d}{dt}\Big|_{t=0}X_\phi}{X_\phi}={}&2\inner{\psi X'-\frac{1}{2}\psi'X}{X}\\
+={}&2\psi \inner{X'}{X}-\psi'|X|^2\\
+={}&\psi\lb|X|^2\rb'-\psi'|X|^2\,.
+\eann
+
+Next, we consider {\small
+\bann
+\frac{d}{dt}\Big|_{t=0}X'_\phi={}&\frac{d}{dt}\Big|_{t=0}\lb \sqrt{\phi'}X'\circ\phi-\frac{1}{2}\frac{\phi''}{(\phi')^{\frac{3}{2}}}X\circ\phi\rb\\
+={}&\lb \phi_t\sqrt{\phi'}X''\circ\phi+\frac{1}{2}\frac{\phi'_t}{\sqrt{\phi'}}X'\circ\phi-\frac{1}{2}\frac{\phi_t''}{(\phi')^{\frac{3}{2}}}X\circ\phi-\frac{1}{2}\phi''\frac{d}{dt}\lb(\phi')^{-\frac{3}{2}}X\circ\phi\rb\rb\Big|_{t=0}\\
+={}&\psi X''+\frac{1}{2}\psi'X'-\frac{1}{2}\psi''X
+\eann}
+so that
+\bann
+2\inner{\frac{d}{dt}\Big|_{t=0}X'_\phi}{X'_\phi}={}&\inner{2\psi X''+\psi'X'-\psi''X}{X'}\\
+={}&2\psi\inner{X''}{X'}+\psi'|X'|^2-\psi''\inner{X}{X'}\\
+={}&\psi\lb|X'|^2\rb'+\psi'|X'|^2-\frac{1}{2}\psi''\lb|X|^2\rb'\,.
+\eann
+
+Finally,
+\bann
+\frac{d}{dt}\Big|_{t=0}\omega_\phi={}&\frac{1}{2}\frac{d}{dt}\Big|_{t=0}\lb\frac{\phi''}{(\phi')^2}|X\circ\phi|^2\rb\\
+={}&\frac{1}{2}\lb\frac{\phi_t''}{(\phi')^2}|X\circ\phi|^2+\phi''\frac{d}{dt}\lb(\phi')^{-2}|X\circ\phi|^2\rb\rb\Big|_{t=0}\\
+={}&\frac{1}{2}\psi''|X|^2\,.
+\eann
+
+Putting these together, we find
+\bann
+0={}&\psi\lb|X'|^2\rb'+\psi'|X'|^2-\frac{1}{2}\psi''\lb|X|^2\rb'-\lb\psi\lb|X|^2\rb'-\psi'|X|^2\rb+\frac{1}{2}\lb\psi''|X|^2\rb'\\
+%={}&\psi\lb|X'|^2-|X|^2\rb'+\psi'\lb|X'|^2-|X|^2\rb+2\psi'|X|^2-\frac{1}{2}\psi''\lb|X|^2\rb'+\frac{1}{2}\lb\psi''|X|^2\rb'\\
+={}&\psi\lb|X'|^2-|X|^2\rb'+\psi'\lb|X'|^2-|X|^2\rb+\frac{1}{2}\lb\psi'''+4\psi'\rb|X|^2\,.
+\eann
+
+We claim that $\psi'''+4\psi'=0$. Indeed, differentiating the Schwarzian identity, we obtain
+\bann
+0={}&\frac{d}{dt}\Big|_{t=0}\lb\frac{\phi'''}{\phi'}-\frac{3}{2}\frac{(\phi'')^2}{(\phi')^2}+2\phi'^2-2\rb\\
+={}&\lb\frac{\phi_t'''}{\phi'}+(\text{stuff that vanishes at } t=0)+4\phi'\phi_t'\rb\Big|_{t=0}\\
+={}&\psi'''+4\psi'\,.
+\eann
+The claim follows.
+\end{proof}
+
+\begin{rems}\mbox{}
+\bi
+\item[--] I was originally surprised by the fact that the Euler--Lagrange equations never entered this calculation (unlike in the classical Noether Theorem). But Yann assures me that this is not unreasonable. 
+\item[--] It might be interesting to look for conservation laws arising from the invariance of $\mathcal{E}$ under Euclidean motions.
+\ei
+\end{rems}
+
+\begin{cor}
+If $E(\gamma,f)=0$ then $\psi\,\mathcal{E}(\gamma,f)\equiv 0$ for every $\psi\in \mathfrak{mob}(S^1)$.
+\end{cor}
+\begin{proof}
+By Lemma \ref{lem:conservationlaw},
+\[
+\psi\mathcal{E}(\gamma,f)\equiv \mathrm{Const}.
+\]
+The claim follows since $\mathcal{E}(\gamma,f)$ must vanish at at least one point.
+\end{proof}
+
+\end{document}

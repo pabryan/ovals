@@ -1,0 +1,149 @@
+  \documentclass[12pt, a4paper]{amsart}
+
+
+
+\address{ }
+\usepackage[left=3cm,top=3.5cm,right=3cm]{geometry}
+\usepackage{parskip, color}
+\usepackage[normalem]{ulem}
+%\date{letterdate} if you want to fix the date on the letter; otherwise the date will default to the current date when the letter is printed.
+
+\usepackage{geometry}
+
+%\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+
+
+\usepackage{versions}
+%%%%%%%%%
+\includeversion{lecturenotes}  \excludeversion{outline}
+%\excludeversion{lecturenotes}   \includeversion{outline}
+%%%%%%%%%
+
+\usepackage{kpfonts}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{cmbright}
+ 
+ \usepackage{hyperref}
+ 
+\newcommand{\margincomment}[1]{\marginpar{\footnotesize{#1}}}
+\newcommand{\pd}[2]{\dfrac{\partial#1}{\partial#2}}
+\DeclareMathOperator{\divergenz}{div}
+\newcommand{\bigR}{{\mathbb R}}
+\newcommand{\RR}{{\mathbb R}}
+
+\newcommand{\x}{\lVert x \rVert}
+
+\newcommand{\eps}{\epsilon}
+
+\newcommand{\emptynorm}{\lVert \cdot \rVert}
+
+\usepackage{setspace}
+
+\usepackage{enumitem}
+
+\usepackage{pdfpages}
+
+\theoremstyle{remark}
+\newtheorem*{definition}{Definition}
+\newtheorem*{exercise}{Exercise}
+
+
+
+\begin{document}
+
+  
+\spacing{1.1}
+
+
+
+
+\title{ Paul email 25 June }
+\maketitle
+
+It seems, that a lot of what we need is in chapter 8 of Evans :)
+
+Let's write $X: \mathbb{S}^1 \to \RR^2$ and $\Phi = \lbrace X_{\nu}
+\rbrace$ for a continuous family. Then we define
+\[
+\mathcal{F} (\Phi) = \sup_{\nu} E(X_{\nu})
+\]
+and
+\[
+W = \inf_{\Psi \in [\Phi]} \mathcal{F} (\Psi)
+\]
+where $[\Phi]$ denotes the homotopy class of $\Phi$.
+
+We take a min-max sequence $\Phi^n = \lbrace X_{\nu}^n \rbrace$ with
+\[
+\lim_{n\to\infty} \mathcal{F} (\lbrace X_{\nu}^n \rbrace) = W.
+\]
+
+Since our energy is invariant under scaling, we can assume that
+$\|X_{\nu}^n\|_{L^2} = 1$ for all $\nu, n$ and so
+\[
+E(X_{\nu}^n) = \|\nabla X_{\nu}^n\|_{L_2}^2.
+\]
+
+So now by definition of $\mathcal{F}$ as the $\sup$ and by definition
+of $W$ as the inf, we get a sequence $Y_n = (X^n_{\nu_n})$ in the unit
+sphere of $L_2$ with
+\[
+E(Y_n) = \|\nabla Y_n\|_2^2 \to W.
+\]
+
+So we can assume that $\|Y_n\|_{W^{1,2}}$ is uniformly bounded
+independently of $n$ and thus get a weakly convergent subsequence
+\[
+Y_n \rightharpoonup_{W^{1,2}} Y
+\]
+
+We have lower semi-continuity
+\[
+E(Y) = \|\nabla Y\|_2^2 \leq \liminf_{n\to\infty} \|\nabla Y_n\|_2^2 =
+\liminf_{n\to\infty} E(Y_n) = W.
+\]
+
+Now if we start with $X$ and produce a continuous family and homotopy
+class, I guess we also need to know that $E(X) \geq W$ to conclude
+that $E(X) \geq W = E(Y)$. This will be true if our continuous family
+has $E(X) \geq \mathcal{F}(\{X_{\nu})\). In other words, our
+continuous family really does need to deform $X$ to decrease $E(X)$.
+We know that translating by $V$ does decrease $E(X)$ as $V \to \infty$
+but we need it to decrease $E(X)$ for all $V$.
+
+Something to check.
+
+Then, to finish we need to show that $Y$ is a critical point and that
+$0 < W < 3/2$ and hence $Y$ is an oval. Showing $Y$ is a critical
+point seems to be essentially the content of the min-max idea - that
+it produces a Palais-Smale sequence producing a critical point. And
+the homotopies (canonical family) should keep $\mathcal{F}$ bounded
+below so that $Y$ is not the absolute minimiser (i.e. the point). The
+upper bound is no problem - it's the lower bound for $W$ that we have
+to worry about.
+
+Thus If we construct our min-max sweepouts and homotopies correctly,
+we should get that $Y$ is a critical point.
+
+And perhaps Julie's topological ideas for $\alpha$ will allow us to
+also conclude that in any of our homotopies of the canonical family,
+we get something in $\mathcal{C}$. In fact, all we need is for
+anything in the homotopy class, there is another element of the
+homotopy class that includes something from $\mathcal{C}$ and with the
+same $\mathcal{F}$. I think this is in fact the way it's done in the
+papers. This would allow us to conclude the lower bound on $W$.
+
+I haven't looked yet, but the math.stackexchange question linked to in
+my last email suggests somewhere that the connection min-max <->
+Palais-Smale is discussed. It seems to be the underlying idea in the
+papers we've looked at, but they don't seem to clearly show how
+min-max produces Palais-Smale sequences. Maybe we just need to read
+them more closely.
+
+Cheers,
+Paul.
+
+
+ \end{document}
