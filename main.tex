@@ -1,0 +1,266 @@
+\documentclass{amsart}
+\usepackage[normalem]{ulem}
+\usepackage{setspace}
+
+
+\usepackage{todonotes}
+
+\begin{document}
+
+\spacing{1.3}
+
+\section*{Ovals Problem is not affine-invariant}
+
+Take an affine transformation \(\gamma \mapsto A \gamma + b\). The \(b\) doesn't enter into the problem. Let's write \(\bar{\gamma} = A \gamma\). Define
+\[
+c = \|A\gamma'|/\|\gamma'\|
+\]
+
+Note that \(c\) is non-constant along the curve in general! In the particular case \(A \in O(2)\), \(c \equiv 1\).
+
+Then 
+\begin{align}
+d\bar{s} &= c ds \\
+\partial_{\bar{s}} &= (1/c) \partial_s \\ 
+\bar{\kappa} &= (1/c^3) \kappa
+\end{align}.
+
+Incidentally, these relations lead to the affine-invariance of \(\int \kappa^{1/3} ds\).
+
+Now look at the Rayleigh quotient:
+\[
+\int (f_{\bar{s}})^2 + \bar{\kappa}^2 f^2 d\bar{s} = \int \left(\frac{1}{c^2} (f_s)^2 + \frac{1}{c^6} \kappa^2 f^2\right) c ds = \int \frac{1}{c} (f_s)^2 + \frac{1}{c^5} \kappa^2 f^2 ds
+\]
+
+The scaling of \(c\) is all wrong here and it doesn't seem possible to make this work unless \(c \equiv 1\). 
+
+Therefore the family of ovals does not correspond to a 1-parameter subgroup of affine transformations! The problem is if these transformations are required to preserve length, then it seems they must be orthogonal transformations, but then you can't get a family of ellipses this way!
+
+Maybe, it's possible to transform \(f\) as well to make this work, say by initially normalising \(f\) to have \(\int f^2 = 1\) and then allow our affine transformations to vary length, but adjust for this in scaling \(f\) accordingly? Still doesn't seem likely to work...
+\section*{The family of ellipses}
+
+We work with curves \(\gamma\) with total length \(2\pi\) and smooth (square integrable? smooth should be enough) functions \(f: \gamma \to \mathbb{R}\). The Burchard-Thomas formulation is to consider the map
+\[
+(\gamma, f) \mapsto X = f \frac{\gamma'}{\|\gamma'\|}
+\]
+This maps onto the space of functions \(X: \mathbb{S}^1 \to \mathbb{R}^2\) (or is it \(\mathbb{R}^3\)?) such that
+\[
+\int_{\mathbb{S}^1} \frac{X}{\|X\|} d\theta = 0
+\]
+The inverse map is
+\[
+X \mapsto (\gamma, f) = \left(\int_0^{\theta} \frac{X}{\|X\|} d\theta, \|X\|\right)
+\]
+
+For the oval case, is it true that we can assume \(\mathbf{v_1}, \mathbf{v_2}\) are orthogonal? If not, then you still get an ellipse, but with axes \(\tfrac{1}{2} (\mathbf{v_1} +  \mathbf{v_2})\) and the orthogonal direction, but now rotated so that the vertices are not on the \(x,y\) axes anymore. Then we can just use rotation invariance and replace our two vectors with the axes of the ellipse.
+
+Assuming we have \(\mathbf{v_1}, \mathbf{v_2}\) are orthogonal, let's write 
+\(a = \|v_1\|, b = \|v_2\|\). Then we have the correspondence 
+\[
+\begin{split}
+X \mapsto (\gamma, f) &= \left(\int_0^{u} \frac{X}{\|X\|} du, \|X\|\right) \\
+&= \left(\int_0^{u} \frac{\cos u \mathbf{v_1} + \sin u \mathbf{v_2}}{\sqrt{a^2 \cos^2 u + b^2 \sin^2 u}} du, \sqrt{a^2 \cos^2 u + b^2 \sin^2 u} \right)
+\end{split}
+\]
+
+Here \(\gamma\) is parameterised by arc-length and has total length \(2\pi\). I guess this will be true for any \(X\) since we're integrating a unit length vector. 
+
+I wonder if we can transplant this function \(f\) onto any curve \(\gamma\)  of total length \(2\pi\) and parametrised by arc length \(u\), and obtain the desired instability? Namely, take a variation of \(f\):
+\[
+f_t = \sqrt{a(t)^2 \cos^2 u + b(t)^2 \sin^2 u}
+\]
+where \((a(t), b(t))\) are any smooth functions. The corresponding family of ellipses is
+\[
+\gamma_t(u) = \int_0^u \frac{(a(t) \cos u, b(t) \sin u)}{\sqrt{a(t)^2 \cos^2 u + b(t) \sin^2 u}} du.
+\]
+This family is parametrised by arc-length \(u\) for each \(t\) and has length \(2\pi\) for each \(t\).
+
+Is that right? Can \(u\) and \(t\) commute and \(u\) be the arc-length parameter at the same time?
+
+This variation is neutrally stable.
+
+Now, presumably \(f_t\) \emph{is not} the eigenfunction on any curve other than \(\gamma_t\). Can we find a variation, \(\gamma_t\) of an arbitrary curve \(\gamma\) corresponding to \((a(t), b(t))\) somehow, that preserves length and such that \((\gamma_t, f_t)\) is unstable? Then we'd be done!
+
+
+
+The catch here is that the variation of the ellipse cannot be \(\gamma_t = A(t) \gamma\) with \(A(t)\) a curve (one parameter subgroup?) in the affine group since it must preserve length (hence is in \(O(2)\), but also deform the ellipse hence is not in \(O(2)\). I'm not completely sure that the former assertion that \(A(t) \in O(2)\) has to be correct, since we only need to preserve length for this particular ellipse family, though it does seem likely.
+
+If we could somehow characterise \(A(t)\) independently of the ellipse, i.e as a transformation on the ambient space, we could test the hypothesis. My suspicion here is that what makes this problem so interesting (or "vexing" as burchard-thomas describe it) is that it's not possible to obtain this characterisation of \(A(t)\).
+
+\section*{Latest approach... Wirtinger inequality}
+
+Reference:  Chavel's book on isoperimetric inequality.   
+
+\bigskip
+\textbf{Theorem:} Let $f:[0,L]\rightarrow \mathbb{R}$ satisfy $\int_0^L f\,dx=0$.   Then 
+\[\int_0^L |f'|^2 \,dx\ge \frac{4\pi^2}{L^2}\int_0^L f^2\,dx.\tag{WI}\]
+Equality happens in the case that $f=a_{-1}exp(-2\pi i x/L)+ a_{1}exp(2\pi i x/L).$
+
+\bigskip
+
+Now let $X:[0,L]\rightarrow \mathbb{R}^2$ be an embedding of a closed curve.  (Not necessarily parameterized w.r.t. arc-length, and in fact in our use of this, it explicitly it is NOT-- $u$ is the arc-length parameter of the original curve, which is NOT $X$.)
+
+\textbf{Let us assume that $\int X \,du =0$. }  
+
+Then apply the WI to each of the coordinate functions $(X_1,X_2)$ of $X$.   
+
+We find
+\[ \int |(X_i)_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |X_i|^2\,du  \quad\quad \text{ for }i=1,2.\]
+
+Sum over $i=1,2$: 
+\[ \label{BT} \int |X_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |X|^2\,du .  \tag{BT}\]
+
+Claim: equality in the case that $X=\cos u \mathbf{v_1}+ \sin u \mathbf{v_2}$ (i.e. in family of ovals) (have not checked this).
+
+If it happens to be the case that $L=2\pi$, this is exactly what we're after:  since we can set $X=f(u)T(u)$ (where $f$ is the eigenfunction and $T$ is the tangent in the original formulation of the problem, and $u$ is arclength of the original $\gamma$).  (I call this the BT setting, as it was what Burchart-Thomas were using.)  Then $X_u= f' T+ fT_u= f'T+ fkN$, and so \eqref{BT} becomes
+\[ \int f'^2 + k^2 f^2 \,du \ge \int f^2\,du, \]
+as required.
+
+(Tangentially:   this approach gives a nice proof of the fact that $\int_\gamma k^2 \ge \frac{4\pi^2}L$.)
+
+So what is the problem here?  The assumption that $\int X \,du=0$.   
+
+If $X$ is given by $fT$, and $T$ is the tangent of the closed curve in the original formulation, then what is actually satisfied is 
+\begin{equation} \label{tangent of loop} \int \frac{X(u)}{|X(u)|}\,du = \int T \,du= 0.\end{equation}
+
+It is not generally true that $\int X=0$.   (Except in the circle case, when $f$ is constant).   (It is also true in the oval case, when $X_0=\cos u \mathbf{v_1}+ \sin u \mathbf{v_2}$).   
+
+Some ideas:   
+\begin{enumerate}
+\item Translate $X$ so we satisfy $\int X=0$.  Lefthand side is nice, messes around with the RHS. \label{translate}
+
+\item Or we could just reparameterise so that $ds=du/|X(u)|$.   Then we find that $\int X \,ds=0$, but we then have to integrate against $ds$ throughout... introducing a bunch of nasty $|X(u)|$ terms in our expression.     Which correspond to $f$.
+
+\item There is something about the equality case in WI that connects to the ellipses of the ovals problem.
+
+\item \sout{apply WI directly to $X/|X|$?} (This is the same as (2).)  
+
+\item The expression \eqref{BT} IS affine invariant, right?
+
+
+
+\end{enumerate}
+
+\textbf{Further look at the translating idea, (\ref{translate}).}
+
+Same set up, but this time we assume $\int \frac{X}{|X|}\,du=0$. 
+
+Let $\tilde{X}=X-Y$, where $Y$ is chosen so that $\int\tilde{X}\, du=0$.    This implies that $Y=\frac1L\int X \,du$.    Then we can apply \eqref{BT} to $\tilde{X}$, so that 
+\[  \int |\tilde{X}_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |\tilde{X}|^2\,du , \]
+so
+\begin{equation} \int |{X}_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du , \label{tildy}\end{equation}
+
+\emph{Do something with the equality case:  the equality case implies that $Y=0$.}
+
+If I had $\int|X-Y|^2\ge\int|X|^2$ then I would be done, but that looks flat-out wrong, since 
+\[\int |X-Y|^2 \, du = \int |X|^2- \frac1L\left(\int X\right)^2\]
+which is \emph{strictly} less than $\int |X|^2$-- except of course in the case that $\int X=0$ (in which case we'd be done already).   
+
+I still haven't used $\int \frac{X}{|X|}\,du=0$, but it's certainly the case that $X$ can satisfy that, but not $\int X=0$.  
+
+\eqref{tildy} gives 
+\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du }\ge 1, \label{stupid translate} \end{equation}
+
+I can't see any way forward here.   Unless it is to use this expression to show the impossibility of a counter example?
+
+Sketch:   \begin{itemize}
+\item we get equality in \eqref{stupid translate} when $X=\sin $ etc, this implies $Y=0$. 
+\item For all other $X$, we have
+\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du }> 1,  \end{equation}
+\item but we know that in the case that $\int X\not=0$, $\int |{X}-Y|^2\,du < \int |X|^2$, so 
+\begin{equation}
+\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du }> \frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}|^2\,du },  \end{equation}
+\item to show a counterexample, choose $Y$ so that $\int |X-Y|^2$ is large enough that 
+\[1\ge \frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}-Y|^2\,du }\]
+\item this would then give a counterexample to 
+\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}|^2\,du }\ge 1,  \end{equation}
+\item but we can't choose such a $Y$, because of (6).
+\end{itemize}
+\bigskip
+
+\textbf{Look at the reparameterization idea, (2):}
+
+Here we start by assuming  $\int \frac{X}{|X|}\,du=0$.  Then make a change of variables, $s(u)=\int \,ds=\int \frac{du}{|X|}$.   That is, $du/ds=|X|$.  
+
+This then satisfies $\int X(s)\,ds=\int  \frac{X}{|X|}\,du=0$, so \eqref{BT} gives
+\[ \int_0^{s(L)} |X_s|^2 \,ds \ge \frac{4\pi^2}{\tilde{L}^2}\int |X|^2\,ds\]
+where $\tilde{L}=\int_0^L \,ds$.  Converting back to $u$ gives
+\[ \int_0^{L} |X_u|^2|\frac{du}{ds}|^2 \,\frac{du}{|X|} \ge \frac{4\pi^2}{\tilde{L}^2}\int |X|^2\,\frac{du}{|X|}\]
+thus
+\[ \int_0^{L} |X_u|^2|X| \,du\ge {4\pi^2}\left(\int_0^L |X|^{-1}\,du \right)^{-2}\int |X|\,{du}.\]
+
+This is ridiculous.
+
+\clearpage
+
+\section*{Next idea:  Affine $+$ Wirtinger}
+
+\textbf{The plan}
+ 
+ 1.  Wirtinger inequality for closed curves:  if $\int Z du =0$ then 
+ $$\int |Z_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int |Z|^2 \,du  \quad \quad \text{(WI)}$$
+ 
+ 2.  Let $X$ be fixed closed curve with $$\int \frac{X}{|X|}\,du =0.$$
+ 
+ 3.  Let $A$ be affine (in fact linear).  \textbf{Claim: }Then $X\rightarrow AX$ keeps 
+ \begin{equation}\frac{\int |X_u|^2 du }{\int |X|^2 \,du}  \label{this equation} \end{equation}
+ the same but not $$\int X\,du.$$
+ 
+ 4.   \textbf{Claim:} We can choose $A$ so that $Y=AX$ satisfies $\int Y \,du =\int AX\,du=0.$
+ 
+ 5.  Then $$\int |Y_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int {|Y|^2}\,du,$$ by (WI).
+ 
+ 6.  And so $$\int |X_u|^2 \,du \ge \frac{4\pi^2}{L^2}\int {|X|^2}\,du,$$
+
+
+Cautions:  what is the deal with length under $A$? That is, the quantity in \eqref{this equation} may be invariant under $A$, but what about
+\begin{equation}\frac{ \int |{X}_u|^2 \,du}{ \frac{4\pi^2}{L^2}\int |{X}|^2\,du } ? \end{equation}
+
+Am I using the condition $\int X/|X|$?
+
+\framebox{\parbox{\textwidth}{The problem with this approach is that (3) doesn't hold:   the quotient \eqref{this equation} is \textbf{NOT} affine invariant.}}
+
+ \section*{Look for a suitable transformation of $X$}
+  
+  Find a transformation of $X$ (satisfying \eqref{tangent of loop}) such that 
+  \begin{equation} \label{p type quotient} \frac{\int_0^L |X_u|^2 \,du }{\int_0^L |X|^2 \,du } \end{equation}
+  is preserved, and 
+  $$\int X \,du$$ is \emph{improved} (moved closer to zero).
+   
+ 
+  
+  Comment:   to preserve \eqref{tangent of loop} and improve $\int X$, use $X_t=-X$ (multiply by sign$(\int X)$ to get the sign right).   
+  
+  One such flow is found by taking $X_t$ such that 
+  \[ \int -\langle X_t, X_{uu} + RX\rangle \,du =0 \]
+  where $R$ is equal to the quotient \eqref{p type quotient}.   
+ 
+ $\int X \rightarrow 0$ can be satisfied since we can choose a sign on $X_t$.     This looks do-able....
+ 
+ Strategy:
+
+\begin{enumerate}
+\item   Let $X_0$ satisfy \eqref{tangent of loop}.   Note that the parameterisation $u$ is fixed and is not necessarily arc-length (of $X$).       
+\item Show that there exists a short time solution to the evolution equation \label{step 2}
+$$X_t= f(u,t) J(X_{uu}+ RX), \quad X(0)=X_0$$
+where $J$ is rotation through $\pi/2$.   I think $f$ is free.  
+% * <clutterbuck.j@gmail.com> 2015-09-26T11:39:23.691Z:
+%
+% 
+%
+\item Show that we can extend this solution for .... as long as it takes to get $\int X(t)=0$.    This is where we might be able to use the condition \eqref{tangent of loop}.    We can also use a backwards flow, since the sign of $X_t$ is not important in preserving \eqref{p type quotient}.   
+% * <clutterbuck.j@gmail.com> 2015-09-26T11:39:25.281Z:
+%
+% 
+%
+
+
+\item Apply Wirtinger to get result.
+\end{enumerate}
+ 
+ Note that the flow equation in \ref{step 2} is sufficient but not necessary.    
+
+
+
+
+\end{document}
