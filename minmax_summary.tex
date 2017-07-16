@@ -1,0 +1,49 @@
+% Created 2017-06-30 Fri 01:26
+\documentclass[12pt]{article}
+
+\input{setup.tex}
+
+\title{Min-Max Summary}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+Some thoughts/hopes about making the min-max argument work.
+
+\begin{enumerate}
+\item If we take our continuous family to be all translations, $X \mapsto X + V$ for $V \in \RR^2$, then we know critical points will achieve the maximum $\mathcal{F} (X) = \max_{V \in \RR^2} E(X + V)$. This is like for Marques/Neves and Ketover/Zhou where critical points all have a direction of instability and so optimisers are saddle points not stable minima.
+
+\item If $X \in \mathcal{C}$, then $\mathcal{F}(X) \geq E(X) \geq \lambda$ and hence $W = \inf_{X \in \mathcal{C}} \mathcal{F} (X) \geq \lambda$.
+
+\item Letting $D$ be the compactification of $\RR^2$ with the circle at infinity, and thinking of both $V \in D$ and $X : \So \to D$, then $(X, V) \mapsto X + V$ is continuous and equal to the identity on $\partial D$ holding any $X$ fixed. The energy is also continuous: $(X, V) \mapsto E(X + V)$ is continuous and equal to $0$ on $\partial D$ for any $X$. Therefore, $E(X + V)$ is bounded above for each fixed $X$.
+
+\item For any min-max sequence $X_n$ so that $\mathcal{F} (X_n) = \max_{V \in D} E (X_n + V) \to W$ we should get a weak-limiting continuous family $\bar{Y} : \So \times D \to D$.
+
+\item Let $Y = \bar{Y}(\cdot, V_{\max})$ where $E(Y) = \max_{V \in D} E(\bar{Y}(\cdot, V))$. This should be our critical point.
+\end{enumerate}
+
+Things to show:
+
+\begin{enumerate}
+\item $Y$ is a critical point! Since $Y$ is the max over $V$, it is critical for variations $Y \mapsto \bar{Y}(\cdot, V(t))$ for any curve $V(t) \in D$. This should be the directions that decrease $E$. By the min-max construction we hope also that $Y$ is critical with respect to all other variations $Y(t)$ with $Y(0) = Y$.
+
+Here perhaps we can construct a pseudo-gradient flow from the Gateaux differential of $E$ at $Y$, or perhaps we construct a global pseudo-gradient flow and deform the minimising sequence $X_n$ using this flow to produce a new minimising sequence $X_n' = \varphi_1(X_n)$ where $\varphi_t$ is our pseudo-gradient flow. This seems to be the way it's usually done.
+
+An obvious candidate is the gradient flow for $E$, but it's not clear that it exists on some uniform time interval. It may be enough for it to exist on a uniform time interval just restricted to $X_n$ for $n$ large though.
+
+Perhaps strong convergence (as in the next item) could also be used to show we get a critical point.
+
+Alternatively, maybe we can show that if $Y$ is not critical, we can construct an $X \in \mathcal{C}$ with $\mathcal{F}(X) < E(Y)$ contradicting that $E(Y) \leq W$ (which follows from weak lower semi-continuity of $E$ and that $X_n$ is minimising and $X_n \to Y$ weakly).
+
+\item $E(Y) = W$. Here we need some strong convergence, i.e. a Palais-Smale type condition. If we have strong convergence then we're done since $E$ is continuous w.r.t. the strong topology. Note $E$ is only lower semi-continuous w.r.t. the weak topology.
+
+Maybe we can prove directly that we obtain strong convergence, particularly using the pseudo gradient flow above to improve our minimising sequence. Maybe we can examine how it can fail to converge strongly (e.g. disappears to infinity) and rule that out.
+
+Perhaps we can just try to bump up the convergence to strong convergence. Joe's student Nirav has been trying to do exactly that to fix his thesis, and it has most certainly be achieved in other contexts. I will ask Joe and Nirav about this. What we do here is estimate $\|X_n - Y\|_{W^{1,2}}$ above and show that goes to $0$ using the fact that $X_n \to Y$ weakly and that $X_n$ is a minimising sequence. One difficulty here is that often one uses the Sobolev embedding theorem to get that $L^2$ strong convergence but here we are below the critical dimension $n = 2$ so we can't do that! Still, Nirav tells me that sometimes it can be done.
+
+\item $E(X) \geq E(Y) = W$ for $X \in \mathcal{C}$. The problem is that in the definition of $W$, we take an $\inf$ of a $\max$. But we don't know that for $X \in \mathcal{C}$, we have $E(X) \geq \mathcal{F}(X) = \max_V E(X + V)$ for $X \in \mathcal{C}$. We do know that there is a vector $V_0$ so that $E(X) \geq E(X + t V_0)$ for all $t$. That is, we get one-dimension where $E$ is maximised at $X$, but it's not clear that it's true for all of $\RR^2$. What we need to show is that if $E(X) > \lambda$, for each $\epsilon > 0$, there is a $Z \in \mathcal{C}$ such that $\mathcal{F} (Z) \leq E(X) + \epsilon$. 
+\end{enumerate}
+
+\end{document}
