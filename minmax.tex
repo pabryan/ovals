@@ -10,38 +10,41 @@
 
 \maketitle
 
+\section{The Setup}
+
+Let us write
+\begin{align*}
+\HS &= W^{1,2}(\So \to \RR^2), \\
+\HSconst &= \{X \in W^{1,2} : X(\theta) \equiv V \in RR^2\} \\
+\HSnoconst &= \HSconst^{\perp}.
+\end{align*}
+That is, $\HSconst$ is the 2-dimensional subspace of constant maps \(\So \to \RR^2\) and $\HSnoconst$ is its $W^{1,2}$ orthogonal complement so that
+\[
+\HS = \HSconst \oplus \HSnoconst.
+\]
+
+We identify $\HSconst$ with $\RR^2$ by identifying $X \in \HSconst$ with it's common value $V = X(\theta)$ for any $\theta \in \So$ and and simply write $V$ for such $X$.
+
 \section{Class of closed curves}
 \label{sec-1}
 
-Let us write
-\[
-\HS = W^{1,2}(\So \to \RR^2)
-\]
-and
-\[
-\HSnc = \HS \setdiff \lbrace \text{constants} \rbrace
-\]
-where \(\lbrace \text{constants} \rbrace\) denotes the constant maps \(\So \to \RR^2\).
+\textbf{This a problem. What about the points where \(\frac{X(\theta) + V}{|X(\theta) + V|}\) vanishes?}
 
-For \(X \in \HSnc\), and \(V \in \RR^2\), write
+For any \(X \in \HS \setdiff \{0\}\), define
 \[
-X_V = X + V \in \HSnc
-\]
-and define
-\[
-\alpha_X : V \in \RR^2 \to \frac{1}{2\pi} \int \frac{X_v}{|X_V|} \in \RR^2.
+\alpha_X : V \in \HSconst \mapsto \frac{1}{2\pi} \int_{\So} \frac{X(\theta) + V}{|X(\theta) + V|} d\theta \in \RR^2.
 \]
 
 Define the class of curves,
 \[
-\C = \lbrace X \in \HSnc : \int_{\So} \frac{X}{|X|} ds = 0 \rbrace = \lbrace X \in \HSnc : \alpha_X((0, 0)) = 0 \rbrace.
+\C = \left\lbrace X \in \HSnoconst : \int_{\So} \frac{X}{|X|} ds = 0 \right\rbrace = \lbrace X \in \HSnoconst : \alpha_X((0, 0)) = (0, 0) \rbrace.
 \]
 
 The factor \(1/2\pi\) in the definition of \(\alpha_X\) has no effect on the class \(\C\) but is a convenient normalisation in the following lemma.
 
 \begin{lemma}
 \label{lem:translate_C}
-Let \(X \in \HSnc \backslash \lbrace 0 \rbrace\). Then there exists a \(V_0 \in \RR^2\) such that \(X_{V_0} \in \C\).
+Let \(X \in \HSnoconst \backslash \lbrace 0 \rbrace\). Then there exists a \(V_0 \in \RR^2\) such that \(X_{V_0} \in \C\).
 \end{lemma}
 
 \begin{proof}
@@ -67,7 +70,7 @@ We will also need the following lemma:
 
 \begin{lemma}
 \label{lem:projection_C}
-For all \(X \in \HSnc\), there exists a \(V \in \RR^2\) such that
+For all \(X \in \HSnoconst\), there exists a \(V \in \RR^2\) such that
 \[
 \int \langle X, V \rangle ds = 0.
 \]
@@ -88,12 +91,12 @@ and hence there is a \(\varphi \in \RR\) such that \(\beta_X(\varphi) = 0\). The
 \section{Min-max Construction}
 \label{sec-2}
 
-Let \(X \in \HSnc\) and \(V_0 \in \RR^2\) such that \(X_{V_0} \in \C\). The existence of \(V_0\) is guaranteed by Lemma \ref{lem:translate_C}. We define the following family of curves,
+Let \(X \in \HSnoconst\) and \(V_0 \in \RR^2\) such that \(X_{V_0} \in \C\). The existence of \(V_0\) is guaranteed by Lemma \ref{lem:translate_C}. We define the following family of curves,
 \[
 \G_X = \lbrace v \in C^{\infty}(\RR \to \RR^2) : \exists t_0 \in \RR \quad v(t_0) = V_0, \quad \lim_{|t| \to \infty} |X_{v(t)}| = \infty \rbrace.
 \]
 
-For \(X \in \HSnc\) and \(v \in G_X\), let
+For \(X \in \HSnoconst\) and \(v \in G_X\), let
 \[
 \lambda(X, v) = \sup \lbrace E(X_{v(t)}) : t \in \RR \rbrace = \sup \lbrace E(X + v(t)) : t \in \RR \rbrace.
 \]
@@ -112,14 +115,14 @@ since \(X_{V_0} \in \C\) by definition of \(V_0\). Note that ovals have energy \
 
 Finally, define the min-max quantity,
 \[
-c = \inf \lbrace \lambda(X, v) : X \in \HSnc, v \in \G_X \rbrace.
+c = \inf \lbrace \lambda(X, v) : X \in \HSnoconst, v \in \G_X \rbrace.
 \]
-As noted, for any \(X \in \HSnc, v \in G_x\), we have \(\lambda(X, v) \geq \lambda\) and hence
+As noted, for any \(X \in \HSnoconst, v \in G_x\), we have \(\lambda(X, v) \geq \lambda\) and hence
 \[
 c \geq \lambda \geq \frac{1}{2}.
 \]
 
-It's also worth noting that \(E(X_{v(t)}) = 0\) for constant maps \(X\) and any \(v \in G_X\), which is why we work with \(\HSnc\) rather than with \(\HS\).
+It's also worth noting that \(E(X_{v(t)}) = 0\) for constant maps \(X\) and any \(v \in G_X\), which is why we work with \(\HSnoconst\) rather than with \(\HS\).
 
 \begin{lemma}
 \label{lem:E_bounded_by_c}
