@@ -1,0 +1,309 @@
+\documentclass[12pt]{article}
+
+\input{setup.tex}
+
+\title{Saddle-Point Approach}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{The Setup}
+
+Let us write
+\begin{align*}
+\HS &= W^{1,2}(\So \to \RR^2), \\
+\HSconst &= \{X \in W^{1,2} : X(\theta) \equiv V \in RR^2\}
+\end{align*}
+That is, $\HSconst$ is the 2-dimensional subspace of constant maps \(\So \to \RR^2\) which we identify $\RR^2$ by identifying $X \in \HSconst$ with it's common value $V = X(\theta)$ for any $\theta \in \So$. We also simply write $V$ for such $X$.
+
+Define the class of maps,
+\[
+\C = \left\lbrace X \in \HS : \forall \theta \in \So, X(\theta) \ne (0, 0), \int_{\So} \frac{X}{|X|} ds = (0, 0)\right\rbrace.
+\]
+
+For \(X \ne 0\) define the energy,
+\[
+E(X) = \frac{\int_{\So} |X'|^2}{\int_{\So} |X|^2} = \frac{\|X'\|_{L^2}^2}{\|X\|_{L^2}^2}.
+\]
+
+We seek to characterise minimisers of \(E\) over \(\C\), so we define
+\[
+\lambda = \inf_{X \in \C} E(X) = \inf\{\|X'\|_{L^2}^2 : \|X\|_{L^2}^2 = 1\},
+\]
+the second equality following since \(E\) is scale invariant.
+
+\begin{rem}
+The map \(X(\theta) = e^{i\theta}\) is in \(\C\) with \(E(X) = 1\) and hence
+\[
+\lambda \leq 1.
+\]
+It has been shown that
+\[
+\lambda > 1/2.
+\]
+Sharper lower bounds also hold but we all require is any positive lower bound.
+\end{rem}
+
+Let us also define
+\[
+I(X) = \|X'\| - \lambda \|X\|.
+\]
+Then certainly when restricted to \(\C\) we have
+\[
+I \geq 0.
+\]
+Since it has also been shown that there exists \(X_{\min} \in \C\) such that \(E(X_{\min}) = \lambda\) equality is attained,
+\[
+I(X_{\min}) = 0.
+\]
+
+\begin{conj}
+\(\lambda = 1\).
+\end{conj}
+
+\section{Variations}
+
+Consider a variation
+\[
+X : (-\epsilon, \epsilon) \to \HS.
+\]
+Write
+\[
+Y = \partial_t X : (-\epsilon, \epsilon) \to \HS
+\]
+for the variation vector.
+
+First variation:
+
+\begin{align*}
+\dfrac{d}{dt} E[X(\cdot,t)] &= \frac{2}{\int |X|^2} \left\lbrace \int \inpr{X'}{\partial_t X'} - \frac{\int |X'|^2}{\int |X|^2} \int \inpr{X}{\partial_t X} \right\rbrace \\
+&=  \frac{2}{\int|X|^2} \left\lbrace \int \inpr{X'}{Y'} - E[X] \int \inpr{X}{Y}\right\rbrace.
+\end{align*}
+
+Note that for any $X_0, Y \in \HS$, we can define the variation
+\[
+X(t) = X_0 + t Y
+\]
+with variation vector field \(Y\). Then any critical point, \(X_0\) for \(E\) satisfies,
+\[
+\int \inpr{X_0'}{Y'} - E[X] \int \inpr{X_0}{Y} = 0
+\]
+for every \(Y\). Formally integrating by parts, we then see that for all \(Y\),
+\[
+\inpr{\EL_X X}{Y}_{L^2} = 0
+\]
+and hence
+\[
+\EL_X X = 0
+\]
+where
+\[
+\EL_X Z = Z'' + E[X] Z 
+\]
+In other words, critical points are weak solutions of
+\[
+\EL_X X = 0.
+\]
+
+Observe that solutions of \(\EL_X X = 0\) are quantised: since \(X : \So \to \RR^2\) (i.e. \(X\) is periodic), and \(E(X)\) is just a constant, we must have
+\[
+E(X) = n^2, X = C_1 e^{in\theta} + C_2 i e^{in\theta}
+\]
+for \(n = 0, 1, 2, \dots,\).
+
+For \(n = 0\) we just have constant maps \(X(\theta) = (C_1, C_2)\) with
+\[
+E[(C_1, C_2)] = 0, (C_1, C_2) \ne (0, 0).
+\]
+For \(n \geq 1\), we have
+\[
+X' = n \left(C_1 i e^{in\theta} - C_2 e^{in\theta}\right)
+\]
+so that
+\[
+E(X) = \frac{2\pi n^2 (C_1^2 + C_2^2)}{2\pi (C_1^2 + C_2^2)} = n^2.
+\]
+
+Note in particular that for all \((C_1, C_2) \ne (0, 0)\) with \(n = 1\) we get
+\[
+E(X) = 1.
+\]
+Thus the conjectured minimum, \(\lambda = 1\) is obtained by an entire family - in fact is attained by any ellipse.
+
+\begin{rem}
+Note that we have the existence of a minimiser, \(X_{\min}\) with
+\[
+E(X_{\min}) = \lambda \in [1/2, 1].
+\]
+If \(X_{\min}\) is a critical point, then
+\[
+0 = \EL_{X_{\min}} X_{\min} = X_{\min}'' + \lambda X_{\min}
+\]
+and hence \(\lambda = 1\) since the others states have energy \(0, 4, 9, 16, \cdots\). From now on then, we ignore the ground state, given by constant maps with \(E = 0\) and the higher states with \(E > 1\) and define
+\[
+\EL X = X'' + X.
+\]
+Let us also point out that the absolute minimizer of \(E\) are the non-zero constant maps with zero energy (since the energy is clearly non-negative). The minimizer \(X_{\min}\) we seek need not be a critical point, but the discussion in this remark shows that the conjecture would follow if we can show that \(X_{\min}\) is a critical point, which we will see must necessarily be a saddle point and not a local minimiser.
+\end{rem}
+Second variation:
+
+\begin{align*}
+\dfrac{d^2}{dt^2}E[X(\cdot,t)] &= \frac{-4}{\left[\int|X|^2\right]^2}    \int \langle X,X_t\rangle \left\lbrace \int \langle X_s,X_{st}\rangle - E[X(\cdot,t)] \int\langle X,X_t\rangle \right\rbrace \\
+&\quad +\frac2{\int|X|^2} \left\lbrace   \int  |X_{st}|^2 +\langle X_{s},X_{stt}\rangle - \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle \right. \\
+& \left.  - E[X(\cdot,t)] \int |X_t|^2 +\langle X,X_{tt}\rangle \right\rbrace \\
+&= \frac{-4}{\left[\int|X|^2\right]^2} \int \langle X,X_t\rangle \int -\langle \mathcal{L}X,X_t\rangle   - \frac2{\int|X|^2} \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle \\
+&\quad +\frac2{\int|X|^2} \left\lbrace   \int  |X_{st}|^2 - E[X(\cdot,t)] \int |X_t|^2 +\int \langle X_{s},X_{stt}\rangle - E[X(\cdot,t)] \int \langle X,X_{tt}\rangle \right\rbrace \\
+&= \frac{4}{\left[\int|X|^2\right]^2} \int \langle X,X_t\rangle \int   \langle \mathcal{L}X,X_t\rangle - \frac2{\int|X|^2} \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle \\
+&\quad+ \frac2{\int|X|^2} \left\lbrace \int-\langle X_{tss},X_t\rangle  - E[X(\cdot,t)] \int |X_t|^2 +\int - \langle X,X_{ttss}\rangle \right. \\
+&\quad \left. - E[X(\cdot,t)] \int \langle X,X_{tt}\rangle \right\rbrace \\
+&= \frac{4}{\left[\int|X|^2\right]^2} \int \langle X,X_t\rangle \int \langle \mathcal{L}X,X_t\rangle - \frac2{\int|X|^2} \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle \\
+&\quad + \frac2{\int|X|^2} \left\lbrace   \int  -\langle \mathcal{L}X_{t},X_t\rangle   +\int -  \langle \mathcal{L}X_{tt},X \rangle\right\rbrace \\
+\end{align*}
+
+Define the index form,
+\[
+B(X, Y) = \inpr{\EL X}{Y}_{L^2}
+\]
+Integrating by parts, we see \(B\) is symmetric,
+\[
+B(X, Y) = \int \inpr{X'' + X}{Y} = \int-\inpr{X'}{Y'} + \inpr{X}{Y} = \int \inpr{X}{Y'' + Y} = B(Y, X).
+\]
+
+Then writting, \(Y = X_t, Z = X_{tt}\), the second variation may be written
+\begin{align*}
+\dfrac{d^2}{dt^2}E[X(\cdot,t)] &= \frac{4}{\left[\int|X|^2\right]^2} \int \langle X,X_t\rangle B(X, Y) - \frac2{\int|X|^2} \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle \\
+&\quad + \frac2{\int|X|^2} \left\lbrace -B(Y, Y) - B(Z, X) \right\rbrace \\
+\end{align*}
+
+In particular, at a critical point \(X\), we have \(B(X, Y) = B(Z, X) = \dfrac{d}{dt}E[X(\cdot,t)] = 0\) and hence
+\[
+\dfrac{d^2}{dt^2}E[X(\cdot,t)] = -\frac2{\int|X|^2} B(Y, Y).
+\]
+
+Now expand \(Y\) in an eigenfunction series expansion
+\[
+Y = \sum_{n=0}^{\infty} a_n Z_n + b_n i Z_n
+\]
+where
+\[
+Z_n = \frac{1}{\sqrt{2\pi}} e^{in\theta}
+\]
+satisfies
+\[
+\EL Z_n = (1-n^2) Z_n.
+\]
+Therefore,
+\[
+B(Z_n, Z_n) = 1-n^2.
+\]
+Thus,
+\begin{align*}
+-B(Z_0, Z_0) &= -1 < 0, \\
+-B(Z_1, Z_1) &= 0, \\
+-B(Z_n, Z_n) &> 0, \text{for } n > 1.
+\end{align*}
+
+\emph{Thus the unstable eigenspace is precisely \(\HSconst\), the space of constant maps.}
+
+\section{Min-Max}
+
+From the previous discussion we know that critical points for
+\[
+\EL X = X'' + X
+\]
+have two-dimensional unstable eigenspace \(\HSconst\) given by the constant maps. In this section we seek to show that
+\[
+\lambda = \inf_{X \in \C} E(X)
+\]
+is a critical point, and hence \(\lambda = 1\) since the energy of critical points is quantised, \(E(X) = 0, 1, 2, \cdots\) and \(\lambda \in [1/2, 1]\).
+
+To this end we define the min-max quantity
+\[
+\mu = \inf_{h \in \Gamma} \max_{V \in \HSconst} E(h(V))
+\]
+where
+\[
+\Gamma = \{h \in C^0(\HSconst \to \HS) : h(0) \in \C, \lim_{V\to\infty} E(h(V)) = 0\}.
+\]
+
+In other words, we consider all continuous deformations of \(X \in \C\) parametrised by the unstable eigenspace \(\HSconst\) and whose energy goes to \(0\) at infinity. Then we take the min-max quantity over all such families. For convenience, write
+\[
+\Phi(h) = \max_{V \in \HSconst} E(h(V))
+\]
+so that
+\[
+\mu = \inf_{h \in \Gamma} \Phi(h).
+\]
+
+To prove the conjecture, we prove the following two results
+\begin{thm}
+\label{thm:critical}
+\(\mu\) is a critical value of \(E\).
+\end{thm}
+
+\begin{lem}
+\label{lem:lambda_eq_mu}
+\(\lambda = \mu\).
+\end{lem}
+
+The conjecture then follows.
+
+First, the lemma.
+
+\begin{proof}[Proof of Lemma \ref{lem:lambda_eq_mu}]
+For any \(h \in \Gamma\), since \(h(0) \in \C\) we have
+\[
+\mu \geq \Phi(h) = \sup_{V \in \HSconst} E(h(V)) \geq E(h(0)) \geq \lambda.
+\]
+
+For the converse, given any \(r_1, r_2\), choose a smooth cut-off function, \(\eta_{r_1, r_2}\) such that
+\[
+\eta_{r_1, r_2} (V) = \begin{cases}
+1, & |V| < r_1 \\
+\in (0, 1), & r_1 < |V| < r_2 \\
+0, & r_2 < |V|.
+\end{cases}
+\]
+
+Now let \(X \in \C\) and define
+\[
+h_X(V) = \eta_{r_1,r_2}(V) X + (1 - \eta_{r_1,r_2}) (V) V.
+\]
+Then in particular, 
+\[
+h_X(V) = X, |V| < r_1 \quad \text{and} \quad h_X(V) = V, |V| > r_2.
+\]
+Thus \(h_X(0) = X \in \C\) and \(E(h_X(V)) = 0\) for \(|V| > r_2\) whence \(h_X \in \Gamma\).
+
+For clarity in the proof, we drop the \(L^2\)-subscript from inner-products and norms. Now, we have
+\[
+h_X(V)' = \eta_{r_1,r_2}(V) X'
+\]
+and so
+\[
+E(h_X(V)) = \eta_{r_1,r_2}(V)^2 \frac{\|X'\|^2}{\|\eta_{r_1,r_2}(V) X + (1 - \eta_{r_1,r_2}) (V) V\|^2}.
+\]
+As noted,
+\[
+\begin{split}
+E(h_X(V)) & = \begin{cases}
+E(X), &|V| < r_1, \\
+0, &|V| > r_2, \\
+\end{cases} \\
+& \leq E(X).
+\end{split}
+\]
+
+Now in general we have
+\[
+\begin{split}
+E(h_X(V)) &= \frac{\eta^2 \|X'\|^2}{\|\eta X + (1 - \eta) V\|^2} \\
+&= \frac{\eta^2 \|X'\|^2\|X\|^2 }{(\|\eta X + (1 - \eta) V\|^2)\|X\|^2}\\
+&= \frac{\eta^2 \|X\|^2}{\|\eta X + (1 - \eta) V\|^2} E(X)
+\end{split}
+\]
+
+\end{proof}
+\end{document}
