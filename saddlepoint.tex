@@ -255,8 +255,71 @@ First, the lemma.
 \begin{proof}[Proof of Lemma \ref{lem:lambda_eq_mu}]
 For any \(h \in \Gamma\), since \(h(0) \in \C\) we have
 \[
-\mu \geq \Phi(h) = \sup_{V \in \HSconst} E(h(V)) \geq E(h(0)) \geq \lambda.
+\Phi(h) = \sup_{V \in \HSconst} E(h(V)) \geq E(h(0)) \geq \lambda.
 \]
+Taking infimum's gives
+\[
+\mu \geq \lambda.
+\]
+
+\textbf{Two extremly naive attempts to show the converse follow. I think what is needed is in fact the deformation lemma here so that give \(X \in \C\) we can deform \(X\) along the two-dimensional parameter space \(\HSconst\) and not increase the energy too much. That is, I want to show something like for all \(\epsilon > 0\) there is an \(X \in \C\) with \(E(X) \leq \lambda + \epsilon\) and a \(h \in \Gamma\) such that \(h(0) = X\) and \(E(h(V)) \leq E(h(0)) + \epsilon\) whence \(\mu \leq \lambda + 2\epsilon\).}
+
+\textbf{In other words: for almost minimisers \(X\), there exists a deformation that increases \(E(X)\) by an amount controlled by how far away \(X\) is from being a minimiser.}
+
+\textbf{One thing to keep in mind, is that translations always decrease the energy of critical points, and in general translations always have energy going to \(0\) as \(V \to \infty\). So it seems plausible, that an almost minimiser will be close to critical and so translations should only increase \(E\) by at most a small amount. So perhaps the way to show the result is to show that if \(E(X) \leq \lambda + \delta\), then \(\|\EL X\| < \epsilon\) and hence \(E(X + V) \leq C(X) \epsilon\) where \(X\) is some consant depending on \(X\).}
+
+\textbf{Attempt 1 for the converse}
+
+For the converse, let \(X \in \C\) and define
+\[
+h_X(V) = X + V.
+\]
+Then \(h_X(0, 0) = X \in \C\) and
+\[
+\lim_{V \to \infty} E(X + V) = \lim_{V \to \infty} \frac{\|X'\|^2}{\|X + V\|^2} = 0
+\]
+so that \(h_X \in \Gamma\).
+
+For fixed \(V\), the curve \(\gamma(t) = X + tV\) satisfies
+\[
+\partial_t E(X + tV) = -2\frac{E(X+tV)}{\|X+tV\|^2} \inpr{X+tV}{V} = -2\frac{E(X+tV)}{\|X+tV\|^2} \inpr{X}{V} -2\frac{E(X+tV)}{\|X+tV\|^2} \|V\|^2 t.
+\]
+
+Now there is a \(V_0\) such that \(\inpr{X}{V_0}_{L^2} = 0\): Define \(\beta: \So \to \RR\) by
+\[
+\beta(\varphi) = \inpr{X}{e^{i\varphi}}
+\]
+Then \(\beta\) is continuous and \(\beta(\varphi) = -\beta(\varphi+\pi)\), hence  there exists a \(\tilde{\varphi} \in \So\) such that \(\beta(\tilde{\varphi}) = 0\) and we may take \(V_0 = e^{i\tilde{\varphi}}\).   
+
+For this particular \(V_0\) we then have
+\[
+\partial_t E(X + tV_0) = -2 \frac{E(X+tV_0)}{\|X+tV_0\|^2} \|V_0\|^2 t,
+\]
+and hence \(t = 0\) is the only critical point of \(E\) along \(X + tV_0\) and with \(E(X) > 0\). On the other hand, as \(|t| \to \infty\), \(E[X+tV_0] \to 0 \) hence there exists a (strictly positive) maximum of \(E[X+tW]\) which must occur at the unique critical point \(t = 0\). Therefore,
+\[
+E(X + t V_0) \leq E(X)
+\]
+for all \(t \in \RR\).
+
+So we know that \(h(tV_0) \leq E(X)\), we need to consider the directions transverse to \(V_0\). For general \(V = r e^{i\varphi}\) we have
+\[
+E(X + V) = \frac{\|X'\|^2}{\|X + r e^{i\varphi}\|^2}
+\]
+
+Choose \(R > 0\) such that
+\[
+\|X + r e^{i\varphi}\|^2 \geq \|X\|^2, \quad r \geq R
+\]
+so that
+\[
+E(X + V) \leq E(X), \quad r \geq R.
+\]
+Then we need
+\[
+E(X + V) \leq E(X) + \epsilon, \quad r \leq R.
+\]
+
+\textbf{Attempt 2 for the converse}
 
 For the converse, given any \(r_1, r_2\), choose a smooth cut-off function, \(\eta_{r_1, r_2}\) such that
 \[
