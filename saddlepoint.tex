@@ -173,7 +173,7 @@ B(X, Y) = \int \inpr{X'' + X}{Y} = \int-\inpr{X'}{Y'} + \inpr{X}{Y} = \int \inpr
 
 Then writting, \(Y = X_t, Z = X_{tt}\), the second variation may be written
 \begin{align*}
-\dfrac{d^2}{dt^2}E[X(\cdot,t)] &= \frac{4}{\left[\int|X|^2\right]^2} \int \langle X,X_t\rangle B(X, Y) - \frac2{\int|X|^2} \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,X_t\rangle \\
+\dfrac{d^2}{dt^2}E[X(\cdot,t)] &= \frac{4}{\left[\int|X|^2\right]^2} \int \langle X,Y\rangle B(X, Y) - \frac2{\int|X|^2} \dfrac{d}{dt}E[X(\cdot,t)]  \int\langle X,Y\rangle \\
 &\quad + \frac2{\int|X|^2} \left\lbrace -B(Y, Y) - B(Z, X) \right\rbrace \\
 \end{align*}
 
