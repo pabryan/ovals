@@ -25,7 +25,7 @@ H' = \{X \in W^{1,2} (\So \to \RR^2 \backslash \{0\})\}
 \]
 of maps avoiding the origin. Now we have \(H \subseteq C(\So \to \RR^2)\) and certainly \(C(\So \to \RR^2 \backslash \{0\})\) is open in \(C(\So \RR^2)\) with respect to the sup norm.
 
-{\color{red} Is it true that \(H'\) is open in \(H\)? This would be true if the map \(\iota : H \to C(\So \to \RR^2)\) is continuous since \(H' = \iota^{-1}(C(\So \to \RR^2 \backslash \{0\}))\) is the pull-back of an open set by a continuous map. If not then that messes with the regular value stuff for \(\alpha\) since for that to work we need \(\alpha\) defined on an open neighbourhood of \(H'\).}
+{\color{red} Is it true that \(H'\) is open in \(H\)? This would be true if the map \(\iota : H \to C(\So \to \RR^2)\) is continuous since \(H' = \iota^{-1}(C(\So \to \RR^2 \backslash \{0\}))\) is the pull-back of an open set by a continuous map. This follows from Morrey's inequality? It says \(\iota\) is a bounded linear map into the Holder space \(C^{0,1/2}\). If not then that messes with the regular value stuff for \(\alpha\) since for that to work we need \(\alpha\) defined on an open neighbourhood of \(H'\).}
 
 Since \(0\) is a regular point of \(\alpha\), the constraint manifold,
 \[
@@ -167,6 +167,8 @@ T_X \C = \trans_X(T_{\bar{X}} \C) = \{\mu(s) T(s) + f(s) \kappa(s) \bar{\rho}(\t
 \]
 
 \section{Energy Neutral Variations of Ovals}
+
+{\color{red} This needs to be cleaned up. At the end I also add in horizontal shears. It would be clearer to begin with the motivation and include horizontal shears as well.}
 
 Let
 \[
