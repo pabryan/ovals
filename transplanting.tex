@@ -258,4 +258,73 @@ with normal component,
 
 Thus our energy neutral, constraint preserving variations of the circle map \(\bar{X}\) are linear combinations of quadratics \(\cos^2, \sin^2, \cos \sin\).
 
+\section{Energy Decreasing Variations of non-Ovals}
+
+Now we take the constraint preserving, neutral variations, \(\bar{V}\) of circles and transplant them onto constraint preserving, variations \(V = \trans(\bar{V})\) of arbitrary \(X \in H'\). The aim is to show that if \(X\) is not an ellipse, then it is not a critical point with respect to constraint preserving variations. That is, if \(X\) is not an ellipse, there exists a \(V \in T_X \C\) such that
+\[
+DE_X (V) \ne 0
+\]
+and hence \(X\) is not a minimiser of the energy.
+
+{\color{red} If this fails, then we move on to the second variation and show that it has negative directions.}
+
+The motivation is that while the conjectured minimisers - the ellipses - are the orbit of circles under \(\text{SL}(2)\), the energy is generally not invariant under the action of \(\text{SL}(2)\). Thus it seems natural to try use these variations to obtain the desired conclusion.
+
+Now, since the energy is scale invariant, we may assume that \(\|X\|_2 = 1\). The variation of energy is then
+\[
+DE_X (V) = \frac{2}{\|X\|_2^2} \left(\inpr{X'}{V'}_2 - \frac{1}{\|X\|_2^2}\inpr{X}{V}_2\right) = -2 \inpr{X'' + X}{V}_2.
+\]
+
+Let us write,
+\[
+X(s) = x_1(s) e_1 + x_2(s) e_2
+\]
+so that
+\[
+X'' + X = (x_1'' + x_1)e_1 + (x_2'' + x_2)e_2.
+\]
+Expand \(x_1, x_2\) in a Fourier series so that
+\[
+\begin{split}
+X'' + X &= (c_0^1 + \sum_{n\geq 1} a_n^1 (1-n^2)\cos ns + (1-n^2)b_n^1 \sin ns) e_1 \\
+&\quad + (c_0^2 + \sum_{n\geq 2} a_n^2 (1-n^2)\cos ns + b_n^2 (1-n^2) \sin ns) e_2.
+\end{split}
+\]
+
+{\color{red} maybe we should do this with respect to \(\theta\)?}
+
+Now, our variation is,
+\[
+V(s) = f\kappa\bar{\rho} \cos\theta e_1 + f\kappa\bar{\rho} \sin\theta e_2
+\]
+where we must keep in mind that
+\[
+\theta = \theta(s), \quad \bar{\rho} = \bar{\rho}(\theta(s)).
+\]
+
+Then,
+\[
+dE_X (V) = -2 \int_{\So} f\kappa\bar{\rho} \left[\cos\theta (x_1'' + x_1) + \sin\theta (x_2'' + x_2) \right] ds.
+\]
+It's tempting here to observe the term \(\kappa ds = d\theta\), but then we must also account for \(\partial_s = \kappa \partial_{\theta}\) giving
+\[
+x_i'' = \kappa \partial_{\theta} (\kappa \partial_\theta x_i) = \kappa^2 \partial_{\theta}^2 x_i + \frac{1}{2} \partial_{\theta} \kappa^2 \partial_{\theta} x_i.
+\]
+Then in terms of the angular parameter, we have,
+\[
+dE_X (V) = -2 \int_{\So} f \bar{\rho} \left[\cos\theta (\kappa^2 x_1'' + \kappa\kappa' x_1 ' + x_1) + \sin\theta (\kappa^2 x_2'' + \kappa\kappa' x_2 ' + x_2) \right] d\theta.
+\]
+
+Now we show that unless \(X'' + X = 0\), choosing \(\bar{\rho}\) to be a linear combination of \(\cos^2\theta(s), \sin^2\theta(s), \cos\theta(s)\sin\theta(s)\) gives a variation that decreases energy.
+
+Explicitly,
+\begin{align*}
+dE_X (V) &= -2 \int_{\So} f\kappa\left[a \cos^2\theta + b \sin^2\theta + c \cos\theta \sin\theta\right] & \left[(x_1'' + x_1) \cos\theta + (x_2'' + x_2) \sin\theta \right] & ds \\
+&= -2 \int_{\So} f\left[a \cos^2\theta + b \sin^2\theta + c \cos\theta \sin\theta\right] & \big[(\kappa^2 x_1'' + \kappa\kappa' x_1 ' + x_1) \cos\theta & \\
+&\quad & + (\kappa^2 x_2'' + \kappa\kappa' x_2 ' + x_2) \sin\theta \big] & d\theta.
+\end{align*}
+
+{\color{red} Next perhaps we can expand \(f\kappa\) in a Fourier series in \(s\) or \(f, \kappa\) in Fourier series' in \(\theta\).}
+
+{\color{red}Or perhaps now we try to apply affine inequalities. Write things in terms of the support function?}
 \end{document}
