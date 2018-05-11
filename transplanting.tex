@@ -1,0 +1,259 @@
+\documentclass[12pt]{article}
+
+\input{setup.tex}
+
+\title{Transplanting Approach}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Setup}
+
+We work with maps \(X \in H = W^{1,2} (\So \to \RR^2)\) and define the energy functional,
+\[
+E(X) = \frac{\|X'\|_2^2}{\|X\|_2^2}
+\]
+and constraint functional,
+\[
+\alpha(X) = \int_{\So} \frac{X}{|X|}.
+\]
+Note that \(\alpha\) is not defined on all of \(H\), but is defined at least for the subset
+\[
+H' = \{X \in W^{1,2} (\So \to \RR^2 \backslash \{0\})\}
+\]
+of maps avoiding the origin. Now we have \(H \subseteq C(\So \to \RR^2)\) and certainly \(C(\So \to \RR^2 \backslash \{0\})\) is open in \(C(\So \RR^2)\) with respect to the sup norm.
+
+{\color{red} Is it true that \(H'\) is open in \(H\)? This would be true if the map \(\iota : H \to C(\So \to \RR^2)\) is continuous since \(H' = \iota^{-1}(C(\So \to \RR^2 \backslash \{0\}))\) is the pull-back of an open set by a continuous map. If not then that messes with the regular value stuff for \(\alpha\) since for that to work we need \(\alpha\) defined on an open neighbourhood of \(H'\).}
+
+Since \(0\) is a regular point of \(\alpha\), the constraint manifold,
+\[
+\C = \alpha^{-1} (0)
+\]
+is a \(C^1\) manifold. In particular, it has a well defined tangent space.
+
+Let us define,
+\[
+N = J \frac{X}{|X|}
+\]
+where \(J\) denotes the counter-clockwise rotation by \(\pi/2\). Note that if we define,
+\[
+\gamma(s) = \int_0^s \frac{X}{|X|} ds, \quad s \in (0, 2\pi)
+\]
+then the unit tangent, \(T_{\gamma}\) and unit normal, \(N_{\gamma}\) are
+\[
+T_{\gamma} = \frac{X}{|X|}, \quad N_{\gamma} = N.
+\]
+So we drop the \(\gamma\) subscript and define,
+\[
+T = \frac{X}{|X|}
+\]
+with \(N\) still defined as above.
+
+The for any \(V\) we have the projection of \(V\) onto the normal space
+\[
+\pi_{\perp} (V) = V - \inpr{V}{T} T = V - \inpr{V}{\frac{X}{|X|}} \frac{X}{|X|}.
+\]
+
+
+\section{Constraint Preserving Variations}
+
+We know that
+\[
+d\alpha_X (V) = \int_{\So} \frac{\pi_{\perp} (V)}{|X|} ds.
+\]
+Defining \(\rho = \inpr{V}{N}\), we may rewrite this as
+\[
+d\alpha_X (V) = \int_{\So} \frac{\rho N}{|X|} ds.
+\]
+Working with respect to the angular parameter \(\theta(s)\) determined by
+\[
+N = \cos \theta e_1 + \sin \theta e_2
+\]
+and satisfying
+\[
+\partial_s \theta = \kappa
+\]
+we have
+\[
+d\alpha_X (V) = \int_{\So} (\bar{\rho} \cos\theta, \bar{\rho} \sin\theta) d\theta
+\]
+where
+\[
+\bar{\rho} = \frac{\rho}{f \kappa}.
+\]
+This follows from
+\[
+f = |X|, \quad d\theta = \kappa ds.
+\]
+
+Then \(V\) infinitesimally preserves \(\alpha\) if and only if
+\[
+\bar{\rho} \perp_{L^2} \{\sin, \cos\}
+\]
+so that
+\[
+\bar{\rho} = c_0 + \sum_{n\geq 2} a_n \sin(n \theta) + b_n \sin(n \theta).
+\]
+
+In other words, the tangent space, \(T_X \C\) to the constraint manifold \(\C\) at \(X\) is given by,
+\[
+T_X \C = \{\mu T + f\kappa\bar{\rho} N : \mu \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
+\]
+
+In particular, for the circle \(\bar{X} = \cos\theta e_1 + \sin \theta e_2\), we have \(\bar{\kappa} = \bar{f} = 1\) and \(\bar{N} = \cos\theta e_1 + \sin\theta e_2\). Then in this case,
+\[
+\rho = \bar{\rho}
+\]
+and arbitrary constraint preserving variations may be written,
+\[
+V(\theta) = \bar{\mu}(\theta) T(\theta) + \bar{\rho}(\theta) N(\theta) = (- \bar{\mu}\sin\theta + \bar{\rho} \cos\theta) e_1 + (\bar{\mu}\cos\theta + \bar{\rho}\sin\theta) e_2
+\]
+where \(\bar{\mu} : \So \to \RR\) is arbitrary and \(\bar{\rho} \perp_{L^2} \{\sin, \cos\}\). Hence,
+\[
+T_{\bar{X}} \C = \{\bar{\mu} T + \bar{\rho} N : \bar{\mu} \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
+\]
+
+\section{Transplanting Variations}
+
+Let \(X\) satisfy the constraint \(\alpha(X) = 0\) (more generally \(X\) is a regular point \(X \in \alpha^{-1} (W)\) for \(W \in \RR^2\) a regular value of \(\alpha\)) and let
+\[
+\bar{\rho} \perp_{L^2} \{\sin, \cos\}.
+\]
+
+Then we may obtain a constraint preserving variation of \(X\) by setting,
+\[
+V(\theta) = \rho(\theta) N(\theta) = f(\theta) \kappa(\theta) \bar{\rho}(\theta) (\cos\theta e_1 + \sin\theta e_2)
+\]
+where as in the last section, \(\theta\) is the angular parameter for \(X\).
+
+Now we define for each \(X \in H'\), the transplanting map
+\[
+\trans_X : T_{\bar{X}} \C \to T_X \C
+\]
+by
+\[
+V = \trans_X(\bar{V}) = \bar{\mu}(\theta) T(\theta) + f(\theta)\kappa(\theta)\bar{\rho}(\theta) N(\theta)
+\]
+where \(\theta\) is the angular parameter for \(X\) and
+\[
+\bar{\mu} = \inpr{\bar{V}}{\bar{T}}, \bar{\rho} = \inpr{\bar{V}}{\bar{N}}
+\]
+for
+\[
+\bar{V} \in T_{\bar{X}} \C.
+\]
+We may also express this as
+\[
+(\mu, \rho) = \trans_X(\bar{\mu}, \bar{\rho}) = (\bar{\mu}, f\kappa\bar{\rho})
+\]
+where
+\[
+\mu = \inpr{V}{T}, \quad \rho = \inpr{V}{N}.
+\]
+
+The transplanting map \(\trans_X\) is an linear isomorphism \(T_{\bar{X}} \C \to T_X \C\).
+
+{\color{red} Is it parallel translation along \(\C\)?}
+
+With respect to the parameter \(s\), we have
+\[
+V(s) = f(s) \kappa(s) \bar{\rho}(\theta(s)) N(s) = f(s) \kappa(s) \bar{\rho}(\theta(s))(\cos\theta(s) e_1 + \sin\theta(s) e_2).
+\]
+Thus we may write,
+\[
+T_X \C = \trans_X(T_{\bar{X}} \C) = \{\mu(s) T(s) + f(s) \kappa(s) \bar{\rho}(\theta(s)) N(s) : \mu \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
+\]
+
+\section{Energy Neutral Variations of Ovals}
+
+Let
+\[
+\bar{X} = \cos\theta + \sin \theta
+\]
+be the circle map. Then the curve
+\[
+t \mapsto X_t = A(t) \cos\theta e_1 + B(t) \sin \theta e_2
+\]
+with \(A(0) = B(0) = 1\) and \(A, B > 0\) but otherwise arbitrary, \(X_0 = \bar{X}\) and
+\[
+E(t) = E(X_t) \equiv 1, \quad \alpha(t) = \alpha(X_t) \equiv 0.
+\]
+
+Letting \(a = A'(0), b = B'(0)\), the variation vector at \(t = 0\) is just,
+\[
+\bar{V} = \partial_t|_{t=0} X_t = a \cos\theta e_1 + b \sin\theta e_2,
+\]
+and we have
+\[
+dE_{\bar{X}} (\bar{V}) = 0, \quad d\alpha_{\bar{X}} (\bar{V}) = 0.
+\]
+
+In particular, since \(d\alpha_{\bar{X}} (\bar{V}) = 0\), the function
+\[
+\bar{\rho} (\theta) = \inpr{\bar{V}}{\bar{N}} = \inpr{a \cos\theta e_1 + b \sin\theta e_2}{\cos\theta e_1 + \sin\theta e_2} = a \cos^2\theta + b \sin^2\theta
+\]
+satisfies \(\bar{\rho} \perp_{L^2} \{\sin, \cos\}\). Of course one can easily verify this directly.
+
+Let us remark that the motivation for these variations is that snce origin centred ellipses are (up to scale) precisely the orbit of the origin centred circle map \(\bar{X}\) under the action of \(\text{SL}_2\), our variations takes \(\bar{X}\) through a family of ellipses which all satisfy the constraint and have the same energy.
+
+Ignoring horizontal shears, they may be written,
+\[
+X_t = \sqrt{A(t) B(t)}
+\begin{pmatrix}
+\sqrt{\frac{A(t)}{B(t)}} & 0 \\
+0 & \sqrt{\frac{B(t)}{A(t)}}
+\end{pmatrix}
+\begin{pmatrix}
+\cos \theta \\
+\sin \theta
+\end{pmatrix}.
+\]
+That is, they are of the form
+\[
+X_t = \lambda(t) M(t) \cdot \bar{X}
+\]
+where \(\det M(t) = 1\). So we act by scaling and \(\text{SL}(2)\). Here we don't need every element of \(\text{SL}(2)\): the energy is globally \(O(2)\) invariant with rotations contributing tangential terms to the variation which we already know can be arbitrary. Scaling also does not affect the energy, but allowing scaling means that \(A, B\) can be chosen arbitrarily which makes matters somewhat simpler.
+
+In the Iwasawa decomposition of \(\text{SL}(2)\), we also have horizontal shears,
+\[
+X_t = 
+\begin{pmatrix}
+1 & C(t) \\
+0 & 1
+\end{pmatrix}
+\begin{pmatrix}
+\cos \theta \\
+\sin \theta
+\end{pmatrix}
+=
+\begin{pmatrix}
+\cos\theta + C(t) \sin\theta \\
+\sin\theta
+\end{pmatrix}
+\]
+with \(C(0) = 0\), giving a variation vector,
+\[
+\bar{V} = c \sin\theta e_1.
+\]
+The normal component is
+\[
+\bar{\rho} = c \cos\theta \sin\theta.
+\]
+In other words (ignoring the global symmetry given by rotations) we consider variations of the form,
+\[
+X_t = M(t) N(t) \bar{X}
+\]
+where \(M\) is diagonal with positive entries, and \(N\) is a horizontal shear satisfying \(M(0) = N(0) = \Id\). The variation vector is then,
+\[
+\bar{V} = M'(0) N(0) \bar{X} + M(0) N'(0) \bar{X} = a \cos\theta e_1 + b \sin\theta_1 + c \sin\theta e_1
+\]
+with normal component,
+\[
+\bar{\rho} = a \cos^2\theta + b \sin^2 \theta + c \cos\theta \sin\theta.
+\]
+
+Thus our energy neutral, constraint preserving variations of the circle map \(\bar{X}\) are linear combinations of quadratics \(\cos^2, \sin^2, \cos \sin\).
+
+\end{document}
