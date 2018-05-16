@@ -137,7 +137,7 @@ Now we have that \(\alpha\) is a well defined functional on \(H^{\epsilon}\) for
 
 \begin{lem}
 \label{lem:Csubmanifold}
-The constraint functional \(\alpha\) is \(C^1\) on the open set \(H^0\). Moreover, \(0\) is a regular value for \(\alpha\) and hence the constraint set \(\C\) is a \(C^1\) sub-manifold of \(H\).
+The constraint functional \(\alpha\) is \(C^1\) on the open set \(H^0\).
 \end{lem}
 
 \begin{proof}
@@ -167,44 +167,72 @@ where
 \]
 denotes the orthogonal (in \(\RR^2\)) projection onto \(N(s)\).
 
-Now we show that \(\alpha\) is in fact Frechet differentiable. That is, that,
+Now we show that \(\alpha\) is in fact Frechet differentiable and \(C^1\). That is,
 \[
-\lim_{V \to 0} \frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{W^{1,2}}} = 0.
+\lim_{V \to 0} \frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{W^{1,2}}} = 0
+\]
+and the map
+\[
+X \in \C \mapsto d\alpha_X \in \mathcal{B} (H, \RR^2)
+\]
+is continuous. In fact, by the mean value theorem for Gateaux differentiable functions (see Andrews-Hopper but there must be a more generic ref), it suffices to prove only the latter statement.
+
+Thus we seek to prove that
+\[
+\lim_{X \underset{H}{\to} X_0} \|d\alpha_X - d\alpha_{X_0}\|_{\mathcal{B}(H, \RR^2)} = \lim_{X \underset{H}{\to} X_0} \sup \{\abs{d\alpha_X (V) - d\alpha_{X_0}(V)} : \|V\|_{W^{1,2}} = 1\} = 0.
+\]
+Since we have the continuous emebedding \(\iota : H \to C^0\), \(X \underset{H}{\to} X_0\) implies that \(X \underset{C^0}{\to} X_0\) and hence it is sufficient to prove that
+\[
+\lim_{X \underset{C^0}{\to} X_0} \sup \{\abs{d\alpha_X (V) - d\alpha_{X_0}(V)} : \|V\|_{W^{1,2}} = 1\} = 0.
 \]
 
-We have,
-\[
-\alpha(X + V) - \alpha(X) - d\alpha_X(V) = \int_{\So} \beta(X + V) - \beta(V) - d\beta_X(V) ds.
-\]
-Since \(\beta\) is \(C^1\) on \(\abs{X} > 0\) and by compactness of \(\So\), we have that for every \(\epsilon > 0\) there is a \(\delta > 0\) such that \(\|V\|_{C^0} < \delta\) implies that for every \(s\),
-\[
-\frac{\abs{\beta(X + V) - \beta(V) - d\beta_X(V)}}{\abs{V}} < \epsilon.
-\]
-
-Therefore we have that \(\|V\|_{C^0} < \delta\) implies,
+Now, we have that
 \[
 \begin{split}
-\frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{C^0}} \leq \frac{\int\abs{\beta(X + V) - \beta(V) - d\beta_X (V)}ds}{\|V\|_{C^0}} \leq \frac{\epsilon \|V\|_{C^0}}{\|V\|_{C^0}} = \epsilon
+d\alpha_X(V) - d\alpha_{X_0} (V) &= \int_{\So} \frac{\pi_N(V)}{\abs{X}} - \frac{\pi_{N_0} (V)}{\abs{X_0}} ds \\
+&= \int_{\So} T(X(s), V(s)) - T(X_0(s), V(s)) ds
 \end{split}
 \]
-and hence \(\alpha\) is Frechet differentiable on \(C^0\).
-
-Now employing Morrey's inequality again we have a \(C > 0\) such that
+where \(T : \RR^2\backslash\{0\} \times \RR^2 \to \RR^2\) is the continuous map
 \[
-\|V\|_{C^0} \leq \|V\|_{C^{0,1/2}} \leq C \|V\|_{W^{1,2}}
+T (x, v) = -\inpr{v}{\frac{1}{\abs{x}^3}J x} x.
 \]
-and hence if \(\|V\|_{C^0} < \delta\) we have
+Now since \(X_0\) satisfies the constraint, we have \(\abs{X_0} > 0\) and moreover since \(X_0\) is a continuous map on the compact space \(\So\), there exists an \(R, r > 0\) such that for every \(s \in \So\),
 \[
-\frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{W^{1,2}}} \leq C \frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{C^0}} < \epsilon.
+r \leq \abs{X_0(s)} \leq R.
 \]
-
-{\color{red} But what we need is that if \(\|V\|_{W^{1,2}} < \delta\) the inequality holds!
-
-We would be done if we had
+Now in the limit \(X \underset{C^0}{\to} X_0\) we may assume that \(\|X - X_0\|_{C^0} < r/2\) so that for every \(s \in \So\),
 \[
-\|V\|_{C^0} \leq C \|V\|_{W^{1,2}}
+r/2 \leq \abs{X_0(s)}, \abs{X(s)} \leq R + r/2.
 \]
-but this is certainly false by taking bump functions \(\varphi\) with \(L_2\) integral \(1\) and \(\|\varphi\|_{C^0}\) arbitrarily large.}
+Moreover by Morrey's inequality, for every \(s \in \So\),
+\[
+\abs{V(s)} \leq \|V\|_{C^0} \leq C \|V\|_{W^{1,2}} \leq C.
+\]
+Then for all \(s\), \((X(s), V(s) \in \RR^4\) lies in the compact set,
+\[
+r/2 \leq \abs{x} \leq R + r/2, 0 \leq \abs{v} \leq C
+\]
+on which the function \(T\) is uniformly continuous.
+
+Thus, independently of \(s \in \So\) and \(V\) with \(\|V\|_{W^{1,2}} = 1\) we have for every \(\epsilon > 0\), there is a \(\delta > 0\) such that
+\[
+\|X - X_0\|_{C^0} < \delta \Rightarrow \abs{T(X(s), V(s)) - T(X_0(s)) - V(s)} < \epsilon
+\]
+and hence for every \(V\) such that \(\|V\|_{W^{1,2}} = 1\)
+\[
+\|X - X_0\|_{C^0} < \delta \Rightarrow \int_{\So} \abs{T(X(s), V(s)) - T(X_0(s)) - V(s)} ds < 2\pi \epsilon
+\]
+and we obtain the desired continuity.
+\end{proof}
+
+\begin{lem}
+\label{lem:constraintC1}
+\(0\) is a regular value for \(\alpha\) and hence the constraint set \(\C\) is a \(C^1\) sub-manifold of \(H\).
+\end{lem}
+
+\begin{proof}
+We just need to show that if \(\alpha(X) = 0\), then \(d\alpha : H \to \RR^2\) is surjective. So for each \(v \in \RR^2\) we need a \(V \in H\) such that such that \(d\alpha_X (V) = v\).
 \end{proof}
 
 \begin{lem}
