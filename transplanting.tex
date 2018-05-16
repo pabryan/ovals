@@ -116,7 +116,7 @@ is well defined and continuous. Since \(\So\) is one-dimensional, Morrey's inequ
 \]
 Then \(X^1 = \inpr{X}{e_1}\) and \(X^2 = \inpr{X}{e_2}\) embed continuously into \(C^0(\So \to \RR), \|\cdot\|_{\infty}\) and hence we obtain a continuous embedding,
 \[
-\iota : H \to C^0(\So \to \RR^2), \|\cdot\|_{\infty}.
+\iota : H \to \left(C^0(\So \to \RR^2), \|\cdot\|_{C^{0,1/2}}\right).
 \]
 Then we define the open set in \(H\),
 \begin{equation}
@@ -129,10 +129,10 @@ We also have use for the open sets defined for \(\epsilon > 0\) by,
 H^{\epsilon} = \iota^{-1}\left(\{X \in C^0(\So \to \RR^2\backslash \BB_{\epsilon}(0))\}\right).
 \end{equation}
 
-Now we have that \(\alpha\) is a well defined functional on \(H^{\epsilon}\) for \(\epsilon \geq 0\). We then define the constraint sets,
+Now we have that \(\alpha\) is a well defined functional on \(H^{\epsilon}\) for \(\epsilon \geq 0\). We then define the constraint set
 \begin{equation}
 \label{eq:constraintsets}
-\C = \{X \in H^0 : \alpha(X) = 0\}, \quad \C_{\epsilon} = \{X \in X^{\epsilon} : \alpha(X) = 0\}.
+\C = \{X \in H^0 : \alpha(X) = 0\}.
 \end{equation}
 
 \begin{lem}
@@ -156,7 +156,7 @@ d\alpha_X (V) &= \partial_t|_{t=0} \alpha(X + tV) = \int_{\So} \partial_t|_{t=0}
 &= \int_{\So} \frac{1}{\abs{X}}\left(V - \inpr{V}{\frac{X}{\abs{X}}} \frac{X}{\abs{X}}\right) ds
 \end{split}
 \]
-is well defined. In fact recalling that \(T = \tfrac{X}{\abs{X}}, N = -J T\) from equation \eqref{eq:TNX}, we have
+is well defined. In fact recalling that from equation \eqref{eq:TNX}, \(T = \tfrac{X}{\abs{X}}\) and \(N = -J T\) is orthogonal to \(T\), we have
 \begin{equation}
 \label{eq:alphagateaux}
 d\alpha_X (V) = \int_{\So} \frac{\pi_N(V)}{\abs{X}} ds
@@ -177,11 +177,17 @@ X \in \C \mapsto d\alpha_X \in \mathcal{B} (H, \RR^2)
 \]
 is continuous. In fact, by the mean value theorem for Gateaux differentiable functions (see Andrews-Hopper but there must be a more generic ref), it suffices to prove only the latter statement.
 
-Thus we seek to prove that
+First we need to show \(d\alpha_X \in \mathcal{B} (H, \RR^2)\) the vector space of bounded linear maps \(H \to \RR^2\). Since \(\pi_N\) is linear and integration is linear, \(d\alpha_X\) is certainly linear. Now for any \(V \in W^{1,2}\), first by Cauchy-Schwartz and then by Morrey's inequality,
+\[
+d\alpha_X(V) = \int_{\So} \frac{\pi_N(V)}{\abs{X}} ds \leq \int_{\So} \frac{\abs{V}}{\abs{X}} ds \leq C \left(\int_{\So} \frac{1}{\abs{X}} ds\right) \|V\|_{W^{1,2}}
+\]
+and hence \(\|d\alpha_X\|_{\mathcal{B}(H, \RR^2)} \leq C \int_{\So} \frac{1}{\abs{X}} ds < \infty\) as required.
+
+To finish, we seek to prove that
 \[
 \lim_{X \underset{H}{\to} X_0} \|d\alpha_X - d\alpha_{X_0}\|_{\mathcal{B}(H, \RR^2)} = \lim_{X \underset{H}{\to} X_0} \sup \{\abs{d\alpha_X (V) - d\alpha_{X_0}(V)} : \|V\|_{W^{1,2}} = 1\} = 0.
 \]
-Since we have the continuous emebedding \(\iota : H \to C^0\), \(X \underset{H}{\to} X_0\) implies that \(X \underset{C^0}{\to} X_0\) and hence it is sufficient to prove that
+Since we have the continuous emebedding \(\iota : H \to C^0\), if \(X \underset{H}{\to} X_0\) then also \(X \underset{C^0}{\to} X_0\) and hence it is sufficient to prove that
 \[
 \lim_{X \underset{C^0}{\to} X_0} \sup \{\abs{d\alpha_X (V) - d\alpha_{X_0}(V)} : \|V\|_{W^{1,2}} = 1\} = 0.
 \]
@@ -197,7 +203,7 @@ where \(T : \RR^2\backslash\{0\} \times \RR^2 \to \RR^2\) is the continuous map
 \[
 T (x, v) = -\inpr{v}{\frac{1}{\abs{x}^3}J x} x.
 \]
-Now since \(X_0\) satisfies the constraint, we have \(\abs{X_0} > 0\) and moreover since \(X_0\) is a continuous map on the compact space \(\So\), there exists an \(R, r > 0\) such that for every \(s \in \So\),
+Now since \(X_0\) satisfies the constraint, we have \(\abs{X_0} > 0\) and moreover since \(X_0\) is a continuous map on the compact space \(\So\), there exists \(R, r > 0\) such that for every \(s \in \So\),
 \[
 r \leq \abs{X_0(s)} \leq R.
 \]
@@ -207,17 +213,17 @@ r/2 \leq \abs{X_0(s)}, \abs{X(s)} \leq R + r/2.
 \]
 Moreover by Morrey's inequality, for every \(s \in \So\),
 \[
-\abs{V(s)} \leq \|V\|_{C^0} \leq C \|V\|_{W^{1,2}} \leq C.
+\abs{V(s)} \leq \|V\|_{C^0} \leq C \|V\|_{W^{1,2}} = C.
 \]
-Then for all \(s\), \((X(s), V(s) \in \RR^4\) lies in the compact set,
+Then for all \(s\), \((X(s), V(s)) \in \RR^4\) lies in the compact set,
 \[
-r/2 \leq \abs{x} \leq R + r/2, 0 \leq \abs{v} \leq C
+r/2 \leq \abs{x} \leq R + r/2, \quad 0 \leq \abs{v} \leq C
 \]
 on which the function \(T\) is uniformly continuous.
 
-Thus, independently of \(s \in \So\) and \(V\) with \(\|V\|_{W^{1,2}} = 1\) we have for every \(\epsilon > 0\), there is a \(\delta > 0\) such that
+Thus, independently of \(s \in \So\) and \(V\) with \(\|V\|_{W^{1,2}} = 1\), we have for every \(\epsilon > 0\), there is a \(\delta > 0\) such that
 \[
-\|X - X_0\|_{C^0} < \delta \Rightarrow \abs{T(X(s), V(s)) - T(X_0(s)) - V(s)} < \epsilon
+\|X - X_0\|_{C^0} < \delta \Rightarrow \abs{T(X(s), V(s)) - T(X_0(s), V(s))} < \epsilon
 \]
 and hence for every \(V\) such that \(\|V\|_{W^{1,2}} = 1\)
 \[
