@@ -67,17 +67,17 @@ Defining \(\rho = \inpr{V}{N}\), we may rewrite this as
 \[
 d\alpha_X (V) = \int_{\So} \frac{\rho N}{|X|} ds.
 \]
-Working with respect to the angular parameter \(\theta(s)\) determined by
+Working with respect to the angular parameter \(\theta(s)\) determined uniquely by
 \[
-N = \cos \theta e_1 + \sin \theta e_2
+N(s) = \cos \theta(s) e_1 + \sin \theta(s) e_2 \quad \Rightarrow T(s) = \sin \theta(s) e_1 - \cos \theta(s) e_2,
 \]
 and satisfying
 \[
-\partial_s \theta = \kappa
+\partial_s \theta = \kappa \quad \Rightarrow \quad \partial_s = \frac{1}{\kappa} \partial_{\theta}, \quad ds = \kappa d\theta
 \]
 we have
 \[
-d\alpha_X (V) = \int_{\So} (\bar{\rho} \cos\theta, \bar{\rho} \sin\theta) d\theta
+d\alpha_X (V) = \int_{\So} \bar{\rho} \cos\theta e_1 + \bar{\rho} \sin\theta e_2 d\theta
 \]
 where
 \[
@@ -102,7 +102,15 @@ In other words, the tangent space, \(T_X \C\) to the constraint manifold \(\C\) 
 T_X \C = \{\mu T + f\kappa\bar{\rho} N : \mu \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
 \]
 
-In particular, for the circle \(\bar{X} = \cos\theta e_1 + \sin \theta e_2\), we have \(\bar{\kappa} = \bar{f} = 1\) and \(\bar{N} = \cos\theta e_1 + \sin\theta e_2\). Then in this case,
+For \(\bar{\gamma} = \cos\theta s + \sin \theta s\) a circle, we have \(\bar{\kappa} \equiv 1\) and also eigenfunction, \(f \equiv 1\). Therefore \(\bar{X} = \bar{f} \bar{T}\) is the circle map,
+\[
+\bar{X}(s) = -\sin\theta e_1 + \cos\theta e_2.
+\]
+Moreover, \(\theta = s + \text{const}\) and we choose \(\text{const} = 0\) so that \(\theta = s\) and
+\[
+\bar{N}(\theta) = \cos\theta e_1 + \sin\theta e_2.
+\]
+Then we also have,
 \[
 \rho = \bar{\rho}
 \]
