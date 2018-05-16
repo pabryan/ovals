@@ -11,51 +11,230 @@
 
 \section{Setup}
 
-We work with maps \(X \in H = W^{1,2} (\So \to \RR^2)\) and define the energy functional,
+Given a smooth, regular curve \(\gamma \in C^{\infty}(\So \to \RR^2)\) with length \(L(\gamma) = 2\pi\), we define the energy,
+\begin{equation}
+\label{eq:Egamma}
+E(\gamma) = \inf\left\{\int_{\So} \abs{\partial_s f}^2 + \kappa^2 f^2 ds : \int_{\So} f^2 = 1\right\} = \inf\left\{\frac{\int_{\So} \abs{\partial_s f}^2 + \kappa^2 f^2 ds}{\int_{\So} f^2 ds} : f \not\equiv 0\right\}
+\end{equation}
+where \(f \in C^{\infty}(\So \to \RR^2)\) is assumed smooth.
+
+For a given \(f \in C^{\infty}(\So \to \RR^2)\), let us also write
+\begin{equation}
+\label{eq:Egammaf}
+E(\gamma, f) = \frac{\int_{\So} \abs{\partial_s f}^2 + \kappa^2 f^2 ds}{\int_{\So} f^2 ds}
+\end{equation}
+so that
+\begin{equation}
+\label{eq:EgammaEgammaf}
+E(\gamma) = \inf\left\{E(\gamma, f) : f \not\equiv 0\right\}.
+\end{equation}
+
+Standard arguments imply that the energy is the first eigenvalue of the Euler-Lagrange equation,
+\begin{equation}
+\label{eq:ELf}
+-\partial_s^2 f + \kappa^2 f = 0
+\end{equation}
+and that infimum is attained by the first eigenfunction \(f\) satisfying \(f > 0\). Therefore, we restrict our attention to \(f > 0\).
+
+Let us write,
+\begin{equation}
+\label{eq:TN}
+T = \gamma', \quad N = -J T
+\end{equation}
+for the unit tangent and normal. Here we choose the orientation \(N = -JT\) for convenience when dealing with circles later. Define the geodesic curvature \(\kappa\) by the Frenet-Serret formula
+\begin{equation}
+\label{eq:FS}
+\partial_s T = - \kappa N, \quad \partial_s N = \kappa T.
+\end{equation}
+
+For any \(\gamma\) and \(f > 0\), define
+\begin{equation}
+\label{eq:X}
+X = X(f, \gamma) = f T.
+\end{equation}
+Note that we then have \(\forall s \> X(s) \ne 0\) and
+\begin{equation}
+\label{eq:TNX}
+T = \frac{X}{\abs{X}}, \quad f = \abs{X}, N = -J \frac{X}{\abs{X}}
+\end{equation}
+and we may recover \(\gamma\) and \(f\) from \(X\) (up to rigid motion of \(\gamma\)) by defining,
+\begin{equation}
+\label{eq:gammaX}
+\gamma(s) = \gamma (X) (s) = \int_0^s \frac{X}{\abs{X}} ds, \quad f = \abs{X}.
+\end{equation}
+Notice that defining the \(\RR^2\)-valued functional,
+\begin{equation}
+\label{eq:alpha}
+\alpha(X) = \int_{\So} \frac{X}{\abs{X}} ds
+\end{equation}
+we have that the set of \(X = X(\gamma, f)\) with \(f > 0\) satisfies,
+\[
+\alpha(X) = \int_{\So} T ds = 0.
+\]
+
+Since the energy \(E(\gamma, f)\) is invariant under rigid motion of \(\gamma\), using the Frenet-Serret equations \eqref{eq:FS}, we may then express it in terms of \(X\) by,
+\begin{equation}
+\label{eq:gammafX}
+E(\gamma, f) = E(X) = \frac{\int_{\So} \abs{X'}^2 ds}{\int_{\So} \abs{X}^2 ds} = \frac{\|X'\|_2^2}{\|X\|_2^2}.
+\end{equation}
+
+Then we have,
+\begin{equation}
+\label{eq:infimums}
+\begin{split}
+\lambda = \inf\left\{E(\gamma) : L(\gamma) = 2\pi\right\} &= \inf\left\{E(\gamma, f) : L(\gamma) = 2\pi, f \not\equiv 0\right\} \\
+&= \inf\left\{E(X) : \forall s \> X(s) \ne 0, \alpha(X) = 0\right\}.
+\end{split}
+\end{equation}
+
+For this reason, we call \(\alpha\) the \emph{constraint functional}. We have the following conjecture regarding the least energy for the constrained problem:
+
+\begin{conj}
+\label{conj:main}
+\[
+\lambda = 1.
+\]
+\end{conj}
+
+As usual, the space of smooth maps is not well suited to the minimisation problem, so we work instead with maps \(X \in H = W^{1,2} (\So \to \RR^2)\) for which energy functional,
 \[
 E(X) = \frac{\|X'\|_2^2}{\|X\|_2^2}
 \]
-and constraint functional,
-\[
-\alpha(X) = \int_{\So} \frac{X}{|X|}.
-\]
-Note that \(\alpha\) is not defined on all of \(H\), but is defined at least for the subset
-\[
-H' = \{X \in W^{1,2} (\So \to \RR^2 \backslash \{0\})\}
-\]
-of maps avoiding the origin. Now we have \(H \subseteq C(\So \to \RR^2)\) and certainly \(C(\So \to \RR^2 \backslash \{0\})\) is open in \(C(\So \RR^2)\) with respect to the sup norm.
+is well defined for all \(X \ne 0\).
 
-{\color{red} Is it true that \(H'\) is open in \(H\)? This would be true if the map \(\iota : H \to C(\So \to \RR^2)\) is continuous since \(H' = \iota^{-1}(C(\So \to \RR^2 \backslash \{0\}))\) is the pull-back of an open set by a continuous map. This follows from Morrey's inequality? It says \(\iota\) is a bounded linear map into the Holder space \(C^{0,1/2}\). If not then that messes with the regular value stuff for \(\alpha\) since for that to work we need \(\alpha\) defined on an open neighbourhood of \(H'\).}
+To deal with the constraint functional, \(\alpha\) we note that while \(\alpha\) is not defined on all of \(H\), it is defined at least for the subset
+\[
+H^0 = \{X \in W^{1,2} (\So \to \RR^2 \backslash \{0\})\}
+\]
+of maps avoiding the origin. Here to define \(H^0\) we first note that given any fixed vector \(V \in \RR^2\), writing \(\inpr{\cdot}{\cdot}\) for the inner-product on \(\RR^2\), the map
+\[
+X \in H \mapsto \inpr{X}{V} \in W^{1,2}(\So \to \RR)
+\]
+is well defined and continuous. Since \(\So\) is one-dimensional, Morrey's inequality with \(n=1,p=2\) gives us a constant \(C > 0\) such that
+\[
+\|X^i\|_{C^{0,1/2}} \leq C\|X^i\|_{W^{1,2}}.
+\]
+Then \(X^1 = \inpr{X}{e_1}\) and \(X^2 = \inpr{X}{e_2}\) embed continuously into \(C^0(\So \to \RR), \|\cdot\|_{\infty}\) and hence we obtain a continuous embedding,
+\[
+\iota : H \to C^0(\So \to \RR^2), \|\cdot\|_{\infty}.
+\]
+Then we define the open set in \(H\),
+\begin{equation}
+\label{eq:H0}
+H^0 = \iota^{-1}\left(\{X \in C^0(\So \to \RR^2\backslash \{0\})\}\right).
+\end{equation}
+We also have use for the open sets defined for \(\epsilon > 0\) by,
+\begin{equation}
+\label{eq:Hepsilon}
+H^{\epsilon} = \iota^{-1}\left(\{X \in C^0(\So \to \RR^2\backslash \BB_{\epsilon}(0))\}\right).
+\end{equation}
 
-Since \(0\) is a regular point of \(\alpha\), the constraint manifold,
-\[
-\C = \alpha^{-1} (0)
-\]
-is a \(C^1\) manifold. In particular, it has a well defined tangent space.
+Now we have that \(\alpha\) is a well defined functional on \(H^{\epsilon}\) for \(\epsilon \geq 0\). We then define the constraint sets,
+\begin{equation}
+\label{eq:constraintsets}
+\C = \{X \in H^0 : \alpha(X) = 0\}, \quad \C_{\epsilon} = \{X \in X^{\epsilon} : \alpha(X) = 0\}.
+\end{equation}
 
-Let us define,
-\[
-N = J \frac{X}{|X|}
-\]
-where \(J\) denotes the counter-clockwise rotation by \(\pi/2\). Note that if we define,
-\[
-\gamma(s) = \int_0^s \frac{X}{|X|} ds, \quad s \in (0, 2\pi)
-\]
-then the unit tangent, \(T_{\gamma}\) and unit normal, \(N_{\gamma}\) are
-\[
-T_{\gamma} = \frac{X}{|X|}, \quad N_{\gamma} = N.
-\]
-So we drop the \(\gamma\) subscript and define,
-\[
-T = \frac{X}{|X|}
-\]
-with \(N\) still defined as above.
+\begin{lem}
+\label{lem:Csubmanifold}
+The constraint functional \(\alpha\) is \(C^1\) on the open set \(H^0\). Moreover, \(0\) is a regular value for \(\alpha\) and hence the constraint set \(\C\) is a \(C^1\) sub-manifold of \(H\).
+\end{lem}
 
-The for any \(V\) we have the projection of \(V\) onto the normal space
+\begin{proof}
+Given any \(X,V \in H^0\), we first show that the Gateaux derivative \(d\alpha_X (V)\) exists. That is,
 \[
-\pi_{\perp} (V) = V - \inpr{V}{T} T = V - \inpr{V}{\frac{X}{|X|}} \frac{X}{|X|}.
+\lim_{t\to 0} \frac{\alpha(X + t V) - \alpha(X)}{t} = \partial_t|_{t=0} \alpha(X + tV)
+\]
+exists. First observe that we may assume \(X, V\) are continuous and that we have \(\abs{X} > 0\). Then the map,
+\[
+(t, s) \mapsto \beta(X(s) + t V(s)) = \frac{X(s) + t V(s)}{\abs{X(s) + t V(s)}}
+\]
+is continuous with continuous partial derivative with respect to \(t\) for sufficiently small \(t\) (uniformly in \(\theta\)). Thus by compactness of \(\So\), we may interchange the order of integration and differentiation to obtain that
+\[
+\begin{split}
+d\alpha_X (V) &= \partial_t|_{t=0} \alpha(X + tV) = \int_{\So} \partial_t|_{t=0} \beta (X(s) + tV(s))  ds \\
+&= \int_{\So} \frac{1}{\abs{X}}\left(V - \inpr{V}{\frac{X}{\abs{X}}} \frac{X}{\abs{X}}\right) ds
+\end{split}
+\]
+is well defined. In fact recalling that \(T = \tfrac{X}{\abs{X}}, N = -J T\) from equation \eqref{eq:TNX}, we have
+\begin{equation}
+\label{eq:alphagateaux}
+d\alpha_X (V) = \int_{\So} \frac{\pi_N(V)}{\abs{X}} ds
+\end{equation}
+where
+\[
+\pi_N (V) (s)= \pi_{N (s)} (V(s)) = \inpr{V(s)}{N(s)}N(s)
+\]
+denotes the orthogonal (in \(\RR^2\)) projection onto \(N(s)\).
+
+Now we show that \(\alpha\) is in fact Frechet differentiable. That is, that,
+\[
+\lim_{V \to 0} \frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{W^{1,2}}} = 0.
 \]
 
+We have,
+\[
+\alpha(X + V) - \alpha(X) - d\alpha_X(V) = \int_{\So} \beta(X + V) - \beta(V) - d\beta_X(V) ds.
+\]
+Since \(\beta\) is \(C^1\) on \(\abs{X} > 0\) and by compactness of \(\So\), we have that for every \(\epsilon > 0\) there is a \(\delta > 0\) such that \(\|V\|_{C^0} < \delta\) implies that for every \(s\),
+\[
+\frac{\abs{\beta(X + V) - \beta(V) - d\beta_X(V)}}{\abs{V}} < \epsilon.
+\]
+
+Therefore we have that \(\|V\|_{C^0} < \delta\) implies,
+\[
+\begin{split}
+\frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{C^0}} \leq \frac{\int\abs{\beta(X + V) - \beta(V) - d\beta_X (V)}ds}{\|V\|_{C^0}} \leq \frac{\epsilon \|V\|_{C^0}}{\|V\|_{C^0}} = \epsilon
+\end{split}
+\]
+and hence \(\alpha\) is Frechet differentiable on \(C^0\).
+
+Now employing Morrey's inequality again we have a \(C > 0\) such that
+\[
+\|V\|_{C^0} \leq \|V\|_{C^{0,1/2}} \leq C \|V\|_{W^{1,2}}
+\]
+and hence if \(\|V\|_{C^0} < \delta\) we have
+\[
+\frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{W^{1,2}}} \leq C \frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{C^0}} < \epsilon.
+\]
+
+{\color{red} But what we need is that if \(\|V\|_{W^{1,2}} < \delta\) the inequality holds!
+
+We would be done if we had
+\[
+\|V\|_{C^0} \leq C \|V\|_{W^{1,2}}
+\]
+but this is certainly false by taking bump functions \(\varphi\) with \(L_2\) integral \(1\) and \(\|\varphi\|_{C^0}\) arbitrarily large.}
+\end{proof}
+
+\begin{lem}
+\label{lem:lambdaH}
+\[
+\lambda = \inf\{E(X) : X \in \C\}.
+\]
+\end{lem}
+
+\begin{proof}
+We have
+\[
+\lambda = \inf\{E(X) : X \in C^{\infty}(\So \to \RR^2) \cap \C\} \geq \inf\{E(X) : X \in \C\}.
+\]
+
+On the other hand, since \(C^{\infty}\) is dense in \(H\) and since the constraint set \(\C\) is a submanifold, we have that \(C^{\infty} \cap \C\) is dense in \(\C\) ({\color{red} I think! Take the nearest point projection of a smooth approximator though it's not clear smoothness is ensured}).
+
+Then for any \(X \in \C\) and \(\delta > 0\), there exists a \(Y \in C^{\infty} \cap C\) such that \(\|X - Y\|_{W^{1,2}} < \delta\). But now just observe that \(E\) is continuous away from \(0\) so that given any \(\epsilon > 0\) there exists a \(\delta(\epsilon) > 0\) such that,
+\[
+\|W - Z\|_{W^{1,2}} < \delta(\epsilon) \Rightarrow E(W) > E(Z) - \epsilon.
+\]
+Thus for any \(\epsilon > 0\) there is a \(Y \in C^{\infty}\) such that \(\|X - Y\|_{W^{1,2}} < \delta(\epsilon)\) and hence
+\[
+E(X) > E(Y) - \epsilon \geq \lambda - \epsilon.
+\]
+Therefore for every \(X \in \C\), \(E(X) \geq \lambda\) and hence
+\[
+\inf\{E(X) : X \in \C\} \geq \lambda.
+\]
+\end{proof}
 
 \section{Constraint Preserving Variations}
 
