@@ -9,7 +9,7 @@
 
 \maketitle
 
-\section{Setup}
+\section{The Constrained Problem}
 
 Given a smooth, regular curve \(\gamma \in C^{\infty}(\So \to \RR^2)\) with length \(L(\gamma) = 2\pi\), we define the energy,
 \begin{equation}
@@ -95,6 +95,8 @@ For this reason, we call \(\alpha\) the \emph{constraint functional}. We have th
 \lambda = 1.
 \]
 \end{conj}
+
+\section{Formulating the Problem in \(W^{1,2}\)}
 
 As usual, the space of smooth maps is not well suited to the minimisation problem, so we work instead with maps \(X \in H = W^{1,2} (\So \to \RR^2)\) for which energy functional,
 \[
@@ -241,34 +243,26 @@ and we obtain the desired continuity.
 We just need to show that if \(\alpha(X) = 0\), then \(d\alpha : H \to \RR^2\) is surjective. So for each \(v \in \RR^2\) we need a \(V \in H\) such that such that \(d\alpha_X (V) = v\).
 \end{proof}
 
-\begin{lem}
-\label{lem:lambdaH}
+Let us round out this section with the simple observation that by defining
+\begin{equation}
+\label{eq:mu}
+\mu = \inf\{E(X) : X \in \C\}
+\end{equation}
+we have the immediate inequality
 \[
-\lambda = \inf\{E(X) : X \in \C\}.
+\lambda = \inf\{E(X) : X \in C^{\infty}(\So \to \RR^2) \cap \C\} \geq \mu.
 \]
-\end{lem}
+It seems reasonable to expect that \(\mu = \lambda\) since \(C^{\infty}\) is dense in \(H\) but there is one difficulty to overcome in showing this directly. Namely, whilst given any \(X \in \C\), there are arbitrarily close smooth maps, there is no a-priori guarantee that there are arbitrarily close smooth maps also in \(\C\) which, being a submanifold of positive co-dimension is nowhere dense. By continuity of \(\alpha\) we can find arbitrarily close smooth \(Y\) with arbitrarily small \(\abs{\alpha(Y)}\). It's not a-priori clear that small \(\abs{\alpha(Y)}\) implies that \(E(Y)\) is at least say \(\lambda - \epsilon\). The problem again is that it's not clear there are smooth \(Z \in \C\) close to \(Y\) just from the assumption that \(\alpha(Y)\) is close to \(0\).
 
-\begin{proof}
-We have
+However, it will turn out unnecessary to directly prove that \(\mu \geq \lambda\). Instead it suffices to show that
 \[
-\lambda = \inf\{E(X) : X \in C^{\infty}(\So \to \RR^2) \cap \C\} \geq \inf\{E(X) : X \in \C\}.
+\mu = 1
 \]
-
-On the other hand, since \(C^{\infty}\) is dense in \(H\) and since the constraint set \(\C\) is a submanifold, we have that \(C^{\infty} \cap \C\) is dense in \(\C\) ({\color{red} I think! Take the nearest point projection of a smooth approximator though it's not clear smoothness is ensured}).
-
-Then for any \(X \in \C\) and \(\delta > 0\), there exists a \(Y \in C^{\infty} \cap C\) such that \(\|X - Y\|_{W^{1,2}} < \delta\). But now just observe that \(E\) is continuous away from \(0\) so that given any \(\epsilon > 0\) there exists a \(\delta(\epsilon) > 0\) such that,
+since then we have
 \[
-\|W - Z\|_{W^{1,2}} < \delta(\epsilon) \Rightarrow E(W) > E(Z) - \epsilon.
+1 = E(\text{circle}) \geq \lambda \geq \mu = 1
 \]
-Thus for any \(\epsilon > 0\) there is a \(Y \in C^{\infty}\) such that \(\|X - Y\|_{W^{1,2}} < \delta(\epsilon)\) and hence
-\[
-E(X) > E(Y) - \epsilon \geq \lambda - \epsilon.
-\]
-Therefore for every \(X \in \C\), \(E(X) \geq \lambda\) and hence
-\[
-\inf\{E(X) : X \in \C\} \geq \lambda.
-\]
-\end{proof}
+and we obtain equality all the way through. In other words \Cref{conj:main} follows from showing that \(\mu = 1\).
 
 \section{Constraint Preserving Variations}
 
