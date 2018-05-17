@@ -330,6 +330,79 @@ where \(\bar{\mu} : \So \to \RR\) is arbitrary and \(\bar{\rho} \perp_{L^2} \{\s
 T_{\bar{X}} \C = \{\bar{\mu} T + \bar{\rho} N : \bar{\mu} \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
 \]
 
+\section{The Constraint, \(\alpha\) is Natural for the Energy, \(E\)}
+
+In this section we prove that the constraint, \(\alpha\) is a \emph{Natural Constraint} for the energy \(E\). That is, every constrained critical point of \(E\) is in fact an unconstrained critical point of \(E\).
+
+\begin{thm}
+Suppose \(X\) is a critical point for \(E\) with respect to constraint preserving variations so that for all \(\bar{\mu}\) and all \(\bar{\rho} \perp_{L^2} \{\cos, \sin\}\) we have
+\[
+dE_X(\kappa\bar{\mu} T + f\kappa \bar{\rho} N) = 0.
+\]
+Then, \(X\) is an unconstrained critical point for \(E\), so that
+\[
+dE_X \equiv 0.
+\]
+\end{thm}
+
+\begin{proof}
+Let \(X\) be a constrained critical point. Since the energy is scale invariant, we may assume that \(\|X\|_2 = 1\). The variation of energy is then
+\[
+DE_X (V) = \frac{2}{\|X\|_2^2} \left(\inpr{X'}{V'}_2 - \frac{1}{\|X\|_2^2}\inpr{X}{V}_2\right) = -2 \inpr{X'' + X}{V}_2.
+\]
+
+Let us write,
+\[
+X(s) = x_1(s) e_1 + x_2(s) e_2
+\]
+so that
+\[
+X'' + X = (x_1'' + x_1)e_1 + (x_2'' + x_2)e_2.
+\]
+For convenience, let us write
+\[
+Y = Y'' + Y = y_1 e_1 + y_2 e_2.
+\]
+
+{\color{red} We should take care here that \(X''\) is not defined for \(X \in W^{1,2}\).}
+
+Constraint preserving variations are,
+\[
+V = \kappa \bar{\mu} T + f\kappa\bar{\rho} N.
+\]
+where \(\bar{\mu}\) is arbitrary and \(\bar{\rho} \perp_{L^2} \{\cos,\sin\}\).
+
+Recall we also have
+\[
+T = -\sin \theta(s) e_1 + \cos \theta(s) e_2, \quad N = \cos \theta(s) e_1 + \sin \theta(s) e_2.
+\]
+
+In particular, taking \(\bar{\rho} \equiv 0\) we have for every \(\bar{\mu}\),
+\[
+T = -\kappa\bar{\mu}\sin\theta e_1 + \kappa\bar{\mu}\cos\theta e_2
+\]
+and hence
+\[
+0 = -\frac{1}{2} dE_X(\kappa\bar{\mu}) = \int_{\So} \bar{\mu}(-y_1 \sin\theta + y_2 \cos\theta) \kappa ds = \int_{\So} \bar{\mu}(-y_1 \sin\theta + y_2 \cos\theta) d\theta.
+\]
+Thus as a function of \(\theta\),
+\[
+-y_1 \sin\theta + y_2 \cos\theta = 0 \quad \Rightarrow \quad y_2 = \tan\theta y_1.
+\]
+
+Now we take \(\bar{\mu} \equiv 0\) to obtain that for every \(\bar{\rho} \perp_{L^2} \{\cos,\sin\}\),
+\[
+0 = -\frac{1}{2} dE_X(f\kappa\bar{\rho} N) = \int_{\So} f\bar{\rho}(y_1 \cos\theta + y_2 \sin\theta) d\theta = \int_{\So} f y_1 \bar{\rho}(\cos\theta + \sin\theta\tan\theta) d\theta.
+\]
+
+Thus we have that
+\[
+y_1 \perp_{L^2} \{\bar{\rho}(\cos\theta + \sin\theta\tan\theta\}.
+\]
+
+{\color{red} Now we want to show this implies $y_1 = 0$. I'm not sure whether this is true or not though! Maybe this shows how to find a counter example to the conjecture!}
+\end{proof}
+
 \section{Transplanting Variations}
 
 Let \(X\) satisfy the constraint \(\alpha(X) = 0\) (more generally \(X\) is a regular point \(X \in \alpha^{-1} (W)\) for \(W \in \RR^2\) a regular value of \(\alpha\)) and let
