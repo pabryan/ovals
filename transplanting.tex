@@ -377,11 +377,11 @@ Recall we also have
 T = -\sin \theta(s) e_1 + \cos \theta(s) e_2, \quad N = \cos \theta(s) e_1 + \sin \theta(s) e_2.
 \]
 
-In particular, taking \(\bar{\rho} \equiv 0\) we have for every \(\bar{\mu}\),
+In particular, taking \(\bar{\rho} \equiv 0\) we have
 \[
-T = -\kappa\bar{\mu}\sin\theta e_1 + \kappa\bar{\mu}\cos\theta e_2
+V = -\kappa\bar{\mu}\sin\theta e_1 + \kappa\bar{\mu}\cos\theta e_2
 \]
-and hence
+and hence for every \(\bar{\mu}\),
 \[
 0 = -\frac{1}{2} dE_X(\kappa\bar{\mu}) = \int_{\So} \bar{\mu}(-y_1 \sin\theta + y_2 \cos\theta) \kappa ds = \int_{\So} \bar{\mu}(-y_1 \sin\theta + y_2 \cos\theta) d\theta.
 \]
@@ -397,10 +397,12 @@ Now we take \(\bar{\mu} \equiv 0\) to obtain that for every \(\bar{\rho} \perp_{
 
 Thus we have that
 \[
-y_1 \perp_{L^2} \{\bar{\rho}(\cos\theta + \sin\theta\tan\theta\}.
+y_1 f \perp_{L^2} \{\bar{\rho}(\cos\theta + \sin\theta\tan\theta\}.
 \]
 
-{\color{red} Now we want to show this implies $y_1 = 0$. I'm not sure whether this is true or not though! Maybe this shows how to find a counter example to the conjecture!}
+{\color{red} Now we want to show this implies $y_1f = 0$ and since \(f > 0\) we obtain \(y_1 = 0\). I'm not sure whether this is true though! I think \(\{\bar{\rho}(\cos\theta + \sin\theta\tan\theta)\}^{\perp} \ne \emptyset\) and all we can conclude is that \(y_1 f\) is in this space. Another problem is that \(\sin\theta\tan\theta\) probably is not in \(L^2\). This may work in our favour though since we do have that \(y_1 \tan\theta = y_2\) is in \(L^2\) which restricts the possibilities for \(y_1\) which is what we want. Lastly note that if \(\bar{\rho} = \cos\theta\), then \(\bar{\rho} \sin\theta\tan\theta\) is in \(L^2\).
+
+On the other hand, maybe this shows how to find a counter example to the conjecture by finding \(y_1 \in \{\bar{\rho}(\cos\theta + \sin\theta\tan\theta)\}^{\perp}\)!}
 \end{proof}
 
 \section{Transplanting Variations}
