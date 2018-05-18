@@ -41,7 +41,7 @@ Let us write,
 \label{eq:TN}
 T = \gamma', \quad N = -J T
 \end{equation}
-for the unit tangent and normal. Here we choose the orientation \(N = -JT\) for convenience when dealing with circles later. Define the geodesic curvature \(\kappa\) by the Frenet-Serret formula
+for the unit tangent and normal, where $J$ is clockwise rotation by $\pi/2$. Here we choose the orientation \(N = -JT\) for convenience when dealing with circles later. Define the geodesic curvature \(\kappa\) by the Frenet-Serret formula
 \begin{equation}
 \label{eq:FS}
 \partial_s T = - \kappa N, \quad \partial_s N = \kappa T.
@@ -198,12 +198,12 @@ Now, we have that
 \[
 \begin{split}
 d\alpha_X(V) - d\alpha_{X_0} (V) &= \int_{\So} \frac{\pi_N(V)}{\abs{X}} - \frac{\pi_{N_0} (V)}{\abs{X_0}} ds \\
-&= \int_{\So} T(X(s), V(s)) - T(X_0(s), V(s)) ds
+&= \int_{\So} \T(X(s), V(s)) - \T(X_0(s), V(s)) ds
 \end{split}
 \]
-where \(T : \RR^2\backslash\{0\} \times \RR^2 \to \RR^2\) is the continuous map
+where \(\T : \RR^2\backslash\{0\} \times \RR^2 \to \RR^2\) is the continuous map
 \[
-T (x, v) = -\inpr{v}{\frac{1}{\abs{x}^3}J x} x.
+\T (x, v) = -\inpr{v}{\frac{1}{\abs{x}^3}J x} x.
 \]
 Now since \(X_0\) satisfies the constraint, we have \(\abs{X_0} > 0\) and moreover since \(X_0\) is a continuous map on the compact space \(\So\), there exists \(R, r > 0\) such that for every \(s \in \So\),
 \[
@@ -221,15 +221,15 @@ Then for all \(s\), \((X(s), V(s)) \in \RR^4\) lies in the compact set,
 \[
 r/2 \leq \abs{x} \leq R + r/2, \quad 0 \leq \abs{v} \leq C
 \]
-on which the function \(T\) is uniformly continuous.
+on which the function \(\T\) is uniformly continuous.
 
 Thus, independently of \(s \in \So\) and \(V\) with \(\|V\|_{W^{1,2}} = 1\), we have for every \(\epsilon > 0\), there is a \(\delta > 0\) such that
 \[
-\|X - X_0\|_{C^0} < \delta \Rightarrow \abs{T(X(s), V(s)) - T(X_0(s), V(s))} < \epsilon
+\|X - X_0\|_{C^0} < \delta \Rightarrow \abs{\T(X(s), V(s)) - \T(X_0(s), V(s))} < \epsilon
 \]
 and hence for every \(V\) such that \(\|V\|_{W^{1,2}} = 1\)
 \[
-\|X - X_0\|_{C^0} < \delta \Rightarrow \int_{\So} \abs{T(X(s), V(s)) - T(X_0(s)) - V(s)} ds < 2\pi \epsilon
+\|X - X_0\|_{C^0} < \delta \Rightarrow \int_{\So} \abs{\T(X(s), V(s)) - \T(X_0(s)) - V(s)} ds < 2\pi \epsilon
 \]
 and we obtain the desired continuity.
 \end{proof}
