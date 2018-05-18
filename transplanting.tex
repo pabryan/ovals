@@ -330,20 +330,38 @@ where \(\bar{\mu} : \So \to \RR\) is arbitrary and \(\bar{\rho} \perp_{L^2} \{\s
 T_{\bar{X}} \C = \{\bar{\mu} T + \bar{\rho} N : \bar{\mu} \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
 \]
 
-\section{The Constraint, \(\alpha\) is Natural for the Energy, \(E\)}
+\section{Constrained Critical Points}
 
-In this section we prove that the constraint, \(\alpha\) is a \emph{Natural Constraint} for the energy \(E\). That is, every constrained critical point of \(E\) is in fact an unconstrained critical point of \(E\).
+In this section we characterise the constrained critical points.
 
 \begin{thm}
 Suppose \(X\) is a critical point for \(E\) with respect to constraint preserving variations so that for all \(\bar{\mu}\) and all \(\bar{\rho} \perp_{L^2} \{\cos, \sin\}\) we have
 \[
 dE_X(\kappa\bar{\mu} T + f\kappa \bar{\rho} N) = 0.
 \]
-Then, \(X\) is an unconstrained critical point for \(E\), so that
+Then,
 \[
-dE_X \equiv 0.
+X''(s) + X(s) = Y(\theta(s))
+\]
+where
+\[
+Y(\theta) = y_1(\theta) e_1 + \tan \theta y_1(\theta) e_2
+\]
+and
+\[
+\int_{\So} f y_1 \bar{\rho}(\cos\theta + \sin\theta \tan\theta) d\theta = 0.
 \]
 \end{thm}
+
+\begin{rem}
+Loosely speaking we have
+\[
+fy_1 \in \{\bar{\rho} (\cos\theta + \sin\theta\tan\theta) : \bar{\rho} \in \{\cos, \sin\}^{\perp}\}^{\perp}.
+\]
+The word ``loosely'' is used since \(\sin\theta\tan\theta\) is not in \(L^2\). In particular \(Y = 0\) satisfies the conditions in the theorem which simply says that \(X'' + X = 0\). That is, \(X\) is an unconstrained critical point which is of course also a constrained critical point.
+\end{rem}
+
+{\color{red} If \(\{\bar{\rho} (\cos\theta + \sin\theta\tan\theta) : \bar{\rho} \in \{\cos, \sin\}^{\perp}\} = H\), then in fact we obtain that \(X\) is an unconstrained critical point. Otherwise, there exists constrained critical points that are not unconstrained critical points.}
 
 \begin{proof}
 Let \(X\) be a constrained critical point. Since the energy is scale invariant, we may assume that \(\|X\|_2 = 1\). The variation of energy is then
