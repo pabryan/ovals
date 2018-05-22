@@ -341,27 +341,10 @@ dE_X(\kappa\bar{\mu} T + f\kappa \bar{\rho} N) = 0.
 \]
 Then,
 \[
-X''(s) + X(s) = Y(\theta(s))
+X''(s) + X(s) = (A \cos(\theta(s)) + B \sin(\theta(s))) \frac{J(X(s))}{\abs{X(s)}^2}
 \]
-where
-\[
-Y(\theta) = y_1(\theta) e_1 + \tan \theta y_1(\theta) e_2
-\]
-and
-\[
-\int_{\So} f y_1 \bar{\rho}(\cos\theta + \sin\theta \tan\theta) d\theta = 0.
-\]
+for constants \(A, B\) and where \(J\) denotes the clockwise rotation by \(2\pi\). In particular \(X'' + X\) is pointwise orthogonal to \(X\).
 \end{thm}
-
-\begin{rem}
-Loosely speaking we have
-\[
-fy_1 \in \{\bar{\rho} (\cos\theta + \sin\theta\tan\theta) : \bar{\rho} \in \{\cos, \sin\}^{\perp}\}^{\perp}.
-\]
-The word ``loosely'' is used since \(\sin\theta\tan\theta\) is not in \(L^2\). In particular \(Y = 0\) satisfies the conditions in the theorem which simply says that \(X'' + X = 0\). That is, \(X\) is an unconstrained critical point which is of course also a constrained critical point.
-\end{rem}
-
-{\color{red} If \(\{\bar{\rho} (\cos\theta + \sin\theta\tan\theta) : \bar{\rho} \in \{\cos, \sin\}^{\perp}\} = H\), then in fact we obtain that \(X\) is an unconstrained critical point. Otherwise, there exists constrained critical points that are not unconstrained critical points.}
 
 \begin{proof}
 For any \(X\) the variation of energy is
@@ -372,49 +355,87 @@ Since the energy is scale invariant, we may assume that \(\|X\|_2 = 1\) in which
 \[
 DE_X (V) = 2\left[\inpr{X'}{V'}_2 - E(X) \inpr{X}{V}_2\right].
 \]
-Let us write, \(E'(X) \in H\) for the unique element such that
+For \(X\) smooth we have
 \[
-DE_X(V) = \inpr{E'(X)}{V}_{W^{1,2}} = \inpr{(E'(X))'}{V'}_2 + \inpr{E'(X)}{V}_2.
+DE_X(V) = -2\inpr{X'' + X}{V}_2.
+\]
+For convenience, let \(Y = X'' + X\) so that
+\[
+DE_X(V) = -2\inpr{Y}{V}_2.
 \]
 
-{\color{red} Can we write down \(E'(X)\) explicitly? This seems like the sort of thing, but is not quite right:
-\[
-E'(X)(s) = -E(X) 2X\left(\frac{-s}{E(X)}\right).
-\]
-}
-
-For \(X \in C^{\infty}\), we have
-\[
-DE_X = -2\inpr{X'' + X}{V}_2.
-\]
-In general, we understand \(X'' + X = Y\) in the weak sense that for all \(V \in W^{1,2}\),
-\[
--\inpr{X'}{V'}_2 + \inpr{X}{V}_2 = \inpr{Y}{V}_2,
-\]
-making no assertion that \(X''\) exists pointwise.
-
-{\color{red} Can we assert the existence of such a \(Y \in H\) though? That is, need there be}
-
-For convenience, let us write
-\[
-Y = y_1 e_1 + y_2 e_2
-\]
-so that
-\[
-DE_X (V) = \inpr{Y}{V}_2.
-\]
+{\color{red} This should have a reasonable weak formulation too but we probably don't need it by Denzler.}
 
 Now, constraint preserving variations are,
 \[
 V = \kappa \bar{\mu} T + f\kappa\bar{\rho} N.
 \]
-where \(\bar{\mu}\) is arbitrary and \(\bar{\rho} \perp_{L^2} \{\cos,\sin\}\).
-
-Recall we also have
+where \(\bar{\mu}\) is arbitrary and \(\bar{\rho} \in E_1^{\perp}\) with \(E_1 = \{\cos,\sin\}\). Recall also that we have
 \[
-T = -\sin \theta(s) e_1 + \cos \theta(s) e_2, \quad N = \cos \theta(s) e_1 + \sin \theta(s) e_2.
+T = \frac{X}{\abs{X}}, \quad N = -J(T) = -J\left(\frac{X}{\abs{X}}\right).
 \]
 
+Now let \(X\) be a constrained critical point. Then we have for arbitrary \(\bar{\mu}\) and for \(\bar{\rho} \in E_1^{\perp}\),
+\begin{equation}
+\label{eq:constrained_critical}
+0 = \inpr{Y}{\kappa \bar{\mu} T + f\kappa\bar{\rho} N}_2 = \inpr{Y}{\kappa \bar{\mu} T - \kappa\bar{\rho} J(X)}_2
+\end{equation}
+where we use that
+\[
+f N = -\abs{X} J\left(\frac{X}{\abs{X}}\right) = - J(X).
+\]
+
+{\color{red}actually we probably should just leave it as \(fN\) since we just reverse it below immediately after equation \eqref{eq:YN} anyway.}
+
+Now we change variables from \(s\) to \(\theta\):
+\[
+0 = \inpr{Y}{\kappa \bar{\mu} T + f\kappa\bar{\rho} N}_2 = \int_{\So} \left(\bar{\mu} \inpr{Y}{T} - \bar{\rho} \inpr{Y}{J(X)}\right) \kappa ds = \int_{\So} \bar{\mu} \inpr{Y}{T} - \bar{\rho} \inpr{Y}{J(X)} d\theta.
+\]
+Let us write \(\inpr{\cdot}{\cdot}_2^{\theta}\) for the \(L^2\) inner-product for functions with respect to \(\theta\) so that
+\begin{equation}
+\label{eq:constrained_critical_theta}
+0 = \inpr{\inpr{Y}{T}}{\bar{\mu}}_2^{\theta} - \inpr{\inpr{Y}{J(X)}}{\bar{\rho}}_2^{\theta}.
+\end{equation}
+
+In particular, taking \(\bar{\rho} = 0\) we have that for every \(\bar{\mu}\),
+\[
+0 = \inpr{\inpr{Y}{T}}{\bar{\mu}}_2^{\theta}
+\]
+and hence \(\inpr{Y(\theta)}{T(\theta)} = 0\) for every \(\theta\). Thus we may write,
+\begin{equation}
+\label{eq:YN}
+Y(\theta) = h(\theta) N(\theta) \quad \Rightarrow \quad \inpr{Y}{J(X)} = -fh.
+\end{equation}
+for some function \(h\). Substituting equation \eqref{eq:YN} into equation \eqref{eq:constrained_critical_theta} gives
+\[
+0 = \inpr{fh}{\bar{\rho}}_2^{\theta}.
+\]
+That is, \(fh \perp \bar{\rho}\) and since \(\bar{\rho}\) may be any element of \(E_1^{\perp}\) we have \(fh \in E_1\) so that
+\[
+fh = A \cos\theta + B \sin\theta
+\]
+for constants \(A, B\).
+
+Therefore,
+\[
+X'' + X = Y = hN = -\frac{h}{f} J(X) = -\frac{fh}{f^2} J(X) = -(A \cos\theta + B \sin\theta) \frac{J(X)}{\abs{X}^2}.
+\]
+\end{proof}
+
+\begin{rem}
+{\color{red} Here are some other useful points.}
+Now let us consider a general variation. That is, with an arbitrary \(V \in W^{1,2}\) which may be written \(V = \bar{\mu}T + (\bar{\rho}_1 + \bar{\rho}) N\) where \(\bar{\rho} \in E_1^{\perp}\) as before and \(\bar{\rho}_1 \in E_1\) is a linear combination of \(\sin\) and \(\cos\). Of course, \(V\) is constraint preserving if and only if \(\bar{\rho}_1 \equiv 0\). In any event, for arbitrary \(V\) we obtain
+\[
+\begin{split}
+DE_X(V) &= -2 \inpr{\inpr{Y}{J(X)}}{\bar{\rho}_1}_2^{\theta} = -2\inpr{\inpr{Y}{J(X)}}{\pi_1(\inpr{V}{N})}_2^{\theta} \\
+&= -2\inpr{\pi_1(\inpr{Y}{J(X)})}{\inpr{V}{N}}_2^{\theta}
+\end{split}
+\]
+where \(\pi_1\) is the \(L^2\) orthogonal projection onto \(E_1\) which is self-adjoint.
+\end{rem}
+
+\begin{rem}
+{\color{red} Here are some other useful points.}
 In particular, taking \(\bar{\rho} \equiv 0\) we have
 \[
 V = -\kappa\bar{\mu}\sin\theta e_1 + \kappa\bar{\mu}\cos\theta e_2
@@ -448,7 +469,7 @@ Another way to express \eqref{eq:constrained_critical} is
 {\color{red} Now we want to show this implies $y_1f = 0$ and since \(f > 0\) we obtain \(y_1 = 0\). I'm not sure whether this is true though! I think \(\{\bar{\rho}(\cos\theta + \sin\theta\tan\theta)\}^{\perp} \ne \emptyset\) and all we can conclude is that \(y_1 f\) is in this space. Another problem is that \(\sin\theta\tan\theta\) probably is not in \(L^2\). This may work in our favour though since we do have that \(y_1 \tan\theta = y_2\) is in \(L^2\) which restricts the possibilities for \(y_1\) which is what we want. Lastly note that if \(\bar{\rho} = \cos\theta\), then \(\bar{\rho} \sin\theta\tan\theta\) is in \(L^2\).
 
 On the other hand, maybe this shows how to find a counter example to the conjecture by finding \(y_1 \in \{\bar{\rho}(\cos\theta + \sin\theta\tan\theta)\}^{\perp}\)!}
-\end{proof}
+\end{rem}
 
 \section{Transplanting Variations}
 
