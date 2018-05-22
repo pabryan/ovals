@@ -364,27 +364,47 @@ The word ``loosely'' is used since \(\sin\theta\tan\theta\) is not in \(L^2\). I
 {\color{red} If \(\{\bar{\rho} (\cos\theta + \sin\theta\tan\theta) : \bar{\rho} \in \{\cos, \sin\}^{\perp}\} = H\), then in fact we obtain that \(X\) is an unconstrained critical point. Otherwise, there exists constrained critical points that are not unconstrained critical points.}
 
 \begin{proof}
-Let \(X\) be a constrained critical point. Since the energy is scale invariant, we may assume that \(\|X\|_2 = 1\). The variation of energy is then
+For any \(X\) the variation of energy is
 \[
-DE_X (V) = \frac{2}{\|X\|_2^2} \left(\inpr{X'}{V'}_2 - \frac{1}{\|X\|_2^2}\inpr{X}{V}_2\right) = -2 \inpr{X'' + X}{V}_2.
+DE_X (V) = \frac{2}{\|X\|_2^2} \left(\inpr{X'}{V'}_2 - \frac{\|X'\|_2^2}{\|X\|_2^2}\inpr{X}{V}_2\right) = \frac{2}{\|X\|_2^2} \left(\inpr{X'}{V'}_2 - E(X) \inpr{X}{V}_2\right).
+\]
+Since the energy is scale invariant, we may assume that \(\|X\|_2 = 1\) in which case,
+\[
+DE_X (V) = 2\left[\inpr{X'}{V'}_2 - E(X) \inpr{X}{V}_2\right].
+\]
+Let us write, \(E'(X) \in H\) for the unique element such that
+\[
+DE_X(V) = \inpr{E'(X)}{V}_{W^{1,2}} = \inpr{(E'(X))'}{V'}_2 + \inpr{E'(X)}{V}_2.
 \]
 
-Let us write,
+{\color{red} Can we write down \(E'(X)\) explicitly? This seems like the sort of thing, but is not quite right:
 \[
-X(s) = x_1(s) e_1 + x_2(s) e_2
+E'(X)(s) = -E(X) 2X\left(\frac{-s}{E(X)}\right).
+\]
+}
+
+For \(X \in C^{\infty}\), we have
+\[
+DE_X = -2\inpr{X'' + X}{V}_2.
+\]
+In general, we understand \(X'' + X = Y\) in the weak sense that for all \(V \in W^{1,2}\),
+\[
+-\inpr{X'}{V'}_2 + \inpr{X}{V}_2 = \inpr{Y}{V}_2,
+\]
+making no assertion that \(X''\) exists pointwise.
+
+{\color{red} Can we assert the existence of such a \(Y \in H\) though? That is, need there be}
+
+For convenience, let us write
+\[
+Y = y_1 e_1 + y_2 e_2
 \]
 so that
 \[
-X'' + X = (x_1'' + x_1)e_1 + (x_2'' + x_2)e_2.
-\]
-For convenience, let us write
-\[
-Y = Y'' + Y = y_1 e_1 + y_2 e_2.
+DE_X (V) = \inpr{Y}{V}_2.
 \]
 
-{\color{red} We should take care here that \(X''\) is not defined for \(X \in W^{1,2}\).}
-
-Constraint preserving variations are,
+Now, constraint preserving variations are,
 \[
 V = \kappa \bar{\mu} T + f\kappa\bar{\rho} N.
 \]
@@ -399,24 +419,31 @@ In particular, taking \(\bar{\rho} \equiv 0\) we have
 \[
 V = -\kappa\bar{\mu}\sin\theta e_1 + \kappa\bar{\mu}\cos\theta e_2
 \]
-and hence for every \(\bar{\mu}\),
+and hence
 \[
-0 = -\frac{1}{2} dE_X(\kappa\bar{\mu}) = \int_{\So} \bar{\mu}(-y_1 \sin\theta + y_2 \cos\theta) \kappa ds = \int_{\So} \bar{\mu}(-y_1 \sin\theta + y_2 \cos\theta) d\theta.
+0 = -\frac{1}{2} dE_X(\kappa\bar{\mu}) = \int_{\So} \bar{\mu}(-y_1 \sin\theta + y_2 \cos\theta) \kappa ds = \int_{\So} \bar{\mu}(-y_1 \sin\theta + y_2 \cos\theta) d\theta
 \]
-Thus as a function of \(\theta\),
+for every \(\bar{\mu}\). Thus as a function of \(\theta\),
 \[
 -y_1 \sin\theta + y_2 \cos\theta = 0 \quad \Rightarrow \quad y_2 = \tan\theta y_1.
 \]
 
 Now we take \(\bar{\mu} \equiv 0\) to obtain that for every \(\bar{\rho} \perp_{L^2} \{\cos,\sin\}\),
-\[
+\begin{equation}
+\label{eq:constrained_critical}
 0 = -\frac{1}{2} dE_X(f\kappa\bar{\rho} N) = \int_{\So} f\bar{\rho}(y_1 \cos\theta + y_2 \sin\theta) d\theta = \int_{\So} f y_1 \bar{\rho}(\cos\theta + \sin\theta\tan\theta) d\theta.
+\end{equation}
+Note that while \(\sin\theta\tan\theta \notin L^2\), equation \eqref{eq:constrained_critical} is well defined since \(y_1 \tan\theta = y_2 \in L^2\).
+
+Equation \eqref{eq:constrained_critical} gives us the relation
+\[
+\int_{\So} f y_1 \bar{\rho} \cos\theta d\theta = - \int_{\So} f y_1 \bar{\rho} \sin\theta\tan\theta d\theta.
+\]
+Another way to express \eqref{eq:constrained_critical} is
+\[
+0 = \int_{\So} \frac{f y_1 \bar{\rho}}{\cos\theta} d\theta.
 \]
 
-Thus we have that
-\[
-y_1 f \perp_{L^2} \{\bar{\rho}(\cos\theta + \sin\theta\tan\theta\}.
-\]
 
 {\color{red} Now we want to show this implies $y_1f = 0$ and since \(f > 0\) we obtain \(y_1 = 0\). I'm not sure whether this is true though! I think \(\{\bar{\rho}(\cos\theta + \sin\theta\tan\theta)\}^{\perp} \ne \emptyset\) and all we can conclude is that \(y_1 f\) is in this space. Another problem is that \(\sin\theta\tan\theta\) probably is not in \(L^2\). This may work in our favour though since we do have that \(y_1 \tan\theta = y_2\) is in \(L^2\) which restricts the possibilities for \(y_1\) which is what we want. Lastly note that if \(\bar{\rho} = \cos\theta\), then \(\bar{\rho} \sin\theta\tan\theta\) is in \(L^2\).
 
