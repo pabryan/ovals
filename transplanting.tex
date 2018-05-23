@@ -341,9 +341,9 @@ dE_X(\kappa\bar{\mu} T + f\kappa \bar{\rho} N) = 0.
 \]
 Then,
 \[
-X''(s) + X(s) = (A \cos(\theta(s)) + B \sin(\theta(s))) \frac{J(X(s))}{\abs{X(s)}^2}
+X''(s) + E(X) X(s) = (A \cos(\theta(s)) + B \sin(\theta(s))) \frac{J(X(s))}{\abs{X(s)}^2}
 \]
-for constants \(A, B\) and where \(J\) denotes the clockwise rotation by \(2\pi\). In particular \(X'' + X\) is pointwise orthogonal to \(X\).
+for constants \(A, B\) and where \(J\) denotes the clockwise rotation by \(2\pi\). In particular \(X'' + E(X) X\) is pointwise orthogonal to \(X\).
 \end{thm}
 
 \begin{proof}
@@ -357,9 +357,9 @@ DE_X (V) = 2\left[\inpr{X'}{V'}_2 - E(X) \inpr{X}{V}_2\right].
 \]
 For \(X\) smooth we have
 \[
-DE_X(V) = -2\inpr{X'' + X}{V}_2.
+DE_X(V) = -2\inpr{X'' + E(X) X}{V}_2.
 \]
-For convenience, let \(Y = X'' + X\) so that
+For convenience, let \(Y = X'' + E(X) X\) so that
 \[
 DE_X(V) = -2\inpr{Y}{V}_2.
 \]
@@ -418,7 +418,7 @@ for constants \(A, B\).
 
 Therefore,
 \[
-X'' + X = Y = hN = -\frac{h}{f} J(X) = -\frac{fh}{f^2} J(X) = -(A \cos\theta + B \sin\theta) \frac{J(X)}{\abs{X}^2}.
+X'' + E(X) X = Y = hN = -\frac{h}{f} J(X) = -\frac{fh}{f^2} J(X) = -(A \cos\theta + B \sin\theta) \frac{J(X)}{\abs{X}^2}.
 \]
 \end{proof}
 
