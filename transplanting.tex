@@ -422,6 +422,61 @@ X'' + E(X) X = Y = hN = -\frac{h}{f} J(X) = -\frac{fh}{f^2} J(X) = -(A \cos\thet
 \]
 \end{proof}
 
+{\color{red} I tried to use the theorem to compute the energy, but it didn't work out so well:}
+
+\begin{cor}
+The energy of a constrained critical point, \(X\) is
+\[
+E(X) = E(X).
+\]
+\end{cor}
+
+\begin{proof}
+From the theorem we have
+\[
+X'' + E(X) X = -(A \cos\theta + B \sin\theta) \frac{1}{\abs{X}} N
+\]
+and \(\|X\|_2 = 1\). Then
+\[
+\begin{split}
+E(X) &= \int_{\So} \inpr{X'}{X'} ds = -\int_{\So} \inpr{X''}{X} ds \\
+&= \int_{\So} \inpr{(A \cos\theta + B \sin\theta) \frac{1}{\abs{X}} N + E(X) X}{X} ds \\
+&= \int_{\So} E(X) \inpr{X}{X} ds = E(X) \|X\|^2 = E(X).
+\end{split}
+\]
+\end{proof}
+
+{\color{red} How about the constraint?}
+
+\begin{cor}
+Let \(X\) satisfy the conclusion of the theorem. Then,
+\[
+\alpha(X) = {\color{red} ?}
+\]
+\end{cor}
+
+\begin{proof}
+From the theorem we have,
+\[
+X'' + E(X) X = -\frac{(A \cos\theta + B \sin\theta)}{\abs{X}} N.
+\]
+Then
+\[
+\frac{X}{\abs{X}} = -\frac{X''}{E(X)\abs{X}} - \frac{(A \cos\theta + B \sin\theta)}{E(X)\abs{X}^2} N.
+\]
+Hence
+\[
+\alpha(X) = -\frac{1}{E(X)} \int_{\So} \frac{X''}{\abs{X}} +  \frac{(A \cos\theta + B \sin\theta)}{\abs{X}^2} N ds.
+\]
+If \(A, B = 0\) then we get \(X'' = -E(X) X\) and hence
+\[
+\alpha(X) = \frac{1}{E(X)} \int_{\So} \frac{E(X)X}{\abs{X}} ds = \int_{\So} \frac{X}{\abs{X}} ds = 0
+\]
+as expected. So that's nice and consistent.
+
+{\color{red} If \(A, B \ne 0\), is it obvious that \(\alpha(X) = 0\) or that \(\alpha(X) \ne 0\)? Note that for this corollary we don't assume a priori that \(\alpha(X) = 0\). We just assume that \(X\) satisfies the hypothesis of the theorem. If we can show that \((A, B) \ne (0, 0)\) implies that \(\alpha(X) \ne 0\) then we'd be done! But I don't see it one way or the other at all.}
+\end{proof}
+
 \begin{rem}
 {\color{red} Here are some other useful points.}
 Now let us consider a general variation. That is, with an arbitrary \(V \in W^{1,2}\) which may be written \(V = \bar{\mu}T + (\bar{\rho}_1 + \bar{\rho}) N\) where \(\bar{\rho} \in E_1^{\perp}\) as before and \(\bar{\rho}_1 \in E_1\) is a linear combination of \(\sin\) and \(\cos\). Of course, \(V\) is constraint preserving if and only if \(\bar{\rho}_1 \equiv 0\). In any event, for arbitrary \(V\) we obtain
@@ -452,28 +507,41 @@ for every \(\bar{\mu}\). Thus as a function of \(\theta\),
 Now we take \(\bar{\mu} \equiv 0\) to obtain that for every \(\bar{\rho} \perp_{L^2} \{\cos,\sin\}\),
 \begin{equation}
 \label{eq:constrained_critical}
-0 = -\frac{1}{2} dE_X(f\kappa\bar{\rho} N) = \int_{\So} f\bar{\rho}(y_1 \cos\theta + y_2 \sin\theta) d\theta = \int_{\So} f y_1 \bar{\rho}(\cos\theta + \sin\theta\tan\theta) d\theta.
+\begin{split}
+0 &= -\frac{1}{2} dE_X(f\kappa\bar{\rho} N) = \int_{\So} f\bar{\rho}(y_1 \cos\theta + y_2 \sin\theta) d\theta \\
+&= \int_{\So} f y_1 \bar{\rho}(\cos\theta + \sin\theta\tan\theta) d\theta \\
+&= \int_{\So} \frac{f y_1 \bar{\rho}}{\cos\theta} d\theta.
+\end{split}
 \end{equation}
-Note that while \(\sin\theta\tan\theta \notin L^2\), equation \eqref{eq:constrained_critical} is well defined since \(y_1 \tan\theta = y_2 \in L^2\).
+Note that \(f, y_1, y_2 \in L^2\) and moreover, going backwards
+\[
+\frac{f y_1}{\cos\theta} = f y_1 (\cos\theta + \sin\theta\tan\theta) = f y_1 \cos\theta + f\sin\theta (y_1 \tan\theta) = f y_1 \cos\theta + fy_2 \sin\theta \in L^2.
+\]
+Thus equation \eqref{eq:constrained_critical} implies that the \(L^2\) function \(\tfrac{f y_1}{\cos\theta}\) satisfies,
+\[
+\tfrac{f y_1}{\cos\theta} \in \{\bar{\rho} : \bar{\rho} \perp \{\cos, \sin\}\}^{\perp} = \text{span} \{\cos, \sin\}
+\].
+That is,
+\[
+f y_1 = A \cos^2 \theta + B \cos\theta\sin\theta
+\]
+for constants \(A, B\).
 
-Equation \eqref{eq:constrained_critical} gives us the relation
+Actually, this is just a rephrasing of the conclusion of the theorem which says that
+\begin{align*}
+y_1 e_1 + y_2 e_2 &= Y = X'' + E(X) X = -(A \cos\theta + B \sin\theta) \frac{1}{\abs{X}} N \\
+& = -(A \cos\theta + B \sin\theta) \frac{1}{f} (\cos\theta e_1 + \sin \theta e_2)
+\end{align*}
+using also that
 \[
-\int_{\So} f y_1 \bar{\rho} \cos\theta d\theta = - \int_{\So} f y_1 \bar{\rho} \sin\theta\tan\theta d\theta.
+y_2 = y_1 \tan\theta.
 \]
-Another way to express \eqref{eq:constrained_critical} is
-\[
-0 = \int_{\So} \frac{f y_1 \bar{\rho}}{\cos\theta} d\theta.
-\]
+\end{rem}
 
 \begin{rem}
 Another formulation of this (which is directly equivalent to the angular momentum inequality) is:
 $$ |X'|^2  + E|X|^2= A \cos \theta(s) + B\sin\theta(s) + C.$$
 The conjecture is equivalent to showing $A=B=0$.   Here $C=2E$.
-\end{rem}
-
-{\color{red} Now we want to show this implies $y_1f = 0$ and since \(f > 0\) we obtain \(y_1 = 0\). I'm not sure whether this is true though! I think \(\{\bar{\rho}(\cos\theta + \sin\theta\tan\theta)\}^{\perp} \ne \emptyset\) and all we can conclude is that \(y_1 f\) is in this space. Another problem is that \(\sin\theta\tan\theta\) probably is not in \(L^2\). This may work in our favour though since we do have that \(y_1 \tan\theta = y_2\) is in \(L^2\) which restricts the possibilities for \(y_1\) which is what we want. Lastly note that if \(\bar{\rho} = \cos\theta\), then \(\bar{\rho} \sin\theta\tan\theta\) is in \(L^2\).
-
-On the other hand, maybe this shows how to find a counter example to the conjecture by finding \(y_1 \in \{\bar{\rho}(\cos\theta + \sin\theta\tan\theta)\}^{\perp}\)!}
 \end{rem}
 
 \section{Transplanting Variations}
