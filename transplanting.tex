@@ -467,7 +467,11 @@ Then
 \]
 Hence
 \[
-\alpha(X) = -\frac{1}{E(X)} \int_{\So} \frac{X''}{\abs{X}} +  \frac{(A \cos\theta + B \sin\theta)}{\abs{X}^2} N ds.
+\begin{split}
+\alpha(X) &= -\frac{1}{E(X)} \int_{\So} \frac{X''}{\abs{X}} +  \frac{(A \cos\theta + B \sin\theta)}{\abs{X}^2} N ds \\
+&= -\frac{1}{E(X)} \int_{\So} \frac{1}{\abs{X}^2} \left(\inpr{X'}{X} \frac{X}{\abs{X}} + (A \cos\theta + B \sin\theta) N\right) \\
+&= -\frac{1}{E(X)} \int_{\So} \frac{1}{\abs{X}^2} \left(\inpr{X'}{X} T + (A \cos\theta + B \sin\theta) N\right).
+\end{split}
 \]
 If \(A, B = 0\) then we get \(X'' = -E(X) X\) and hence
 \[
