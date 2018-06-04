@@ -463,21 +463,21 @@ X'' + E(X) X = -\frac{(A \cos\theta + B \sin\theta)}{\abs{X}} N.
 \]
 Then
 \[
-\frac{X}{\abs{X}} = -\frac{X''}{E(X)\abs{X}} - \frac{(A \cos\theta + B \sin\theta)}{E(X)\abs{X}^2} N.
+\frac{X}{\abs{X}} = -\frac{X''}{E(X)\abs{X}} - \frac{(A \cos\theta + B \sin\theta)}{E(X)\abs{X}^2} N
 \]
-Hence
+keeping in mind that \(\theta = \theta(s)\) but we suppressed the argument \(s\) for brevity. Hence
 \[
 \begin{split}
 \alpha(X) &= -\frac{1}{E(X)} \int_{\So} \frac{X''}{\abs{X}} +  \frac{(A \cos\theta + B \sin\theta)}{\abs{X}^2} N ds \\
-&= -\frac{1}{E(X)} \int_{\So} \frac{1}{\abs{X}^2} \left(\inpr{X'}{X} \frac{X}{\abs{X}} + (A \cos\theta + B \sin\theta) N\right) \\
-&= -\frac{1}{E(X)} \int_{\So} \frac{1}{\abs{X}^2} \left(\inpr{X'}{X} T + (A \cos\theta + B \sin\theta) N\right).
+&= -\frac{1}{E(X)} \int_{\So} \frac{1}{\abs{X}^2} \left(\inpr{X'}{X} \frac{X}{\abs{X}} + (A \cos\theta + B \sin\theta) N\right) ds \\
+&= -\frac{1}{E(X)} \int_{\So} \frac{1}{\abs{X}^2} \left(\inpr{X'}{X} T + (A \cos\theta + B \sin\theta) N\right) ds.
 \end{split}
 \]
 If \(A, B = 0\) then we get \(X'' = -E(X) X\) and hence
 \[
-\alpha(X) = \frac{1}{E(X)} \int_{\So} \frac{E(X)X}{\abs{X}} ds = \int_{\So} \frac{X}{\abs{X}} ds = 0
+\alpha(X) = \frac{1}{E(X)} \int_{\So} \frac{E(X)X}{\abs{X}} ds = \int_{\So} \frac{X}{\abs{X}} ds = \alpha(X)
 \]
-as expected. So that's nice and consistent.
+which is uninformative but at least consistent.
 
 {\color{red} If \(A, B \ne 0\), is it obvious that \(\alpha(X) = 0\) or that \(\alpha(X) \ne 0\)? Note that for this corollary we don't assume a priori that \(\alpha(X) = 0\). We just assume that \(X\) satisfies the hypothesis of the theorem. If we can show that \((A, B) \ne (0, 0)\) implies that \(\alpha(X) \ne 0\) then we'd be done! But I don't see it one way or the other at all.}
 \end{proof}
