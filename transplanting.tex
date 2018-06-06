@@ -347,6 +347,18 @@ X''(s) + E(X) X(s) = (A \cos(\theta(s)) + B \sin(\theta(s))) \frac{J(X(s))}{\abs
 for constants \(A, B\) and where \(J\) denotes the clockwise rotation by \(\pi/2\). In particular \(X'' + E(X) X\) is pointwise orthogonal to \(X\).
 \end{thm}
 
+\begin{rem}
+The constants \(A, B\) are Lagrange-multipliers. Let us write \(-\Lambda = A e_1 + B e_2\) and recalling that
+\[
+-J\left(\frac{X}{|X|}\right) = N(s) = \cos\theta(s) e_1 + \sin\theta(s) e_2,
+\]
+we may rewrite the conclusion of the theorem as
+\begin{equation}
+\label{eq:constrained_EL}
+X'' + E(X) X = \frac{1}{\abs{X}} \inpr{\Lambda}{N} N = \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
+\end{equation}
+\end{rem}
+
 \begin{proof}
 For any \(X\) the variation of energy is
 \[
@@ -549,20 +561,11 @@ $$ |X'|^2  + E|X|^2= A \cos \theta(s) + B\sin\theta(s) + C.$$
 The conjecture is equivalent to showing $A=B=0$.   Here $C=2E$.
 \end{rem}
 
-\section{Constrained Minimisers}
+\section{Second Variation of Constrained Critical Points}
 
-If \(X\) is a minimiser subject to the constraint then by \Cref{thm:constrained_critical}, we have
+Let us compute the second variation at a constrained critical point. We define
 \[
-X''(s) + E(X) X(s) = (A \cos(\theta(s)) + B \sin(\theta(s))) \frac{J(X(s))}{\abs{X(s)}^2}
-\]
-for some constants \(A, B \in \RR\). We also have
-\begin{equation}
-\label{eq:hessian_minimiser_positive}
-[\nabla^2 E(V, W)] (X) \geq 0
-\end{equation}
-for all \(V, W\) constraint preserving vector fields (i.e. vector fields tangent to the constraint sub-manifold \(\mathcal{C}\)) and where
-\[
-[d^2 E(V, W)] (X) = d[dE(V)]_X (W) - dE_X(\nabla_W V)
+[\nabla^2 E(V, W)] (X) = d[dE(V)]_X (W) - dE_X(\nabla_W V)
 \]
 Here \(\nabla_V W\) is the tangential component of \(D_V W\) defined by
 \[
@@ -596,7 +599,7 @@ at \(s = t = 0\). Writing \(X_t = X_{t, 0}\) we have
 
 For \(X\) with \(\|X\|_2 = 1\) and writing \(L(X) = X'' + E(X) X\) we then rewrite the last equation as
 \[
-\nabla^2 E(V, W) = 2\left(\inpr{2\inpr{X}{V}_2 L(X) - L(V)}{W} + 2\inpr{X}{V}_2\right)
+\nabla^2 E(V, W) (X) = 2\left(\inpr{2\inpr{X}{V}_2 L(X) - L(V)}{W} + 2\inpr{X}{V}_2\right)
 \]
 
 We may also write it as:
@@ -606,6 +609,19 @@ We may also write it as:
 -  \int \langle \mathcal{L} V, W \rangle  \,ds
 \]
 
+
+\section{Constrained Minimisers}
+
+If \(X_0\) is a minimiser subject to the constraint then \(E(X_0) = \lambda\) and \(X_0\) is in particular a constrained critical point. Thus by \Cref{thm:constrained_critical} as expressed in equation \eqref{eq:constrained_EL} we have
+\[
+X_0'' + \lambda X_0 = \frac{1}{\abs{X_0}} \inpr{\Lambda_0}{N_0} N_0 = \frac{1}{\abs{X_0}^3} \inpr{\Lambda}{J(X_0)} J(X_0).
+\]
+for some constant vector, \(\Lambda_0 \in \RR^2\). We also have
+\begin{equation}
+\label{eq:hessian_minimiser_positive}
+[\nabla^2 E(V, W)] (X) \geq 0
+\end{equation}
+for all \(V, W\) constraint preserving vector fields (i.e. vector fields tangent to the constraint sub-manifold \(\mathcal{C}\)).
 
 \section{Transplanting Variations}
 
