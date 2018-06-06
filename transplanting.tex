@@ -561,6 +561,108 @@ $$ |X'|^2  + E|X|^2= A \cos \theta(s) + B\sin\theta(s) + C.$$
 The conjecture is equivalent to showing $A=B=0$.   Here $C=2E$.
 \end{rem}
 
+\section{Linearisation Around the Minimiser}
+
+If \(X_0\) is a minimiser subject to the constraint then \(E(X_0) = \lambda\) and \(X_0\) is in particular a constrained critical point. Thus by \Cref{thm:constrained_critical} as expressed in equation \eqref{eq:constrained_EL} we have
+\[
+X_0'' + \lambda X_0 = \frac{1}{\abs{X_0}} \inpr{\Lambda_0}{N_0} N_0 = \frac{1}{\abs{X_0}^3} \inpr{\Lambda_0}{J(X_0)} J(X_0).
+\]
+for some constant vector, \(\Lambda_0 \in \RR^2\). Let us write
+\[
+F = F_{\Lambda_0} (Z) = \frac{1}{\abs{Z}^3} \inpr{\Lambda_0}{J(Z)} J(Z)
+\]
+and
+\[
+L = L_{\lambda} (Z) = Z'' + \lambda Z
+\]
+so that at the minimiser \(X_0\) we have,
+\[
+L(X_0) = F(X_0).
+\]
+The linearised equation around \(X_0\) is
+\begin{equation}
+\label{eq:linearised_EL}
+V'' + \lambda V = L(V) = \partial_t|_{t=0} L(X_0 + t V) = \partial_t|_{t=0} F(X_0 + t V) = dF_{X_0} (V).
+\end{equation}
+
+We want to solve this equation first without the periodicity assumption and then classify the periodic solutions.
+
+{\color{red} What is the connection between periodicity of the original equation and the linearised equation?}
+
+{\color{red} Some explicit computations that could prove useful...}
+
+Explicitly we may compute \(dF_{X_0} (V)\) using the fact that \(J\) is linear:
+\[
+\begin{split}
+dF_{X_0} (V) &= \partial_t|_{t=0} F(X_0 + tV) \\
+&= \partial_t|_{t=0} \frac{1}{\abs{X_0 + tV}^3}  \inpr{\Lambda_0}{J(X_0)} J(X_0) + \frac{1}{\abs{X_0}^3} \inpr{\Lambda_0}{J(V)} J(X_0) + \frac{1}{\abs{X_0}^3} \inpr{\Lambda_0}{J(X_0)} J(V) \\
+&= -\frac{3}{\abs{X_0}^5} \inpr{X_0}{V} \inpr{\Lambda_0}{J(X_0)} J(X_0) + \frac{1}{\abs{X_0}^3} \inpr{\Lambda_0}{J(V)} J(X_0) + \frac{1}{\abs{X_0}^3} \inpr{\Lambda_0}{J(X_0)} J(V) \\
+&= \frac{1}{\abs{X_0}^3} \left(-\frac{3\inpr{\Lambda_0}{J(X_0)}}{\abs{X_0}^2} \inpr{X_0}{V}  J(X_0) + \inpr{\Lambda_0}{J(V)} J(X_0) + \inpr{\Lambda_0}{J(X_0)} J(V) \ \right)
+\end{split}
+\]
+
+In any event, let us write
+\[
+dF_{X_0} (V) = \begin{pmatrix}
+\dot{F}_{11} & \dot{F}_{12} \\
+\dot{F}_{21} & \dot{F}_{22}
+\end{pmatrix}
+\begin{pmatrix}
+V_1 \\
+V_2
+\end{pmatrix}.
+\]
+Let us write the matrix as \(\dot{F}(s) = dF_{X_0} (s)\). To solve the linearised equation, we use variation of parameters. First then in the case \(\dot{F}(s) = 0\), the solutions (working on \(\RR\) instead of \(\So\) for the moment and ignoring periodicity) are
+\[
+V_0 = \cos(\sqrt{\lambda} s) (A_1 e_1 + A_2 e_2) + \sin(\sqrt{\lambda} s) (B_1 e_1 + B_2 e_2).
+\]
+To apply variation of parameters, then we seek a solution to the linearised equation of the form
+\[
+V(s) = \cos(\sqrt{\lambda} s) [A_1(s) e_1 + A_2(s) e_2] + \sin(\sqrt{\lambda} s) [B_1(s) e_1 + B_2(s) e_2].
+\]
+Then
+\[
+\begin{split}
+V' &= -\sqrt{\lambda} \sin(\sqrt{\lambda} s) [A_1 e_1 + A_2 e_2] + \sqrt{\lambda} \cos(\sqrt{\lambda} s) [B_1 e_1 + B_2 e_2] \\
+&\quad + \cos(\sqrt{\lambda} s) [A_1' e_1 + A_2' e_2] + \sin(\sqrt{\lambda} s) [B_1' e_1 + B_2' e_2]
+\end{split}
+\]
+and
+\[
+\begin{split}
+V'' &= -\lambda V \\
+&\quad - 2 \sqrt{\lambda} \sin(\sqrt{\lambda} s)[A_1' e_1 + A_2' e_2] + 2 \sqrt{\lambda}\cos(\sqrt{\lambda} s) [B_1' e_1 + B_2' e_2] \\
+&\quad + \cos(\sqrt{\lambda} s) [A_1'' e_1 + A_2'' e_2] + \sin(\sqrt{\lambda} s) [B_1'' e_1 + B_2'' e_2].
+\end{split}
+\]
+
+That is we have
+\[
+V'' + \lambda V = \begin{pmatrix}
+- 2 \sqrt{\lambda} \sin(\sqrt{\lambda} s) A_1' + 2 \sqrt{\lambda}\cos(\sqrt{\lambda} s) B_1' + \cos(\sqrt{\lambda} s) A_1'' + \sin(\sqrt{\lambda} s) B_1'' \\
+- 2 \sqrt{\lambda} \sin(\sqrt{\lambda} s) A_2' + 2 \sqrt{\lambda}\cos(\sqrt{\lambda} s) B_2' + \cos(\sqrt{\lambda} s) A_2'' + \sin(\sqrt{\lambda} s) B_2''
+\end{pmatrix}
+\]
+and we require this is equal to \(\dot{F} \cdot V\) which is given by
+\[
+\dot{F} \cdot V = \begin{pmatrix}
+\dot{F}_{11} (A_1 \cos(\sqrt{\lambda} s) + \sin(\sqrt{\lambda} s) B_1) + \dot{F}_{12} (A_2 \cos(\sqrt{\lambda} s) + \sin(\sqrt{\lambda} s) B_2) \\
+\dot{F}_{21} (A_1 \cos(\sqrt{\lambda} s) + \sin(\sqrt{\lambda} s) B_1) + \dot{F}_{22} (A_2 \cos(\sqrt{\lambda} s) + \sin(\sqrt{\lambda} s) B_2) \\
+\end{pmatrix}
+\]
+
+Since we only need a particular solution, take \(B_1 = B_2 = 0\) to get the system
+\[
+\begin{split}
+\cos(\sqrt{\lambda} s) A_1'' - 2 \sqrt{\lambda} \sin(\sqrt{\lambda} s) A_1' - \dot{F}_{11} \cos(\sqrt{\lambda} s) A_1  &= \dot{F}_{12} \cos(\sqrt{\lambda} s) A_2 \\
+\cos(\sqrt{\lambda} s) A_2'' - 2 \sqrt{\lambda} \sin(\sqrt{\lambda} s) A_2' - \dot{F}_{22} \cos(\sqrt{\lambda} s) A_2 &= \dot{F}_{21} \cos(\sqrt{\lambda} s) A_1
+\end{split}
+\]
+
+{\color{red} Not really sure how to solve this but one observation is that throughout \(\dot{F}_{ij}\) is \(2\pi\)-periodic being a function of \(X_0\) while the trig functions are \(2\pi/\lambda\)-periodic. So the coefficients will all be periodic with the same period \(T\) if and only if \(\sqrt{\lambda}\) is rational. If not, does that rule out the existence of periodic solutions?}
+
+{\color{red} Regarding periodicity of the linearised solution is Floquet theory. For the non-linear equation there is ``A note on periodic solutions of second order ordinary differential equations'' by Klaus Schmitt.}
+
 \section{Second Variation of Constrained Critical Points}
 
 Let us compute the second variation at a constrained critical point. We define
@@ -614,7 +716,7 @@ We may also write it as:
 
 If \(X_0\) is a minimiser subject to the constraint then \(E(X_0) = \lambda\) and \(X_0\) is in particular a constrained critical point. Thus by \Cref{thm:constrained_critical} as expressed in equation \eqref{eq:constrained_EL} we have
 \[
-X_0'' + \lambda X_0 = \frac{1}{\abs{X_0}} \inpr{\Lambda_0}{N_0} N_0 = \frac{1}{\abs{X_0}^3} \inpr{\Lambda}{J(X_0)} J(X_0).
+X_0'' + \lambda X_0 = \frac{1}{\abs{X_0}} \inpr{\Lambda_0}{N_0} N_0 = \frac{1}{\abs{X_0}^3} \inpr{\Lambda_0}{J(X_0)} J(X_0).
 \]
 for some constant vector, \(\Lambda_0 \in \RR^2\). We also have
 \begin{equation}
