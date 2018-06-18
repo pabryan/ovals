@@ -266,7 +266,7 @@ and we obtain equality all the way through. In other words \Cref{conj:main} foll
 
 \section{Constraint Preserving Variations}
 
-We know that
+We know from equation \eqref{eq:alphagateaux} that
 \[
 d\alpha_X (V) = \int_{\So} \frac{\pi_{\perp} (V)}{|X|} ds.
 \]
@@ -486,17 +486,111 @@ We may also write it as:
 
 \section{Constrained Minimisers}
 
-If \(X_0\) is a minimiser subject to the constraint then \(E(X_0) = \lambda\) and \(X_0\) is in particular a constrained critical point. Thus by \Cref{thm:constrained_critical} as expressed in equation \eqref{eq:constrained_EL} we have
+If \(X_0\) is a stable, constrained critical point (so it locally minimises the energy on the constraint manifold \(\mathcal{C}\)), then \(E(X_0) = \lambda\) and \(X_0\) is in particular a constrained critical point. Thus by \Cref{thm:constrained_critical} as expressed in equation \eqref{eq:constrained_EL} we have
 \[
 X_0'' + \lambda X_0 = \frac{1}{\abs{X_0}} \inpr{\Lambda_0}{N_0} N_0 = \frac{1}{\abs{X_0}^3} \inpr{\Lambda_0}{J(X_0)} J(X_0).
 \]
-for some constant vector, \(\Lambda_0 \in \RR^2\). We also have
+for some constant vector, \(\Lambda_0 \in \RR^2\). Stability is precisely the statement that
 \begin{equation}
 \label{eq:hessian_minimiser_positive}
 [\nabla^2 E(V, W)] (X) \geq 0
 \end{equation}
 for all \(V, W\) constraint preserving vector fields (i.e. vector fields tangent to the constraint sub-manifold \(\mathcal{C}\)).
 
-\printbibliography
+By carefully choosing our constraint preserving variation, we are able to characterise the stable, constrained critical points.
 
+\begin{thm}
+\label{thm:main}
+The stable constrained critical points are precisely given by
+\[
+X_n = \cos (n s) V_1 + \sin (n s) V_2
+\]
+for \(n = 1, 2, 3, \dots\)and \(V_1, V_2 \in \RR^2\).
+\end{thm}
+
+From the theorem, we immediately obtain the conjecture.
+
+\begin{proof}[Proof of \Cref{conj:main}]
+By \cite[Theorem 1.1]{denzler2015existence}, there exists a smooth minimiser, \(X\). By \Cref{thm:main}, this minimiser is of the form
+\[
+X_n = \cos (n s) V_1 + \sin (n s) V_2.
+\]
+The energy of \(X_n\) is
+\[
+E(X_n) = n^2 \geq 1
+\]
+so that the maps \(X_1\) are the minimisers and \(\lambda = 1\).
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:main}]
+We can rewrite the constrained second variation as
+\begin{align*}d^2E_X(V,V)&=-\int\langle\mathcal{L}V, V\rangle \,ds= -\int\langle V''+ E[X]V, V\rangle \,ds\\&=  \int| V'|^2- E[X]|V|^2\,ds= \Vert V\Vert_{L^2}\left( E[V]-E[X]\right).
+\end{align*}
+
+If $(f^2\kappa)'=0$, then by \Cref{thm:constrained_critical}, $A=B=0$, and hence $X'' + E(X) X = 0$ giving the result. Our strategy now is to show that if \(f^2\kappa)' \ne 0\), there is a $V\in T\mathcal{C}$ such that $E[V]<E[X]$, implying that $d^2E_X(V,V)<0$, and consequently $X$ cannot be a minimiser.
+
+We recall that $V\in T\mathcal{C}$ are given by $$V=\mu T + \overline{\rho}\kappa f N,$$ where $\mu$ is arbitrary and $\overline{\rho}\perp_{L^2(d\theta)}\lbrace\cos\theta,\sin\theta\rbrace$.
+
+We choose $\rho=\kappa^{-1}$.    This is in $E^\perp$ as $$\int \kappa^{-1}\cos\theta\,d\theta= \int\kappa^{-1}\cos\theta \kappa\,ds= \int \cos\theta\,ds= \int \langle T,e_1\rangle\,ds= \int \langle \gamma',e_1\rangle\,ds=0,$$
+and same for $\sin\theta=\langle T, e_2\rangle$.
+
+We  also choose $\mu^t=-{t}{f}^{-1}(f^2\kappa)'$ for some small parameter $t$.
+
+Hence $$V^t= \mu^t T + f N, \text{ and }V'=({\mu^t}'-f\kappa )T+ (\mu^t\kappa + f')N,$$
+and we set
+$$e(t):= E[V^t]= \frac{\int ({\mu^t}'-f\kappa)^2 + (\mu^t\kappa+ f'^2 )\,ds }{\int {\mu^t}^2 + f^2 \,ds }$$
+
+%Hence $$V'=(\mu'-f\kappa^2 \overline{\rho})T+ (\mu\kappa + (f\kappa\overline{\rho})')N,$$
+%and
+%$$E[V]= \frac{\int (\mu'-f\kappa^2\overline{\rho})^2 + (\mu\kappa+ (f\kappa\overline{\rho})')^2 \,ds }{\int \mu^2 + (f\kappa\overline{\rho})^2 %\,ds }$$
+
+Note that
+ \begin{align*} e(0)
+%E[V]
+&= \frac{\int (f\kappa)^2 + f'^2 \,ds }{\int  f^2 \,ds }= E[X],
+\end{align*}
+
+We  calculate
+\begin{align*}
+\left.\frac{d}{dt}e(t)\right|_{t=0}&= \left.\frac{d}{dt}E[\mu^t T+ fN]  \right|_{t=0} \\
+%&=
+%\frac{d}{dt}\left.E[fN-t f^{-1}(f\kappa^2)'T]\right|_{t=0}\\
+ &= \left.
+\frac{2}{\int {{\mu^t}}^2 + f^2 \,ds }\left[
+{\int ({\mu^t}'-f\kappa)\frac{d}{dt}{\mu^t}'   + ({\mu^t}\kappa+ f')\kappa \frac{d}{dt}{\mu^t}  \,ds }- E[V^t]{\int {\mu^t} \frac{d}{dt}{\mu^t} \,ds }\right]
+ \right|_{t=0}  \\
+ &= \left.
+\frac{2}{\int {{\mu^t}}^2 + f^2 \,ds }
+\int \left[   -({\mu^t}'-f\kappa)'  + ({\mu^t}\kappa+ f')\kappa - E[V^t] {\mu^t}
+\right]
+\frac{d}{dt}{\mu^t}
+\,ds   \right|_{t=0}
+\\
+&= \left.
+\frac{2}{\int  f^2 \,ds }
+\int \left[   (f\kappa)'  +  f'\kappa
+\right]
+\frac{d}{dt}{\mu^t}
+\,ds   \right|_{t=0}
+\\
+&= \left.
+\frac{2}{\int  f^2 \,ds }
+\int \left[  f^{-1} (f^2\kappa)'
+\right]
+\frac{d}{dt}{\mu^t}
+\,ds   \right|_{t=0}
+\\
+&= \left.
+\frac{-2}{\int  f^2 \,ds }
+\int \left[  f^{-1} (f^2\kappa)'
+\right]^2
+\,ds   \right|_{t=0}
+ \\&\le 0,
+\end{align*}
+where we use $\frac{d}{dt}{\mu^t}=-{f}^{-1}(f^2\kappa)'$ in the second last line.   Equality in the last line holds only in the case that $(f^2\kappa)'=0$.
+
+That is, either $f^2\kappa=c$ or we can find a $V^t$ such that for small $t$, $E[V^t]<E[V^0]=E[X]$.   In turn this implies that $d^2E_X(V,V)<0$.
+\end{proof}
+
+\printbibliography
 \end{document}
