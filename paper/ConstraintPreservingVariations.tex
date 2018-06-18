@@ -1,0 +1,71 @@
+Let $V:\So\to\R^2$ be a variation of $X$.  We calculate
+\[
+d\alpha_X (V) = \int_{\So} \frac{\pi_{\perp} (V)}{|X|} ds,
+\]
+where $\pi_\perp$ is projection on to the normal, $\pi_\perp{V}= \langle V,N\rangle N$.  
+
+Defining \(\rho = \inpr{V}{N}\), we may rewrite this as
+\[
+d\alpha_X (V) = \int_{\So} \frac{\rho N}{|X|} ds.
+\]
+Working with respect to the angular parameter \(\theta(s)\) determined uniquely by
+\[
+N(s) = \cos \theta(s) e_1 + \sin \theta(s) e_2 \quad %\Rightarrow 
+\text{and therefore }
+T(s) = -\sin \theta(s) e_1 + \cos \theta(s) e_2,
+\]
+and satisfying
+\[
+\partial_s \theta = \kappa \quad \Rightarrow \quad \partial_s = \frac{1}{\kappa} \partial_{\theta}, \quad ds = \kappa d\theta,
+\]
+we have
+\[
+d\alpha_X (V) = \int_{\So} \bar{\rho} \cos\theta e_1 + \bar{\rho} \sin\theta e_2 d\theta
+\]
+where
+\[
+\bar{\rho} = \frac{\rho}{f \kappa}.
+\]
+%This follows from
+%\[
+%f = |X|, \quad d\theta = \kappa ds.
+%\]
+
+Then \(V\) infinitesimally preserves \(\alpha\) if and only if
+\[
+\bar{\rho} \perp_{L^2(d\theta)} \{\sin, \cos\}.
+\]
+%so that
+%\[
+%\bar{\rho} = c_0 + \sum_{n\geq 2} a_n \sin(n \theta) + b_n \sin(n \theta).
+%\]
+
+In other words, the tangent space, \(T_X \C\) to the constraint manifold \(\C\) at \(X\) is given by
+\[
+T_X \C = \{\mu T + f\kappa\bar{\rho} N : \mu \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
+\]
+
+
+%\begin{comment}%%%%%%%%%%%%%%%
+%For \(\bar{\gamma} = \cos\theta s + \sin \theta s\) a circle, we have \(\bar{\kappa} \equiv 1\) and also eigenfunction, \(f \equiv 1\). Therefore \(\bar{X} = \bar{f} \bar{T}\) is the circle map,
+%\[
+%\bar{X}(s) = -\sin\theta e_1 + \cos\theta e_2.
+%\]
+%Moreover, \(\theta = s + \text{const}\) and we choose \(\text{const} = 0\) so that \(\theta = s\) and
+%\[
+%\bar{N}(\theta) = \cos\theta e_1 + \sin\theta e_2.
+%\]
+%Then we also have,
+%\[
+%\rho = \bar{\rho}
+%\]
+%and arbitrary constraint preserving variations may be written,
+%\[
+%V(\theta) = \bar{\mu}(\theta) T(\theta) + \bar{\rho}(\theta) N(\theta) = (- \bar{\mu}\sin\theta + \bar{\rho} \cos\theta) e_1 + (\bar{\mu}\cos\theta + \bar{\rho}\sin\theta) e_2
+%\]
+%where \(\bar{\mu} : \So \to \RR\) is arbitrary and \(\bar{\rho} \perp_{L^2} \{\sin, \cos\}\). Hence,
+%\[
+%T_{\bar{X}} \C = \{\bar{\mu} T + \bar{\rho} N : \bar{\mu} \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
+%\]
+
+%\end{comment}%%%%%%%%%

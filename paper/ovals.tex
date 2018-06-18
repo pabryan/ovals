@@ -1,0 +1,92 @@
+\documentclass[12pt, a4paper]{amsart}
+
+\address{ }
+\usepackage[left=3cm,top=3.5cm,right=3cm]{geometry}
+\usepackage{parskip, color}
+\usepackage[normalem]{ulem}
+%\date{letterdate} if you want to fix the date on the letter; otherwise the date will default to the current date when the letter is printed.
+
+\usepackage{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{cmbright}
+ 
+ \usepackage{hyperref}
+ 
+\usepackage{mathtools}  
+\mathtoolsset{showonlyrefs=true}   % this gives equation numbers only to the equations that are used
+
+
+\newcommand{\pd}[2]{\dfrac{\partial#1}{\partial#2}}
+\DeclareMathOperator{\divergenz}{div}
+\newcommand{\bigR}{{\mathbb R}}
+\newcommand{\R}{{\mathbb R}}
+\usepackage{setspace}
+
+%\usepackage{showkeys}
+
+\input{setup}
+
+
+\begin{document}
+
+  
+\spacing{1.05}
+
+
+
+
+\title[The ovals problem]{Resolution of the ovals conjecture, optimal constant in Lieb--Thirring inequality etc. etc.}
+
+
+
+{\author{Paul Bryan}
+\address[Paul Bryan]{Macquarie}}
+
+
+{\author{Julie Clutterbuck} 
+\address[Julie Clutterbuck]{School of Mathematical Sciences, 
+  Monash University,  VIC 3800  Australia}
+\email{\href{mailto:Julie.Clutterbuck@monash.edu}{\nolinkurl{Julie.Clutterbuck@monash.edu}}}
+}
+
+{\author{Mathew Langford}
+\address[Mat Langford]{Tennessee}}
+
+%\thanks{Thanks to Rafael Benguria, for introducing the second author to this problem;  also to John Head, Ziping Rao and David Paganin for useful discussions.}
+
+
+\maketitle
+
+
+
+\section{Introduction}
+
+\input{introduction}
+
+
+% from transplanting.tex
+
+\section{The Constrained Problem}
+
+\input{constrainedproblem}
+
+\section{Constraint Preserving Variations}
+\input{ConstraintPreservingVariations}
+
+
+\section{Constrained Critical Points}
+\input{ConstrainedCritical}
+
+\section{Second variation}
+\input{SecondVariation}
+
+\section{Using the 2nd variation}
+
+\input{LastSection}
+
+ \bibliographystyle{plain} 
+\bibliography{ovals-biblio} 
+
+
+
+ \end{document}
