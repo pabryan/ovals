@@ -21,6 +21,13 @@
 \usepackage{marginnote}
 \newcommand{\margincomment}[1]{\marginnote{\footnotesize{#1}}}
 
+\usepackage[
+backend=bibtex,
+style=alphabetic,
+citestyle=authoryear
+]{biblatex}
+\bibliography{refs}
+
 \usepackage{cleveref}
 \crefname{lemma}{Lemma}{Lemmata}
 \crefname{prop}{Proposition}{Propositions}
