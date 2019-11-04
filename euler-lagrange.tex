@@ -50,6 +50,12 @@ Thus we obtain the Euler-Lagrange equation satisfied by critical points of \(F\)
 \label{eq:el}
 X'' + \lambda X = \frac{1}{\abs{X}} \inpr{\Lambda}{N}N
 \end{equation}
+or equivalently, we have the (pointwise) orthonormal decomposition
+\begin{equation}
+\label{eq:pointwise_orth}
+X'' = -\lambda \abs{X} T + \frac{1}{\abs{X}} \inpr{\Lambda}{N}N
+\end{equation}
+
 Substituting into the energy gives,
 \begin{equation}
 \label{eq:Ecrit}
@@ -73,21 +79,25 @@ Substituting into \(\alpha\) gives,
 \[
 (0, 0) = \alpha(X) = \int_{\So} \frac{X}{\abs{X}} ds = \frac{1}{\lambda} \int_{\So} \frac{1}{\abs{X}} \left(-X'' + \frac{1}{\abs{X}} \inpr{\Lambda}{N} N\right) ds
 \]
-Taking the inner product with \(\Lambda\) gives
+giving the identity for \(\Lambda\)
 \begin{equation}
-\label{eq:alphacrit}
-0 = \frac{1}{\lambda} \int_{\So} \frac{1}{\abs{X}} \left(-\inpr{X''}{\Lambda} + \frac{1}{\abs{X}} \inpr{\Lambda}{N}^2\right) ds.
+\label{eq:vecidentity_lambda}
+\int_{\So} \frac{1}{\abs{X}^2} \inpr{\Lambda}{N} N ds = \int_{\So} \frac{X''}{\abs{X}} ds
 \end{equation}
 
-Combining equations \eqref{eq:Icrit} and \eqref{eq:alphacrit} gives
+Taking the inner product with \(\Lambda\) gives
+\[
+\int_{\So} \frac{1}{\abs{X}^2} \inpr{\Lambda}{N}^2 ds = \int_{\So} \frac{1}{\abs{X}} \inpr{X''}{\Lambda} ds,
+\]
+which combined with equation \eqref{eq:Icrit} results in
 \[
 1 = \frac{1}{\lambda^2} \int_{\So} \abs{X''}^2 - 2\frac{1}{\abs{X}} \inpr{\Lambda}{N}\inpr{X''}{N} +  \frac{1}{\abs{X}} \inpr{X''}{\Lambda} ds.
 \]
-which we rewrite as an identity for \(\Lambda\):
+We rewrite this as an identity for \(\Lambda\):
 \begin{equation}
 \label{eq:Lambdaeqn}
 \begin{split}
-\inpr{\frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N)}{\Lambda}_2 &= \inpr{\int_{\So} \frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N) ds}{\Lambda} \\
+\inpr{\Lambda}{\frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N)}_2 &= \inpr{\int_{\So} \frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N) ds}{\Lambda} \\
 &= \int_{\So} \frac{1}{\abs{X}} \inpr{X'' - 2 \inpr{X''}{N}N}{\Lambda} ds \\
 &= E(X)^2 - \int_{\So} \abs{X''}^2 ds
 \end{split}
