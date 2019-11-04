@@ -1,0 +1,98 @@
+\documentclass[12pt]{article}
+
+\input{setup.tex}
+
+\title{Euler Lagrange Equation}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{The Constrained Problem}
+\label{sec:constrained}
+
+Our space is \(\HS = W^{1,2} (\So \to \RR^2)\). We seek to minimise the Dirichlet energy,
+\[
+E(X) = \|X'\|_2^2 = \int_{\So} \abs{X'(s)}^2 ds
+\]
+subject to the constraints
+\[
+I(X) := \|X\|_2^2 = 1, \quad \alpha(X) := \int_{\So} \frac{X(s)}{\abs{X}(s)} ds = (0, 0).
+\]
+
+For \(\lambda \in \RR\), \(\Lambda \in \RR^2\) (Lagrange multipliers) define the functional
+\[
+F(X) = E(X) - \lambda I(X) + \inpr{\Lambda}{\alpha(X)}.
+\]
+Then constrained critical points of \(E\) are unconstrained critical points of \(F\). The minus sign is a convenience ensuring that for a constrained critical point \(X\) of \(F\), we have \(\lambda = E(X)\). A constrained minimiser, \(X\) of \(E\) is a critical point of \(F\) with \(I(X) = 1, \alpha(X) = (0, 0)\) and satisfying
+\[
+d^2 F_X (V, V) \geq 0
+\]
+for all \(V\) tangent to the constraint manifold \(\C = \{I(X) = 1, \alpha(X) = 0\}\) ({\color{red}Proof it's actually a manifold?}). Note that while \(X\) is a critical point of \(F\) so that \(dF_X (V) = 0\) for any \(V \in T_X\HS = \HS\), it is only assured to be non-negative definite for \(V \in T_X \C\). In fact, we know that \(E\) can be decreased by moving in ({\color{red} some, all?}) directions transverse to \(\C\).
+
+\section{First Variation}
+\label{sec:firstvar}
+
+Denoting the \(\RR^2\) inner-product by \(\inpr{\cdot}{\cdot}\) and the \(L_2\) inner product for maps \(\So \to \RR^2\) by \(\inpr{\cdot}{\cdot}_2\), We have
+\begin{align*}
+dE_X (V) &= \inpr{-X''}{V}_2 \\
+dI_X (V) &= \inpr{X}{V}_2 \\
+d\alpha_X (V) &= \int_{\So} \frac{1}{\abs{X}(s)} \inpr{N(s)}{V} N(s) ds \\
+dF_X (V) &= -\inpr{X'' + \lambda X}{V}_2 + \inpr{\Lambda}{\int_{\So} \frac{1}{\abs{X}(s)} \inpr{N(s)}{V} N(s) ds} \\
+&= -\inpr{X'' + \lambda X - \frac{1}{\abs{X}} \inpr{\Lambda}{N}N}{V}_2
+\end{align*}
+where \(N(s) = J(T)\) with \(T = X/\abs{X}\) and \(J\) counter-clockwise rotation by \(\pi/2\) (we could of course choose the other normal by rotating clockwise so long as we remain consistent).
+
+Thus we obtain the Euler-Lagrange equation satisfied by critical points of \(F\) (constrained or otherwise),
+\begin{equation}
+\label{eq:el}
+X'' + \lambda X = \frac{1}{\abs{X}} \inpr{\Lambda}{N}N
+\end{equation}
+Substituting into the energy gives,
+\begin{equation}
+\label{eq:Ecrit}
+\begin{split}
+E(X) &= \int_{\So} \abs{X'}^2 ds = -\int_{\So} \inpr{X''}{X} ds \\
+&= \int_{\So} \inpr{\lambda X - \frac{1}{\abs{X}} \inpr{\Lambda}{N}N}{X} ds = \lambda \inpr{X}{X}_2 = \lambda
+\end{split}
+\end{equation}
+since \(\inpr{X}{N} = 0\) and \(\inpr{X}{X}_2 = I(X) = 1\). Thus \(\lambda = E(X)\) as promised.
+
+Substituting into \(I\) gives
+\begin{equation}
+\label{eq:Icrit}
+\begin{split}
+1 = I(X) &= \int_{\So} \abs{X}^2 ds = \frac{1}{\lambda^2} \int_{\So} \abs{-X'' +  \frac{1}{\abs{X}} \inpr{\Lambda}{N}N}^2 ds \\
+&= \frac{1}{\lambda^2} \int_{\So} \abs{X''}^2 - 2\frac{1}{\abs{X}} \inpr{\Lambda}{N}\inpr{X''}{N} + \frac{1}{\abs{X}^2} \inpr{\Lambda}{N}^2 ds.
+\end{split}
+\end{equation}
+
+Substituting into \(\alpha\) gives,
+\[
+(0, 0) = \alpha(X) = \int_{\So} \frac{X}{\abs{X}} ds = \frac{1}{\lambda} \int_{\So} \frac{1}{\abs{X}} \left(-X'' + \frac{1}{\abs{X}} \inpr{\Lambda}{N} N\right) ds
+\]
+Taking the inner product with \(\Lambda\) gives
+\begin{equation}
+\label{eq:alphacrit}
+0 = \frac{1}{\lambda} \int_{\So} \frac{1}{\abs{X}} \left(-\inpr{X''}{\Lambda} + \frac{1}{\abs{X}} \inpr{\Lambda}{N}^2\right) ds.
+\end{equation}
+
+Combining equations \eqref{eq:Icrit} and \eqref{eq:alphacrit} gives
+\[
+1 = \frac{1}{\lambda^2} \int_{\So} \abs{X''}^2 - 2\frac{1}{\abs{X}} \inpr{\Lambda}{N}\inpr{X''}{N} +  \frac{1}{\abs{X}} \inpr{X''}{\Lambda} ds.
+\]
+which we rewrite as an identity for \(\Lambda\):
+\begin{equation}
+\label{eq:Lambdaeqn}
+\begin{split}
+\inpr{\frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N)}{\Lambda}_2 &= \inpr{\int_{\So} \frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N) ds}{\Lambda} \\
+&= \int_{\So} \frac{1}{\abs{X}} \inpr{X'' - 2 \inpr{X''}{N}N}{\Lambda} ds \\
+&= E(X)^2 - \int_{\So} \abs{X''}^2 ds
+\end{split}
+\end{equation}
+recalling that \(\lambda = E(X)\).
+
+
+\end{document}
