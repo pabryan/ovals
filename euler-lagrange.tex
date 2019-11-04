@@ -104,5 +104,75 @@ We rewrite this as an identity for \(\Lambda\):
 \end{equation}
 recalling that \(\lambda = E(X)\).
 
+\section{System Of ODE's}
+\label{sec:ode_sys}
 
+Let us write,
+\[
+X(s) = (x(s), y(s)), \quad N(s) = \frac{1}{\sqrt{x^2(s) + y^2(s)}} (y(s), -x(s)).
+\]
+Then writing \(\Lambda = (A, B)\), the Euler-Lagrange equation \eqref{eq:el} becomes the system,
+\[
+\begin{cases}
+x'' + \lambda x &= \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) y \\
+y'' + \lambda y &= \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) x.
+\end{cases}
+\]
+Letting \(u = x', v = y'\) gives the first order system
+\begin{equation}
+\label{eq:ode}
+\begin{cases}
+x' &= u, \\
+y' &= v, \\
+u' &= -\lambda x + \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) y, \\
+v' &= -\lambda y + \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) x.
+\end{cases}
+\end{equation}
+Equivalently, let \(Z = (u, v) = X'\) yielding
+\begin{equation}
+\label{eq:el_sys}
+\begin{cases}
+X' &= Z \\
+Z' &= -\lambda X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
+\end{cases}
+\end{equation}
+
+Note in particular that when \(\Lambda = (0, 0)\) (\(A = B = 0\)), the system is uniformly Lipshchitz on the right hand side so that unique solutions exist given any initial data. However, if \(\Lambda \ne 0\) the right hand side is only continuous away from \(X = (0, 0)\). Thus solutions are only guaranteed to exist for a short interval \(s \in [0, s_0)\) and either \(s_0 = \infty\) or \(\abs{X}(s) \to 0\) as \(s \to s_0\) since the system has unique solutions provided \(\abs{X} \ne 0\). In general, the right hand side is uniformly Lipschitz on the set \(\abs{X}^2 \geq \epsilon\) for any \(\epsilon > 0\). But the Lipshitz constant depends on \(\epsilon\) and blows up at \(X = (0, 0)\) where right hand side is also no longer even continuous.
+
+Now observe that admissible solutions for constrained minimisation problem satisfy \(\abs{X}^2 \ne 0\) and are periodic \(X(s + 2\pi) = X(s)\). By compactness of \(\So\) and continuity of \(X\), then there exists an \(\epsilon > 0\) such that
+\begin{equation}
+\label{eq:non_degen}
+\abs{X}^2(s) \geq \epsilon \quad \forall s \in \So.
+\end{equation}
+Moreover, by the constraint \(\alpha(X) = (0, 0)\), we know that \(X\) is non-constant and in fact the map \(s \in \So \mapsto X(s)/\abs{X(s)} \in \So\) has non-zero degree. ({\color{red}We may assume the degree is \(1\) but we'll see if that is necessary}).
+
+We seek to show that this situation is impossible unless \(\Lambda = (0, 0)\). That is, if \(\Lambda \ne (0, 0)\), there are no non-constant, periodic solutions such that \(\abs{X} \ne 0\) and with \(T = X/\abs{X}\) having positive degree. For this, we assume \(\Lambda \ne (0, 0)\), \(\abs{X} \geq \epsilon > 0\) and show that there are no periodic solutions.
+
+Let \(M_{\pm}\) denote the minimum and maximum values of \(\abs{X}\) so that \(M_- \leq \abs{X} \leq M_+\) with \(0 < M_- < M_+ < \infty\) and there are points \(s_{\pm} \in \So\) such that \(\abs{X}(s_{\pm}) = M_{\pm}\). Note that if \(M_- = M_+\), then \(\abs{X} \equiv M_- = M_+\) is constant and \(X\) is a circle which means we are done already. 
+
+Changing variables \(s \mapsto \lambda^{-1/2} s\), \((X, Z) \mapsto (X, \lambda^{-1/2} Z)\) and replacing \(\Lambda\) with \(\tfrac{1}{\lambda} \Lambda\), we may rewrite equation \eqref{eq:el_sys} as
+\[
+\begin{cases}
+X' &= Z, \\
+Z' &= -X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
+\end{cases}
+\]
+Now we seek \(2\pi\sqrt{\lambda}\)-periodic solutions.
+
+
+We have
+\[
+\partial_s \abs{X}^2 = 2\inpr{X'}{X} = 2\inpr{Z}{X}
+\]
+\[
+\partial_s \abs{Z}^2 = 2\inpr{Z'}{Z} = -2\inpr{X}{Z} + \frac{2}{\abs{X}^3}\inpr{\Lambda}{J(X)}\inpr{J(X)}{Z}
+\]
+and hence
+\[
+\begin{split}
+\partial_s (\abs{X}^2 + \abs{Z}^2) &= \frac{2}{\abs{X}^3}\inpr{\Lambda}{J(X)}\inpr{J(X)}{Z} \\
+&= \frac{2}{\abs{X}^3}\inpr{J(\Lambda)}{X}\inpr{J(X)}{Z} \\
+&= \frac{2}{\abs{X}}\inpr{\Lambda}{N}\inpr{N}{Z}
+\end{split}
+\]
 \end{document}
