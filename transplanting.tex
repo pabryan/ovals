@@ -435,9 +435,9 @@ X'' + E(X) X = Y = hN = -\frac{h}{f} J(X) = -\frac{fh}{f^2} J(X) = -(A \cos\thet
 \]
 \end{proof}
 
-\section{Second Variation of Constrained Critical Points}
+\section{Constrained Minimisers}
 
-Let us compute the second variation at a constrained critical point. We define
+To analyse minimisers, we first need to compute the second variation at a constrained critical point. We define
 \[
 [\nabla^2 E(V, W)] (X) = d[dE(V)]_X (W) - dE_X(\nabla_W V)
 \]
@@ -451,21 +451,37 @@ Note that we think of a vector field \(V\) on \(\mathcal{C}\) as the restriction
 \]
 where \(\pi_{TC}\) is the projection onto the tangent space, \(T\mathcal{C}\) to the constraint \(\mathcal{C}\).
 
-Then since by definition \(\nabla_V W\) is tangent to \(C\), for a critical point \(X\) for \(E\) it's annihilated by \(dE\) so we have
+\begin{lem}
+\label{lem:second_var}
+The second variation of a constrained critical point \(X\) is
+\[
+\nabla^2 E (V, W) = .
+\]
+\end{lem}
+
+\begin{proof}
+Let \(X\) be a constrained critical point. By definition, \(\nabla_V W\) is tangent to \(C\). Thus for a constrained critical point, \(\nabla_V W\)  is annihilated by \(dE\) so we have
 \[
 \nabla^2 E(V, W) = d_V d_W E - dE(\nabla_V W) = d_V d_W E.
 \]
-
-To compute \(d_V d_W E\), let \(X_{t,s}\) be a two parameter variation of \(X\) with
+For convenience, let us write
 \[
-X_{0,0} = X, \quad \partial_t X_{t,s} = V, \quad \partial_s X_{t,s} = W
+L(V) := L_X (V) = V'' + E(X) V.
 \]
-at \(s = t = 0\). Writing \(X_t = X_{t, 0}\) we have
+Then the constrained Euler-Lagrange \Cref{eq:constrained_EL} reads
+\[
+L(X) = \frac{1}{|X|}\inpr{\Lambda}{N}N.
+\]
+To compute \(d_V d_W E\), define a two parameter variation of \(X\) by
+\[
+X_{t,s} = X + tV + s W
+\]
+so that \(V = \partial_t X_{t, s}\) and \(W = \partial_s X_{t,s}\). For convenience, let us also write \(X_t = X + tV\). Then we have
 \[
 \begin{split}
-\nabla^2 E(V, W) &= \partial_t|_{t=0} \partial_s|_{s=0} E(X_{t,s}) = \partial_t|_{t=0} [dE_{X_t} (W)] = \partial_t|_{t=0} \left(\frac{-2}{\|X_t\|^2} \inpr{X_t'' + E(X_t) X_t}{W}_2\right) \\
+\nabla^2 E(V, W) &= \partial_t|_{t=0} \partial_s|_{s=0} E(X_{t,s}) = \partial_t|_{t=0} [dE_{X_t} (W)] = \partial_t|_{t=0} \left[\frac{-2}{\|X_t\|^2} \inpr{X_t'' + E(X_t) X_t}{W}_2\right] \\
 &= -\frac{2}{\|X\|_2^2} \left(\inpr{V'' + E(X) V}{W}_2 + \inpr{dE_X (V)X}{W}_2 \right. \\
-&\quad \left. - \frac{2}{\|X\|_2^2} \inpr{X}{V}_2 \inpr{X_t'' + E(X_t) X_t}{W}_2 \right) \\
+&\quad \left. - \frac{2}{\|X\|_2^2} \inpr{X}{V}_2 \inpr{X'' + E(X) X}{W}_2 \right) \\
 &= -\frac{2}{\|X\|_2^2} \left(\inpr{V'' + E(X) V}{W}_2 - \frac{2}{\|X\|^2} \inpr{X}{W}_2 \inpr{X'' + E(X) X}{V}_2 \right. \\
 &\quad - \left. \frac{2}{\|X\|_2^2} \inpr{X}{V}_2 \right).
 \end{split}
@@ -482,11 +498,13 @@ We may also write it as:
 = - \left( dE_X(W)\int \langle X,W \rangle \,ds + dE_X(V)\int \langle X,V \rangle \,ds \right)
 -  \int \langle \mathcal{L} V, W \rangle  \,ds
 \]
+and
+\begin{align*}d^2E_X(V,V)&=-\int\langle\mathcal{L}V, V\rangle \,ds= -\int\langle V''+ E[X]V, V\rangle \,ds\\&=  \int| V'|^2- E[X]|V|^2\,ds= \Vert V\Vert_{L^2}\left( E[V]-E[X]\right).
+\end{align*}
 
+\end{proof}
 
-\section{Constrained Minimisers}
-
-If \(X_0\) is a stable, constrained critical point (so it locally minimises the energy on the constraint manifold \(\mathcal{C}\)), then \(E(X_0) = \lambda\) and \(X_0\) is in particular a constrained critical point. Thus by \Cref{thm:constrained_critical} as expressed in equation \eqref{eq:constrained_EL} we have
+Now, if \(X_0\) is a stable, constrained critical point (so it locally minimises the energy on the constraint manifold \(\mathcal{C}\)), then \(E(X_0) = \lambda\) and \(X_0\) is in particular a constrained critical point. Thus by \Cref{thm:constrained_critical} as expressed in equation \eqref{eq:constrained_EL} we have
 \[
 X_0'' + \lambda X_0 = \frac{1}{\abs{X_0}} \inpr{\Lambda_0}{N_0} N_0 = \frac{1}{\abs{X_0}^3} \inpr{\Lambda_0}{J(X_0)} J(X_0).
 \]
