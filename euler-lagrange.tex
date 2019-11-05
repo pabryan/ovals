@@ -104,6 +104,17 @@ We rewrite this as an identity for \(\Lambda\):
 \end{equation}
 recalling that \(\lambda = E(X)\).
 
+Thus, with \(X\) a constrained critical point, letting
+
+\begin{align*}
+A &= \int_{\So} \frac{1}{\abs{X}^2} N \otimes N ds, \quad V = -\int_{\So} \frac{X''}{\abs{X}} ds \\
+B &= \int_{\So} \frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N) ds, \quad W = -E(X)^2 + \int_{\So} \abs{X''}^2 ds
+\end{align*}
+from equations \eqref{eq:vecidentity_lambda} and \eqref{eq:Lambdaeqn} we have that \(\Lambda\) is in the kernel of the affine map,
+\[
+\Lambda \in \RR^2 \mapsto \big(\inpr{A}{\Lambda} + V, \inpr{B}{\Lambda} + W\big) \in \RR^2 \times \RR.
+\]
+
 \section{System Of ODE's}
 \label{sec:ode_sys}
 
