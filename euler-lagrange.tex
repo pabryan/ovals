@@ -115,6 +115,158 @@ from equations \eqref{eq:vecidentity_lambda} and \eqref{eq:Lambdaeqn} we have th
 \Lambda \in \RR^2 \mapsto \big(\inpr{A}{\Lambda} + V, \inpr{B}{\Lambda} + W\big) \in \RR^2 \times \RR.
 \]
 
+\section{Characterising Ovals}
+\label{sec:ovals}
+
+Letting \(Z = X'\) gives the first order formulation of the Euler-Lagrange equation \eqref{eq:el}:
+\begin{equation}
+\label{eq:el_sys}
+\begin{cases}
+X' &= Z \\
+Z' &= -\lambda X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
+\end{cases}
+\end{equation}
+
+\begin{defn}
+For \(n = \NN\), an (\(n\)-fold) \emph{oval} is a map
+\[
+X(s) = \cos(n s) V_1 + \sin(n s) V_2
+\]
+with \(V_1, V_2 \in \RR^2\). A \emph{degenerate} oval is an oval for which \(V_1, V_2\) are linearly dependent and a \emph{non-degenerate} oval is one for which \(V_1, V_2\) are linearly independent.
+\end{defn}
+
+We will always normalise \(V_1, V_2\) so that an oval \(X\) satisfies, \(I(X) = \|X\|_2^2 = 1\). Also, all ovals automatically satisfy the constraint \(\alpha(X) = (0, 0)\).
+
+Ovals are both constrained and unconstrained critical points giving the following simple characterisation of ovals.
+
+\begin{lem}
+\label{lem:ovalLambda}
+A constrained critical point \(X\) is an oval if and only if \(\Lambda = 0\). Equivalently, if and only if \(X\) is an unconstrained critical point. For a degenerate oval, \(\Lambda\) is not uniquely determined and we interpret the statement to mean we may choose \(\Lambda = 0\). In all other cases, \(\Lambda = 0\) is the unique value of \(\Lambda\).
+\end{lem}
+
+\begin{proof}
+Let \(X\) be an oval. For normalised ovals we have
+\[
+E(X) = n^2, \quad \text{and} \quad X'' + n^2 X = 0.
+\]
+That is,
+\[
+Z' = X'' = - \lambda X
+\]
+recalling that for a constrained (or indeed unconstrained) critical point, \(\lambda = E(X)\). Thus by equation \eqref{eq:el_sys}
+\[
+\inpr{\Lambda}{J(X)} J(X) = 0.
+\]
+In the non-degenerate case, \(N = \abs{X}^{-1}J(X)\) is a surjection \(\So \to \So\), so that the set \(\{J(X(s)) : s \in \So\}\) spans all of \(\RR^2\). Hence \(\inpr{\Lambda}{J(X(s))} = 0\) for all \(s\) implies \(\Lambda = 0\). In the degenerate case, \(X = (a \cos (ns) + b \sin(ns)) V\) with \(\abs{V} = 1\) and \(T = V\). Thus \(\inpr{\Lambda}{J(T)} = 0\) implies that \(\Lambda = cV\) and we may take \(c = 0\).
+
+Conversely, if \(\Lambda = 0\), then by equation \eqref{eq:el_sys}
+\[
+X'' = \lambda Z' = -\lambda X
+\]
+and hence \(X\) is an oval since ovals are precisely the eigenfunctions of the linear differential operator \(X \mapsto -X''\) with eigenvalues \(\lambda = n^2\).
+\end{proof}
+
+Thus ovals are precisely the constrained critical points with Lagrange multipliers \(\lambda = n^2\) and \(\Lambda = 0\). In the degenerate case we have the freedom to choose \(\Lambda = c V\) but may in particular choose \(\Lambda = 0\).
+
+We may also characterise ovals in another way.
+
+\begin{lem}
+Let \(X\) be a constrained critical point with \(X(s) \ne 0\) for all \(s\). Then the quantity \(P = \abs{X}^2 + \frac{1}{\lambda} \abs{Z}^2 \equiv \text{const}\) if and only if \(\Lambda = 0\) and hence by \Cref{lem:ovalLambda} if and only if \(X\) is a non-degenerate oval.
+\end{lem}
+
+\begin{proof}
+Since \(X(s) \ne 0\) and \(0 = \alpha(X) = \int_{\So} \tfrac{X}{\abs{X}}ds\), we have that \(T = \tfrac{X}{\abs{X}}\) is a positive degree map \(\So \to \So\). Note that this condition rules out the possibility of degenerate ovals.
+
+Now, for ovals we have
+\[
+X = \cos (ns) V_1 + \sin (ns) V_2 , \quad Z = -n\sin (ns) V_1 + n\cos (ns) V_2
+\]
+giving
+\[
+\begin{split}
+\abs{X}^2 + \frac{1}{\lambda} \abs{Z^2} &= \cos^2 (ns) \abs{V_1}^2 + 2 \cos (ns) \sin (ns) \inpr{V_1}{V_2} + \sin^2 (ns) \abs{V_2}^2 \\
+&+ \frac{1}{n^2} \left(n^2 \sin^2 (ns) \abs{V_1}^2 - 2n^2 \sin (ns) \cos (ns) \inpr{V_1}{V_2} + n^2 \cos^2 (ns) \abs{V_2}^2\right) \\
+&= \abs{V_1}^2 + \abs{V_2}^2 \equiv \text{const}.
+\end{split}
+\]
+For \(0\)-fold ovals this is still true if we interpret \(\lambda^{-1} \abs{Z}^2 = 0/0\) as constant. Thus \(\abs{X}^2 + \frac{1}{\lambda} \abs{Z}^2\) is constant along ovals, equivalently is constant when \(\Lambda = 0\) by \Cref{lem:ovalLambda}.
+
+Conversely, observe first that in general equation \eqref{eq:el_sys} gives
+\[
+\partial_s \abs{X}^2 = 2\inpr{X'}{X} = 2\inpr{Z}{X}
+\]
+\[
+\partial_s \abs{Z}^2 = 2\inpr{Z'}{Z} = -2\inpr{\lambda X}{Z} + \frac{2}{\abs{X}^3}\inpr{\Lambda}{J(X)}\inpr{J(X)}{Z}
+\]
+and hence
+\begin{equation}
+\label{eq:constnorms}
+\begin{split}
+\partial_s (\abs{X}^2 + \frac{1}{\lambda} \abs{Z}^2) &= \frac{2}{\abs{X}^3}\inpr{\Lambda}{J(X)}\inpr{J(X)}{Z} \\
+&= \frac{1}{\lambda}\frac{2}{\abs{X}^3}\inpr{J(\Lambda)}{X}\inpr{J(X)}{Z} \\
+&= \frac{1}{\lambda}\frac{2}{\abs{X}}\inpr{\Lambda}{N}\inpr{N}{Z}.
+\end{split}
+\end{equation}
+Supposing that \(\abs{X}^2 + \abs{Z}^2 \equiv \text{const}\), then by \eqref{eq:constnorms},
+\[
+\inpr{\Lambda}{N}\inpr{N}{Z} = 0.
+\]
+Then we claim \(\Lambda = 0\). For if not, since \(T = X/\abs{X}\) has positive degree so does \(N = J(T)\). In particular, both \(T\) and \(N\) are onto. Let \(U \subseteq \So\) denote the open set where \(T(s) \ne \pm \tfrac{\Lambda}{\abs{\Lambda}}\) and neither component of \(T\) equals zero.
+
+Thus on \(U\), \(\inpr{\Lambda}{N} \ne 0\) and hence \(\inpr{N}{Z} = 0\) which implies \(Z\) is parallel to \(T\) or equivalently that
+\[
+X' = Z = a X
+\]
+for a smooth function \(a\). Moreover, writing \(X = (x, y)\) we have \(x, y \ne 0\) on \(U\) and
+\[
+x' = ax, \quad y' = a y.
+\]
+Writing \(U = \cup_i (a_i, b_i)\) as a countable set of disjoint open intervals, we have
+\[
+x(s) = x(a_i) e^{\int_{a_i}^{s} a(t) dt}, \quad y = y(a_i) e^{\int_{a_i}^{s} a(t) dt}.
+\]
+on each interval \(s \in (a_i, b_i)\). But then on \((a_i, b_i)\) we have
+\[
+X(s) = e^{\int_{a_i}^{s} a(t) dt} (x(a_i), y(a_i)) \Rightarrow T(s) = T_i := \frac{(x(a_i), y(a_i))}{\abs{(x(a_i), y(a_i))}}.
+\]
+That is on \(U\), \(T\) takes only the countably many values \(T_i\). On the complement of \(U\), \(T\) takes only the finitely many values \((1, 0), (0, 1), \pm \tfrac{\Lambda}{\abs{\Lambda}}\). But then \(T\) takes on only countably many values contradicting that \(T\) is onto \(\So\). Thus we must have \(\Lambda = 0\) as required.
+\end{proof}
+
+\begin{conj}
+All constrained critical points have \(\Lambda = 0\), equivalently \(P = \abs{X}^2 + \frac{1}{\lambda} \abs{Z}^2\) is constant, equivalently all constrained critical points are ovals.
+\end{conj}
+
+From equation \eqref{eq:constnorms} we have
+\[
+P' = \frac{2\inpr{\Lambda}{N}\inpr{N}{Z}}{\lambda\abs{X}}
+\]
+Using \(N = J(T) = \frac{1}{\abs{X}} J(X)\), we have
+\[
+\begin{split}
+N' &= -\frac{\inpr{X}{X'}}{\abs{X}^3} J(X) + \frac{1}{\abs{X}}J(X') = \frac{1}{\abs{X}}\left(-\inpr{T}{Z} J(T) + J(Z)\right) \\
+&= \frac{1}{\abs{X}}\left(-\inpr{T}{Z} N + J(Z)\right).
+\end{split}
+\]
+Then
+\[
+\begin{split}
+P'' &= \frac{2}{\lambda}\bigg(-\frac{1}{\abs{X}^3} \inpr{X}{X'} \inpr{\Lambda}{N}\inpr{N}{Z} + \frac{1}{\abs{X}} \inpr{\Lambda}{N'}\inpr{N}{Z} \\
+&\quad + \frac{1}{\abs{X}} \inpr{\Lambda}{N}\inpr{N'}{Z} + \frac{1}{\abs{X}} \inpr{\Lambda}{N}\inpr{N}{Z'}\bigg) \\
+&= \frac{2}{\lambda\abs{X}^2}\bigg(-\inpr{T}{Z} \inpr{\Lambda}{N}\inpr{N}{Z} + \inpr{\Lambda}{-\inpr{T}{Z} N + J(Z)}\inpr{N}{Z} \\
+&\quad + \inpr{\Lambda}{N}\inpr{-\inpr{T}{Z} N + J(Z)}{Z} + \abs{X} \inpr{\Lambda}{N}\inpr{N}{X''}\bigg) \\
+&= \frac{2}{\lambda\abs{X}^2}\bigg(-3\inpr{T}{Z} \inpr{\Lambda}{N}\inpr{N}{Z} + \inpr{\Lambda}{J(Z)}\inpr{N}{Z} + \abs{X} \inpr{\Lambda}{N}\inpr{N}{X''}\bigg) \\
+&= \frac{1}{\abs{X}} \left(-3\inpr{T}{Z} + \frac{\inpr{\Lambda}{J(Z)}}{\inpr{\Lambda}{N}} + \abs{X} \frac{\inpr{N}{X''}}{\inpr{N}{Z}} \right) P'
+\end{split}
+\]
+Thus
+\[
+P'(s) = P'(0) \exp\left[\int_0^s \frac{1}{\abs{X}} \left(-3\inpr{T}{Z} + \frac{\inpr{\Lambda}{J(Z)}}{\inpr{\Lambda}{N}} + \abs{X} \frac{\inpr{N}{X''}}{\inpr{N}{Z}} \right)du \right]
+\]
+and
+\[
+P(s) = P'(0) \int_0^s \exp\left[\int_0^t \frac{1}{\abs{X}} \left(-3\inpr{T}{Z} + \frac{\inpr{\Lambda}{J(Z)}}{\inpr{\Lambda}{N}} + \abs{X} \frac{\inpr{N}{X''}}{\inpr{N}{Z}} \right)du\right] dt + P(0)
+\]
+{\color{red}This is very little help since \(P'(s) \equiv 0\) if and only if \(P'(0) = 0\) if and only if \(P(s) \equiv P(0)\).}
 \section{System Of ODE's}
 \label{sec:ode_sys}
 
@@ -139,14 +291,6 @@ u' &= -\lambda x + \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) y, \\
 v' &= -\lambda y + \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) x.
 \end{cases}
 \end{equation}
-Equivalently, let \(Z = (u, v) = X'\) yielding
-\begin{equation}
-\label{eq:el_sys}
-\begin{cases}
-X' &= Z \\
-Z' &= -\lambda X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
-\end{cases}
-\end{equation}
 
 Note in particular that when \(\Lambda = (0, 0)\) (\(A = B = 0\)), the system is uniformly Lipshchitz on the right hand side so that unique solutions exist given any initial data. However, if \(\Lambda \ne 0\) the right hand side is only continuous away from \(X = (0, 0)\). Thus solutions are only guaranteed to exist for a short interval \(s \in [0, s_0)\) and either \(s_0 = \infty\) or \(\abs{X}(s) \to 0\) as \(s \to s_0\) since the system has unique solutions provided \(\abs{X} \ne 0\). In general, the right hand side is uniformly Lipschitz on the set \(\abs{X}^2 \geq \epsilon\) for any \(\epsilon > 0\). But the Lipshitz constant depends on \(\epsilon\) and blows up at \(X = (0, 0)\) where right hand side is also no longer even continuous.
 
@@ -161,29 +305,5 @@ We seek to show that this situation is impossible unless \(\Lambda = (0, 0)\). T
 
 Let \(M_{\pm}\) denote the minimum and maximum values of \(\abs{X}\) so that \(M_- \leq \abs{X} \leq M_+\) with \(0 < M_- < M_+ < \infty\) and there are points \(s_{\pm} \in \So\) such that \(\abs{X}(s_{\pm}) = M_{\pm}\). Note that if \(M_- = M_+\), then \(\abs{X} \equiv M_- = M_+\) is constant and \(X\) is a circle which means we are done already. 
 
-Changing variables \(s \mapsto \lambda^{-1/2} s\), \((X, Z) \mapsto (X, \lambda^{-1/2} Z)\) and replacing \(\Lambda\) with \(\tfrac{1}{\lambda} \Lambda\), we may rewrite equation \eqref{eq:el_sys} as
-\[
-\begin{cases}
-X' &= Z, \\
-Z' &= -X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
-\end{cases}
-\]
-Now we seek \(2\pi\sqrt{\lambda}\)-periodic solutions.
 
-
-We have
-\[
-\partial_s \abs{X}^2 = 2\inpr{X'}{X} = 2\inpr{Z}{X}
-\]
-\[
-\partial_s \abs{Z}^2 = 2\inpr{Z'}{Z} = -2\inpr{X}{Z} + \frac{2}{\abs{X}^3}\inpr{\Lambda}{J(X)}\inpr{J(X)}{Z}
-\]
-and hence
-\[
-\begin{split}
-\partial_s (\abs{X}^2 + \abs{Z}^2) &= \frac{2}{\abs{X}^3}\inpr{\Lambda}{J(X)}\inpr{J(X)}{Z} \\
-&= \frac{2}{\abs{X}^3}\inpr{J(\Lambda)}{X}\inpr{J(X)}{Z} \\
-&= \frac{2}{\abs{X}}\inpr{\Lambda}{N}\inpr{N}{Z}
-\end{split}
-\]
 \end{document}
