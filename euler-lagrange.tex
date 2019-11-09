@@ -137,6 +137,45 @@ with \(V_1, V_2 \in \RR^2\). A \emph{degenerate} oval is an oval for which \(V_1
 
 We will always normalise \(V_1, V_2\) so that an oval \(X\) satisfies, \(I(X) = \|X\|_2^2 = 1\). Also, all ovals automatically satisfy the constraint \(\alpha(X) = (0, 0)\).
 
+It's worth explicitly stating the defining equations for ovals.
+
+\begin{lem}
+Let \(\lambda = n^2\) for \(n \in \NN\), \(\Lambda = (0, 0)\) and \(V_0, V_1 \in \RR^2\). Then the unique solution of the Euler-Lagrange equation \eqref{eq:el_sys} with initial conditions \(X(0) = V_0, X'(0) = V_1\) is
+\[
+X = \cos (ns) V_1 + \frac{1}{n} \sin(ns) V_2.
+\]
+Note this includes the degenerate case where either \(V_1 = (0, 0)\), \(V_2 = (0, 0)\), both \(V_1 = V_2 = (0, 0)\) and \(V_2 = cV_1\).
+\end{lem}
+
+\begin{proof}
+Direct computation and the fact that when \(\Lambda = (0, 0)\), equation \eqref{eq:el_sys} reduces to \(X'' + \lambda X = 0\) which admits unique solutions.
+\end{proof}
+
+In fact, the degenerate ovals may also be characterised in the following way.
+
+\begin{lem}
+Let \(\Lambda \in \RR^2\) and \(\lambda = n^2\). Then the unique solution of the Euler-Lagrange equation \eqref{eq:el_sys} with initial conditions \(X(0) = c_1 \Lambda, X'(0) = c_2 \Lambda\) is
+\[
+X = \left(c_1 \cos (ns) + \frac{c_2}{n} \sin(ns)\right) \Lambda
+\]
+\end{lem}
+
+\begin{proof}
+We have
+\[
+X'' + \lambda X = 0
+\]
+and
+\[
+\inpr{\Lambda}{J(X)} = \left(c_1 \cos (ns) + \frac{c_2}{n} \sin(ns)\right) \inpr{\Lambda}{J(\Lambda)} = 0.
+\]
+The initial conditions are immediate.
+\end{proof}
+
+{\color{red}Not sure if we can lose uniqueness when \(X\) passes through \((0, 0)\)}
+
+The point of the lemma is that we might try to analyse the Euler-Lagrange equation \eqref{eq:el_sys} for general \(\Lambda\) by perturbing the initial conditions \(V_1, V_2\) near \(V_1 = c\Lambda\), \(V_2 = c_2 \Lambda\).
+
 Ovals are both constrained and unconstrained critical points giving the following simple characterisation of ovals.
 
 \begin{lem}
