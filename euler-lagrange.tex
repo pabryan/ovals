@@ -56,7 +56,19 @@ or equivalently, we have the (pointwise) orthonormal decomposition
 X'' = -\lambda \abs{X} T + \frac{1}{\abs{X}} \inpr{\Lambda}{N}N
 \end{equation}
 
-Substituting into the energy gives,
+Letting \(Z = X'\) gives the first order formulation of the Euler-Lagrange equation \eqref{eq:el}:
+\begin{equation}
+\label{eq:el_sys}
+\begin{cases}
+X' &= Z \\
+Z' &= -\lambda X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
+\end{cases}
+\end{equation}
+
+
+\section{Identities For Constrained Critical Points}
+
+Substituting from equation \eqref{eq:el} into the energy gives,
 \begin{equation}
 \label{eq:Ecrit}
 \begin{split}
@@ -117,15 +129,6 @@ from equations \eqref{eq:vecidentity_lambda} and \eqref{eq:Lambdaeqn} we have th
 
 \section{Characterising Ovals}
 \label{sec:ovals}
-
-Letting \(Z = X'\) gives the first order formulation of the Euler-Lagrange equation \eqref{eq:el}:
-\begin{equation}
-\label{eq:el_sys}
-\begin{cases}
-X' &= Z \\
-Z' &= -\lambda X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
-\end{cases}
-\end{equation}
 
 \begin{defn}
 For \(n = \NN\), an (\(n\)-fold) \emph{oval} is a map
