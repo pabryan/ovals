@@ -1,0 +1,61 @@
+
+\begin{lem} \label{second variation lemma} The second variation is
+\begin{align*}\frac12    ||X||^2  &  d^2 E_X(V,W)     \\
+&= - \left( dE_X(W)\int \langle X,W \rangle \,ds + dE_X(V)\int \langle X,V \rangle \,ds \right)
+-  \int \langle \mathcal{L} V, W \rangle  \,ds\end{align*}
+\end{lem}
+
+
+\subsection*{Paul's argument for the same:} 
+ My definition is (for \(V, W \in T_X C\) the tangent space to the constraint at \(X\)):
+\[
+[\nabla^2 E (V, W)] (X) = [d_V (d_W E)] (X) - [dE(\nabla_V W)](X)
+\]
+where I extend \(V, W\) to local vector fields to compute the RHS. It should be tensorial and independent of the extension though that will need to be checked. Certainly it's true in finite dimensions.
+
+Here $E : H \to \RR$ and
+\[
+[d_W E] (X) = \partial_t|_{t=0} E(X + t W)
+\]
+is also a function $H \to \RR$ so we can differentiate again.
+
+For \(\nabla_V W\), first define for vector fields \(V, W : H \to H\)
+\[
+[D_V W] (X) = dW_X(V) = \partial_t|_{t=0} W(X + t V).
+\]
+Then
+\[
+\nabla_V W = \pi_{TC} D_V W
+\]
+where \(\pi_{TC}\) is the projection onto the tangent space to the constraint \(C\).
+
+Then since by definition \(\nabla_V W\) is tangent to \(C\), for a critical point \(X\) for \(E\) it's annihilated by \(dE\) so we have
+\[
+\nabla^2 E(V, W) = d_V d_W E - dE(\nabla_V W) = d_V d_W E. 
+\]
+
+To compute \(d_V d_W E\), let \(X_{t,s}\) be a two parameter variation of \(X\) with
+\[
+X_{0,0} = X, \quad \partial_t X_{t,s} = V, \quad \partial_s X_{t,s} = W
+\]
+at \(s = t = 0\). Then
+\[
+\nabla^2 E(V, W) = \partial_t|_{t=0} \partial_s|_{s=0} E(X_{t,s}) = \partial_t|_{t=0} dE_{X_t} (W) = \partial_t|_{t=0} \frac{-2}{\|X_t\|^2} \langle X_t'' + E(X_t) X, W \rangle_2.
+\]
+where \(X_t = X_{t,0}\).
+
+I just haven't done the last one yet, but note that it's basically the same as before but there we had \(W = V = \partial_t X_t\) and now \(W\) has no \(t\) component.
+
+
+Hmmm.... So if $V, W$ are constraint preserving and $X$ is critical normalised to have $\|X\|_2 = 1$ then
+\[
+d^2 E_X (V, W) = \inpr{-L(V)}{W}_2 = -\inpr{V}{-L(W)}_2.
+\]
+
+And then we get:
+\[
+\inpr{-L(V)}{V}_2 \geq 0.
+\]
+which says that $E(V) \geq E(X)$ for all $V$ tangent to the constraint at $X$.
+
+

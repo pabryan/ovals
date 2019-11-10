@@ -1,0 +1,91 @@
+
+\begin{lem} 
+\label{dichotomy lemma}
+Suppose that $X$ is a critical point of $E$ in $\mathcal{C}$.     Then either 
+\begin{enumerate}[label=(\alph*)]
+\item $(f^2\kappa)'=0$ (in which case in Th. \ref{thm:constrained_critical}, $A=B=0$, and $X$ is an ellipse);  \label{one} or
+\item we can find a $V\in T\mathcal{C}$ such that $d^2E_X(V,V)<0$ (in which case $X$ is not a minimiser).  \label{two}
+\end{enumerate}
+\end{lem}
+
+This immediately implies the main theorem.
+
+\begin{proof}[Proof of Theorem \ref{main}]  By Denzler, there exists a minimizer of $E$ in $\mathcal{C}$.    Let $X$ be this minimiser.   Again by Denzler, this is a a regular curve, and in particular it is a critical point of $E$ in $\mathcal{C}$, to which we can apply the above lemma.   If $(f^2\kappa)$ is constant, then by Lemma \ref{ellipse lemma}, $X$ is an ellipse, possibly multiply covered.     This has energy $E[X]=k^2\ge 1$.
+  Hence the conclusion follows.
+
+On the other hand, if $(f^2\kappa)'\not=0$, then we can find $V\in T\mathcal{C}$ such that $d^2E_X(V,V)<0$, contradicting that $X$ is a minimiser in $\mathcal{C}$.    
+
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{dichotomy lemma}:]
+Let $X$ be a critical point of $E$ in $\mathcal{C}$.
+From Lemma \ref{second variation lemma}, the  second variation %at a critical point 
+is:
+\begin{align*}d^2E_X(V,V)&=-\int\langle\mathcal{L}V, V\rangle \,ds= -\int\langle V''+ E[X]V, V\rangle \,ds\\&=  \int| V'|^2- E[X]|V|^2\,ds= \Vert V\Vert_{L^2}\left( E[V]-E[X]\right).
+\end{align*}
+
+Our strategy is to look for a $V\in T\mathcal{C}$ such that $E[V]<E[X]$, implying that $d^2E_X(V,V)<0$, and consequently $X$ cannot be a minimiser.  
+
+We recall that $V\in T\mathcal{C}$ are given by $$V=\mu T + \overline{\rho}\kappa f N,$$ where $\mu$ is arbitrary and $\overline{\rho}\perp_{L^2(d\theta)}\lbrace\cos\theta,\sin\theta\rbrace.  $
+
+We choose $\rho=\kappa^{-1}$.    This is in $E^\perp$ as $$\int \kappa^{-1}\cos\theta\,d\theta= \int\kappa^{-1}\cos\theta \kappa\,ds= \int \cos\theta\,ds= \int \langle T,e_1\rangle\,ds= \int \langle \gamma',e_1\rangle\,ds=0,$$
+and same for $\sin\theta=\langle T, e_2\rangle$.
+
+We  also choose $\mu^t=-{t}{f}^{-1}(f^2\kappa)'$ for some small parameter $t$.   
+
+Hence $$V^t= \mu^t T + f N, \text{ and }V'=({\mu^t}'-f\kappa )T+ (\mu^t\kappa + f')N,$$
+and we set
+$$e(t):= E[V^t]= \frac{\int ({\mu^t}'-f\kappa)^2 + (\mu^t\kappa+ f'^2 )\,ds }{\int {\mu^t}^2 + f^2 \,ds }$$
+
+%Hence $$V'=(\mu'-f\kappa^2 \overline{\rho})T+ (\mu\kappa + (f\kappa\overline{\rho})')N,$$
+%and 
+%$$E[V]= \frac{\int (\mu'-f\kappa^2\overline{\rho})^2 + (\mu\kappa+ (f\kappa\overline{\rho})')^2 \,ds }{\int \mu^2 + (f\kappa\overline{\rho})^2 %\,ds }$$
+
+Note that 
+ \begin{align*} e(0)
+%E[V]
+&= \frac{\int (f\kappa)^2 + f'^2 \,ds }{\int  f^2 \,ds }= E[X],
+\end{align*}
+
+We  calculate
+\begin{align*}
+\left.\frac{d}{dt}e(t)\right|_{t=0}&= \left.\frac{d}{dt}E[\mu^t T+ fN]  \right|_{t=0} \\
+%&=
+%\frac{d}{dt}\left.E[fN-t f^{-1}(f\kappa^2)'T]\right|_{t=0}\\
+ &= \left.
+\frac{2}{\int {{\mu^t}}^2 + f^2 \,ds }\left[
+{\int ({\mu^t}'-f\kappa)\frac{d}{dt}{\mu^t}'   + ({\mu^t}\kappa+ f')\kappa \frac{d}{dt}{\mu^t}  \,ds }- E[V^t]{\int {\mu^t} \frac{d}{dt}{\mu^t} \,ds }\right]
+ \right|_{t=0}  \\
+ &= \left.
+\frac{2}{\int {{\mu^t}}^2 + f^2 \,ds }
+\int \left[   -({\mu^t}'-f\kappa)'  + ({\mu^t}\kappa+ f')\kappa - E[V^t] {\mu^t}  
+\right]
+\frac{d}{dt}{\mu^t}  
+\,ds   \right|_{t=0} 
+\\
+&= \left.
+\frac{2}{\int  f^2 \,ds }
+\int \left[   (f\kappa)'  +  f'\kappa  
+\right]
+\frac{d}{dt}{\mu^t}  
+\,ds   \right|_{t=0}
+\\
+&= \left.
+\frac{2}{\int  f^2 \,ds }
+\int \left[  f^{-1} (f^2\kappa)'  
+\right]
+\frac{d}{dt}{\mu^t}  
+\,ds   \right|_{t=0}
+\\
+&= \left.
+\frac{-2}{\int  f^2 \,ds }
+\int \left[  f^{-1} (f^2\kappa)'  
+\right]^2
+\,ds   \right|_{t=0}
+ \\&\le 0,
+\end{align*}
+where we use $\frac{d}{dt}{\mu^t}=-{f}^{-1}(f^2\kappa)'$ in the second last line.   Equality in the last line holds only in the case that $(f^2\kappa)'=0$.
+
+That is, either $f^2\kappa=c$--- and hence \ref{one} holds-- or we can find a $V^t$ such that for small $t$, $E[V^t]<E[V^0]=E[X]$.   In turn this implies that $d^2E_X(V,V)<0$, and so \ref{two} holds.      
+
+\end{proof}

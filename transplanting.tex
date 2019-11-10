@@ -1,0 +1,614 @@
+\documentclass[12pt]{article}
+
+\input{setup.tex}
+
+\title{Transplanting Approach}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{The Constrained Problem}
+
+Given a smooth, regular curve \(\gamma \in C^{\infty}(\So \to \RR^2)\) with length \(L(\gamma) = 2\pi\), we define the energy,
+\begin{equation}
+\label{eq:Egamma}
+E(\gamma) = \inf\left\{\int_{\So} \abs{\partial_s f}^2 + \kappa^2 f^2 ds : \int_{\So} f^2 = 1\right\} = \inf\left\{\frac{\int_{\So} \abs{\partial_s f}^2 + \kappa^2 f^2 ds}{\int_{\So} f^2 ds} : f \not\equiv 0\right\}
+\end{equation}
+where \(f \in C^{\infty}(\So \to \RR^2)\) is assumed smooth.
+
+For a given \(f \in C^{\infty}(\So \to \RR^2)\), let us also write
+\begin{equation}
+\label{eq:Egammaf}
+E(\gamma, f) = \frac{\int_{\So} \abs{\partial_s f}^2 + \kappa^2 f^2 ds}{\int_{\So} f^2 ds}
+\end{equation}
+so that
+\begin{equation}
+\label{eq:EgammaEgammaf}
+E(\gamma) = \inf\left\{E(\gamma, f) : f \not\equiv 0\right\}.
+\end{equation}
+
+Standard arguments imply that the energy is the first eigenvalue of the Euler-Lagrange equation,
+\begin{equation}
+\label{eq:ELf}
+-\partial_s^2 f + \kappa^2 f = 0
+\end{equation}
+and that infimum is attained by the first eigenfunction \(f\) satisfying \(f > 0\). Therefore, we restrict our attention to \(f > 0\).
+
+Let us write,
+\begin{equation}
+\label{eq:TN}
+T = \gamma', \quad N = -J T
+\end{equation}
+for the unit tangent and normal, where $J$ is clockwise rotation by $\pi/2$. Here we choose the orientation \(N = -JT\) for convenience when dealing with circles later. Define the geodesic curvature \(\kappa\) by the Frenet-Serret formula
+\begin{equation}
+\label{eq:FS}
+\partial_s T = - \kappa N, \quad \partial_s N = \kappa T.
+\end{equation}
+
+For any \(\gamma\) and \(f > 0\), define
+\begin{equation}
+\label{eq:X}
+X = X(f, \gamma) = f T.
+\end{equation}
+Note that we then have \(\forall s \> X(s) \ne 0\) and
+\begin{equation}
+\label{eq:TNX}
+T = \frac{X}{\abs{X}}, \quad f = \abs{X}, N = -J \frac{X}{\abs{X}}
+\end{equation}
+and we may recover \(\gamma\) and \(f\) from \(X\) (up to rigid motion of \(\gamma\)) by defining,
+\begin{equation}
+\label{eq:gammaX}
+\gamma(s) = \gamma (X) (s) = \int_0^s \frac{X}{\abs{X}} ds, \quad f = \abs{X}.
+\end{equation}
+Notice that defining the \(\RR^2\)-valued functional,
+\begin{equation}
+\label{eq:alpha}
+\alpha(X) = \int_{\So} \frac{X}{\abs{X}} ds
+\end{equation}
+we have that the set of \(X = X(\gamma, f)\) with \(f > 0\) satisfies,
+\[
+\alpha(X) = \int_{\So} T ds = 0.
+\]
+
+Since the energy \(E(\gamma, f)\) is invariant under rigid motion of \(\gamma\), using the Frenet-Serret equations \eqref{eq:FS}, we may then express it in terms of \(X\) by,
+\begin{equation}
+\label{eq:gammafX}
+E(\gamma, f) = E(X) = \frac{\int_{\So} \abs{X'}^2 ds}{\int_{\So} \abs{X}^2 ds} = \frac{\|X'\|_2^2}{\|X\|_2^2}.
+\end{equation}
+
+Then we have,
+\begin{equation}
+\label{eq:infimums}
+\begin{split}
+\lambda = \inf\left\{E(\gamma) : L(\gamma) = 2\pi\right\} &= \inf\left\{E(\gamma, f) : L(\gamma) = 2\pi, f \not\equiv 0\right\} \\
+&= \inf\left\{E(X) : \forall s \> X(s) \ne 0, \alpha(X) = 0\right\}.
+\end{split}
+\end{equation}
+
+For this reason, we call \(\alpha\) the \emph{constraint functional}. We have the following conjecture regarding the least energy for the constrained problem:
+
+\begin{conj}
+\label{conj:main}
+\[
+\lambda = 1.
+\]
+\end{conj}
+
+\section{Formulating the Problem in \(W^{1,2}\)}
+
+As usual, the space of smooth maps is not well suited to the minimisation problem, so we work instead with maps \(X \in H = W^{1,2} (\So \to \RR^2)\) for which energy functional,
+\[
+E(X) = \frac{\|X'\|_2^2}{\|X\|_2^2}
+\]
+is well defined for all \(X \ne 0\).
+
+To deal with the constraint functional, \(\alpha\) we note that while \(\alpha\) is not defined on all of \(H\), it is defined at least for the subset
+\[
+H^0 = \{X \in W^{1,2} (\So \to \RR^2 \backslash \{0\})\}
+\]
+of maps avoiding the origin. Here to define \(H^0\) we first note that given any fixed vector \(V \in \RR^2\), writing \(\inpr{\cdot}{\cdot}\) for the inner-product on \(\RR^2\), the map
+\[
+X \in H \mapsto \inpr{X}{V} \in W^{1,2}(\So \to \RR)
+\]
+is well defined and continuous. Since \(\So\) is one-dimensional, Morrey's inequality with \(n=1,p=2\) gives us a constant \(C > 0\) such that
+\[
+\|X^i\|_{C^{0,1/2}} \leq C\|X^i\|_{W^{1,2}}.
+\]
+Then \(X^1 = \inpr{X}{e_1}\) and \(X^2 = \inpr{X}{e_2}\) embed continuously into \(C^0(\So \to \RR), \|\cdot\|_{\infty}\) and hence we obtain a continuous embedding,
+\[
+\iota : H \to \left(C^0(\So \to \RR^2), \|\cdot\|_{C^{0,1/2}}\right).
+\]
+Then we define the open set in \(H\),
+\begin{equation}
+\label{eq:H0}
+H^0 = \iota^{-1}\left(\{X \in C^0(\So \to \RR^2\backslash \{0\})\}\right).
+\end{equation}
+We also have use for the open sets defined for \(\epsilon > 0\) by,
+\begin{equation}
+\label{eq:Hepsilon}
+H^{\epsilon} = \iota^{-1}\left(\{X \in C^0(\So \to \RR^2\backslash \BB_{\epsilon}(0))\}\right).
+\end{equation}
+
+Now we have that \(\alpha\) is a well defined functional on \(H^{\epsilon}\) for \(\epsilon \geq 0\). We then define the constraint set
+\begin{equation}
+\label{eq:constraintsets}
+\C = \{X \in H^0 : \alpha(X) = 0\}.
+\end{equation}
+
+\begin{lem}
+\label{lem:Csubmanifold}
+The constraint functional \(\alpha\) is \(C^1\) on the open set \(H^0\).
+\end{lem}
+
+\begin{proof}
+Given any \(X,V \in H^0\), we first show that the Gateaux derivative \(d\alpha_X (V)\) exists. That is,
+\[
+\lim_{t\to 0} \frac{\alpha(X + t V) - \alpha(X)}{t} = \partial_t|_{t=0} \alpha(X + tV)
+\]
+exists. First observe that we may assume \(X, V\) are continuous and that we have \(\abs{X} > 0\). Then the map,
+\[
+(t, s) \mapsto \beta(X(s) + t V(s)) = \frac{X(s) + t V(s)}{\abs{X(s) + t V(s)}}
+\]
+is continuous with continuous partial derivative with respect to \(t\) for sufficiently small \(t\) (uniformly in \(\theta\)). Thus by compactness of \(\So\), we may interchange the order of integration and differentiation to obtain that
+\[
+\begin{split}
+d\alpha_X (V) &= \partial_t|_{t=0} \alpha(X + tV) = \int_{\So} \partial_t|_{t=0} \beta (X(s) + tV(s))  ds \\
+&= \int_{\So} \frac{1}{\abs{X}}\left(V - \inpr{V}{\frac{X}{\abs{X}}} \frac{X}{\abs{X}}\right) ds
+\end{split}
+\]
+is well defined. In fact recalling that from equation \eqref{eq:TNX}, \(T = \tfrac{X}{\abs{X}}\) and \(N = -J T\) is orthogonal to \(T\), we have
+\begin{equation}
+\label{eq:alphagateaux}
+d\alpha_X (V) = \int_{\So} \frac{\pi_N(V)}{\abs{X}} ds
+\end{equation}
+where
+\[
+\pi_N (V) (s)= \pi_{N (s)} (V(s)) = \inpr{V(s)}{N(s)}N(s)
+\]
+denotes the orthogonal (in \(\RR^2\)) projection onto \(N(s)\).
+
+Now we show that \(\alpha\) is in fact Frechet differentiable and \(C^1\). That is,
+\[
+\lim_{V \to 0} \frac{\|\alpha(X + V) - \alpha(X) - d\alpha_X(V)\|_{\RR^2}}{\|V\|_{W^{1,2}}} = 0
+\]
+and the map
+\[
+X \in \C \mapsto d\alpha_X \in \mathcal{B} (H, \RR^2)
+\]
+is continuous. In fact, by the mean value theorem for Gateaux differentiable functions (see Andrews-Hopper but there must be a more generic ref), it suffices to prove only the latter statement.
+
+First we need to show \(d\alpha_X \in \mathcal{B} (H, \RR^2)\) the vector space of bounded linear maps \(H \to \RR^2\). Since \(\pi_N\) is linear and integration is linear, \(d\alpha_X\) is certainly linear. Now for any \(V \in W^{1,2}\), first by Cauchy-Schwartz and then by Morrey's inequality,
+\[
+d\alpha_X(V) = \int_{\So} \frac{\pi_N(V)}{\abs{X}} ds \leq \int_{\So} \frac{\abs{V}}{\abs{X}} ds \leq C \left(\int_{\So} \frac{1}{\abs{X}} ds\right) \|V\|_{W^{1,2}}
+\]
+and hence \(\|d\alpha_X\|_{\mathcal{B}(H, \RR^2)} \leq C \int_{\So} \frac{1}{\abs{X}} ds < \infty\) as required.
+
+To finish, we seek to prove that
+\[
+\lim_{X \underset{H}{\to} X_0} \|d\alpha_X - d\alpha_{X_0}\|_{\mathcal{B}(H, \RR^2)} = \lim_{X \underset{H}{\to} X_0} \sup \{\abs{d\alpha_X (V) - d\alpha_{X_0}(V)} : \|V\|_{W^{1,2}} = 1\} = 0.
+\]
+Since we have the continuous emebedding \(\iota : H \to C^0\), if \(X \underset{H}{\to} X_0\) then also \(X \underset{C^0}{\to} X_0\) and hence it is sufficient to prove that
+\[
+\lim_{X \underset{C^0}{\to} X_0} \sup \{\abs{d\alpha_X (V) - d\alpha_{X_0}(V)} : \|V\|_{W^{1,2}} = 1\} = 0.
+\]
+
+Now, we have that
+\[
+\begin{split}
+d\alpha_X(V) - d\alpha_{X_0} (V) &= \int_{\So} \frac{\pi_N(V)}{\abs{X}} - \frac{\pi_{N_0} (V)}{\abs{X_0}} ds \\
+&= \int_{\So} \T(X(s), V(s)) - \T(X_0(s), V(s)) ds
+\end{split}
+\]
+where \(\T : \RR^2\backslash\{0\} \times \RR^2 \to \RR^2\) is the continuous map
+\[
+\T (x, v) = -\inpr{v}{\frac{1}{\abs{x}^3}J x} x.
+\]
+Now since \(X_0\) satisfies the constraint, we have \(\abs{X_0} > 0\) and moreover since \(X_0\) is a continuous map on the compact space \(\So\), there exists \(R, r > 0\) such that for every \(s \in \So\),
+\[
+r \leq \abs{X_0(s)} \leq R.
+\]
+Now in the limit \(X \underset{C^0}{\to} X_0\) we may assume that \(\|X - X_0\|_{C^0} < r/2\) so that for every \(s \in \So\),
+\[
+r/2 \leq \abs{X_0(s)}, \abs{X(s)} \leq R + r/2.
+\]
+Moreover by Morrey's inequality, for every \(s \in \So\),
+\[
+\abs{V(s)} \leq \|V\|_{C^0} \leq C \|V\|_{W^{1,2}} = C.
+\]
+Then for all \(s\), \((X(s), V(s)) \in \RR^4\) lies in the compact set,
+\[
+r/2 \leq \abs{x} \leq R + r/2, \quad 0 \leq \abs{v} \leq C
+\]
+on which the function \(\T\) is uniformly continuous.
+
+Thus, independently of \(s \in \So\) and \(V\) with \(\|V\|_{W^{1,2}} = 1\), we have for every \(\epsilon > 0\), there is a \(\delta > 0\) such that
+\[
+\|X - X_0\|_{C^0} < \delta \Rightarrow \abs{\T(X(s), V(s)) - \T(X_0(s), V(s))} < \epsilon
+\]
+and hence for every \(V\) such that \(\|V\|_{W^{1,2}} = 1\)
+\[
+\|X - X_0\|_{C^0} < \delta \Rightarrow \int_{\So} \abs{\T(X(s), V(s)) - \T(X_0(s)) - V(s)} ds < 2\pi \epsilon
+\]
+and we obtain the desired continuity.
+\end{proof}
+
+\begin{lem}
+\label{lem:constraintC1}
+\(0\) is a regular value for \(\alpha\) and hence the constraint set \(\C\) is a \(C^1\) sub-manifold of \(H\).
+\end{lem}
+
+\begin{proof}
+We just need to show that if \(\alpha(X) = 0\), then \(d\alpha : H \to \RR^2\) is surjective. So for each \(v \in \RR^2\) we need a \(V \in H\) such that such that \(d\alpha_X (V) = v\).
+\end{proof}
+
+Let us round out this section with the simple observation that by defining
+\begin{equation}
+\label{eq:mu}
+\mu = \inf\{E(X) : X \in \C\}
+\end{equation}
+we have the immediate inequality
+\[
+\lambda = \inf\{E(X) : X \in C^{\infty}(\So \to \RR^2) \cap \C\} \geq \mu.
+\]
+It seems reasonable to expect that \(\mu = \lambda\) since \(C^{\infty}\) is dense in \(H\) but there is one difficulty to overcome in showing this directly. Namely, whilst given any \(X \in \C\), there are arbitrarily close smooth maps, there is no a-priori guarantee that there are arbitrarily close smooth maps also in \(\C\) which, being a submanifold of positive co-dimension is nowhere dense. By continuity of \(\alpha\) we can find arbitrarily close smooth \(Y\) with arbitrarily small \(\abs{\alpha(Y)}\). It's not a-priori clear that small \(\abs{\alpha(Y)}\) implies that \(E(Y)\) is at least say \(\lambda - \epsilon\). The problem again is that it's not clear there are smooth \(Z \in \C\) close to \(Y\) just from the assumption that \(\alpha(Y)\) is close to \(0\).
+
+However, it will turn out unnecessary to directly prove that \(\mu \geq \lambda\). Instead it suffices to show that
+\[
+\mu = 1
+\]
+since then we have
+\[
+1 = E(\text{circle}) \geq \lambda \geq \mu = 1
+\]
+and we obtain equality all the way through. In other words \Cref{conj:main} follows from showing that \(\mu = 1\).
+
+\section{Constraint Preserving Variations}
+
+We know from equation \eqref{eq:alphagateaux} that
+\[
+d\alpha_X (V) = \int_{\So} \frac{\pi_{\perp} (V)}{|X|} ds.
+\]
+Defining \(\rho = \inpr{V}{N}\), we may rewrite this as
+\[
+d\alpha_X (V) = \int_{\So} \frac{\rho N}{|X|} ds.
+\]
+Working with respect to the angular parameter \(\theta(s)\) determined uniquely by
+\[
+N(s) = \cos \theta(s) e_1 + \sin \theta(s) e_2 \quad \Rightarrow T(s) = \sin \theta(s) e_1 - \cos \theta(s) e_2,
+\]
+and satisfying
+\[
+\partial_s \theta = \kappa \quad \Rightarrow \quad \partial_s = \frac{1}{\kappa} \partial_{\theta}, \quad ds = \kappa d\theta
+\]
+we have
+\[
+d\alpha_X (V) = \int_{\So} \bar{\rho} \cos\theta e_1 + \bar{\rho} \sin\theta e_2 d\theta
+\]
+where
+\[
+\bar{\rho} = \frac{\rho}{f \kappa}.
+\]
+This follows from
+\[
+f = |X|, \quad d\theta = \kappa ds.
+\]
+
+Then \(V\) infinitesimally preserves \(\alpha\) if and only if
+\[
+\bar{\rho} \perp_{L^2} \{\sin, \cos\}
+\]
+so that
+\[
+\bar{\rho} = c_0 + \sum_{n\geq 2} a_n \sin(n \theta) + b_n \sin(n \theta).
+\]
+
+In other words, the tangent space, \(T_X \C\) to the constraint manifold \(\C\) at \(X\) is given by,
+\[
+T_X \C = \{\mu T + f\kappa\bar{\rho} N : \mu \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
+\]
+
+For \(\bar{\gamma} = \cos\theta s + \sin \theta s\) a circle, we have \(\bar{\kappa} \equiv 1\) and also eigenfunction, \(f \equiv 1\). Therefore \(\bar{X} = \bar{f} \bar{T}\) is the circle map,
+\[
+\bar{X}(s) = -\sin\theta e_1 + \cos\theta e_2.
+\]
+Moreover, \(\theta = s + \text{const}\) and we choose \(\text{const} = 0\) so that \(\theta = s\) and
+\[
+\bar{N}(\theta) = \cos\theta e_1 + \sin\theta e_2.
+\]
+Then we also have,
+\[
+\rho = \bar{\rho}
+\]
+and arbitrary constraint preserving variations may be written,
+\[
+V(\theta) = \bar{\mu}(\theta) T(\theta) + \bar{\rho}(\theta) N(\theta) = (- \bar{\mu}\sin\theta + \bar{\rho} \cos\theta) e_1 + (\bar{\mu}\cos\theta + \bar{\rho}\sin\theta) e_2
+\]
+where \(\bar{\mu} : \So \to \RR\) is arbitrary and \(\bar{\rho} \perp_{L^2} \{\sin, \cos\}\). Hence,
+\[
+T_{\bar{X}} \C = \{\bar{\mu} T + \bar{\rho} N : \bar{\mu} \text{ arbitrary }, \bar{\rho} \perp_{L^2} \{\sin, \cos\}\}.
+\]
+
+\section{Constrained Critical Points}
+
+In this section we characterise the constrained critical points.
+
+\begin{thm}
+\label{thm:constrained_critical}
+Suppose \(X\) is a critical point for \(E\) with respect to constraint preserving variations so that for all \(\bar{\mu}\) and all \(\bar{\rho} \perp_{L^2} \{\cos, \sin\}\) we have
+\[
+dE_X(\kappa\bar{\mu} T + f\kappa \bar{\rho} N) = 0.
+\]
+Then, if \(X\) is normalised so that \(\|X\|_2 = 1\), we have
+\[
+X''(s) + E(X) X(s) = (A \cos(\theta(s)) + B \sin(\theta(s))) \frac{J(X(s))}{\abs{X(s)}^2}
+\]
+for constants \(A, B\) and where \(J\) denotes the clockwise rotation by \(\pi/2\). In particular \(X'' + E(X) X\) is pointwise orthogonal to \(X\).
+\end{thm}
+
+\begin{rem}
+The constants \(A, B\) are Lagrange-multipliers. Let us write \(-\Lambda = A e_1 + B e_2\) and recalling that
+\[
+-J\left(\frac{X}{|X|}\right) = N(s) = \cos\theta(s) e_1 + \sin\theta(s) e_2,
+\]
+we may rewrite the conclusion of the theorem as
+\begin{equation}
+\label{eq:constrained_EL}
+X'' + E(X) X = \frac{1}{\abs{X}} \inpr{\Lambda}{N} N = \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
+\end{equation}
+\end{rem}
+
+\begin{proof}
+For any \(X\) the variation of energy is
+\[
+DE_X (V) = \frac{2}{\|X\|_2^2} \left(\inpr{X'}{V'}_2 - \frac{\|X'\|_2^2}{\|X\|_2^2}\inpr{X}{V}_2\right) = \frac{2}{\|X\|_2^2} \left(\inpr{X'}{V'}_2 - E(X) \inpr{X}{V}_2\right).
+\]
+Since the energy is scale invariant, we may assume that \(\|X\|_2 = 1\) in which case,
+\[
+DE_X (V) = 2\left[\inpr{X'}{V'}_2 - E(X) \inpr{X}{V}_2\right].
+\]
+For \(X\) smooth we have
+\[
+DE_X(V) = -2\inpr{X'' + E(X) X}{V}_2.
+\]
+For convenience, let \(Y = X'' + E(X) X\) so that
+\[
+DE_X(V) = -2\inpr{Y}{V}_2.
+\]
+
+{\color{red} This should have a reasonable weak formulation too but we probably don't need it by Denzler.}
+
+Now, constraint preserving variations are,
+\[
+V = \kappa \bar{\mu} T + f\kappa\bar{\rho} N.
+\]
+where \(\bar{\mu}\) is arbitrary and \(\bar{\rho} \in E_1^{\perp}\) with \(E_1 = \{\cos,\sin\}\). Recall also that we have
+\[
+T = \frac{X}{\abs{X}}, \quad N = -J(T) = -J\left(\frac{X}{\abs{X}}\right).
+\]
+
+Now let \(X\) be a constrained critical point. Then we have for arbitrary \(\bar{\mu}\) and for \(\bar{\rho} \in E_1^{\perp}\),
+\begin{equation}
+\label{eq:constrained_critical}
+0 = \inpr{Y}{\kappa \bar{\mu} T + f\kappa\bar{\rho} N}_2 = \inpr{Y}{\kappa \bar{\mu} T - \kappa\bar{\rho} J(X)}_2
+\end{equation}
+where we use that
+\[
+f N = -\abs{X} J\left(\frac{X}{\abs{X}}\right) = - J(X).
+\]
+
+{\color{red}actually we probably should just leave it as \(fN\) since we just reverse it below immediately after equation \eqref{eq:YN} anyway.}
+
+Now we change variables from \(s\) to \(\theta\):
+\[
+0 = \inpr{Y}{\kappa \bar{\mu} T + f\kappa\bar{\rho} N}_2 = \int_{\So} \left(\bar{\mu} \inpr{Y}{T} - \bar{\rho} \inpr{Y}{J(X)}\right) \kappa ds = \int_{\So} \bar{\mu} \inpr{Y}{T} - \bar{\rho} \inpr{Y}{J(X)} d\theta.
+\]
+Let us write \(\inpr{\cdot}{\cdot}_2^{\theta}\) for the \(L^2\) inner-product for functions with respect to \(\theta\) so that
+\begin{equation}
+\label{eq:constrained_critical_theta}
+0 = \inpr{\inpr{Y}{T}}{\bar{\mu}}_2^{\theta} - \inpr{\inpr{Y}{J(X)}}{\bar{\rho}}_2^{\theta}.
+\end{equation}
+
+In particular, taking \(\bar{\rho} = 0\) we have that for every \(\bar{\mu}\),
+\[
+0 = \inpr{\inpr{Y}{T}}{\bar{\mu}}_2^{\theta}
+\]
+and hence \(\inpr{Y(\theta)}{T(\theta)} = 0\) for every \(\theta\). Thus we may write,
+\begin{equation}
+\label{eq:YN}
+Y(\theta) = h(\theta) N(\theta) \quad \Rightarrow \quad \inpr{Y}{J(X)} = -fh.
+\end{equation}
+for some function \(h\). Substituting equation \eqref{eq:YN} into equation \eqref{eq:constrained_critical_theta} gives
+\[
+0 = \inpr{fh}{\bar{\rho}}_2^{\theta}.
+\]
+That is, \(fh \perp \bar{\rho}\) and since \(\bar{\rho}\) may be any element of \(E_1^{\perp}\) we have \(fh \in E_1\) so that
+\[
+fh = A \cos\theta + B \sin\theta
+\]
+for constants \(A, B\).
+
+Therefore,
+\[
+X'' + E(X) X = Y = hN = -\frac{h}{f} J(X) = -\frac{fh}{f^2} J(X) = -(A \cos\theta + B \sin\theta) \frac{J(X)}{\abs{X}^2}.
+\]
+\end{proof}
+
+\section{Constrained Minimisers}
+
+To analyse minimisers, we first need to compute the second variation at a constrained critical point. We define
+\[
+[\nabla^2 E(V, W)] (X) = d[dE(V)]_X (W) - dE_X(\nabla_W V)
+\]
+Here \(\nabla_V W\) is the tangential component of \(D_V W\) defined by
+\[
+[D_V W] (X) = dW_X(V) = \partial_t|_{t=0} W(X + t V).
+\]
+Note that we think of a vector field \(V\) on \(\mathcal{C}\) as the restriction to \(\mathcal{C}\) of a smooth map \(V : W^{1,2} \to W^{1,2}\) such that \(V(X) \in T_X \mathcal{C}\) for all \(X \in \mathcal{C}\). Then
+\[
+\nabla_V W = \pi_{TC} D_V W
+\]
+where \(\pi_{TC}\) is the projection onto the tangent space, \(T\mathcal{C}\) to the constraint \(\mathcal{C}\).
+
+\begin{lem}
+\label{lem:second_var}
+The second variation of a constrained critical point \(X\) is
+\[
+\nabla^2 E (V, W) = .
+\]
+\end{lem}
+
+\begin{proof}
+Let \(X\) be a constrained critical point. By definition, \(\nabla_V W\) is tangent to \(C\). Thus for a constrained critical point, \(\nabla_V W\)  is annihilated by \(dE\) so we have
+\[
+\nabla^2 E(V, W) = d_V d_W E - dE(\nabla_V W) = d_V d_W E.
+\]
+For convenience, let us write
+\[
+L(V) := L_X (V) = V'' + E(X) V.
+\]
+Then the constrained Euler-Lagrange \Cref{eq:constrained_EL} reads
+\[
+L(X) = \frac{1}{|X|}\inpr{\Lambda}{N}N.
+\]
+To compute \(d_V d_W E\), define a two parameter variation of \(X\) by
+\[
+X_{t,s} = X + tV + s W
+\]
+so that \(V = \partial_t X_{t, s}\) and \(W = \partial_s X_{t,s}\). For convenience, let us also write \(X_t = X + tV\). Then we have
+\[
+\begin{split}
+\nabla^2 E(V, W) &= \partial_t|_{t=0} \partial_s|_{s=0} E(X_{t,s}) = \partial_t|_{t=0} [dE_{X_t} (W)] = \partial_t|_{t=0} \left[\frac{-2}{\|X_t\|^2} \inpr{X_t'' + E(X_t) X_t}{W}_2\right] \\
+&= -\frac{2}{\|X\|_2^2} \left(\inpr{V'' + E(X) V}{W}_2 + \inpr{dE_X (V)X}{W}_2 \right. \\
+&\quad \left. - \frac{2}{\|X\|_2^2} \inpr{X}{V}_2 \inpr{X'' + E(X) X}{W}_2 \right) \\
+&= -\frac{2}{\|X\|_2^2} \left(\inpr{V'' + E(X) V}{W}_2 - \frac{2}{\|X\|^2} \inpr{X}{W}_2 \inpr{X'' + E(X) X}{V}_2 \right. \\
+&\quad - \left. \frac{2}{\|X\|_2^2} \inpr{X}{V}_2 \right).
+\end{split}
+\]
+
+For \(X\) with \(\|X\|_2 = 1\) and writing \(L(X) = X'' + E(X) X\) we then rewrite the last equation as
+\[
+\nabla^2 E(V, W) (X) = 2\left(\inpr{2\inpr{X}{V}_2 L(X) - L(V)}{W} + 2\inpr{X}{V}_2\right)
+\]
+
+We may also write it as:
+\[
+\frac12    ||X||^2    d^2 E_X(V,W)
+= - \left( dE_X(W)\int \langle X,W \rangle \,ds + dE_X(V)\int \langle X,V \rangle \,ds \right)
+-  \int \langle \mathcal{L} V, W \rangle  \,ds
+\]
+and
+\begin{align*}d^2E_X(V,V)&=-\int\langle\mathcal{L}V, V\rangle \,ds= -\int\langle V''+ E[X]V, V\rangle \,ds\\&=  \int| V'|^2- E[X]|V|^2\,ds= \Vert V\Vert_{L^2}\left( E[V]-E[X]\right).
+\end{align*}
+
+\end{proof}
+
+Now, if \(X_0\) is a stable, constrained critical point (so it locally minimises the energy on the constraint manifold \(\mathcal{C}\)), then \(E(X_0) = \lambda\) and \(X_0\) is in particular a constrained critical point. Thus by \Cref{thm:constrained_critical} as expressed in equation \eqref{eq:constrained_EL} we have
+\[
+X_0'' + \lambda X_0 = \frac{1}{\abs{X_0}} \inpr{\Lambda_0}{N_0} N_0 = \frac{1}{\abs{X_0}^3} \inpr{\Lambda_0}{J(X_0)} J(X_0).
+\]
+for some constant vector, \(\Lambda_0 \in \RR^2\). Stability is precisely the statement that
+\begin{equation}
+\label{eq:hessian_minimiser_positive}
+[\nabla^2 E(V, W)] (X) \geq 0
+\end{equation}
+for all \(V, W\) constraint preserving vector fields (i.e. vector fields tangent to the constraint sub-manifold \(\mathcal{C}\)).
+
+By carefully choosing our constraint preserving variation, we are able to characterise the stable, constrained critical points.
+
+\begin{thm}
+\label{thm:main}
+The stable constrained critical points are precisely given by
+\[
+X_n = \cos (n s) V_1 + \sin (n s) V_2
+\]
+for \(n = 1, 2, 3, \dots\)and \(V_1, V_2 \in \RR^2\).
+\end{thm}
+
+From the theorem, we immediately obtain the conjecture.
+
+\begin{proof}[Proof of \Cref{conj:main}]
+By \cite[Theorem 1.1]{denzler2015existence}, there exists a smooth minimiser, \(X\). By \Cref{thm:main}, this minimiser is of the form
+\[
+X_n = \cos (n s) V_1 + \sin (n s) V_2.
+\]
+The energy of \(X_n\) is
+\[
+E(X_n) = n^2 \geq 1
+\]
+so that the maps \(X_1\) are the minimisers and \(\lambda = 1\).
+\end{proof}
+
+\begin{proof}[Proof of \Cref{thm:main}]
+We can rewrite the constrained second variation as
+\begin{align*}d^2E_X(V,V)&=-\int\langle\mathcal{L}V, V\rangle \,ds= -\int\langle V''+ E[X]V, V\rangle \,ds\\&=  \int| V'|^2- E[X]|V|^2\,ds= \Vert V\Vert_{L^2}\left( E[V]-E[X]\right).
+\end{align*}
+
+If $(f^2\kappa)'=0$, then by \Cref{thm:constrained_critical}, $A=B=0$, and hence $X'' + E(X) X = 0$ giving the result. Our strategy now is to show that if \(f^2\kappa)' \ne 0\), there is a $V\in T\mathcal{C}$ such that $E[V]<E[X]$, implying that $d^2E_X(V,V)<0$, and consequently $X$ cannot be a minimiser.
+
+We recall that $V\in T\mathcal{C}$ are given by $$V=\mu T + \overline{\rho}\kappa f N,$$ where $\mu$ is arbitrary and $\overline{\rho}\perp_{L^2(d\theta)}\lbrace\cos\theta,\sin\theta\rbrace$.
+
+We choose $\rho=\kappa^{-1}$.    This is in $E^\perp$ as $$\int \kappa^{-1}\cos\theta\,d\theta= \int\kappa^{-1}\cos\theta \kappa\,ds= \int \cos\theta\,ds= \int \langle T,e_1\rangle\,ds= \int \langle \gamma',e_1\rangle\,ds=0,$$
+and same for $\sin\theta=\langle T, e_2\rangle$.
+
+We  also choose $\mu^t=-{t}{f}^{-1}(f^2\kappa)'$ for some small parameter $t$.
+
+Hence $$V^t= \mu^t T + f N, \text{ and }V'=({\mu^t}'-f\kappa )T+ (\mu^t\kappa + f')N,$$
+and we set
+$$e(t):= E[V^t]= \frac{\int ({\mu^t}'-f\kappa)^2 + (\mu^t\kappa+ f'^2 )\,ds }{\int {\mu^t}^2 + f^2 \,ds }$$
+
+%Hence $$V'=(\mu'-f\kappa^2 \overline{\rho})T+ (\mu\kappa + (f\kappa\overline{\rho})')N,$$
+%and
+%$$E[V]= \frac{\int (\mu'-f\kappa^2\overline{\rho})^2 + (\mu\kappa+ (f\kappa\overline{\rho})')^2 \,ds }{\int \mu^2 + (f\kappa\overline{\rho})^2 %\,ds }$$
+
+Note that
+ \begin{align*} e(0)
+%E[V]
+&= \frac{\int (f\kappa)^2 + f'^2 \,ds }{\int  f^2 \,ds }= E[X],
+\end{align*}
+
+We  calculate
+\begin{align*}
+\left.\frac{d}{dt}e(t)\right|_{t=0}&= \left.\frac{d}{dt}E[\mu^t T+ fN]  \right|_{t=0} \\
+%&=
+%\frac{d}{dt}\left.E[fN-t f^{-1}(f\kappa^2)'T]\right|_{t=0}\\
+ &= \left.
+\frac{2}{\int {{\mu^t}}^2 + f^2 \,ds }\left[
+{\int ({\mu^t}'-f\kappa)\frac{d}{dt}{\mu^t}'   + ({\mu^t}\kappa+ f')\kappa \frac{d}{dt}{\mu^t}  \,ds }- E[V^t]{\int {\mu^t} \frac{d}{dt}{\mu^t} \,ds }\right]
+ \right|_{t=0}  \\
+ &= \left.
+\frac{2}{\int {{\mu^t}}^2 + f^2 \,ds }
+\int \left[   -({\mu^t}'-f\kappa)'  + ({\mu^t}\kappa+ f')\kappa - E[V^t] {\mu^t}
+\right]
+\frac{d}{dt}{\mu^t}
+\,ds   \right|_{t=0}
+\\
+&= \left.
+\frac{2}{\int  f^2 \,ds }
+\int \left[   (f\kappa)'  +  f'\kappa
+\right]
+\frac{d}{dt}{\mu^t}
+\,ds   \right|_{t=0}
+\\
+&= \left.
+\frac{2}{\int  f^2 \,ds }
+\int \left[  f^{-1} (f^2\kappa)'
+\right]
+\frac{d}{dt}{\mu^t}
+\,ds   \right|_{t=0}
+\\
+&= \left.
+\frac{-2}{\int  f^2 \,ds }
+\int \left[  f^{-1} (f^2\kappa)'
+\right]^2
+\,ds   \right|_{t=0}
+ \\&\le 0,
+\end{align*}
+where we use $\frac{d}{dt}{\mu^t}=-{f}^{-1}(f^2\kappa)'$ in the second last line.   Equality in the last line holds only in the case that $(f^2\kappa)'=0$.
+
+That is, either $f^2\kappa=c$ or we can find a $V^t$ such that for small $t$, $E[V^t]<E[V^0]=E[X]$.   In turn this implies that $d^2E_X(V,V)<0$.
+\end{proof}
+
+\printbibliography
+\end{document}

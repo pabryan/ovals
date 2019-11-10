@@ -1,0 +1,125 @@
+\label{section two}
+
+We begin by stating the problem precisely.    Given a smooth, regular curve \(\gamma \in C^{\infty}(\So \to \RR^2)\) with length \(L(\gamma) = 2\pi\), we define the energy
+\begin{equation}
+\label{eq:Egamma}
+E[\gamma] =% \inf\left\{\int_{\So} \abs{\partial_s f}^2 + \kappa^2 f^2 ds : \int_{\So} f^2 = 1\right\} 
+ \inf\left\{\frac{\int_{\So} \abs{\partial_s f}^2 + \kappa^2 f^2 ds}{\int_{\So} f^2 ds} : f \not\equiv 0\right\}
+\end{equation}
+where \(f \in C^{\infty}(\So \to \RR^2)\) is assumed smooth.
+
+For a given \(f \in C^{\infty}(\So \to \RR^2)\), let us also write
+\begin{equation}
+\label{eq:Egammaf}
+R(\gamma, f) = \frac{\int_{\So} \abs{\partial_s f}^2 + \kappa^2 f^2 ds}{\int_{\So} f^2 ds}
+\end{equation}
+so that
+\begin{equation}
+\label{eq:EgammaEgammaf}
+E(\gamma) = \inf\left\{R(\gamma, f) : f \not\equiv 0\right\}.
+\end{equation}
+
+Standard arguments imply that the energy is the first eigenvalue of the Euler-Lagrange equation,
+\begin{equation}
+\label{eq:ELf}
+-\partial_s^2 f + \kappa^2 f = E[\gamma]f
+\end{equation}
+and that since $\kappa$ is continuous, the infimum is attained by the first eigenfunction \(f\) satisfying \(f > 0\). Therefore, we restrict our attention to \(f > 0\).
+
+Let us write
+\begin{equation}
+\label{eq:TN}
+T = \gamma', \quad N = J T
+\end{equation}
+\margincomment{I've messed with $J$ anti/clockwise, check all that. Changed it back}
+for the unit tangent and normal, where $J$ is counter-clockwise rotation by $\pi/2$. % Here we choose the orientation \(N = -JT\) for convenience when dealing with circles later. 
+Define the geodesic curvature \(\kappa\) by the Frenet-Serret formula
+\begin{equation}
+\label{eq:FS}
+\partial_s T =  \kappa N, \quad \partial_s N = -\kappa T.
+\end{equation}
+
+For any \(\gamma\) and \(f > 0\), define
+\begin{equation}
+\label{eq:X}
+X(s) %= X(f, \gamma)(s) 
+= f(s) T(s).
+\end{equation}
+Note that we then have \( \> X(s) \ne 0   \) and
+\begin{equation}
+\label{eq:TNX}
+T = \frac{X}{\abs{X}}, \quad %f = \abs{X}, 
+N = J \frac{X}{\abs{X}}
+\end{equation}
+and we may recover \(\gamma\) and \(f\) 
+from \(X\) (up to rigid motion of \(\gamma\)) by defining
+\begin{equation}
+\label{eq:gammaX}
+\gamma(s)% = \gamma (X) (s) 
+= \int_0^s \frac{X}{\abs{X}} ds, \quad f = \abs{X}.
+\end{equation}
+Notice that in this setting we cannot consider all $X:\So\to \R^2\setminus\lbrace0\rbrace$, since not all such $X$ will correspond to a closed curve $\gamma$.  We require an additional constraint on $X$: set
+\begin{equation}
+\label{eq:alpha}
+\alpha(X)= \int_{\So} \frac{X}{\abs{X}} ds,
+\end{equation}
+then set
+\[
+\mathcal{C}:= \lbrace X \in C^{\infty}(\So\to \R^2\setminus\lbrace0\rbrace) :  \alpha(X)=0\rbrace.
+\]
+For $X\in\mathcal{C}$, $$0=\int \frac X{|X|}\,ds=\int T\,ds=\int \gamma'(s)\,ds= \gamma(2\pi)-\gamma(0),$$ and so $\gamma$ is a closed curve.
+
+%Notice that defining the \(\RR^2\)-valued functional,
+%\begin{equation}
+%\label{eq:alpha}
+%\alpha(X) = \int_{\So} \frac{X}{\abs{X}} ds
+%\end{equation}
+%we have that the set of \(X = X(\gamma, f)\) with \(f > 0\) satisfies,
+%\[
+%\alpha(X) = \int_{\So} T ds = 0.
+%\]
+
+Using the Frenet-Serret equations \eqref{eq:FS}, we may then express \(E(\gamma, f)\) in terms of \(X\) by
+\begin{equation}
+\label{eq:gammafX}
+E(\gamma, f) = \frac{\int_{\So} |\partial_s f|^2 + \kappa^2 f^2 ds}{\int_{\So} f^2 ds} = \frac{\int_{\So} \abs{X'}^2 ds}{\int_{\So} \abs{X}^2 ds} = \frac{\|X'\|_2^2}{\|X\|_2^2} =: E(X).
+\end{equation}
+
+Then we have
+\begin{equation}
+\label{eq:infimums}
+\begin{split}
+\lambda = \inf\left\{E(\gamma) : L(\gamma) = 2\pi\right\} &= \inf\left\{R(\gamma, f) : L(\gamma) = 2\pi, f \not\equiv 0\right\} \\
+&= \inf\left\{E(X) :  X\in\mathcal{C} %\forall s \> X(s) \ne 0, \alpha(X) = 0
+\right\}.
+\end{split}
+\end{equation}
+From this perspective, \Cref{main} is precisely the statement \(\lambda \geq 1\) with equality if and only if \(\gamma\) is an oval.
+
+
+%For this reason, we call \(\alpha\) the \emph{constraint functional}. We have the following conjecture regarding the least energy for the %constrained problem:
+
+%\begin{conj}
+%\label{conj:main}
+%\[
+%\lambda = 1.
+%\]
+%\end{conj}
+
+
+The \emph{unconstrained} problem for \eqref{eq:gammafX} is very simple:  it has Euler-Lagrange equation
+$$X''+ E[X] X=0$$
+which has solutions 
+\begin{equation}  \label{ellipses}
+\begin{cases}
+X_0=V, %where $V_1\in\R^2$ is constant, 
+\text{ with energy }E[X_0]=0; \\ 
+%  $X_1=V_1\cos s+ V_2\sin s$  where $V_i\in\R^2$ is constant and $E[X_1]=1$; 
+X_k=V_1\cos ks+ V_2\sin ks \text{ with energy }E[X_k]=k^2, \quad k=1,2,\dots
+\end{cases}
+\end{equation}
+where $V_i\in\R^2$ is constant.     All these solutions except $X_0$ actually satisfy the constraint.  
+
+The solutions of the form $X_1$ are ellipses, and are the conjectured minimisers with energy $E=1$.  They correspond to curves $\gamma$ given by ovals, including circles when $V_1$ and $V_2$ are orthonormal.    The solutions $X_k$ for $k>1$ are multiple coverings of ellipses.
+
+Given the simplicity of the unconstrained Euler-Lagrange problem, all the dynamics of this problem are contained in the constraint set \(\C\). Crucial to our analysis, \Cref{constraint_submanifold} below states that \(\C\) is in fact a sub-manifold.

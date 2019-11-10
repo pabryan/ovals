@@ -17,16 +17,11 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{color}
+\usepackage{comment}
+\usepackage{enumitem}
 
 \usepackage{marginnote}
 \newcommand{\margincomment}[1]{\marginnote{\footnotesize{#1}}}
-
-\usepackage[
-backend=bibtex,
-style=alphabetic,
-citestyle=authoryear
-]{biblatex}
-\bibliography{refs}
 
 \usepackage{cleveref}
 \crefname{lemma}{Lemma}{Lemmata}
@@ -40,16 +35,7 @@ citestyle=authoryear
 \crefname{not}{Notation}{Notation}
 
 \DeclareMathOperator{\RR}{\mathbb{R}}
-\DeclareMathOperator{\NN}{\mathbb{N}}
 \DeclareMathOperator{\BB}{\mathbb{B}}
-\DeclareMathOperator{\HS}{\mathcal{H}}
-\DeclareMathOperator{\HSconst}{\mathcal{V}}
-\DeclareMathOperator{\HSnoconst}{\mathcal{K}}
-\DeclareMathOperator{\C}{\mathcal{C}}
-\DeclareMathOperator{\So}{\mathbb{S}^1}
-\DeclareMathOperator{\G}{\mathcal{G}}
-\DeclareMathOperator{\D}{D}
-\DeclareMathOperator{\EL}{\mathcal{L}}
 \DeclareMathOperator{\setdiff}{\backslash}
 \DeclareMathOperator{\trans}{\tau}
 \DeclareMathOperator{\Id}{Id}
@@ -61,13 +47,18 @@ citestyle=authoryear
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
+\newtheorem{rem}[thm]{Remark}
 \newtheorem{conj}{Conjecture}
 \renewcommand{\theconj}{\Alph{conj}}
-\newtheorem{defn}[thm]{Definition}
-
-\theoremstyle{remark}
-\newtheorem{rem}[thm]{Remark}
-
 
 % Project specific macros
-\newcommand{\T}{Q}
+\DeclareMathOperator{\T}{Q}
+\DeclareMathOperator{\C}{\mathcal{C}}
+\DeclareMathOperator{\So}{\mathbb{S}^1}
+%\DeclareMathOperator{\HS}{\mathcal{H}}
+%\DeclareMathOperator{\HSconst}{\mathcal{V}}
+%\DeclareMathOperator{\HSnoconst}{\mathcal{K}}
+
+%\DeclareMathOperator{\G}{\mathcal{G}}
+%\DeclareMathOperator{\D}{D}
+%\DeclareMathOperator{\EL}{\mathcal{L}}

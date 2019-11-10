@@ -1,0 +1,52 @@
+Let $\gamma:S^1\to \R^2$ be a closed loop of length $2\pi$. The \emph{ovals problem} of Benguria and Loss  is to find the smallest eigenvalue $\lambda$ of the geometric Schr\"odinger operator
+\begin{equation} -\frac{d}{ds^2}f + \kappa^2 f=\lambda f, \label{eigenvalue equation} \end{equation}
+where $f:\So\to\R$ is the associated eigenfunction, $s$ is the arclength parameter, and $\kappa$ is the curvature of the loop $\gamma$, among all such loops $\gamma$.
+
+
+\margincomment{maybe put the Rayleigh quotient in here, or later on?}
+%For a given $\gamma$, the associated Rayleigh quotient is 
+%\begin{equation}
+%R[\gamma,f]=  \frac{\int_{\gamma} f'^2+ \kappa^2 f^2\,ds}{\int_{\gamma} f^2\,ds}
+%\end{equation}
+% which is minimised by $f$ satisfying \eqref{eigenvalue equation}, with eigenvalue
+%$$E[\gamma]=\inf \lbrace R[\gamma,f]:  f\in W^{1,2}(\So\to\R), f\not\equiv 0 \rbrace.$$
+%The problem is then to find the minimiser over all closed loops:
+%$$\lambda:=
+%\inf\left\{E[\gamma] : L(\gamma) = 2\pi\right\}. %= \inf\left\{E(\gamma, f) : L(\gamma) = 2\pi, f \not\equiv 0\right\} 
+%$$
+
+The conjecture  is that this is minimised by the circle $C$ :  here $\kappa\equiv1$, and the eigenvalue equation is solved with $f\equiv 1$ and $E[C]=1$ \cite{benguria2004connection}.   This  picture is complicated by the discovery that there is a family of \emph{ovals} that all have first eigenvalue $1$.   We describe these ovals in $\S$\dots
+
+
+\begin{thm} \label{main} Let $\gamma$ be a closed loop in $\R^2$, and let $f:\So\to \R$.  Then 
+$$R[\gamma,f]\ge 1.$$
+This inequality is sharp, and is attained when $\gamma$ is a round circle and $f$ is constant.
+\end{thm}
+
+Remarkably, the proof uses little more than the classic calculus of variations.
+
+\subsection{Previous work}  Several authors have examined the problem with a coupling constant $g$
+\begin{equation} -\frac{d}{ds^2}f + g\kappa^2 f=\lambda_g f, \label{eigenvalue equation}\end{equation}
+finding that if $g<0$, then $\lambda_g$ is  \emph{maximised} on a circle \cite{duclos1995curvature}; while if $0\le g\le 1/4$, then the circle minimises $\lambda_g$ \cite{exner1999optimal}.  
+
+Benguria and Loss connected the $g=1$ case  to the optimal constant $L_{1,1}$ in the Lieb--Thirring inequality in one dimension, via an ingenious argument in  \cite{benguria2004connection}.
+We will not describe the Lieb-Thirring problem here, but merely note the obvious:
+\begin{cor}[Corollary to Theorem \ref{main}]  The optimal constant in the Lieb--Thirring inequality in one dimension is as conjectured by Lieb and Thirring  \cite{lieb1976inequalities}.
+\end{cor}
+Furthermore, in this paper Benguria and Loss found the lower bound $\lambda\ge \frac12$;  this was later improved to $\lambda\ge 0.608$ by Linde \cite{linde2006lower}.   
+
+Burchard and Thomas \cite{burchard2005isoperimetric} explored a particularly useful setting, which we will use in \S\ref{section two}.
+Denzler showed existence and regularity \cite{denzler2015existence}  MORE HERE
+
+%
+%The main idea is:
+%\begin{itemize}
+%\item We work in the orbit setting (with the constraint), but can probably replicate in the $(\gamma,f)$ setting.     Sections 1 and 2.
+%\item We find that a critical point of $E$  satisfies $X'' +E[X]X= \frac1f\left(A\cos\theta+ B\sin\theta\right)N$.  Here $\theta$ is turning angle, $N$ is the normal to the curve, thus $N=J(X)/|X|$.   This is Th \ref{thm:constrained_critical}.
+%\item If $A=B=0$ then $X$ is an ellipse and $E[X]=1$  \footnote{Well, it could be a higher degree cover of the ellipse with $E[X]=n^2$.}
+%\item $A=B=0$ is equivalent to $(f^2\kappa)'=0$.   
+%\item We look at the 2nd variation, and notice that $d^2E_X(V,V)\ge 0$ iff $E[V]\ge E[X]$.   Section 4 (and in \emph{Much ado\dots}).
+%\item If $(f^2\kappa)'\not=0$ we can make a cunning choice of $V$, with $E[V]<E[X]$.  And hence $X$ is not a minimiser.     Section 5.
+%\end{itemize}
+
+

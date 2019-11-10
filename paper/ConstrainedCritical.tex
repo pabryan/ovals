@@ -1,0 +1,143 @@
+
+In this section we characterise the constrained critical points.
+
+\begin{thm}
+\label{thm:constrained_critical}
+Suppose \(X\) is a critical point for \(E\) with respect to constraint preserving variations, so that for all % \(\bar{\mu}\)
+\({\mu}\), and all \(\bar{\rho} \perp_{L^2(d\theta)} \{\cos, \sin\}\) we have
+\[
+dE_X({\mu} T + f\kappa \bar{\rho} N) = 0.
+\]
+Then, if \(X\) is normalised so that \(\|X\|_2 = 1\), we have   \margincomment{do we need that normalisation?}
+\begin{equation}
+X''(s) + E(X) X(s) = (A \cos(\theta(s)) + B \sin(\theta(s))) \frac{N}{\abs{X(s)}}   \label{AMI}
+\end{equation}
+for constants \(A, B\). %and where \(J\) denotes the anticlockwise rotation by \(\pi/2\).
+ In particular \(X'' + E(X) X\) is pointwise orthogonal to \(X\).
+\end{thm}
+
+
+%This is a version of the angular momentum inequality that we had earlier on.   
+
+
+\begin{rem}
+The constants \(A, B\) are Lagrange multipliers. Let us write \(-\Lambda = A e_1 + B e_2\) and recalling that
+\[
+%-J\left(\frac{X}{|X|}\right) = 
+N(s) = \cos\theta(s) e_1 + \sin\theta(s) e_2,
+\]
+we may rewrite the conclusion of the theorem as
+\begin{equation}
+\label{eq:constrained_EL}
+X'' + E(X) X = \frac{1}{\abs{X}} \inpr{\Lambda}{N} N = \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
+\end{equation}
+\end{rem}
+
+\begin{proof}
+For any \(X\) the variation of energy is
+\[
+DE_X (V) = \frac{2}{\|X\|_2^2} \left(\inpr{X'}{V'}_2 - \frac{\|X'\|_2^2}{\|X\|_2^2}\inpr{X}{V}_2\right) = \frac{2}{\|X\|_2^2} \left(\inpr{X'}{V'}_2 - E(X) \inpr{X}{V}_2\right).
+\]
+Since the energy is scale invariant, we may assume that \(\|X\|_2 = 1\) in which case,
+\[
+DE_X (V) = 2\left[\inpr{X'}{V'}_2 - E(X) \inpr{X}{V}_2\right].
+\]
+For \(X\) smooth we can integrate by parts to find
+\[
+DE_X(V) = -2\inpr{X'' + E(X) X}{V}_2.
+\]
+For convenience, let \(Y = X'' + E(X) X\) so that
+\[
+DE_X(V) = -2\inpr{Y}{V}_2=-2\inpr{Y}{{\overline{\mu}}\kappa T + f\kappa\bar{\rho} N}_2,
+\]
+for all constraint-preserving variations $$V = {\overline{\mu}}\kappa T + f\kappa\bar{\rho} N,$$
+where \({\mu}\) is arbitrary and \(\bar{\rho} \in E_1^{\perp}\) with \(E_1 = \{\cos,\sin\}\).
+
+\margincomment{{\color{red} This should have a reasonable weak formulation too but we probably don't need it by Denzler.}}
+
+%Now, constraint preserving variations are
+%\[
+%V = {\overline{\mu}}\kappa T + f\kappa\bar{\rho} N.
+%\]
+%where \({\mu}\) is arbitrary and \(\bar{\rho} \in E_1^{\perp}\) with \(E_1 = \{\cos,\sin\}\). Recall also that we have
+%\[
+%T = \frac{X}{\abs{X}}, \quad N = -J(T) = -J\left(\frac{X}{\abs{X}}\right).
+%\]
+When \(X\) is a constrained critical point, $dE_X(V)=0$ for all such variations.  Changing variables, we find that 
+%Now let \(X\) be a constrained critical point. Then we have for arbitrary \(\bar{\mu}\) and for \(\bar{\rho} \in E_1^{\perp}\),
+%\begin{equation}
+%\label{eq:constrained_critical}
+%0 = \inpr{Y}{\kappa \bar{\mu} T + f\kappa\bar{\rho} N}_2% = \inpr{Y}{\kappa \bar{\mu} T + \kappa\bar{\rho} N}_2
+%\end{equation}
+%where we use that
+%\[
+%f N = -\abs{X} J\left(\frac{X}{\abs{X}}\right) = - J(X).
+%\]
+%{\color{red}actually we probably should just leave it as \(fN\) since we just reverse it below immediately after equation \eqref{eq:YN} anyway.}
+%Now we change variables from \(s\) to \(\theta\):
+\begin{equation}
+0 = \inpr{Y}{\kappa \bar{\mu} T + f\kappa\bar{\rho} N}_2 = \int_{\So} \left(\bar{\mu} \inpr{Y}{T} + \bar{\rho}f \inpr{Y}{N}\right) \kappa ds = \int_{\So} \bar{\mu} \inpr{Y}{T} +\bar{\rho}f \inpr{Y}{N} d\theta.  \label{eq:constrained_critical_theta}
+\end{equation}
+%Let us write \(\inpr{\cdot}{\cdot}_2^{\theta}\) for the \(L^2\) inner-product for functions with respect to \(\theta\) so that
+%\begin{equation}
+%\label{eq:constrained_critical_theta}
+%0 = \inpr{\inpr{Y}{T}}{\bar{\mu}}_2^{\theta} - \inpr{\inpr{Y}{J(X)}}{\bar{\rho}}_2^{\theta}.
+%\end{equation}
+
+In particular, taking \(\bar{\rho} = 0\),  for every \(\bar{\mu}\) it holds
+\[
+0 = \int_{\So} \bar{\mu} \inpr{Y}{T}  d\theta
+\]
+and hence \(\inpr{Y(\theta)}{T(\theta)} = 0\) pointwise.  Hence $Y$ has no tangential component, and we can write
+\begin{equation}
+\label{eq:YN}
+Y(\theta) = h(\theta) N(\theta) %\quad \Rightarrow \quad \inpr{Y}{J(X)} = -fh.
+\end{equation}
+for some function \(h\). Substituting equation \eqref{eq:YN} into equation \eqref{eq:constrained_critical_theta} gives
+\[
+0 =% \inpr{fh}{\bar{\rho}}_2^{\theta}.
+\int_{\So}\bar{\rho}f h \,d\theta
+\]
+That is, \(fh \perp \bar{\rho}\) and since \(\bar{\rho}\) may be any element of \(E_1^{\perp}\) we have \(fh \in E_1\) so that
+\[
+fh = A \cos\theta + B \sin\theta
+\]
+for constants \(A, B\).
+
+Therefore,
+\[
+X'' + E(X) X = Y = hN %= -\frac{h}{f} J(X) = -\frac{fh}{f^2} J(X) 
+= (A \cos\theta + B \sin\theta) \frac{N}{\abs{X}}.
+\]
+\end{proof}
+
+
+\margincomment{Maybe skip Remark \ref{remark}}
+\begin{rem}  \label{remark}
+Another formulation of this %(which is directly equivalent to the angular momentum inequality)
+ is:
+$$ |X'|^2  + E|X|^2= A \cos \theta(s) + B\sin\theta(s) + C.$$
+The conjecture is equivalent to showing $A=B=0$.   Here $C=2E$.
+\end{rem}
+
+
+\begin{lem} Let $X$ be a critical point of $E$ in $\mathcal{C}$.  Then this is an ellipse of the form $X_k$, as in \eqref{ellipses}, exactly when $\partial_s(f\kappa^2)=0$, for the corresponding $f,\kappa$ defined by \eqref{eq:gammaX}.      \label{ellipse lemma}
+\end{lem}
+
+%We recognise this as another way of stating "if $f^2\kappa=$constant then we're done":   
+\begin{proof}
+Since 
+\begin{align*}
+X&=f T, \qquad
+X'=f'T+f\kappa N \\
+ X''& = f''T + 2f'\kappa N+ f\kappa' N - f\kappa^2 T,
+ \end{align*}
+so that \eqref{AMI} is 
+\begin{align*}
+X''+ E[X] X&= (f''-f\kappa^2 + R f      )T + (2f'\kappa+ f\kappa')N = (A\cos\theta + B\sin\theta)\frac{ N}f.
+\end{align*}
+We recognise the vanishing terms in the $T$ direction as the eigenvalue equation \eqref{eq:ELf}.  The terms in $N$ direction can be rewritten as
+$$ f(2f'\kappa+ f\kappa')= \left( f^2\kappa\right)'=   (A\cos\theta + B\sin\theta).$$
+Thus  $A=B=0$ iff $f^2\kappa$ is constant.   
+
+\end{proof}

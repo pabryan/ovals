@@ -1,0 +1,348 @@
+\documentclass[12pt]{article}
+
+\input{setup.tex}
+
+\title{Euler Lagrange Equation}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{The Constrained Problem}
+\label{sec:constrained}
+
+Our space is \(\HS = W^{1,2} (\So \to \RR^2)\). We seek to minimise the Dirichlet energy,
+\[
+E(X) = \|X'\|_2^2 = \int_{\So} \abs{X'(s)}^2 ds
+\]
+subject to the constraints
+\[
+I(X) := \|X\|_2^2 = 1, \quad \alpha(X) := \int_{\So} \frac{X(s)}{\abs{X}(s)} ds = (0, 0).
+\]
+
+For \(\lambda \in \RR\), \(\Lambda \in \RR^2\) (Lagrange multipliers) define the functional
+\[
+F(X) = E(X) - \lambda I(X) + \inpr{\Lambda}{\alpha(X)}.
+\]
+Then constrained critical points of \(E\) are unconstrained critical points of \(F\). The minus sign is a convenience ensuring that for a constrained critical point \(X\) of \(F\), we have \(\lambda = E(X)\). A constrained minimiser, \(X\) of \(E\) is a critical point of \(F\) with \(I(X) = 1, \alpha(X) = (0, 0)\) and satisfying
+\[
+d^2 F_X (V, V) \geq 0
+\]
+for all \(V\) tangent to the constraint manifold \(\C = \{I(X) = 1, \alpha(X) = 0\}\) ({\color{red}Proof it's actually a manifold?}). Note that while \(X\) is a critical point of \(F\) so that \(dF_X (V) = 0\) for any \(V \in T_X\HS = \HS\), it is only assured to be non-negative definite for \(V \in T_X \C\). In fact, we know that \(E\) can be decreased by moving in ({\color{red} some, all?}) directions transverse to \(\C\).
+
+\section{First Variation}
+\label{sec:firstvar}
+
+Denoting the \(\RR^2\) inner-product by \(\inpr{\cdot}{\cdot}\) and the \(L_2\) inner product for maps \(\So \to \RR^2\) by \(\inpr{\cdot}{\cdot}_2\), We have
+\begin{align*}
+dE_X (V) &= \inpr{-X''}{V}_2 \\
+dI_X (V) &= \inpr{X}{V}_2 \\
+d\alpha_X (V) &= \int_{\So} \frac{1}{\abs{X}(s)} \inpr{N(s)}{V} N(s) ds \\
+dF_X (V) &= -\inpr{X'' + \lambda X}{V}_2 + \inpr{\Lambda}{\int_{\So} \frac{1}{\abs{X}(s)} \inpr{N(s)}{V} N(s) ds} \\
+&= -\inpr{X'' + \lambda X - \frac{1}{\abs{X}} \inpr{\Lambda}{N}N}{V}_2
+\end{align*}
+where \(N(s) = J(T)\) with \(T = X/\abs{X}\) and \(J\) counter-clockwise rotation by \(\pi/2\) (we could of course choose the other normal by rotating clockwise so long as we remain consistent).
+
+Thus we obtain the Euler-Lagrange equation satisfied by critical points of \(F\) (constrained or otherwise),
+\begin{equation}
+\label{eq:el}
+X'' + \lambda X = \frac{1}{\abs{X}} \inpr{\Lambda}{N}N
+\end{equation}
+or equivalently, we have the (pointwise) orthonormal decomposition
+\begin{equation}
+\label{eq:pointwise_orth}
+X'' = -\lambda \abs{X} T + \frac{1}{\abs{X}} \inpr{\Lambda}{N}N
+\end{equation}
+
+Substituting into the energy gives,
+\begin{equation}
+\label{eq:Ecrit}
+\begin{split}
+E(X) &= \int_{\So} \abs{X'}^2 ds = -\int_{\So} \inpr{X''}{X} ds \\
+&= \int_{\So} \inpr{\lambda X - \frac{1}{\abs{X}} \inpr{\Lambda}{N}N}{X} ds = \lambda \inpr{X}{X}_2 = \lambda
+\end{split}
+\end{equation}
+since \(\inpr{X}{N} = 0\) and \(\inpr{X}{X}_2 = I(X) = 1\). Thus \(\lambda = E(X)\) as promised.
+
+Substituting into \(I\) gives
+\begin{equation}
+\label{eq:Icrit}
+\begin{split}
+1 = I(X) &= \int_{\So} \abs{X}^2 ds = \frac{1}{\lambda^2} \int_{\So} \abs{-X'' +  \frac{1}{\abs{X}} \inpr{\Lambda}{N}N}^2 ds \\
+&= \frac{1}{\lambda^2} \int_{\So} \abs{X''}^2 - 2\frac{1}{\abs{X}} \inpr{\Lambda}{N}\inpr{X''}{N} + \frac{1}{\abs{X}^2} \inpr{\Lambda}{N}^2 ds.
+\end{split}
+\end{equation}
+
+Substituting into \(\alpha\) gives,
+\[
+(0, 0) = \alpha(X) = \int_{\So} \frac{X}{\abs{X}} ds = \frac{1}{\lambda} \int_{\So} \frac{1}{\abs{X}} \left(-X'' + \frac{1}{\abs{X}} \inpr{\Lambda}{N} N\right) ds
+\]
+giving the identity for \(\Lambda\)
+\begin{equation}
+\label{eq:vecidentity_lambda}
+\int_{\So} \frac{1}{\abs{X}^2} \inpr{\Lambda}{N} N ds = \int_{\So} \frac{X''}{\abs{X}} ds
+\end{equation}
+
+Taking the inner product with \(\Lambda\) gives
+\[
+\int_{\So} \frac{1}{\abs{X}^2} \inpr{\Lambda}{N}^2 ds = \int_{\So} \frac{1}{\abs{X}} \inpr{X''}{\Lambda} ds,
+\]
+which combined with equation \eqref{eq:Icrit} results in
+\[
+1 = \frac{1}{\lambda^2} \int_{\So} \abs{X''}^2 - 2\frac{1}{\abs{X}} \inpr{\Lambda}{N}\inpr{X''}{N} +  \frac{1}{\abs{X}} \inpr{X''}{\Lambda} ds.
+\]
+We rewrite this as an identity for \(\Lambda\):
+\begin{equation}
+\label{eq:Lambdaeqn}
+\begin{split}
+\inpr{\Lambda}{\frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N)}_2 &= \inpr{\int_{\So} \frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N) ds}{\Lambda} \\
+&= \int_{\So} \frac{1}{\abs{X}} \inpr{X'' - 2 \inpr{X''}{N}N}{\Lambda} ds \\
+&= E(X)^2 - \int_{\So} \abs{X''}^2 ds
+\end{split}
+\end{equation}
+recalling that \(\lambda = E(X)\).
+
+Thus, with \(X\) a constrained critical point, letting
+
+\begin{align*}
+A &= \int_{\So} \frac{1}{\abs{X}^2} N \otimes N ds, \quad V = -\int_{\So} \frac{X''}{\abs{X}} ds \\
+B &= \int_{\So} \frac{1}{\abs{X}} (X'' - 2 \inpr{X''}{N}N) ds, \quad W = -E(X)^2 + \int_{\So} \abs{X''}^2 ds
+\end{align*}
+from equations \eqref{eq:vecidentity_lambda} and \eqref{eq:Lambdaeqn} we have that \(\Lambda\) is in the kernel of the affine map,
+\[
+\Lambda \in \RR^2 \mapsto \big(\inpr{A}{\Lambda} + V, \inpr{B}{\Lambda} + W\big) \in \RR^2 \times \RR.
+\]
+
+\section{Characterising Ovals}
+\label{sec:ovals}
+
+Letting \(Z = X'\) gives the first order formulation of the Euler-Lagrange equation \eqref{eq:el}:
+\begin{equation}
+\label{eq:el_sys}
+\begin{cases}
+X' &= Z \\
+Z' &= -\lambda X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
+\end{cases}
+\end{equation}
+
+\begin{defn}
+For \(n = \NN\), an (\(n\)-fold) \emph{oval} is a map
+\[
+X(s) = \cos(n s) V_1 + \sin(n s) V_2
+\]
+with \(V_1, V_2 \in \RR^2\). A \emph{degenerate} oval is an oval for which \(V_1, V_2\) are linearly dependent and a \emph{non-degenerate} oval is one for which \(V_1, V_2\) are linearly independent.
+\end{defn}
+
+We will always normalise \(V_1, V_2\) so that an oval \(X\) satisfies, \(I(X) = \|X\|_2^2 = 1\). Also, all ovals automatically satisfy the constraint \(\alpha(X) = (0, 0)\).
+
+It's worth explicitly stating the defining equations for ovals.
+
+\begin{lem}
+Let \(\lambda = n^2\) for \(n \in \NN\), \(\Lambda = (0, 0)\) and \(V_0, V_1 \in \RR^2\). Then the unique solution of the Euler-Lagrange equation \eqref{eq:el_sys} with initial conditions \(X(0) = V_0, X'(0) = V_1\) is
+\[
+X = \cos (ns) V_1 + \frac{1}{n} \sin(ns) V_2.
+\]
+Note this includes the degenerate case where either \(V_1 = (0, 0)\), \(V_2 = (0, 0)\), both \(V_1 = V_2 = (0, 0)\) and \(V_2 = cV_1\).
+\end{lem}
+
+\begin{proof}
+Direct computation and the fact that when \(\Lambda = (0, 0)\), equation \eqref{eq:el_sys} reduces to \(X'' + \lambda X = 0\) which admits unique solutions.
+\end{proof}
+
+In fact, the degenerate ovals may also be characterised in the following way.
+
+\begin{lem}
+Let \(\Lambda \in \RR^2\) and \(\lambda = n^2\). Then the unique solution of the Euler-Lagrange equation \eqref{eq:el_sys} with initial conditions \(X(0) = c_1 \Lambda, X'(0) = c_2 \Lambda\) is
+\[
+X = \left(c_1 \cos (ns) + \frac{c_2}{n} \sin(ns)\right) \Lambda
+\]
+\end{lem}
+
+\begin{proof}
+We have
+\[
+X'' + \lambda X = 0
+\]
+and
+\[
+\inpr{\Lambda}{J(X)} = \left(c_1 \cos (ns) + \frac{c_2}{n} \sin(ns)\right) \inpr{\Lambda}{J(\Lambda)} = 0.
+\]
+The initial conditions are immediate.
+\end{proof}
+
+{\color{red}Not sure if we can lose uniqueness when \(X\) passes through \((0, 0)\)}
+
+The point of the lemma is that we might try to analyse the Euler-Lagrange equation \eqref{eq:el_sys} for general \(\Lambda\) by perturbing the initial conditions \(V_1, V_2\) near \(V_1 = c\Lambda\), \(V_2 = c_2 \Lambda\).
+
+Ovals are both constrained and unconstrained critical points giving the following simple characterisation of ovals.
+
+\begin{lem}
+\label{lem:ovalLambda}
+A constrained critical point \(X\) is an oval if and only if \(\Lambda = 0\). Equivalently, if and only if \(X\) is an unconstrained critical point. For a degenerate oval, \(\Lambda\) is not uniquely determined and we interpret the statement to mean we may choose \(\Lambda = 0\). In all other cases, \(\Lambda = 0\) is the unique value of \(\Lambda\).
+\end{lem}
+
+\begin{proof}
+Let \(X\) be an oval. For normalised ovals we have
+\[
+E(X) = n^2, \quad \text{and} \quad X'' + n^2 X = 0.
+\]
+That is,
+\[
+Z' = X'' = - \lambda X
+\]
+recalling that for a constrained (or indeed unconstrained) critical point, \(\lambda = E(X)\). Thus by equation \eqref{eq:el_sys}
+\[
+\inpr{\Lambda}{J(X)} J(X) = 0.
+\]
+In the non-degenerate case, \(N = \abs{X}^{-1}J(X)\) is a surjection \(\So \to \So\), so that the set \(\{J(X(s)) : s \in \So\}\) spans all of \(\RR^2\). Hence \(\inpr{\Lambda}{J(X(s))} = 0\) for all \(s\) implies \(\Lambda = 0\). In the degenerate case, \(X = (a \cos (ns) + b \sin(ns)) V\) with \(\abs{V} = 1\) and \(T = V\). Thus \(\inpr{\Lambda}{J(T)} = 0\) implies that \(\Lambda = cV\) and we may take \(c = 0\).
+
+Conversely, if \(\Lambda = 0\), then by equation \eqref{eq:el_sys}
+\[
+X'' = \lambda Z' = -\lambda X
+\]
+and hence \(X\) is an oval since ovals are precisely the eigenfunctions of the linear differential operator \(X \mapsto -X''\) with eigenvalues \(\lambda = n^2\).
+\end{proof}
+
+Thus ovals are precisely the constrained critical points with Lagrange multipliers \(\lambda = n^2\) and \(\Lambda = 0\). In the degenerate case we have the freedom to choose \(\Lambda = c V\) but may in particular choose \(\Lambda = 0\).
+
+We may also characterise ovals in another way.
+
+\begin{lem}
+Let \(X\) be a constrained critical point with \(X(s) \ne 0\) for all \(s\). Then the quantity \(P = \abs{X}^2 + \frac{1}{\lambda} \abs{Z}^2 \equiv \text{const}\) if and only if \(\Lambda = 0\) and hence by \Cref{lem:ovalLambda} if and only if \(X\) is a non-degenerate oval.
+\end{lem}
+
+\begin{proof}
+Since \(X(s) \ne 0\) and \(0 = \alpha(X) = \int_{\So} \tfrac{X}{\abs{X}}ds\), we have that \(T = \tfrac{X}{\abs{X}}\) is a positive degree map \(\So \to \So\). Note that this condition rules out the possibility of degenerate ovals.
+
+Now, for ovals we have
+\[
+X = \cos (ns) V_1 + \sin (ns) V_2 , \quad Z = -n\sin (ns) V_1 + n\cos (ns) V_2
+\]
+giving
+\[
+\begin{split}
+\abs{X}^2 + \frac{1}{\lambda} \abs{Z^2} &= \cos^2 (ns) \abs{V_1}^2 + 2 \cos (ns) \sin (ns) \inpr{V_1}{V_2} + \sin^2 (ns) \abs{V_2}^2 \\
+&+ \frac{1}{n^2} \left(n^2 \sin^2 (ns) \abs{V_1}^2 - 2n^2 \sin (ns) \cos (ns) \inpr{V_1}{V_2} + n^2 \cos^2 (ns) \abs{V_2}^2\right) \\
+&= \abs{V_1}^2 + \abs{V_2}^2 \equiv \text{const}.
+\end{split}
+\]
+For \(0\)-fold ovals this is still true if we interpret \(\lambda^{-1} \abs{Z}^2 = 0/0\) as constant. Thus \(\abs{X}^2 + \frac{1}{\lambda} \abs{Z}^2\) is constant along ovals, equivalently is constant when \(\Lambda = 0\) by \Cref{lem:ovalLambda}.
+
+Conversely, observe first that in general equation \eqref{eq:el_sys} gives
+\[
+\partial_s \abs{X}^2 = 2\inpr{X'}{X} = 2\inpr{Z}{X}
+\]
+\[
+\partial_s \abs{Z}^2 = 2\inpr{Z'}{Z} = -2\inpr{\lambda X}{Z} + \frac{2}{\abs{X}^3}\inpr{\Lambda}{J(X)}\inpr{J(X)}{Z}
+\]
+and hence
+\begin{equation}
+\label{eq:constnorms}
+\begin{split}
+\partial_s (\abs{X}^2 + \frac{1}{\lambda} \abs{Z}^2) &= \frac{2}{\abs{X}^3}\inpr{\Lambda}{J(X)}\inpr{J(X)}{Z} \\
+&= \frac{1}{\lambda}\frac{2}{\abs{X}^3}\inpr{J(\Lambda)}{X}\inpr{J(X)}{Z} \\
+&= \frac{1}{\lambda}\frac{2}{\abs{X}}\inpr{\Lambda}{N}\inpr{N}{Z}.
+\end{split}
+\end{equation}
+Supposing that \(\abs{X}^2 + \abs{Z}^2 \equiv \text{const}\), then by \eqref{eq:constnorms},
+\[
+\inpr{\Lambda}{N}\inpr{N}{Z} = 0.
+\]
+Then we claim \(\Lambda = 0\). For if not, since \(T = X/\abs{X}\) has positive degree so does \(N = J(T)\). In particular, both \(T\) and \(N\) are onto. Let \(U \subseteq \So\) denote the open set where \(T(s) \ne \pm \tfrac{\Lambda}{\abs{\Lambda}}\) and neither component of \(T\) equals zero, that is \(T \ne \pm (1, 0), \pm (0, 1)\).
+
+Thus on \(U\), \(\inpr{\Lambda}{N} \ne 0\) and hence \(\inpr{N}{Z} = 0\) which implies \(Z\) is parallel to \(T\) or equivalently that
+\[
+X' = Z = a X
+\]
+for a smooth function \(a\). Moreover, writing \(X = (x, y)\) we have \(x, y \ne 0\) on \(U\) and
+\[
+x' = ax, \quad y' = a y.
+\]
+Writing \(U = \cup_i (a_i, b_i)\) as a countable set of disjoint open intervals, we have
+\[
+x(s) = x(a_i) e^{\int_{a_i}^{s} a(t) dt}, \quad y = y(a_i) e^{\int_{a_i}^{s} a(t) dt}.
+\]
+on each interval \(s \in (a_i, b_i)\). But then on \((a_i, b_i)\) we have
+\[
+X(s) = e^{\int_{a_i}^{s} a(t) dt} (x(a_i), y(a_i)) \Rightarrow T(s) = T_i := \frac{(x(a_i), y(a_i))}{\abs{(x(a_i), y(a_i))}}.
+\]
+That is on \(U\), \(T\) takes only the countably many values \(T_i\). On the complement of \(U\), \(T\) takes only the finitely many values \(\pm (1, 0), \pm (0, 1), \pm \tfrac{\Lambda}{\abs{\Lambda}}\). But then \(T\) takes on only countably many values contradicting that \(T\) is onto \(\So\). Thus we must have \(\Lambda = 0\) as required.
+\end{proof}
+
+\begin{conj}
+All constrained critical points have \(\Lambda = 0\), equivalently \(P = \abs{X}^2 + \frac{1}{\lambda} \abs{Z}^2\) is constant, equivalently all constrained critical points are ovals.
+\end{conj}
+
+From equation \eqref{eq:constnorms} we have
+\[
+P' = \frac{2\inpr{\Lambda}{N}\inpr{N}{Z}}{\lambda\abs{X}}
+\]
+Using \(N = J(T) = \frac{1}{\abs{X}} J(X)\), we have
+\[
+\begin{split}
+N' &= -\frac{\inpr{X}{X'}}{\abs{X}^3} J(X) + \frac{1}{\abs{X}}J(X') = \frac{1}{\abs{X}}\left(-\inpr{T}{Z} J(T) + J(Z)\right) \\
+&= \frac{1}{\abs{X}}\left(-\inpr{T}{Z} N + J(Z)\right).
+\end{split}
+\]
+Then
+\[
+\begin{split}
+P'' &= \frac{2}{\lambda}\bigg(-\frac{1}{\abs{X}^3} \inpr{X}{X'} \inpr{\Lambda}{N}\inpr{N}{Z} + \frac{1}{\abs{X}} \inpr{\Lambda}{N'}\inpr{N}{Z} \\
+&\quad + \frac{1}{\abs{X}} \inpr{\Lambda}{N}\inpr{N'}{Z} + \frac{1}{\abs{X}} \inpr{\Lambda}{N}\inpr{N}{Z'}\bigg) \\
+&= \frac{2}{\lambda\abs{X}^2}\bigg(-\inpr{T}{Z} \inpr{\Lambda}{N}\inpr{N}{Z} + \inpr{\Lambda}{-\inpr{T}{Z} N + J(Z)}\inpr{N}{Z} \\
+&\quad + \inpr{\Lambda}{N}\inpr{-\inpr{T}{Z} N + J(Z)}{Z} + \abs{X} \inpr{\Lambda}{N}\inpr{N}{X''}\bigg) \\
+&= \frac{2}{\lambda\abs{X}^2}\bigg(-3\inpr{T}{Z} \inpr{\Lambda}{N}\inpr{N}{Z} + \inpr{\Lambda}{J(Z)}\inpr{N}{Z} + \abs{X} \inpr{\Lambda}{N}\inpr{N}{X''}\bigg) \\
+&= \frac{1}{\abs{X}} \left(-3\inpr{T}{Z} + \frac{\inpr{\Lambda}{J(Z)}}{\inpr{\Lambda}{N}} + \abs{X} \frac{\inpr{N}{X''}}{\inpr{N}{Z}} \right) P'
+\end{split}
+\]
+Thus
+\[
+P'(s) = P'(0) \exp\left[\int_0^s \frac{1}{\abs{X}} \left(-3\inpr{T}{Z} + \frac{\inpr{\Lambda}{J(Z)}}{\inpr{\Lambda}{N}} + \abs{X} \frac{\inpr{N}{X''}}{\inpr{N}{Z}} \right)du \right]
+\]
+and
+\[
+P(s) = P'(0) \int_0^s \exp\left[\int_0^t \frac{1}{\abs{X}} \left(-3\inpr{T}{Z} + \frac{\inpr{\Lambda}{J(Z)}}{\inpr{\Lambda}{N}} + \abs{X} \frac{\inpr{N}{X''}}{\inpr{N}{Z}} \right)du\right] dt + P(0)
+\]
+{\color{red}This is very little help since \(P'(s) \equiv 0\) if and only if \(P'(0) = 0\) if and only if \(P(s) \equiv P(0)\).}
+\section{System Of ODE's}
+\label{sec:ode_sys}
+
+Let us write,
+\[
+X(s) = (x(s), y(s)), \quad N(s) = \frac{1}{\sqrt{x^2(s) + y^2(s)}} (y(s), -x(s)).
+\]
+Then writing \(\Lambda = (A, B)\), the Euler-Lagrange equation \eqref{eq:el} becomes the system,
+\[
+\begin{cases}
+x'' + \lambda x &= \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) y \\
+y'' + \lambda y &= \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) x.
+\end{cases}
+\]
+Letting \(u = x', v = y'\) gives the first order system
+\begin{equation}
+\label{eq:ode}
+\begin{cases}
+x' &= u, \\
+y' &= v, \\
+u' &= -\lambda x + \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) y, \\
+v' &= -\lambda y + \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) x.
+\end{cases}
+\end{equation}
+
+Note in particular that when \(\Lambda = (0, 0)\) (\(A = B = 0\)), the system is uniformly Lipshchitz on the right hand side so that unique solutions exist given any initial data. However, if \(\Lambda \ne 0\) the right hand side is only continuous away from \(X = (0, 0)\). Thus solutions are only guaranteed to exist for a short interval \(s \in [0, s_0)\) and either \(s_0 = \infty\) or \(\abs{X}(s) \to 0\) as \(s \to s_0\) since the system has unique solutions provided \(\abs{X} \ne 0\). In general, the right hand side is uniformly Lipschitz on the set \(\abs{X}^2 \geq \epsilon\) for any \(\epsilon > 0\). But the Lipshitz constant depends on \(\epsilon\) and blows up at \(X = (0, 0)\) where right hand side is also no longer even continuous.
+
+Now observe that admissible solutions for constrained minimisation problem satisfy \(\abs{X}^2 \ne 0\) and are periodic \(X(s + 2\pi) = X(s)\). By compactness of \(\So\) and continuity of \(X\), then there exists an \(\epsilon > 0\) such that
+\begin{equation}
+\label{eq:non_degen}
+\abs{X}^2(s) \geq \epsilon \quad \forall s \in \So.
+\end{equation}
+Moreover, by the constraint \(\alpha(X) = (0, 0)\), we know that \(X\) is non-constant and in fact the map \(s \in \So \mapsto X(s)/\abs{X(s)} \in \So\) has non-zero degree. ({\color{red}We may assume the degree is \(1\) but we'll see if that is necessary}).
+
+We seek to show that this situation is impossible unless \(\Lambda = (0, 0)\). That is, if \(\Lambda \ne (0, 0)\), there are no non-constant, periodic solutions such that \(\abs{X} \ne 0\) and with \(T = X/\abs{X}\) having positive degree. For this, we assume \(\Lambda \ne (0, 0)\), \(\abs{X} \geq \epsilon > 0\) and show that there are no periodic solutions.
+
+Let \(M_{\pm}\) denote the minimum and maximum values of \(\abs{X}\) so that \(M_- \leq \abs{X} \leq M_+\) with \(0 < M_- < M_+ < \infty\) and there are points \(s_{\pm} \in \So\) such that \(\abs{X}(s_{\pm}) = M_{\pm}\). Note that if \(M_- = M_+\), then \(\abs{X} \equiv M_- = M_+\) is constant and \(X\) is a circle which means we are done already. 
+
+
+\end{document}

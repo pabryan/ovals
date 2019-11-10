@@ -1,1 +1,16 @@
+*~
+*.blg
+*.bbl
+*-blx.bib
+*.run.xml
+*.aux
+*.log
+*.fls
+*.dep
+*.fdb_latexmk
+*.out
+*.toc
 auto/
+transplanting.pdf
+paper/ovals.pdf
+euler-lagrange.pdf
