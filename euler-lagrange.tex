@@ -362,13 +362,13 @@ P(s) = P'(0) \int_0^s \exp\left[\int_0^t \frac{1}{\abs{X}} \left(-3\inpr{T}{Z} +
 
 Let us write,
 \[
-X(s) = (x(s), y(s)), \quad N(s) = \frac{1}{\sqrt{x^2(s) + y^2(s)}} (y(s), -x(s)).
+X(s) = (x(s), y(s)), \quad N(s) = J\left(\frac{X}{\abs{X}}\right) = \frac{1}{\sqrt{x^2(s) + y^2(s)}} (-y(s), x(s)).
 \]
 Then writing \(\Lambda = (A, B)\), the Euler-Lagrange equation \eqref{eq:el} becomes the system,
 \[
 \begin{cases}
-x'' + \lambda x &= \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) y \\
-y'' + \lambda y &= \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) x.
+x'' + \lambda x &= \frac{-1}{(x^2 + y^2)^{3/2}} (Bx - Ay) y \\
+y'' + \lambda y &= \frac{1}{(x^2 + y^2)^{3/2}} (Bx- Ay) x.
 \end{cases}
 \]
 Letting \(u = x', v = y'\) gives the first order system
@@ -377,8 +377,8 @@ Letting \(u = x', v = y'\) gives the first order system
 \begin{cases}
 x' &= u, \\
 y' &= v, \\
-u' &= -\lambda x + \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) y, \\
-v' &= -\lambda y + \frac{1}{(x^2 + y^2)^{3/2}} (Ay - Bx) x.
+u' &= -\lambda x - \frac{1}{(x^2 + y^2)^{3/2}} (Bx - Ay) y, \\
+v' &= -\lambda y + \frac{1}{(x^2 + y^2)^{3/2}} (Bx - Ay) x.
 \end{cases}
 \end{equation}
 
