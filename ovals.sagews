@@ -1,4 +1,4 @@
-︠355f72c4-5cc9-48e1-a295-c5ec5de48b04s︠
+︠355f72c4-5cc9-48e1-a295-c5ec5de48b04︠
 t, u = var('t, u')
 assume(t>0)
 
@@ -13,18 +13,24 @@ eigenfunctions = []
 curvatures = []
 tangents = []
 normals = []
+
+kfs = []
+ksqfs = []
+kfsqs = []
+konfs = []
+
 for a in avals:
     x(t) = cos(t)/(sin(t)^2 + a^2 * cos(t)^2)^(1/2)
     y(t) = sin(t)/(sin(t)^2 + a^2 * cos(t)^2)^(1/2)
     x(t) = a * cos(t)
     y(t) = sin(t)
     z = vector([x, y])
-    f = z.norm()
+    f(t) = z.norm()
 
     T = (1/f) * z
     R = matrix([[0, -1], [1,0]])
     N = R * T
-    k = (vector(T.diff())) * N
+    k = ((vector(T.diff())) * N).full_simplify()
 
     X(t) = integrate(x(u)/f(u), (u, 0, t))
     Y(t) = integrate(y(u)/f(u), (u, 0, t))
@@ -35,83 +41,82 @@ for a in avals:
     gammas += [Z]
     tangents += [T]
     normals += [N]
-    eigenfunctions += [f]
-    curvatures += [k]
+    eigenfunctions += [vector([t, f])]
+    curvatures += [vector([t, k])]
+    kfs += [vector([t, (k*f).full_simplify()])]
+    ksqfs += [vector([t, (k^2*f).full_simplify()])]
+    kfsqs += [vector([t, (k*f^2).full_simplify()])]
+    konfs += [vector([t, (k/f).full_simplify()])]
 
-kf = [curvatures[i] * eigenfunctions[i] for i in range(len(curvatures))]
-ksqf = [curvatures[i]^2 * eigenfunctions[i] for i in range(len(curvatures))]
-kfsq = [curvatures[i] * eigenfunctions[i]^2 for i in range(len(curvatures))]
-konf = [curvatures[i]/eigenfunctions[i] for i in range(len(curvatures))]
 
-︡d55c2971-3edc-4b36-8bed-832741711916︡{"done":true}︡
-︠0d01c4e2-aeb9-4a94-873a-a61cad33b935s︠
-def add_end_label(array, thetext, pos, size):
+︡82cc74f6-8454-449b-8e37-6b939cb34a9b︡{"done":true}︡
+︠0d01c4e2-aeb9-4a94-873a-a61cad33b935︠
+def make_plots(array, thetext, pos, size):
+    P = [parametric_plot(p, (t, 0, 2*pi)) for p in array]
+    #for p in P: p.ticks(ticks=[[0, 2*pi], [p.ymin(), p.ymax()]], tick_formatter=[pi,None])
     T = text(thetext, pos, fontsize=size)
     T.axes(False)
-    return array + [T]
-︡4d5fd09b-f450-4ecd-ab08-d404473add38︡{"done":true}︡
-︠ca9dd15a-3c8d-4bd1-94cb-54acff45082bs︠
-gamma_plots = add_end_label([parametric_plot(g, (t, 0, 2*pi)) for g in gammas], r"$\gamma$", (1,1), 20)
-orbit_plots = add_end_label([parametric_plot(o, (t, 0, 2*pi)) for o in orbits], r"$X$", (1,1), 20)
-eigenfunction_plots = add_end_label([plot(e, (t, 0, 2*pi)) for e in eigenfunctions], r"$f$", (1,1), 20)
-curvature_plots = add_end_label([plot(k, (t, 0, 2*pi)) for k in curvatures], r"$\kappa$", (1,1), 20)
+    return P + [T]
+︡6a7a771b-95ba-4d22-8990-6080fb062eee︡{"done":true}︡
+︠2649c1c4-bf64-4634-9445-7a29e75d8520︠
+gamma_plots = make_plots(gammas, r"$\gamma$", (1,1), 20)
+orbit_plots = make_plots(orbits, r"$X$", (1,1), 20)
+eigenfunction_plots = make_plots(eigenfunctions, r"$f$", (1,1), 20)
+curvature_plots = make_plots(curvatures, r"$\kappa$", (1,1), 20)
 
-kf_plots = add_end_label([plot(h, (t, 0, 2*pi)) for h in kf], r"$\kappa f$", (1,1), 20)
-ksqf_plots = add_end_label([plot(h, (t, 0, 2*pi)) for h in ksqf], r"$\kappa^2 f$", (1,1), 20)
-kfsq_plots = add_end_label([plot(h, (t, 0, 2*pi)) for h in kfsq], r"$\kappa f^2$", (1,1), 20)
-konf_plots = add_end_label([plot(h, (t, 0, 2*pi)) for h in konf], r"$\kappa/f$", (1,1), 20)
+kf_plots = make_plots(kfs, r"$\kappa f$", (1,1), 20)
+ksqf_plots = make_plots(ksqfs, r"$\kappa^2 f$", (1,1), 20)
+kfsq_plots = make_plots(kfsqs, r"$\kappa f^2$", (1,1), 20)
+konf_plots = make_plots(konfs, r"$\kappa/f$", (1,1), 20)
 
 alabels = [text(r"e = $" + str(a) + "$", (1,1), fontsize=20) for a in avals]  + [text(r"", (1,1), fontsize=20)]
 for a in alabels: a.axes(False)
 
-︡30cb9265-504e-4180-b0b3-453f6d51df0d︡{"done":true}︡
-︠6137b2a2-6aa8-4ed6-b5a7-c5a290f8e8c2s︠
+︡37d38062-eb27-42a4-acb6-a8d66f109295︡{"done":true}︡
+︠6137b2a2-6aa8-4ed6-b5a7-c5a290f8e8c2︠
 g = graphics_array([alabels, gamma_plots])
 g.show(aspect_ratio=1, axes=False)
 g.save('ovals_gamma.png', aspect_ratio=1, axes=False)
 
-︡7d792adb-44c3-46ff-86c6-b799c2fdb3d4︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_0u8nsG.svg","show":true,"text":null,"uuid":"38fdefc6-8cb5-4011-9072-844eb1f95ac3"},"once":false}︡{"done":true}︡
-︠f72c86dd-ca80-48db-a93d-bd27b4075117s︠
+︡0c4d17d0-d629-4727-8813-a535cbdb8be8︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp__vk9vk.svg","show":true,"text":null,"uuid":"39388432-a954-40ae-b6c6-94f90467dc4b"},"once":false}︡{"done":true}︡
+︠f72c86dd-ca80-48db-a93d-bd27b4075117︠
 g = graphics_array([alabels, orbit_plots])
 g.show(aspect_ratio=1, axes=False)
 g.save('ovals_orbit.png', aspect_ratio=1, axes=False)
 
-︡7b4c9d0f-63e9-4fa7-abb6-f056faa3c226︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_UclR1C.svg","show":true,"text":null,"uuid":"2601b550-a1a8-4ad9-8222-fe02ed0f5e8b"},"once":false}︡{"done":true}︡
-︠48574019-cf7e-4a6a-846c-3075ee54faf8s︠
+︡7b68da81-3566-4a7c-8ccc-e91dc877f60f︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_Mol2gO.svg","show":true,"text":null,"uuid":"65d6c587-b793-4985-993c-18f4082fb94f"},"once":false}︡{"done":true}︡
+︠48574019-cf7e-4a6a-846c-3075ee54faf8︠
 g = graphics_array([alabels, eigenfunction_plots])
 g.show(aspect_ratio=1, axes=False)
 g.save('ovals_eigenfunctions.png', aspect_ratio=1, axes=False)
-︡0c57a947-adf7-42a9-bf71-fe47d4f1dcfd︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_85tMV1.svg","show":true,"text":null,"uuid":"e8263709-c847-4758-83aa-c10fff80db2e"},"once":false}︡{"done":true}︡
-︠58f3b723-805e-48ae-8149-dc39f7460434s︠
+︡21338007-f628-480c-beb8-e96edcb2521f︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_d8vu1T.svg","show":true,"text":null,"uuid":"665443db-4b37-4630-8b4e-4eae1c93ea08"},"once":false}︡{"done":true}︡
+︠58f3b723-805e-48ae-8149-dc39f7460434︠
 g = graphics_array([alabels, curvature_plots])
 g.show(aspect_ratio=1, axes=False)
 g.save('ovals_curvatures.png', aspect_ratio=1, axes=False)
-︡12c6f975-8417-47b2-aa5d-74c19bd4e0a1︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_gX7gyM.svg","show":true,"text":null,"uuid":"fd6f4def-1ad9-44f5-beda-e11544d9b134"},"once":false}︡{"done":true}︡
-︠358b8972-607c-477f-b4ab-a2be1091b031s︠
+︡fe8e6970-dd5e-4c52-8267-3ff3fb855f73︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_71CyoP.svg","show":true,"text":null,"uuid":"98ccb5e1-4afe-4ca7-8361-c84c3937d888"},"once":false}︡{"done":true}︡
+︠358b8972-607c-477f-b4ab-a2be1091b031︠
 g = graphics_array([alabels, gamma_plots, orbit_plots, eigenfunction_plots, curvature_plots])
 g.show(axes=False)
 g.save("ovals.png", axes=False)
-︡c1d98fec-cbbd-4e01-8461-8897a24d8891︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_Hu6RJq.svg","show":true,"text":null,"uuid":"32848b0f-bd57-4ce0-b167-82800c8c53a5"},"once":false}︡{"done":true}︡
-︠c20ab7f9-cb95-493c-a29b-501cd437f09bs︠
+︡28b69ecd-09c3-4284-b91b-42d49287dcc8︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_uVaeFX.svg","show":true,"text":null,"uuid":"1ef479cf-3688-4345-a0f1-e9989c30b76b"},"once":false}︡{"done":true}︡
+︠c20ab7f9-cb95-493c-a29b-501cd437f09b︠
 g = graphics_array([alabels, curvature_plots, eigenfunction_plots, kf_plots, ksqf_plots, kfsq_plots, konf_plots])
 g.show(ticks=[[], None])
 g.save("ovals_curvature_eigenfunction.png", ticks=[[], None])
-︡9f10cbc4-7316-4cba-aa66-8ac939672ece︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_QNvUiA.svg","show":true,"text":null,"uuid":"6169a59f-3f78-448a-a162-18acde61825d"},"once":false}︡{"done":true}︡
-︠0e1e7c86-a810-489e-92e0-254a2dea7945s︠
+︡e17a4418-cb98-4936-8eda-0a729ee73a7b︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/173/tmp_9MzwzB.svg","show":true,"text":null,"uuid":"97e3d48d-0d23-4a56-b619-22c987aeab1d"},"once":false}︡{"done":true}︡
+︠931f7524-645f-4d10-9706-d6133664f4ffs︠
+u = var('u')
+array = [vector([u, cos(i*u)]) for i in range(0, 3)]
+P = [parametric_plot(p, (u, 0, 2*pi), ticks = [[0,i], [0,i]]) for p in array]
+P[1].axes(False)
+g = graphics_array(P)
 
-
-
-
-
-
-
-
-
-︡e67cf133-9fa8-4ef9-8005-f9afb38b7b5c︡{"done":true}︡
-︠10b5a622-0642-4484-bb19-947f776bda38︠
-︡e4384a9f-491a-471d-aa09-008388fe6773︡{"done":true}︡
-︠9764cb5a-1e02-49c7-bb1a-60761496a2d1︠
-︡75bd3660-1017-4939-a780-62f6c60c3dc6︡
+︡4101e4ea-0031-4e88-8d55-27ee0ebd2dd4︡{"done":true}
+︠54102550-9b21-4c4f-b962-91b69c9092ads︠
+g.show()
+︡ab3ff0aa-c3da-4fa6-8579-38e2315ec116︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/737/tmp_IPC97b.svg","show":true,"text":null,"uuid":"c66f83bd-83fb-421b-b195-f49455da9036"},"once":false}︡{"done":true}
+︠6061044f-1144-4d5c-8e3c-87ab37d7e270︠
 
 
 
