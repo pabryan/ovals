@@ -345,4 +345,48 @@ We seek to show that this situation is impossible unless \(\Lambda = (0, 0)\). T
 Let \(M_{\pm}\) denote the minimum and maximum values of \(\abs{X}\) so that \(M_- \leq \abs{X} \leq M_+\) with \(0 < M_- < M_+ < \infty\) and there are points \(s_{\pm} \in \So\) such that \(\abs{X}(s_{\pm}) = M_{\pm}\). Note that if \(M_- = M_+\), then \(\abs{X} \equiv M_- = M_+\) is constant and \(X\) is a circle which means we are done already. 
 
 
+\section{Second Variation}
+
+\begin{lem}
+The second variation is
+\[
+\begin{split}
+d^2F_X (V, V) &= E(V) - \lambda I(V) \\
+&\quad - \int_{\So} \frac{1}{\abs{X}^2} \left[3\inpr{T}{V}\inpr{N}{V} \inpr{N}{\Lambda} - \inpr{T}{V}^2 \inpr{N}{\Lambda} + \inpr{T}{V}\inpr{N}{V} \inpr{\Lambda}{T} \right] ds.
+\end{split}
+\]
+\end{lem}
+
+\begin{proof}
+Recall we have
+\begin{align*}
+dE_X (V) &= \inpr{-X''}{V}_2 \\
+dI_X (V) &= \inpr{X}{V}_2 \\
+d\alpha_X (V) &= \int_{\So} \frac{1}{\abs{X}(s)} \inpr{N(s)}{V} N(s) ds \\
+dF_X (V) &= -\inpr{X'' + \lambda X}{V}_2 + \inpr{\Lambda}{\int_{\So} \frac{1}{\abs{X}(s)} \inpr{N(s)}{V} N(s) ds} \\
+&= -\inpr{X'' + \lambda X - \frac{1}{\abs{X}} \inpr{\Lambda}{N}N}{V}_2.
+\end{align*}
+
+Taking the variation \(t \mapsto X + tV\) we have \(\partial_t^2 (X + tV) = 0\) and so for a function \(G\), \(d^2G_X (V, V) = \partial_t|_{t=0} dG_X(X + t V)\).
+Then
+\[
+d^2E_X(V, V) = \partial_t|_{t=0} \inpr{-(X + tV)''}{V}_2 = -\inpr{V''}{V}_2 = \inpr{V'}{V'}_2 = E(V).
+\]
+Similarly,
+\[
+d^2I_X(V, V) = \partial_t|_{t=0} \inpr{X + t V}{V}_2 = \inpr{V}{V}_2 = I(V).
+\]
+Lastly,
+\[
+\begin{split}
+d^2\alpha_X(V, V) &= \partial_t|_{t=0} \int_{\So} \frac{1}{\abs{X+tV}^3} \inpr{J(X+tV)}{V} J(X + tV) ds \\
+&= \int_{\So} -\frac{3}{\abs{X}^5} \inpr{X}{V} \inpr{J(X)}{V} J(X) + \frac{1}{\abs{X}^3} \inpr{J(V)}{V} J(X) \\
+&\quad + \frac{1}{\abs{X}^3} \inpr{J(X)}{V} J(V) ds \\
+&= \int_{\So} \frac{1}{\abs{X}^2}\left[-3\inpr{T}{V}\inpr{N}{V} N + \inpr{T}{V} J(V)\right] ds \\
+&= \int_{\So} \frac{1}{\abs{X}^2} \left[-3\inpr{T}{V}\inpr{N}{V} N + \inpr{T}{V} J(\inpr{T}{V} T + \inpr{N}{V} N) \right] ds \\
+&= \int_{\So} \frac{1}{\abs{X}^2} \left[-3\inpr{T}{V}\inpr{N}{V} N + \inpr{T}{V}^2 N - \inpr{T}{V}\inpr{N}{V} T \right] ds.
+\end{split}
+\]
+\end{proof}
+
 \end{document}
