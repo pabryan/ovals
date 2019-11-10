@@ -91,18 +91,18 @@ We cannot likewise normalise \(\Gamma\) (say to have unit length) due to the dif
 Let \(X\) be a solution of the canonical form equation \eqref{eq:el_sys_can} with \(\Lambda\) given. Let \(R : \RR^2 \to \RR^2\) be a rotation or reflection. Let \(\Gamma = R(\Lambda)\). Note that \(J \circ R = \pm R \circ J\) with \(+\) for a rotation and \(-\) for a reflection. Letting \(Y = R(X)\), then since \(R\) is an isometry, we have
 \[
 \begin{split}
-Y'' + Y &= R(X'' + Y) = R\left(\frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)}J(X)\right) \\
+Y'' + Y &= R(X'' + X) = R\left(\frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)}J(X)\right) \\
 &= \frac{1}{\abs{R(X)}^3} \inpr{R(\Lambda)}{R(J(X))} R(J(X)) \\
-&= \frac{1}{\abs{Y}^3} \inpr{\Gamma}{Y} J(Y).
+&= \frac{1}{\abs{Y}^3} \inpr{\Gamma}{J(Y)} J(Y).
 \end{split}
 \]
 Thus \(Y\) is a solution with \(\Gamma = R(\Lambda)\).
 
 In particular, for any rotation \(R\), the solution for \(\Lambda\) with initial conditions \(Y(0) = V_0\), \(Y'(0) = V_1\) equals \(R(X)\) where \(X\) is the solution with initial conditions \(X(0) = R^{-1}(V_0)\), \(X'(0) = R^{-1}(V_1)\) and \(\Gamma = R^{-1}(\Lambda)\). Thus by performing a rotation if necessary, we may without loss of generality assume that \(V_0 = (v_0, 0)\) lies on the non-negative \(x\)-axis; i.e. \(v_0 \geq 0\).
 
-Likewise, since \(V_0 = (v_0, 0)\) is fixed by reflection across the \(x\)-axis, we may reflect across the \(x\)-axis so that \(\inpr{V_1}{(0, 1)} \geq 0\). That is \(V_1 = (v_1, v_2\) with \(v_1 \geq 0\).
+Likewise, since \(V_0 = (v_0, 0)\) is fixed by reflection across the \(x\)-axis, we may reflect across the \(x\)-axis if necessary so that \(\inpr{V_1}{(0, 1)} \geq 0\). That is \(V_1 = (v_1, v_2)\) with \(v_2 \geq 0\).
 
-Finally, let \(T : \RR^2 \to \RR^2\) be a scaling \(X \mapsto cX\) with \(c \geq 0\) and let \(\Gamma = c^2 \Lambda\). Letting \(Y = cX\) we have
+Finally, consider a scaling \(X \mapsto cX\) with \(c \geq 0\) and let \(\Gamma = c^2 \Lambda\). Letting \(Y = cX\) we have
 \[
 \begin{split}
 Y'' + Y &= c \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X) \\
@@ -112,7 +112,7 @@ Y'' + Y &= c \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X) \\
 \]
 Thus (in the non-degenerate case, \(V_0 \ne 0\)) we may assume that \(V_0 = (1, 0)\). Alternatively, we could allow \(V_0\) to range along the \(x\)-axis and restrict \(V_1\) to the upper part of \(\So\).
 
-These restrictions are particularly useful for numerical simulation as the reduce the number and range of the allowable parameters. To sum up, in order to solve the Euler-Lagrange equation \eqref{eq:el} with general initial conditions, by a change of variables, then translation, reflection and scaling of the initial conditions, it is sufficient to solve the canonical Euler-Lagrange equation \eqref{eq:el_sys_can} with initial conditions \(X(0) = V_0 = (1, 0)\) and \(X'(0) = V_1 = (v_1, v_2)\) with \(v_2 \geq 0\).
+These restrictions are particularly useful for numerical simulation as the reduce the number and range of the allowable parameters. To sum up, in order to solve the Euler-Lagrange equation \eqref{eq:el} with general initial conditions, it is sufficient, by a change of variables, translation, reflection and scaling of the initial conditions, to solve the canonical Euler-Lagrange equation \eqref{eq:el_sys_can} with initial conditions \(X(0) = V_0 = (1, 0)\) and \(X'(0) = V_1 = (v_1, v_2)\) with \(v_2 \geq 0\).
 
 \section{Identities For Constrained Critical Points}
 
