@@ -117,6 +117,51 @@ g = graphics_array(P)
 g.show()
 ︡ab3ff0aa-c3da-4fa6-8579-38e2315ec116︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/737/tmp_IPC97b.svg","show":true,"text":null,"uuid":"c66f83bd-83fb-421b-b195-f49455da9036"},"once":false}︡{"done":true}
 ︠6061044f-1144-4d5c-8e3c-87ab37d7e270︠
+# Angenent
+x, y = var('x, y')
+
+F(x, y) = cos(y)/cosh(x)
+angenents = []
+for g in gammas:
+    angenents += [vector([t, F(x = g[0], y = g[1]).simplify_full()])]
+
+angenent_plots = make_plots(angenents, r"$" + latex(F) + r"$", (1,1), 20)
+︡0e564e75-ed57-4727-a0ae-e00b18f7da7a︡{"done":true}︡
+︠6260bd39-b189-4802-81b8-f74283f989d7︠
+
+
+︡4d291da3-fb51-4660-8391-d65ed1328e93︡{"file":{"filename":"/home/user/.sage/temp/project-746c2d02-fba9-41f7-86c8-dbce79185bad/313/tmp_mvtkNb.svg","show":true,"text":null,"uuid":"1a08b55d-6171-4506-98ae-54a1373ca145"},"once":false}︡{"done":true}︡
+︠f533aced-d30a-4d08-8054-2045d96a3b3bs︠
+# Ovals and CSF
+a = var('a')
+t = var('s')
+u = var('u')
+
+assume(s>0)
+
+x(t) = a * cos(s)
+y(t) = sin(s)
+z = vector([x, y])
+f(t) = z.norm()
+
+T = (1/f) * z
+R = matrix([[0, -1], [1,0]])
+N = R * T
+k = ((vector(T.diff())) * N).full_simplify()
+
+X(t) = integrate(x(u)/f(u), (u, 0, s))
+Y(t) = integrate(y(u)/f(u), (u, 0, s))
+
+W = vector([x(s)/f(s), y(s)/f(s)])
+Wa = W.diff(a)
+Za = integrate(Wa(s=u), (u, 0, s))
+ZNa = Za * N
+Z = vector([X, Y])
+︡a889936b-304c-4173-b977-671b25eda0fb︡{"done":true}︡
+︠72d9e929-8179-431b-b307-21cb2a95454fs︠
+show(ZNa)
+show(k)
+︡4334d3a8-fd23-49c3-84fb-9d4e5381c99b︡{"html":"<div align='center'>$\\displaystyle t \\ {\\mapsto}\\ -\\frac{a^{2} \\cos\\left(s\\right) \\int_{0}^{s} \\frac{\\cos\\left(u\\right)^{2} \\sin\\left(u\\right)}{{\\left({\\left| a \\right|}^{2} {\\left| \\cos\\left(u\\right) \\right|}^{2} + \\sin\\left(u\\right)^{2}\\right)}^{\\frac{3}{2}}}\\,{d u}}{\\sqrt{{\\left| a \\cos\\left(t\\right) \\right|}^{2} + \\sin\\left(t\\right)^{2}}} - \\frac{\\int_{0}^{s} -\\frac{a^{2} \\cos\\left(u\\right)^{3}}{{\\left({\\left| a \\right|}^{2} {\\left| \\cos\\left(s\\right) \\right|}^{2} + \\sin\\left(s\\right)^{2}\\right)}^{\\frac{3}{2}}} + \\frac{\\cos\\left(u\\right)}{\\sqrt{{\\left| a \\right|}^{2} {\\left| \\cos\\left(u\\right) \\right|}^{2} + \\sin\\left(u\\right)^{2}}}\\,{d u} \\sin\\left(s\\right)}{\\sqrt{{\\left| a \\cos\\left(s\\right) \\right|}^{2} + \\sin\\left(s\\right)^{2}}}$</div>"}︡{"html":"<div align='center'>$\\displaystyle 0$</div>"}︡{"done":true}︡︡{"html":"<div align='center'>$\\displaystyle 1$</div>"}︡{"done":true}︡︡︡
 
 
 
