@@ -17,6 +17,7 @@
 \usepackage{amsmath}
 \usepackage{amsthm}
 \usepackage{color}
+\usepackage{comment}
 
 \usepackage{marginnote}
 \newcommand{\margincomment}[1]{\marginnote{\footnotesize{#1}}}
@@ -48,7 +49,7 @@ citestyle=authoryear
 \DeclareMathOperator{\C}{\mathcal{C}}
 \DeclareMathOperator{\So}{\mathbb{S}^1}
 \DeclareMathOperator{\G}{\mathcal{G}}
-\DeclareMathOperator{\D}{D}
+%\DeclareMathOperator{\D}{D}
 \DeclareMathOperator{\EL}{\mathcal{L}}
 \DeclareMathOperator{\setdiff}{\backslash}
 \DeclareMathOperator{\trans}{\tau}
@@ -56,18 +57,16 @@ citestyle=authoryear
 
 \newcommand{\inpr}[2]{\ensuremath{\left\langle{#1},{#2}\right\rangle}}
 \newcommand{\abs}[1]{\left|{#1}\right|}
+\newcommand{\ds}{\,ds}
 
 \newtheorem{thm}{Theorem}[section]
 \newtheorem{lem}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem{cor}[thm]{Corollary}
+\newtheorem{rem}[thm]{Remark}
 \newtheorem{conj}{Conjecture}
 \renewcommand{\theconj}{\Alph{conj}}
 \newtheorem{defn}[thm]{Definition}
-
-\theoremstyle{remark}
-\newtheorem{rem}[thm]{Remark}
-
 
 % Project specific macros
 \newcommand{\T}{Q}
