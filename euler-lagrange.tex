@@ -97,6 +97,42 @@ Note that here we don't necessarily choose \(T\) to be the minimal period and so
 Note that the solution of minimal period (i.e. least degree!) will have the least \(\lambda\) hence least energy. Note also that if \(\tilde{X}\) is a solution of minimal period \(T > 2\pi\), then the corresponding \(X\) has energy \(E(X) = \lambda = \tfrac{T^2}{4\pi^2} > 1\). Thus solutions with period \(T > 2\pi\) have energy greater than ovals and so we can ignore these. If we find a solution with period \(T < 2\pi\) and satisfying the constraint, then we have disproven the conjecture since then \(E(X) = \lambda = \tfrac{T^2}{4\pi^2} < 1\)!
 \end{rem}
 
+In summary, solving the Euler-Lagrange system \eqref{eq:el_sys},
+\[
+\begin{cases}
+X' &= Z \\
+Z' &= -\lambda X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X) \\
+X(0) &= X_0 \\
+Z(0) &= Z_0
+\end{cases}
+\]
+for a \(2\pi\)-periodic pair \((X, Z)\) with \(\Lambda \ne (0, 0)\), it is equivalent to solve
+\[
+\begin{cases}
+\tilde{X}' &= \tilde{Z} \\
+\tilde{Z}' &= -\tilde{X} + \frac{1}{\abs{\tilde{X}}^3} \inpr{(1, 0)}{J(\tilde{X})} J(\tilde{X}) \\
+\tilde{X}(0) &= \tilde{X}_0 \\
+\tilde{Z}(0) &= \tilde{Z}_0
+\end{cases}
+\]
+for a \(T = 2\pi\lambda^{1/2}\)-periodic pair \((\tilde{X}, \tilde{Z})\). The correspondence is given by
+\begin{align*}
+\tilde{X}(s) &= c^{-1/2} R \cdot X(\lambda^{-1/2} s) \\
+\tilde{Z}(s) &= c^{-1/2} R \cdot \lambda^{-1/2} X(\lambda^{-1/2} s) \\
+\tilde{X}_0 &= c^{-1/2} R \cdot X_0 \\
+\tilde{Z}_0 &=  c^{-1/2} R \cdot Z_0
+\end{align*}
+and inversely,
+\begin{align*}
+X(s) &= c^{1/2} R^{-1} \cdot X(\lambda^{-1/2} s) \\
+X(s) &= c^{1/2} R^{-1} \cdot X(\lambda^{-1/2} s) \\
+X_0 &= c^{1/2} R \cdot X_0 \\
+Z_0 &=  c^{1/2} R \cdot Z_0
+\end{align*}
+
+The canonical form equation \eqref{eq:el_sys_can} allows us to fix \(\lambda\) and \(\Lambda\) with the only input data as the initial data. Of course this simplifies much of the analysis and allows for numerical work. In particular, if we can show the canonical form equation \eqref{eq:el_sys_can} admits no periodic solutions with period \(T < 2\pi\) and satisfying the constraint, then the conjecture is proven. On the other hand, if such solutions do exist, then the conjecture is disproven.
+
+
 \section{Identities For Constrained Critical Points}
 
 Substituting from equation \eqref{eq:el} into the energy gives,
