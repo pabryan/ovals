@@ -67,52 +67,35 @@ Z' &= -\lambda X + \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X).
 
 \section{Canonical Form And Symmetries}
 
-Particularly for numerical work, it is convenient to obtain a canonical form. For this it seems the best we can do it scale out \(\lambda\): let \(\Gamma = \lambda^{-1} \Lambda\) and
+Particularly for numerical work, it is convenient to obtain a canonical form. Using scaling of the independent variable, we may scale out \(\lambda\). In the case \(\Lambda \ne (0, 0)\), by rotation and scaling of the dependent variable we may take \(\Lambda = (1, 0)\). Precisely, given \(\Lambda \ne (0, 0)\), let \(R : \RR^2 \to \RR^2\) and \(c \in \RR\), \(c > 0\) be the unique rotation and scale such that
 \[
-\tilde{X}(s) = X(\lambda^{-1/2} s), \quad \tilde{Z}(s) = \lambda^{-1/2} Z(\lambda^{-1/2} s).
+c R \cdot (1, 0) = \lambda^{-1} \Lambda.
 \]
-Then we have
+Then for a given solution \((X, Z)\) of the Euler-Lagrange equation \eqref{eq:el_sys}, the functions
+\[
+\tilde{X}(s) = c^{-1/2} R \cdot X(\lambda^{-1/2} s), \quad \tilde{Z}(s) = c^{-1/2} R \cdot \lambda^{-1/2} Z(\lambda^{-1/2} s)
+\]
+satisfy
 \begin{equation}
 \label{eq:el_sys_can}
 \begin{cases}
-\tilde{X}' &= \lambda^{-1/2} X' = \tilde{Z} \\
-\tilde{Z}' &= \lambda^{-1} Z' = -\tilde{X} + \frac{1}{\abs{\tilde{X}}^3} \inpr{\Gamma}{J(\tilde{X})} J(\tilde{X}).
+\tilde{X}' &= \lambda^{-1/2} c^{-1/2} R \cdot X' = \tilde{Z} \\
+\tilde{Z}' &= \lambda^{-1} c^{-1/2} R \cdot Z' = c^{-1/2} R \cdot \left(-X + \frac{1}{\abs{X}^3} \inpr{\lambda^{-1}\Lambda}{J(X)} J(X)\right) \\
+&= -\tilde{X} + \frac{1}{c^{3/2}\abs{\tilde{X}}^3} \inpr{c R \cdot (1, 0)}{c^{1/2} R J(\tilde{X})} J(\tilde{X}) \\
+&= -\tilde{X} + \frac{1}{\abs{\tilde{X}}^3} \inpr{(1, 0)}{J(\tilde{X})} J(\tilde{X}).
 \end{cases}
 \end{equation}
+where we used the fact that \(R, J\) being rotations, commute and are self-adjoint.
 
-Then if the canonical form equation \eqref{eq:el_sys_can} admits a periodic solution \(\tilde{X}\) with period \(T\), we obtain a \(2\pi\)-periodic solution to the Euler-Lagrange equation \eqref{eq:el} with \(\lambda = \tfrac{T^2}{4\pi^2}\) by letting \(X(s) = \tilde{X}\left(\tfrac{T}{2\pi}s\right)\). Note that here we don't necessarily choose \(T\) to be the minimal period and so pick up higher-degree solutions - for example, if \(\tilde{X}\) is \(T\)-periodic, it is also \(\bar{T} = nT\)-periodic, in which case \(\lambda = n^2 \tfrac{T^2}{4\pi^2}\). In particular, for \(\Gamma = (0, 0)\), we obtain \(2\pi\) periodic solutions with \(\lambda = n^2\).
+Then if the canonical form equation \eqref{eq:el_sys_can} admits a periodic solution \(\tilde{X}\) with period \(T\), we obtain a \(2\pi\)-periodic solution to the Euler-Lagrange equation \eqref{eq:el} with \(\lambda = \tfrac{T^2}{4\pi^2}\) and any \(\Lambdaa \ne (0, 0)\) by letting
+\[
+X(s) = c^{1/2} R^{-1} \tilde{X}\left(\tfrac{T}{2\pi}s\right).
+\]
+Note that here we don't necessarily choose \(T\) to be the minimal period and so pick up higher-degree solutions - for example, if \(\tilde{X}\) is \(T\)-periodic, it is also \(\bar{T} = nT\)-periodic, in which case \(\lambda = n^2 \tfrac{T^2}{4\pi^2}\). In particular, for \(\Gamma = (0, 0)\), we obtain \(2\pi\) periodic solutions with \(\lambda = n^2\).
 
 \begin{rem}
 Note that the solution of minimal period (i.e. least degree!) will have the least \(\lambda\) hence least energy. Note also that if \(\tilde{X}\) is a solution of minimal period \(T > 2\pi\), then the corresponding \(X\) has energy \(E(X) = \lambda = \tfrac{T^2}{4\pi^2} > 1\). Thus solutions with period \(T > 2\pi\) have energy greater than ovals and so we can ignore these. If we find a solution with period \(T < 2\pi\) and satisfying the constraint, then we have disproven the conjecture since then \(E(X) = \lambda = \tfrac{T^2}{4\pi^2} < 1\)!
 \end{rem}
-
-We cannot likewise normalise \(\Gamma\) (say to have unit length) due to the different degrees of homogeneity in the two terms on the second line of the right hand side in \eqref{eq:el_sys}. However, we may make use of the symmetries of the equation to reduce the number and range of parameters in the initial conditions.
-
-Let \(X\) be a solution of the canonical form equation \eqref{eq:el_sys_can} with \(\Lambda\) given. Let \(R : \RR^2 \to \RR^2\) be a rotation or reflection. Let \(\Gamma = R(\Lambda)\). Note that \(J \circ R = \pm R \circ J\) with \(+\) for a rotation and \(-\) for a reflection. Letting \(Y = R(X)\), then since \(R\) is an isometry, we have
-\[
-\begin{split}
-Y'' + Y &= R(X'' + X) = R\left(\frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)}J(X)\right) \\
-&= \frac{1}{\abs{R(X)}^3} \inpr{R(\Lambda)}{R(J(X))} R(J(X)) \\
-&= \frac{1}{\abs{Y}^3} \inpr{\Gamma}{J(Y)} J(Y).
-\end{split}
-\]
-Thus \(Y\) is a solution with \(\Gamma = R(\Lambda)\).
-
-In particular, for any rotation \(R\), the solution for \(\Lambda\) with initial conditions \(Y(0) = V_0\), \(Y'(0) = V_1\) equals \(R(X)\) where \(X\) is the solution with initial conditions \(X(0) = R^{-1}(V_0)\), \(X'(0) = R^{-1}(V_1)\) and \(\Gamma = R^{-1}(\Lambda)\). Thus by performing a rotation if necessary, we may without loss of generality assume that \(V_0 = (v_0, 0)\) lies on the non-negative \(x\)-axis; i.e. \(v_0 \geq 0\).
-
-Likewise, since \(V_0 = (v_0, 0)\) is fixed by reflection across the \(x\)-axis, we may reflect across the \(x\)-axis if necessary so that \(\inpr{V_1}{(0, 1)} \geq 0\). That is \(V_1 = (v_1, v_2)\) with \(v_2 \geq 0\).
-
-Finally, consider a scaling \(X \mapsto cX\) with \(c \geq 0\) and let \(\Gamma = c^2 \Lambda\). Letting \(Y = cX\) we have
-\[
-\begin{split}
-Y'' + Y &= c \frac{1}{\abs{X}^3} \inpr{\Lambda}{J(X)} J(X) \\
-&= c \frac{c^3}{\abs{Y}^3} \inpr{\frac{1}{c^2} \Gamma}{\frac{1}{c} J(Y)} \frac{1}{c} J(Y) \\
-&= \frac{1}{\abs{Y}^3} \inpr{\Gamma}{J(Y)} J(Y).
-\end{split}
-\]
-Thus (in the non-degenerate case, \(V_0 \ne 0\)) we may assume that \(V_0 = (1, 0)\). Alternatively, we could allow \(V_0\) to range along the \(x\)-axis and restrict \(V_1\) to the upper part of \(\So\).
-
-These restrictions are particularly useful for numerical simulation as the reduce the number and range of the allowable parameters. To sum up, in order to solve the Euler-Lagrange equation \eqref{eq:el} with general initial conditions, it is sufficient, by a change of variables, translation, reflection and scaling of the initial conditions, to solve the canonical Euler-Lagrange equation \eqref{eq:el_sys_can} with initial conditions \(X(0) = V_0 = (1, 0)\) and \(X'(0) = V_1 = (v_1, v_2)\) with \(v_2 \geq 0\).
 
 \section{Identities For Constrained Critical Points}
 
