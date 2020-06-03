@@ -1,0 +1,150 @@
+\documentclass[12pt]{amsart}
+
+\input{setup.tex}
+
+\title{Natural Constraint}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Setup}
+
+{\color{red}This is basically useless ending up being a tautology. I keep it here for the record. See the red comments below for the issue.}
+
+Let $\HS = W^{1,2}(\So \to \RR^2)$ and write \(\inpr{\cdot}{\cdot}_2\) for the \(L^2\) inner-product. For $X \in \HS$, define
+\[
+J(X) = \frac{E(X)}{\|X\|_2^2} = \frac{\|X'\|_2^2}{\|X\|_2^2}.
+\]
+Let $\HSO$ be the open set of maps $X : \So \to \RR^2 \backslash \{0\}$ in \(\HS\) and define
+\[
+\alpha(X) = \int_{\So} \frac{X}{|X|} \ds
+\]
+for \(X \in \HSO\).
+
+I think $\alpha$ is $C^1$ on $\HSO$ and have a proof typed up from ages ago in the transplanting file. That $J$ is $C^1$ is fine away from $X = 0$ since the \(W^{1,2}\) norm is \(C^1\) there. The constraint is
+\[
+\C = \alpha^{-1} (0).
+\]
+
+Recall that we have
+\[
+J'(X) (V) = \frac{2}{\|X\|_2^2} \big[\inpr{X'}{V'}_2 - \inpr{E(X) X}{V}_2\big].
+\]
+ If \(X \in W^{2,2} (\So \to \RR)\) we can integrate by parts to get
+\[
+J'(X) (V) = -\frac{2}{\|X\|_2^2} \inpr{X'' + E(X) X}{V}_2, \quad X \in W^{2,2} (\So \to \RR).
+\]
+We also have
+\[
+\alpha'(X) (V) = \int_{\So} \frac{1}{|X|} \inpr{V}{N} N \ds
+\]
+where $N = R_{\pi/2} (T)$ is rotation by $\pi/2$ of the tangent $T = \tfrac{x}{|x|}$.
+
+For any $X \in \C$ we define the associated curve \(\gamma = \gamma_X \in W^{2,2}(\So \to \RR^2)\) by
+\[
+\gamma (s) = \int_{s_0}^s \frac{X(u)}{|X(u)|} \du
+\]
+for \(s \in \So\) and \(s_0 \in \So\) any fixed basepoint. Since \(X \in \C\), \(\gamma\) is a closed curve. Note also that \(\gamma\) is parametrised by arclength and has total length \(2\pi\). We let \(\kappa = \kappa_X\) denote the curvature of \(\gamma\). Let \(\theta_X = \theta(s)\) denote the angle made by the unit normal so that $N(s) = (\cos\theta(s), \sin\theta(s))$ . When \(\gamma\) is convex, $\theta : \So \to \So$ is a diffeomorphism and we may parametrise $\gamma = \gamma(\theta)$. In that case $d\theta = \kappa ds$ and hence writing $\rho_V = \inpr{V}{N}$ we have
+\[
+\alpha'(X) (V) = \int_{\So} \frac{\rho_V}{\kappa|X|} (\cos\theta,\sin\theta) d\theta
+\]
+
+\section{Natural Constraint Conjecture}
+\label{sec:nat}
+
+\begin{defn}
+A set \(M \subseteq \HS\) is a \(C^1\) \emph{natural constraint} for \(J\) provided \(M\) is a \(C^1\) submanifold and  every critical point of \(J\) constrained to \(M\) is a free critical point.
+\end{defn}
+
+\begin{conj}
+\label{conj:nat}
+For any constrained minimiser $X \in C$, there is an open neighbourhood $A$ such that \(\C \cap A\) is a natural constraint for \(J\). In particular $X$ is a free critical point.
+\end{conj}
+
+\begin{cor}
+\label{cor:oval}
+The Ovals conjecture is true.
+\end{cor}
+
+\begin{proof}[Proof of \Cref{cor:oval} assuming \Cref{conj:nat}]
+By \cite[Theorem 1.1]{denzler2015existence} there exists a constrained minimiser, \(X\). Then $X$ is a constrained critical point and the conjecture shows that $X$ is in fact a free critical point. But the free critical points satisfying the constraint are precisely the ovals.
+\end{proof}
+
+The conjecture follows from:
+
+\begin{lem}[Conjectured Transversality Lemma]
+\label{lem:transversality}
+Let $X \in \C$, be a constrained minimizer. Then either the gradient \(\nabla J(X)\) of \(J\) vanishes or $\nabla J(X)$ is not contained in $[\ker \alpha'(X)]^{\perp}$.
+\end{lem}
+
+{\color{red}
+This doesn't help it seems. At a constrained critical point we always have $\nabla J(X) \in [\ker \alpha'(X)]^{\perp}$. That is, $\nabla J(X) \perp \ker\alpha'(X) = T_X \C$. For otherwise, the orthogonal projection $V = \pi_{T_X} (\nabla J(X)) \ne 0$ giving a non-zero $V$ tangent to the constraint such that
+\[
+J'(X) (V) = \inpr{\nabla J(X)}{V} = \|V\|^2 \ne 0
+\]
+and $X$ is not a constrained critical point.
+
+The hypotheses of the lemma are thus satisfied if and only if $\nabla J(X) = 0$. In other words, to prove the hypotheses of the lemma are satisfied, one must prove that $\nabla J(X) = 0$ in which case there is no need for the lemma or the conjecture since we've already obtained the conclusion that $X$ is an unconstrained critical point!
+}
+
+Let us now see how to prove \Cref{conj:nat} using \Cref{lem:transversality}. We make use of
+
+\begin{prop}[{\cite[Proposition 2.2]{MR2997381}}]
+\label{prop:nat}
+Let $A \subseteq \HS$ be open, $J \in C^1(\HS \to \RR)$ and $G \in C^1(A \to Y)$ for a Hilbert space $Y$. Suppose for each $\HS \in A$, there is a proper, non-empty, closed subspace $V_X$ such that
+\begin{enumerate}
+\item $J'(X)|_{V_X} \equiv 0$,
+\item $G'(X)|_{V_X} : V_X \to Y$ is surjective.
+\end{enumerate}
+Then $G^{-1}(0)$ is a \(C^1\) natural constraint for $J$.
+\end{prop}
+
+For our application, \(J\) is as above, \(G = \alpha\) and \(Y = \RR^2\) with the standard inner product and $A$ will be a neighbourhood of a minimiser $X \in \C$. Being traditionalists, we begin with a preparatory lemma.
+
+\begin{lem}
+\label{lem:surjective}
+For each \emph{smooth, convex} \(X \in \C\), there is an open neighbourhood $U$ of $X$ such that \(G'(Y) : \HS \to \RR^2\) is surjective for each $Y \in U$..
+\end{lem}
+
+\begin{proof}
+We first exhibit \(V_1, V_2\) such that \(G'(X) (V_1), G'(X) (V_2)\) are linearly independent. These are
+\[
+V_i = \frac{|X|}{\kappa}\inpr{N}{e_i} N, \quad i = 1, 2
+\]
+where $e_1 = (1, 0)$ and $e_2 = (0, 1)$ are the standard basis for $\RR^2$. Note that $V_i \in C^{\infty}(\So \to \RR^2) \cap \C$ since $X$ is smooth and $X \in \C$ implies $|X| \geq \epsilon > 0$ while convexity ensures $\kappa \geq \epsilon > 0$. Putting $\rho_i := \inpr{N}{V_i} = \frac{|X|}{\kappa}\inpr{N}{e_i}$ we have
+\[
+\begin{split}
+\inpr{G'(X) (V_i)}{e_j} &= \int_{\So} \frac{\rho_i}{|X|} \inpr{N}{e_j} \ds = \int_{\So} \frac{1}{\kappa} \inpr{N}{e_i} \inpr{N}{e_j} \ds \\
+&= \int_{\So} \inpr{N}{e_i} \inpr{N}{e_j} d\theta.
+\end{split}
+\]
+For $i=j$ we get
+\[
+\inpr{G'(X) (V_i)}{e_i} = \int_{\So} \inpr{N}{e_i}^2 d\theta > 0.
+\]
+For $i \ne j$, recalling that $N = (\cos\theta, \sin\theta)$ so that $\inpr{N}{e_1} = \cos\theta$ and $\inpr{N}{e_2} = \sin\theta$ we get
+\[
+\inpr{G'(X) (V_i)}{e_i} = \int_{\So} \cos\theta\sin\theta d\theta = 0.
+\]
+Thus $G'(X)(V_i) = c_i e_i$ with $c_i = \inpr{G'(X) (V_i)}{e_i} > 0$ giving the desired linear independence. That is $G'(X)$ is surjective and by the implicit function theorem, $G'(Y)$ is surjective for $Y \in U$ with $U$ an open neighbourhood of $X$.
+\end{proof}
+
+
+\begin{proof}[Proof of \Cref{conj:nat} assuming \Cref{lem:transversality}]
+Let $X$ be a constrained minimizer. By \cite[Theorem 1.1]{denzler2015existence}, $X$ is smooth and convex so that \Cref{lem:surjective} applies and $G'(Y) : \HS \to \RR^2$ is surjective on a neighbourhood $A$ of $X$. Thus any complementary subspace $P_Y$ (not necessarily orthogonal) to $\ker \alpha'(Y)$ is isomorphic to $\RR^2$ via $\alpha'(X)|_{P_Y}$. In particular $P_Y$ is non-empty, proper and closed.
+
+By assumption, either $\nabla J(X) = 0$ or $\nabla J(X)$ is not contained in $[\ker\alpha'(X)]^{\perp}$. In the former case, $X$ is a free critical point and there is nothing left to prove. Thus we focus on the latter case. Since $\nabla J(X) \ne 0$, by continuity after possibly shrinking $A$, we may assume that $\nabla J(Y) \ne 0$ for $Y \in A$. Moreover, since $\nabla J(X) \notin [\ker\alpha'(X)]^{\perp}$ and since $\nabla J(Y)$ and $[\ker\alpha'(Y)]^{\perp}$ vary continuously with $Y$, after possibly shrinking $A$, $\nabla J(Y) \notin \notin [\ker\alpha'(Y)]^{\perp}$ for $Y \in A$.
+
+We claim that there is a complement $P_Y$ to $\ker\alpha'(Y)$ contained in $\ker J'(Y)$. To see this note that $\ker J'(Y) = \nabla J(Y)^{\perp}$. If $\nabla J(Y) \in \ker\alpha'(Y)$, we may simply take $P_Y = [\ker\alpha'(Y)]^{\perp}$. Otherwise, write $\nabla J(Y) = U + V$ with $U \in \ker\alpha'(Y)$, $V \in [\ker\alpha'(Y)]^{\perp}$ and $U, V \ne 0$. Let $V_1 \in [\ker\alpha'(Y)]^{\perp} \simeq \RR^2$ be orthogonal to $V$ and let $V_2 = -\inpr{\nabla J(Y)}{V} U + \inpr{\nabla J(Y)}{U} V$. Then $P_Y = \linspan\{V_1, V_2\}$ suffices.
+
+Thus for each $Y \in A$, $P_Y$ is a proper, closed subspace such that
+\begin{enumerate}
+\item $P_Y \subseteq \ker J'(Y)$
+\item $\alpha'(X)|_{P_Y} : P_Y \to \RR^2$ is surjective.
+\end{enumerate}
+\Cref{prop:nat} applies to show that $\C \cap A$ is natural.
+\end{proof}
+
+\end{document}
